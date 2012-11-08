@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+gmf_dashboard/domainGenerationModel=platform\:/resource/com.runwaysdk.eclipse.plugin/model/runway.genmodel
+gmf_dashboard/domainModel=platform\:/resource/com.runwaysdk.eclipse.plugin/model/runway.ecore
+gmf_dashboard/generationModel=platform\:/resource/com.runwaysdk.eclipse.plugin/model/runway.gmfgen
+gmf_dashboard/graphicalDefinitionModel=platform\:/resource/com.runwaysdk.eclipse.plugin/model/runway.gmfgraph
+gmf_dashboard/mappingModel=platform\:/resource/com.runwaysdk.eclipse.plugin/model/runway.gmfmap
+gmf_dashboard/toolingDefinitionModel=platform\:/resource/com.runwaysdk.eclipse.plugin/model/runway.gmftool

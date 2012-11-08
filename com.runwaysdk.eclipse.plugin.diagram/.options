@@ -1,0 +1,7 @@
+# Tracing options for the com.runwaysdk.eclipse.plugin.diagram plug-in
+
+# Common issues
+com.runwaysdk.eclipse.plugin.diagram/debug=false
+
+# Visual IDs
+com.runwaysdk.eclipse.plugin.diagram/debug/visualID=false
