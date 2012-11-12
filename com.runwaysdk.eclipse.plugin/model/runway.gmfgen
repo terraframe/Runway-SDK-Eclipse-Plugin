@@ -890,101 +890,101 @@
           collapse="true">
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MDBusiness"
-            description="Create new MDBusiness"
+            title="Runway Class"
+            description="Create new Runway Class"
             genNodes="//@diagram/@topLevelNodes.0"/>
       </groups>
       <groups
-          title="MdAttributes"
+          title="Attributes"
           collapse="true">
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeBlob"
-            description="Create new MdAttributeBlob"
+            title="Blob"
+            description="Add a Blob attribute."
             genNodes="//@diagram/@childNodes.2"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeBoolean"
-            description="Create new MdAttributeBoolean"
+            title="Boolean"
+            description="Add a boolean attribute."
             genNodes="//@diagram/@childNodes.8"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeCharacter"
-            description="Create new MdAttributeCharacter"
+            title="Character"
+            description="Add a character attribute."
             genNodes="//@diagram/@childNodes.13"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeDate"
-            description="Create new MdAttributeDate"
+            title="Date"
+            description="Add a date attribute."
             genNodes="//@diagram/@childNodes.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeDateTime"
-            description="Create new MdAttributeDateTime"
+            title="DateTime"
+            description="Add a DateTime attribute."
             genNodes="//@diagram/@childNodes.10"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeDecimal"
-            description="Create new MdAttributeDecimal"
+            title="Decimal"
+            description="Add a decimal attribute."
             genNodes="//@diagram/@childNodes.5"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeDouble"
-            description="Create new MdAttributeDouble"
+            title="Double"
+            description="Add a double attribute."
             genNodes="//@diagram/@childNodes.4"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeEnumeration"
-            description="Create new MdAttributeEnumeration"
+            title="Enumeration"
+            description="Add an Enumeration attribute."
             genNodes="//@diagram/@childNodes.15"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeFloat"
-            description="Create new MdAttributeFloat"
+            title="Float"
+            description="Add a new float attribute."
             genNodes="//@diagram/@childNodes.14"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeHash"
-            description="Create new MdAttributeHash"
+            title="Hash"
+            description="Add a new Hash attribute."
             genNodes="//@diagram/@childNodes.16"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeInteger"
-            description="Create new MdAttributeInteger"
+            title="Integer"
+            description="Add a new Integer attribute."
             genNodes="//@diagram/@childNodes.11"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeNumber"
-            description="Create new MdAttributeNumber"
+            title="Number"
+            description="Add a new number attribute."
             genNodes="//@diagram/@childNodes.9"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeStruct"
-            description="Create new MdAttributeStruct"/>
+            title="Struct"
+            description="Add a new Struct attribute."/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeText"
-            description="Create new MdAttributeText"
+            title="Text"
+            description="Add a new Text attribute."
             genNodes="//@diagram/@childNodes.0"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeTime"
-            description="Create new MdAttributeTime"
+            title="Time"
+            description="Add a new Time attribute."
             genNodes="//@diagram/@childNodes.7"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeLocalCharacter"
-            description="Create new MdAttributeLocalCharacter"
+            title="Character"
+            description="Add a new Character attribute."
             genNodes="//@diagram/@childNodes.3"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeLocalText"
-            description="Create new MdAttributeLocalText"
+            title="Text"
+            description="Add a new Text attribute."
             genNodes="//@diagram/@childNodes.12"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MdAttributeLong"
-            description="Create new MdAttributeLong"
+            title="Long"
+            description="Add a new Long attribute."
             genNodes="//@diagram/@childNodes.6"/>
       </groups>
     </palette>

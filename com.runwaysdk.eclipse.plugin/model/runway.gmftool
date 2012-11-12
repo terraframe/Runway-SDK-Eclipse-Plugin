@@ -12,8 +12,8 @@
         collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MDBusiness"
-          description="Create new MDBusiness">
+          title="Runway Class"
+          description="Create new Runway Class">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -22,12 +22,12 @@
     </tools>
     <tools
         xsi:type="gmftool:ToolGroup"
-        title="MdAttributes"
+        title="Attributes"
         collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeBlob"
-          description="Create new MdAttributeBlob">
+          title="Blob"
+          description="Add a Blob attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -35,8 +35,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeBoolean"
-          description="Create new MdAttributeBoolean">
+          title="Boolean"
+          description="Add a boolean attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -44,8 +44,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeCharacter"
-          description="Create new MdAttributeCharacter">
+          title="Character"
+          description="Add a character attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -53,8 +53,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeDate"
-          description="Create new MdAttributeDate">
+          title="Date"
+          description="Add a date attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -62,8 +62,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeDateTime"
-          description="Create new MdAttributeDateTime">
+          title="DateTime"
+          description="Add a DateTime attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -71,8 +71,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeDecimal"
-          description="Create new MdAttributeDecimal">
+          title="Decimal"
+          description="Add a decimal attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -80,8 +80,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeDouble"
-          description="Create new MdAttributeDouble">
+          title="Double"
+          description="Add a double attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -89,8 +89,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeEnumeration"
-          description="Create new MdAttributeEnumeration">
+          title="Enumeration"
+          description="Add an Enumeration attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -98,8 +98,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeFloat"
-          description="Create new MdAttributeFloat">
+          title="Float"
+          description="Add a new float attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -107,8 +107,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeHash"
-          description="Create new MdAttributeHash">
+          title="Hash"
+          description="Add a new Hash attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -116,8 +116,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeInteger"
-          description="Create new MdAttributeInteger">
+          title="Integer"
+          description="Add a new Integer attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -125,8 +125,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeNumber"
-          description="Create new MdAttributeNumber">
+          title="Number"
+          description="Add a new number attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -134,8 +134,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeStruct"
-          description="Create new MdAttributeStruct">
+          title="Struct"
+          description="Add a new Struct attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -143,8 +143,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeText"
-          description="Create new MdAttributeText">
+          title="Text"
+          description="Add a new Text attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -152,8 +152,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeTime"
-          description="Create new MdAttributeTime">
+          title="Time"
+          description="Add a new Time attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -161,8 +161,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeLocalCharacter"
-          description="Create new MdAttributeLocalCharacter">
+          title="Character"
+          description="Add a new Character attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -170,8 +170,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeLocalText"
-          description="Create new MdAttributeLocalText">
+          title="Text"
+          description="Add a new Text attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -179,8 +179,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MdAttributeLong"
-          description="Create new MdAttributeLong">
+          title="Long"
+          description="Add a new Long attribute.">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
