@@ -251,197 +251,197 @@ public class Messages extends NLS
   /**
    * @generated
    */
-  public static String MdAttributes2Group_title;
+  public static String Attributes2Group_title;
 
   /**
    * @generated
    */
-  public static String MDBusiness1CreationTool_title;
+  public static String RunwayClass1CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MDBusiness1CreationTool_desc;
+  public static String RunwayClass1CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeBlob1CreationTool_title;
+  public static String Blob1CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeBlob1CreationTool_desc;
+  public static String Blob1CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeBoolean2CreationTool_title;
+  public static String Boolean2CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeBoolean2CreationTool_desc;
+  public static String Boolean2CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeCharacter3CreationTool_title;
+  public static String Character3CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeCharacter3CreationTool_desc;
+  public static String Character3CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeDate4CreationTool_title;
+  public static String Date4CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeDate4CreationTool_desc;
+  public static String Date4CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeDateTime5CreationTool_title;
+  public static String DateTime5CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeDateTime5CreationTool_desc;
+  public static String DateTime5CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeDecimal6CreationTool_title;
+  public static String Decimal6CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeDecimal6CreationTool_desc;
+  public static String Decimal6CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeDouble7CreationTool_title;
+  public static String Double7CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeDouble7CreationTool_desc;
+  public static String Double7CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeEnumeration8CreationTool_title;
+  public static String Enumeration8CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeEnumeration8CreationTool_desc;
+  public static String Enumeration8CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeFloat9CreationTool_title;
+  public static String Float9CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeFloat9CreationTool_desc;
+  public static String Float9CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeHash10CreationTool_title;
+  public static String Hash10CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeHash10CreationTool_desc;
+  public static String Hash10CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeInteger11CreationTool_title;
+  public static String Integer11CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeInteger11CreationTool_desc;
+  public static String Integer11CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeNumber12CreationTool_title;
+  public static String Number12CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeNumber12CreationTool_desc;
+  public static String Number12CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeStruct13CreationTool_title;
+  public static String Struct13CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeStruct13CreationTool_desc;
+  public static String Struct13CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeText14CreationTool_title;
+  public static String Text14CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeText14CreationTool_desc;
+  public static String Text14CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeTime15CreationTool_title;
+  public static String Time15CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeTime15CreationTool_desc;
+  public static String Time15CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeLocalCharacter16CreationTool_title;
+  public static String Character16CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeLocalCharacter16CreationTool_desc;
+  public static String Character16CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeLocalText17CreationTool_title;
+  public static String Text17CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeLocalText17CreationTool_desc;
+  public static String Text17CreationTool_desc;
 
   /**
    * @generated
    */
-  public static String MdAttributeLong18CreationTool_title;
+  public static String Long18CreationTool_title;
 
   /**
    * @generated
    */
-  public static String MdAttributeLong18CreationTool_desc;
+  public static String Long18CreationTool_desc;
 
   /**
    * @generated

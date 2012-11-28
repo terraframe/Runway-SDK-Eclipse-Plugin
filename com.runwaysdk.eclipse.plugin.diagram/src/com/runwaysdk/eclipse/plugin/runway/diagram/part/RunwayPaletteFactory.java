@@ -26,7 +26,7 @@ public class RunwayPaletteFactory
   public void fillPalette(PaletteRoot paletteRoot)
   {
     paletteRoot.add(createGeneral1Group());
-    paletteRoot.add(createMdAttributes2Group());
+    paletteRoot.add(createAttributes2Group());
   }
 
   /**
@@ -37,47 +37,47 @@ public class RunwayPaletteFactory
   {
     PaletteDrawer paletteContainer = new PaletteDrawer(Messages.General1Group_title);
     paletteContainer.setId("createGeneral1Group"); //$NON-NLS-1$
-    paletteContainer.add(createMDBusiness1CreationTool());
+    paletteContainer.add(createRunwayClass1CreationTool());
     return paletteContainer;
   }
 
   /**
-   * Creates "MdAttributes" palette tool group
+   * Creates "Attributes" palette tool group
    * @generated
    */
-  private PaletteContainer createMdAttributes2Group()
+  private PaletteContainer createAttributes2Group()
   {
-    PaletteDrawer paletteContainer = new PaletteDrawer(Messages.MdAttributes2Group_title);
-    paletteContainer.setId("createMdAttributes2Group"); //$NON-NLS-1$
-    paletteContainer.add(createMdAttributeBlob1CreationTool());
-    paletteContainer.add(createMdAttributeBoolean2CreationTool());
-    paletteContainer.add(createMdAttributeCharacter3CreationTool());
-    paletteContainer.add(createMdAttributeDate4CreationTool());
-    paletteContainer.add(createMdAttributeDateTime5CreationTool());
-    paletteContainer.add(createMdAttributeDecimal6CreationTool());
-    paletteContainer.add(createMdAttributeDouble7CreationTool());
-    paletteContainer.add(createMdAttributeEnumeration8CreationTool());
-    paletteContainer.add(createMdAttributeFloat9CreationTool());
-    paletteContainer.add(createMdAttributeHash10CreationTool());
-    paletteContainer.add(createMdAttributeInteger11CreationTool());
-    paletteContainer.add(createMdAttributeNumber12CreationTool());
-    paletteContainer.add(createMdAttributeStruct13CreationTool());
-    paletteContainer.add(createMdAttributeText14CreationTool());
-    paletteContainer.add(createMdAttributeTime15CreationTool());
-    paletteContainer.add(createMdAttributeLocalCharacter16CreationTool());
-    paletteContainer.add(createMdAttributeLocalText17CreationTool());
-    paletteContainer.add(createMdAttributeLong18CreationTool());
+    PaletteDrawer paletteContainer = new PaletteDrawer(Messages.Attributes2Group_title);
+    paletteContainer.setId("createAttributes2Group"); //$NON-NLS-1$
+    paletteContainer.add(createBlob1CreationTool());
+    paletteContainer.add(createBoolean2CreationTool());
+    paletteContainer.add(createCharacter3CreationTool());
+    paletteContainer.add(createDate4CreationTool());
+    paletteContainer.add(createDateTime5CreationTool());
+    paletteContainer.add(createDecimal6CreationTool());
+    paletteContainer.add(createDouble7CreationTool());
+    paletteContainer.add(createEnumeration8CreationTool());
+    paletteContainer.add(createFloat9CreationTool());
+    paletteContainer.add(createHash10CreationTool());
+    paletteContainer.add(createInteger11CreationTool());
+    paletteContainer.add(createNumber12CreationTool());
+    paletteContainer.add(createStruct13CreationTool());
+    paletteContainer.add(createText14CreationTool());
+    paletteContainer.add(createTime15CreationTool());
+    paletteContainer.add(createCharacter16CreationTool());
+    paletteContainer.add(createText17CreationTool());
+    paletteContainer.add(createLong18CreationTool());
     return paletteContainer;
   }
 
   /**
    * @generated
    */
-  private ToolEntry createMDBusiness1CreationTool()
+  private ToolEntry createRunwayClass1CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MDBusiness1CreationTool_title, Messages.MDBusiness1CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.RunwayClass1CreationTool_title, Messages.RunwayClass1CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MDBusiness_2001));
-    entry.setId("createMDBusiness1CreationTool"); //$NON-NLS-1$
+    entry.setId("createRunwayClass1CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MDBusiness_2001));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -86,11 +86,11 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeBlob1CreationTool()
+  private ToolEntry createBlob1CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeBlob1CreationTool_title, Messages.MdAttributeBlob1CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.Blob1CreationTool_title, Messages.Blob1CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MdAttributeBlob_3002));
-    entry.setId("createMdAttributeBlob1CreationTool"); //$NON-NLS-1$
+    entry.setId("createBlob1CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeBlob_3002));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -99,11 +99,11 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeBoolean2CreationTool()
+  private ToolEntry createBoolean2CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeBoolean2CreationTool_title, Messages.MdAttributeBoolean2CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.Boolean2CreationTool_title, Messages.Boolean2CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MdAttributeBoolean_3003));
-    entry.setId("createMdAttributeBoolean2CreationTool"); //$NON-NLS-1$
+    entry.setId("createBoolean2CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeBoolean_3003));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -112,11 +112,11 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeCharacter3CreationTool()
+  private ToolEntry createCharacter3CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeCharacter3CreationTool_title, Messages.MdAttributeCharacter3CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.Character3CreationTool_title, Messages.Character3CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MdAttributeCharacter_3015));
-    entry.setId("createMdAttributeCharacter3CreationTool"); //$NON-NLS-1$
+    entry.setId("createCharacter3CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeCharacter_3015));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -125,11 +125,11 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeDate4CreationTool()
+  private ToolEntry createDate4CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeDate4CreationTool_title, Messages.MdAttributeDate4CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.Date4CreationTool_title, Messages.Date4CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MdAttributeDate_3005));
-    entry.setId("createMdAttributeDate4CreationTool"); //$NON-NLS-1$
+    entry.setId("createDate4CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeDate_3005));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -138,11 +138,11 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeDateTime5CreationTool()
+  private ToolEntry createDateTime5CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeDateTime5CreationTool_title, Messages.MdAttributeDateTime5CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.DateTime5CreationTool_title, Messages.DateTime5CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MdAttributeDateTime_3012));
-    entry.setId("createMdAttributeDateTime5CreationTool"); //$NON-NLS-1$
+    entry.setId("createDateTime5CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeDateTime_3012));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -151,11 +151,11 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeDecimal6CreationTool()
+  private ToolEntry createDecimal6CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeDecimal6CreationTool_title, Messages.MdAttributeDecimal6CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.Decimal6CreationTool_title, Messages.Decimal6CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MdAttributeDecimal_3008));
-    entry.setId("createMdAttributeDecimal6CreationTool"); //$NON-NLS-1$
+    entry.setId("createDecimal6CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeDecimal_3008));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -164,11 +164,11 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeDouble7CreationTool()
+  private ToolEntry createDouble7CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeDouble7CreationTool_title, Messages.MdAttributeDouble7CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.Double7CreationTool_title, Messages.Double7CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MdAttributeDouble_3007));
-    entry.setId("createMdAttributeDouble7CreationTool"); //$NON-NLS-1$
+    entry.setId("createDouble7CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeDouble_3007));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -177,11 +177,11 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeEnumeration8CreationTool()
+  private ToolEntry createEnumeration8CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeEnumeration8CreationTool_title, Messages.MdAttributeEnumeration8CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.Enumeration8CreationTool_title, Messages.Enumeration8CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MdAttributeEnumeration_3017));
-    entry.setId("createMdAttributeEnumeration8CreationTool"); //$NON-NLS-1$
+    entry.setId("createEnumeration8CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeEnumeration_3017));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -190,11 +190,11 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeFloat9CreationTool()
+  private ToolEntry createFloat9CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeFloat9CreationTool_title, Messages.MdAttributeFloat9CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.Float9CreationTool_title, Messages.Float9CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MdAttributeFloat_3016));
-    entry.setId("createMdAttributeFloat9CreationTool"); //$NON-NLS-1$
+    entry.setId("createFloat9CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeFloat_3016));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -203,11 +203,11 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeHash10CreationTool()
+  private ToolEntry createHash10CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeHash10CreationTool_title, Messages.MdAttributeHash10CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.Hash10CreationTool_title, Messages.Hash10CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MdAttributeHash_3018));
-    entry.setId("createMdAttributeHash10CreationTool"); //$NON-NLS-1$
+    entry.setId("createHash10CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeHash_3018));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -216,11 +216,11 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeInteger11CreationTool()
+  private ToolEntry createInteger11CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeInteger11CreationTool_title, Messages.MdAttributeInteger11CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.Integer11CreationTool_title, Messages.Integer11CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MdAttributeInteger_3013));
-    entry.setId("createMdAttributeInteger11CreationTool"); //$NON-NLS-1$
+    entry.setId("createInteger11CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeInteger_3013));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -229,11 +229,11 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeNumber12CreationTool()
+  private ToolEntry createNumber12CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeNumber12CreationTool_title, Messages.MdAttributeNumber12CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.Number12CreationTool_title, Messages.Number12CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MdAttributeNumber_3011));
-    entry.setId("createMdAttributeNumber12CreationTool"); //$NON-NLS-1$
+    entry.setId("createNumber12CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeNumber_3011));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -242,23 +242,23 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeStruct13CreationTool()
+  private ToolEntry createStruct13CreationTool()
   {
-    ToolEntry entry = new ToolEntry(Messages.MdAttributeStruct13CreationTool_title, Messages.MdAttributeStruct13CreationTool_desc, null, null)
+    ToolEntry entry = new ToolEntry(Messages.Struct13CreationTool_title, Messages.Struct13CreationTool_desc, null, null)
     {
     };
-    entry.setId("createMdAttributeStruct13CreationTool"); //$NON-NLS-1$
+    entry.setId("createStruct13CreationTool"); //$NON-NLS-1$
     return entry;
   }
 
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeText14CreationTool()
+  private ToolEntry createText14CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeText14CreationTool_title, Messages.MdAttributeText14CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.Text14CreationTool_title, Messages.Text14CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MdAttributeText_3004));
-    entry.setId("createMdAttributeText14CreationTool"); //$NON-NLS-1$
+    entry.setId("createText14CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeText_3004));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -267,11 +267,11 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeTime15CreationTool()
+  private ToolEntry createTime15CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeTime15CreationTool_title, Messages.MdAttributeTime15CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.Time15CreationTool_title, Messages.Time15CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MdAttributeTime_3010));
-    entry.setId("createMdAttributeTime15CreationTool"); //$NON-NLS-1$
+    entry.setId("createTime15CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeTime_3010));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -280,11 +280,11 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeLocalCharacter16CreationTool()
+  private ToolEntry createCharacter16CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeLocalCharacter16CreationTool_title,
-        Messages.MdAttributeLocalCharacter16CreationTool_desc, Collections.singletonList(RunwayElementTypes.MdAttributeLocalCharacter_3006));
-    entry.setId("createMdAttributeLocalCharacter16CreationTool"); //$NON-NLS-1$
+    NodeToolEntry entry = new NodeToolEntry(Messages.Character16CreationTool_title, Messages.Character16CreationTool_desc,
+        Collections.singletonList(RunwayElementTypes.MdAttributeLocalCharacter_3006));
+    entry.setId("createCharacter16CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeLocalCharacter_3006));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -293,11 +293,11 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeLocalText17CreationTool()
+  private ToolEntry createText17CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeLocalText17CreationTool_title, Messages.MdAttributeLocalText17CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.Text17CreationTool_title, Messages.Text17CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MdAttributeLocalText_3014));
-    entry.setId("createMdAttributeLocalText17CreationTool"); //$NON-NLS-1$
+    entry.setId("createText17CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeLocalText_3014));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
@@ -306,11 +306,11 @@ public class RunwayPaletteFactory
   /**
    * @generated
    */
-  private ToolEntry createMdAttributeLong18CreationTool()
+  private ToolEntry createLong18CreationTool()
   {
-    NodeToolEntry entry = new NodeToolEntry(Messages.MdAttributeLong18CreationTool_title, Messages.MdAttributeLong18CreationTool_desc,
+    NodeToolEntry entry = new NodeToolEntry(Messages.Long18CreationTool_title, Messages.Long18CreationTool_desc,
         Collections.singletonList(RunwayElementTypes.MdAttributeLong_3009));
-    entry.setId("createMdAttributeLong18CreationTool"); //$NON-NLS-1$
+    entry.setId("createLong18CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(RunwayElementTypes.getImageDescriptor(RunwayElementTypes.MdAttributeLong_3009));
     entry.setLargeIcon(entry.getSmallIcon());
     return entry;
