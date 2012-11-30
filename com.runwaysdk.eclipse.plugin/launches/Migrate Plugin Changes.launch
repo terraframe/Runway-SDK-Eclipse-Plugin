@@ -16,6 +16,5 @@
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-XX:PermSize=128m&#13;-XX:MaxPermSize=256m&#10;-Xmx2024M"/>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE" value="${project}"/>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${workspace_loc:/com.runwaysdk.eclipse.plugin/scripts/ant.xml}"/>
-<stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="-verbose"/>
 <stringAttribute key="process_factory_id" value="org.eclipse.ant.ui.remoteAntProcessFactory"/>
 </launchConfiguration>
