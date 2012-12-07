@@ -22,8 +22,7 @@ public class RunwayDOMParser {
 
 
 		try {
-
-			File fXmlFile = new File("/Users/armiller5/Documents/workspace/RunwayTemplate/doc/individual/schema(0001352140861497)HelloWorld.xml");
+			File fXmlFile = new File("../com.runwaysdk.eclipse.plugin/doc/HelloWorld.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
