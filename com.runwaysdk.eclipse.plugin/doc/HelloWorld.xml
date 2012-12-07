@@ -2,7 +2,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<doIt>
 		<create>
-
 			<mdBusiness name="com.terraframe.runwaytemplate.HelloWorld" label="HelloWorld">
 				<attributes>
 					<char name="greeting" required="true" label="Greeting" size="50" />
