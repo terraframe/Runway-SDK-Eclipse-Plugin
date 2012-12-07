@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Author: Richard Rowlands
+
+    Purpose: Useful for assisting with migration of custom files into generated source.
+-->
+<project name="Runwaysdk_Eclipse_Plugin" default="migrate">
+  <!--=====================================================================-->
+  <!--                         Properties                                  -->
+  <!--=====================================================================-->
+	<property name="workspace.dir" value="${basedir}/../.." />
+	<property name="copy.dir.name" value="customsrc" />
+	<property name="copy.src.proj" value="${workspace.dir}/com.runwaysdk.eclipse.plugin" />
+	<property name="copy.dest.proj" value="${workspace.dir}/com.runwaysdk.eclipse.plugin.diagram" />
+  
+  <!--=====================================================================-->
+  <!--                           Targets                                   -->
+  <!--=====================================================================-->
+  
+  <target name="migrate" description="Run this to migrate changes to the generated source.">
+  	<delete failonerror="false" includeemptydirs="true">
+  		<fileset dir="${copy.dest.proj}/${copy.dir.name}" />
+  	</delete>
+  	
+  	<copydir dest="${copy.dest.proj}/${copy.dir.name}" src="${copy.src.proj}/${copy.dir.name}"></copydir>
+  </target>
+</project>
