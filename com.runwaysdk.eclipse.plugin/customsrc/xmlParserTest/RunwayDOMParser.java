@@ -30,23 +30,27 @@ public class RunwayDOMParser {
 			doc.getDocumentElement().normalize();
 
 			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-			NodeList nList = doc.getElementsByTagName("staff");
+			NodeList mdBusinessNodeList = doc.getElementsByTagName(XMLTags.MD_BUSINESS_TAG);
 			System.out.println("-----------------------");
 
-			for (int temp = 0; temp < nList.getLength(); temp++) {
+			for (int i = 0; i < mdBusinessNodeList.getLength(); i++) {
 
-				Node nNode = nList.item(temp);
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+				Node mdBusinessnNode = mdBusinessNodeList.item(i);
+				NodeList attributesNodeList = mdBusinessnNode.getChildNodes();
 
-					Element eElement = (Element) nNode;
 
-					System.out.println("MDBusiness : " + getTagValue(XMLTags.MD_BUSINESS_TAG, eElement));
-					System.out.println("Last Name : " + getTagValue("lastname", eElement));
-					System.out.println("Nick Name : " + getTagValue("nickname", eElement));
-					System.out.println("Salary : " + getTagValue("salary", eElement));
+				for (int j = 0; j < attributesNodeList.getLength(); j++) {
+					Node attributeNode = attributesNodeList.item(j);
+
 
 				}
+
+
+				//System.out.println("Attribute : " + getTagValue(XMLTags.ATTRIBUTES_TAG, eElement));
+
+
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -58,6 +62,11 @@ public class RunwayDOMParser {
 		Node nValue = (Node) nlList.item(0);
 
 		return nValue.getNodeValue();
+	}
+	
+	private static String getTagValueExperimental(String sTag, Node node) {
+
+	return null;
 	}
 
 }
