@@ -4,6 +4,8 @@ import java.io.File;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
@@ -34,8 +36,16 @@ public class RunwayDOMParser {
 
 			for (int i = 0; i < mdBusinessNodeList.getLength(); i++) {
 
-				Node mdBusinessnNode = mdBusinessNodeList.item(i);
-				NodeList attributesNodeList = mdBusinessnNode.getChildNodes();
+				Node mdBusinessNode = mdBusinessNodeList.item(i);
+				NodeList attributesNodeList = mdBusinessNode.getChildNodes();
+				NamedNodeMap mdBusinessAttributes = mdBusinessNode.getAttributes();
+			
+				//Get MDBusiness Attribute Information
+				if(mdBusinessAttributes.getNamedItem(XMLTags.NAME_ATTRIBUTE) != null ){
+					Node nameAttribute = mdBusinessAttributes.getNamedItem(XMLTags.NAME_ATTRIBUTE);
+					System.out.println(nameAttribute.getNodeValue());
+
+				}
 
 
 				for (int j = 0; j < attributesNodeList.getLength(); j++) {
@@ -62,10 +72,10 @@ public class RunwayDOMParser {
 
 		return nValue.getNodeValue();
 	}
-	
+
 	private static String getTagValueExperimental(String sTag, Node node) {
 
-	return null;
+		return null;
 	}
 
 }
