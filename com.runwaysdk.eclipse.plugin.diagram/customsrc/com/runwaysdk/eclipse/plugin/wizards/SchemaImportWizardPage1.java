@@ -1,7 +1,5 @@
 package com.runwaysdk.eclipse.plugin.wizards;
 
-import org.eclipse.jface.dialogs.IPageChangedListener;
-import org.eclipse.jface.dialogs.PageChangedEvent;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.preference.StringButtonFieldEditor;
 import org.eclipse.jface.util.IPropertyChangeListener;
@@ -16,8 +14,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.PlatformUI;
 
-import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizard;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardPage;
+import com.runwaysdk.eclipse.plugin.wizards.RunwayCreationWizardWithFinishListeners.OnPerformFinishListenerIF;
 
 public class SchemaImportWizardPage1 extends WizardPage
 {
@@ -25,10 +23,10 @@ public class SchemaImportWizardPage1 extends WizardPage
   private StringButtonFieldEditor modelFileFieldEditor;
   private StringButtonFieldEditor schemaFileFieldEditor;
   private Button newDiagramButton;
-  protected String modelPath;
-  protected String schemaPath;
+  protected String modelPath = "";
+  protected String schemaPath = "";
   protected IStructuredSelection selection;
-  private RunwayCreationWizard newDiagramWizard;
+  private RunwayCreationWizardWithFinishListeners newDiagramWizard;
   
   public SchemaImportWizardPage1() {
     super("Runway Schema Import Wizard");
@@ -39,30 +37,6 @@ public class SchemaImportWizardPage1 extends WizardPage
   @Override
   public void createControl(Composite parent) {
     container = new Composite(parent, SWT.NULL);
-//    GridLayout layout = new GridLayout();
-//    container.setLayout(layout);
-//    layout.numColumns = 2;
-//    Label label1 = new Label(container, SWT.NULL);
-//    label1.setText("Import Destination");
-//
-//    text1 = new Text(container, SWT.BORDER | SWT.SINGLE);
-//    text1.setText("");
-//    text1.addKeyListener(new KeyListener() {
-//
-//      @Override
-//      public void keyPressed(KeyEvent e) {
-//      }
-//
-//      @Override
-//      public void keyReleased(KeyEvent e) {
-//        if (!text1.getText().isEmpty()) {
-//          setPageComplete(true);
-//
-//        }
-//      }
-//
-//    });
-//    GridData gd = new GridData(GridData.FILL_HORIZONTAL);
     
     schemaFileFieldEditor = new FileFieldEditor("SchemaURI", "Runway XML Schema", container); 
     ((FileFieldEditor)schemaFileFieldEditor).setFileExtensions(new String[]{"xml"}); 
@@ -72,11 +46,16 @@ public class SchemaImportWizardPage1 extends WizardPage
       @Override
       public void propertyChange(PropertyChangeEvent arg0)
       {
-        if (arg0.getProperty() != "") {
-          setPageComplete(true);
-        }
-        else {
-          setPageComplete(false);
+        if (arg0.getNewValue() instanceof String) {
+          schemaPath = (String) arg0.getNewValue();
+          System.out.println("SchemaPath = '" + schemaPath + "'");
+          
+          if (modelPath.trim().length() != 0 && schemaPath.trim().length() != 0) {
+            setPageComplete(true);
+          }
+          else {
+            setPageComplete(false);
+          }
         }
       }
       
@@ -90,11 +69,16 @@ public class SchemaImportWizardPage1 extends WizardPage
       @Override
       public void propertyChange(PropertyChangeEvent arg0)
       {
-        if (arg0.getProperty() != "") {
-          setPageComplete(true);
-        }
-        else {
-          setPageComplete(false);
+        if (arg0.getNewValue() instanceof String) {
+          modelPath = (String) arg0.getNewValue();
+          System.out.println("ModelPath = '" + schemaPath + "'");
+          
+          if (modelPath.trim().length() != 0 && schemaPath.trim().length() != 0) {
+            setPageComplete(true);
+          }
+          else {
+            setPageComplete(false);
+          }
         }
       }
       
@@ -124,24 +108,22 @@ public class SchemaImportWizardPage1 extends WizardPage
     setPageComplete(false);
   }
   
-  private IPageChangedListener listener = new IPageChangedListener(){
-
+  private OnPerformFinishListenerIF listener = new OnPerformFinishListenerIF(){
     @Override
-    public void pageChanged(PageChangedEvent event)
+    public void onPerformFinish()
     {
       RunwayCreationWizardPage page2 = (RunwayCreationWizardPage) newDiagramWizard.getPages()[1];
       modelPath = page2.getURI().toPlatformString(false);
     }
-    
   };
   
   public void launchNewWizardDialog() {
     // Launch a RunwayCreationWizard
-    newDiagramWizard = new RunwayCreationWizard();
+    newDiagramWizard = new RunwayCreationWizardWithFinishListeners();
     newDiagramWizard.init(PlatformUI.getWorkbench(), selection);
     WizardDialog dialog = new WizardDialog
        (PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),newDiagramWizard);
-    dialog.addPageChangedListener(listener);
+    newDiagramWizard.addFinishListener(listener);
     dialog.open();
   }
 

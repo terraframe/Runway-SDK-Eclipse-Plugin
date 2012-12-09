@@ -43,12 +43,6 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
   
   @Override
   public void addPages() {
-    
-//    diagramModelFilePage = new RunwayCreationWizardPage("DiagramModelFile", selection, "runway_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
-//    diagramModelFilePage.setTitle(Messages.RunwayCreationWizard_DiagramModelFilePageTitle);
-//    diagramModelFilePage.setDescription(Messages.RunwayCreationWizard_DiagramModelFilePageDescription);
-//    addPage(diagramModelFilePage);
-    
     page1 = new SchemaImportWizardPage1();
     page1.setSelection(selection);
     addPage(page1);
