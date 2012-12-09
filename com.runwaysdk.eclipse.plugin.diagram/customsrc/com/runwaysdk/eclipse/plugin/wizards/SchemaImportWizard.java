@@ -90,6 +90,8 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
       }
       
       resource.save(null);
+      
+      resource.unload();
     }
     catch (IOException e)
     {
