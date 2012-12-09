@@ -39,18 +39,6 @@
       </context>
    </extension>
 
-   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
-      <?gmfgen generated="true"?>
-  	  <wizard
-  	     name="%newWizardName"
-  	     icon="icons/obj16/RunwayDiagramFile.gif"
-  	     category="org.eclipse.ui.Examples"
-  	     class="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizard"
-  	     id="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardID">
-  	  	 <description>%newWizardDesc</description>  
-      </wizard>
-   </extension>
-
    <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
       <?gmfgen generated="true"?>
       <objectContribution
@@ -675,6 +663,60 @@
    <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>
-
+   
    <!-- optionally, specify keybindings -->
+   
+   
+   
+   
+   
+   
+   
+   <!-- Generated Extension Points that have been modified -->
+   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
+      <?gmfgen generated="false"?>
+      <category 
+        id="com.runwaysdk.Runway" 
+        name="Runway"> 
+      </category>
+      <wizard
+         name="%newWizardName"
+         icon="icons/obj16/RunwayDiagramFile.gif"
+         category="com.runwaysdk.Runway"
+         class="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizard"
+         id="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardID">
+         <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+   
+   
+   <!-- Custom Extension Points (Not Generated) -->
+   <extension point="org.eclipse.ui.importWizards" id="com.runwaysdk.import">
+      <?gmfgen generated="false"?>
+      <category 
+        id="com.runwaysdk.Runway" 
+        name="Runway"> 
+      </category>
+      <wizard
+         name="Import Runway XML Schema"
+         icon="icons/obj16/RunwayDiagramFile.gif"
+         category="com.runwaysdk.Runway"
+         class="com.runwaysdk.eclipse.plugin.wizards.SchemaImportWizard"
+         id="com.runwaysdk.eclipse.plugin.runway.diagram.part.SchemaImportWizardId">
+         <description>Used to import an XML Schema into a Runway Class Diagram.</description>  
+      </wizard>
+   </extension>
+   <!--
+   <extension point="org.eclipse.ui.exportWizards" id="com.runwaysdk.export">
+      <?gmfgen generated="false"?>
+      <wizard
+         name="%newWizardName"
+         icon="icons/obj16/RunwayDiagramFile.gif"
+         category="com.runwaysdk.Runway"
+         class="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizard"
+         id="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardID">
+         <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+   -->
 </plugin>
