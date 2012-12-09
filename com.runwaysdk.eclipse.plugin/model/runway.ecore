@@ -15,60 +15,60 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DocumentRoot">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="MdBusinesses" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="MDBusinesses" upperBound="-1"
         eType="#//MDBusiness" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeBlob" eSuperTypes="#//MDAttribute">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeBlob" eSuperTypes="#//MDAttribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeBoolean" eSuperTypes="#//MDAttribute">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeBoolean" eSuperTypes="#//MDAttribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeCharacter" eSuperTypes="#//MDAttribute">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeCharacter" eSuperTypes="#//MDAttribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EChar"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeDate" eSuperTypes="#//MDAttribute">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeDate" eSuperTypes="#//MDAttribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeDateTime" eSuperTypes="#//MDAttribute">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeDateTime" eSuperTypes="#//MDAttribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeDecimal" eSuperTypes="#//MDAttribute">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeDecimal" eSuperTypes="#//MDAttribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeDouble" eSuperTypes="#//MDAttribute">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeDouble" eSuperTypes="#//MDAttribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeEnumeration" eSuperTypes="#//MDAttribute">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeEnumeration" eSuperTypes="#//MDAttribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeFloat" eSuperTypes="#//MDAttribute">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeFloat" eSuperTypes="#//MDAttribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeHash" eSuperTypes="#//MDAttribute">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeHash" eSuperTypes="#//MDAttribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeInteger" eSuperTypes="#//MDAttribute">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeInteger" eSuperTypes="#//MDAttribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeNumber" eSuperTypes="#//MDAttribute">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeNumber" eSuperTypes="#//MDAttribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeStruct" eSuperTypes="#//MDAttribute"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeText" eSuperTypes="#//MDAttribute">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeStruct" eSuperTypes="#//MDAttribute"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeText" eSuperTypes="#//MDAttribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeTime" eSuperTypes="#//MDAttribute">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeTime" eSuperTypes="#//MDAttribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeLocal" abstract="true" eSuperTypes="#//MdAttributeStruct"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeLocalCharacter" eSuperTypes="#//MdAttributeLocal">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeLocal" abstract="true" eSuperTypes="#//MDAttributeStruct"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeLocalCharacter" eSuperTypes="#//MDAttributeLocal">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EChar"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeLocalText" eSuperTypes="#//MdAttributeLocal">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeLocalText" eSuperTypes="#//MDAttributeLocal">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MdAttributeLong" eSuperTypes="#//MDAttribute">
+  <eClassifiers xsi:type="ecore:EClass" name="MDAttributeLong" eSuperTypes="#//MDAttribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
   </eClassifiers>
 </ecore:EPackage>
