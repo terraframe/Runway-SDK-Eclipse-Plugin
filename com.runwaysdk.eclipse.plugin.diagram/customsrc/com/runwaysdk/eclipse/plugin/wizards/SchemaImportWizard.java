@@ -3,7 +3,6 @@ package com.runwaysdk.eclipse.plugin.wizards;
 import java.io.IOException;
 
 import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -16,8 +15,9 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.IWorkbench;
 
-import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
-import com.runwaysdk.eclipse.plugin.runway.MdAttributeBoolean;
+import xmlParserTest.RunwayDOMParser;
+
+import com.runwaysdk.eclipse.plugin.runway.MdAttributeCharacter;
 import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
 import com.runwaysdk.eclipse.plugin.runway.RunwayPackage;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardPage;
@@ -67,21 +67,9 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
       DocumentRootImpl documentRoot = (DocumentRootImpl) contents.get(0); //(DocumentRootImpl) diagram.getElement();
       EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(documentRoot);
       
-      for (int i = 0; i < 4; ++i) {
-        // Create a new MdBusiness
-        MDBusiness biz  = RunwayFactory.eINSTANCE.createMDBusiness();
-        biz.setClassName("Book");
-        biz.setDisplayLabel("This is a book.");
-        Command command = AddCommand.create(editingDomain, documentRoot, RunwayPackage.eINSTANCE.getDocumentRoot_MdBusinesses(), biz);
-        editingDomain.getCommandStack().execute(command);
-        
-        // Create a new MdAttribute and add it to the MdBusiness's container
-        MdAttributeBoolean attr = RunwayFactory.eINSTANCE.createMdAttributeBoolean();
-        attr.setName("isANovel");
-        attr.setDefaultValue(false);
-        command = AddCommand.create(editingDomain, biz, RunwayPackage.eINSTANCE.getMDBusiness_Attributes(), attr);
-        editingDomain.getCommandStack().execute(command);
-      }
+      // Parse the schema and add it to GMF
+      RunwayDOMParser parser = new RunwayDOMParser(editingDomain, documentRoot);
+      parser.parse(page1.getSchemaPath());
       
       resource.save(null);
       
