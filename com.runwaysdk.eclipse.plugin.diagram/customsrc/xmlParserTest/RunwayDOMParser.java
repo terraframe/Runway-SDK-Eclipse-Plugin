@@ -17,7 +17,7 @@ import org.w3c.dom.NodeList;
 import com.runwaysdk.eclipse.plugin.runway.DocumentRoot;
 import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
 import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
-import com.runwaysdk.eclipse.plugin.runway.MdAttributeBoolean;
+import com.runwaysdk.eclipse.plugin.runway.MdAttributeFactory;
 import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
 import com.runwaysdk.eclipse.plugin.runway.RunwayPackage;
 
@@ -71,18 +71,20 @@ public class RunwayDOMParser
               
               NodeList mdBusinessGrandChildNodeList = mdBusinessChildNode.getChildNodes();
               
-              // System.out.println(mdBusinessChildNode.getNodeName());
+              System.out.println(mdBusinessChildNode.getNodeName());
               printAttributes(mdBusinessChildNode.getAttributes(), "Attributes for: " + mdBusinessChildNode.getNodeName() + " tag");
               for (int k = 0; k < mdBusinessGrandChildNodeList.getLength(); k++)
               {
                 Node mdBusinessGrandChildNode = mdBusinessGrandChildNodeList.item(k);
 
+                System.out.println("Reading grand child node '" + mdBusinessChildNode.getNodeName() + "'");
+                
                 if (mdBusinessGrandChildNode.getNodeType() == Node.ELEMENT_NODE)
                 {
                   if (mdBusinessChildNode.getNodeName() == "attributes") {
-//                  printAttributes(mdBusinessGrandChildNode.getAttributes(), "Attributes for: " + mdBusinessGrandChildNode.getNodeName() + " tag");
+                    printAttributes(mdBusinessGrandChildNode.getAttributes(), "Attributes for: " + mdBusinessGrandChildNode.getNodeName() + " tag");
                     NamedNodeMap attrAttrs = mdBusinessGrandChildNode.getAttributes();
-                    MDAttribute attr = newMdAttribute(biz);
+                    MDAttribute attr = newMdAttribute(biz, mdBusinessGrandChildNode.getNodeName());
                     attr.setName(attrAttrs.getNamedItem("name").getNodeValue());
                     attr.setRequired(new Boolean(attrAttrs.getNamedItem("required").getNodeValue()));
                     attr.setDisplayLabel(attrAttrs.getNamedItem("label").getNodeValue());
@@ -132,9 +134,9 @@ public class RunwayDOMParser
     return biz;
   }
   
-  private MDAttribute newMdAttribute(MDBusiness biz) {
+  private MDAttribute newMdAttribute(MDBusiness biz, String attrName) {
  // Create a new MdAttribute and add it to the MdBusiness's container
-    MdAttributeBoolean attr = RunwayFactory.eINSTANCE.createMdAttributeBoolean();
+    MDAttribute attr = MdAttributeFactory.createMdAttribute(attrName);
 //    attr.setName("isANovel");
 //    attr.setDefaultValue(false);
     Command command = AddCommand.create(editingDomain, biz, RunwayPackage.eINSTANCE.getMDBusiness_Attributes(), attr);
