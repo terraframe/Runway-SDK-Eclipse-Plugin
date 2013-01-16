@@ -42,8 +42,10 @@ public class RunwayDOMParser
       
       //XML validator. Has nothing to do with runway schema.
       //TODO DO NOT HARD CODE THIS PATH! Change this. 
+      String workspaceFilePathToDataTypeXSDschema = "/com.runwaysdk.eclipse.plugin.diagram/xmlFiles/datatype.xsd";
+      
       dbFactory.setAttribute(XMLConstants.JAXP_SCHEMA_LANGUAGE, XMLConstants.W3C_XML_SCHEMA);
-      dbFactory.setAttribute(XMLConstants.JAXP_SCHEMA_SOURCE, new File("/Users/armiller5/Documents/workspace/Runway-SDK-Eclipse-Plugin/com.runwaysdk.eclipse.plugin.diagram/xmlFiles/datatype.xsd"));
+      dbFactory.setAttribute(XMLConstants.JAXP_SCHEMA_SOURCE, new File(workspaceFilePathToDataTypeXSDschema));
 
       DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
       Document doc = dBuilder.parse(fXmlFile);
