@@ -14,6 +14,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.runwaysdk.constants.XMLConstants;
 import com.runwaysdk.eclipse.plugin.runway.DocumentRoot;
 import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
 import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
@@ -38,6 +39,12 @@ public class RunwayDOMParser
     {
       File fXmlFile = new File(file);
       DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+      
+      //XML validator. Has nothing to do with runway schema.
+      //TODO DO NOT HARD CODE THIS PATH! Change this. 
+      dbFactory.setAttribute(XMLConstants.JAXP_SCHEMA_LANGUAGE, XMLConstants.W3C_XML_SCHEMA);
+      dbFactory.setAttribute(XMLConstants.JAXP_SCHEMA_SOURCE, new File("/Users/armiller5/Documents/workspace/Runway-SDK-Eclipse-Plugin/com.runwaysdk.eclipse.plugin.diagram/xmlFiles/datatype.xsd"));
+
       DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
       Document doc = dBuilder.parse(fXmlFile);
       doc.getDocumentElement().normalize();
