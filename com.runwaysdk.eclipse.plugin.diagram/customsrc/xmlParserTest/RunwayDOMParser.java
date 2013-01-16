@@ -65,8 +65,8 @@ public class RunwayDOMParser
           
           // Create a new MdBusiness
           MDBusiness biz = newMdBusiness();
-          biz.setClassName(attrs.getNamedItem("name").getNodeValue());
-          biz.setDisplayLabel(attrs.getNamedItem("label").getNodeValue());
+          biz.setClassName(attrs.getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
+          biz.setDisplayLabel(attrs.getNamedItem(XMLTags.DISPLAY_LABEL_ATTRIBUTE).getNodeValue());
           
           NodeList mdBusinessChildNodeList = mdBusinessNode.getChildNodes();
 
@@ -94,9 +94,9 @@ public class RunwayDOMParser
                     printAttributes(mdBusinessGrandChildNode.getAttributes(), "Attributes for: " + mdBusinessGrandChildNode.getNodeName() + " tag");
                     NamedNodeMap attrAttrs = mdBusinessGrandChildNode.getAttributes();
                     MDAttribute attr = newMdAttribute(biz, mdBusinessGrandChildNode.getNodeName());
-                    attr.setName(attrAttrs.getNamedItem("name").getNodeValue());
-                    attr.setRequired(new Boolean(attrAttrs.getNamedItem("required").getNodeValue()));
-                    attr.setDisplayLabel(attrAttrs.getNamedItem("label").getNodeValue());
+                    attr.setName(attrAttrs.getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
+                    attr.setRequired(new Boolean(attrAttrs.getNamedItem(XMLTags.REQUIRED_ATTRIBUTE).getNodeValue()));
+                    attr.setDisplayLabel(attrAttrs.getNamedItem(XMLTags.DISPLAY_LABEL_ATTRIBUTE).getNodeValue());
                   }
                 }
               }
