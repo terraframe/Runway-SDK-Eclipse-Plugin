@@ -691,6 +691,23 @@
    
    
    <!-- Custom Extension Points (Not Generated) -->
+   <extension point="org.eclipse.ui.newWizards" id="com.runwaysdk.new">
+      <?gmfgen generated="false"?>
+      <category 
+        id="com.runwaysdk.Runway" 
+        name="Runway"> 
+      </category>
+      <wizard
+         name="New Runway Project"
+         icon="icons/obj16/RunwayDiagramFile.gif"
+         category="com.runwaysdk.Runway"
+         class="com.runwaysdk.eclipse.plugin.wizards.NewRunwayProjectWizard"
+         id="com.runwaysdk.eclipse.plugin.runway.diagram.part.NewRunwayProjectWizardId">
+         <description>Used to create an XML Schema and a Runway Class Diagram.</description>  
+      </wizard>
+   </extension>
+   
+   
    <extension point="org.eclipse.ui.importWizards" id="com.runwaysdk.import">
       <?gmfgen generated="false"?>
       <category 
@@ -706,6 +723,8 @@
          <description>Used to import an XML Schema into a Runway Class Diagram.</description>  
       </wizard>
    </extension>
+   
+   
    <!--
    <extension point="org.eclipse.ui.exportWizards" id="com.runwaysdk.export">
       <?gmfgen generated="false"?>
@@ -713,11 +732,11 @@
          name="%newWizardName"
          icon="icons/obj16/RunwayDiagramFile.gif"
          category="com.runwaysdk.Runway"
-         class="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizard"
+          class="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizard"
          id="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardID">
          <description>%newWizardDesc</description>  
       </wizard>
    </extension>
    -->
-   <!-- Test -->
+   
 </plugin>
