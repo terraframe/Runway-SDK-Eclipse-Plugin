@@ -723,6 +723,23 @@
          <description>Used to import an XML Schema into a Runway Class Diagram.</description>  
       </wizard>
    </extension>
+
+
+   <extension point="org.eclipse.ui.exportWizards" id="com.runwaysdk.export">
+      <?gmfgen generated="false"?>
+      <category 
+        id="com.runwaysdk.Runway" 
+        name="Runway"> 
+      </category>
+      <wizard
+         name="Export Runway XML Schema"
+         icon="icons/obj16/RunwayDiagramFile.gif"
+         category="com.runwaysdk.Runway"
+         class="com.runwaysdk.eclipse.plugin.wizards.SchemaExportWizard"
+         id="com.runwaysdk.eclipse.plugin.runway.diagram.part.SchemaExportWizardId">
+         <description>Used to export a Runway Class Diagraman into an XML Schema.</description>  
+      </wizard>
+   </extension>
    
    
    <!--
