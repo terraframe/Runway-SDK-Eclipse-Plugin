@@ -15,12 +15,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.runwaysdk.constants.XMLConstants;
-import com.runwaysdk.eclipse.plugin.runway.DocumentRoot;
-import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
-import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
+import com.runwaysdk.eclipse.model.runway.DocumentRoot;
+import com.runwaysdk.eclipse.model.runway.MDAttribute;
+import com.runwaysdk.eclipse.model.runway.MDBusiness;
+import com.runwaysdk.eclipse.model.runway.RunwayFactory;
+import com.runwaysdk.eclipse.model.runway.RunwayPackage;
 import com.runwaysdk.eclipse.plugin.runway.MdAttributeFactory;
-import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
-import com.runwaysdk.eclipse.plugin.runway.RunwayPackage;
 
 public class RunwayDOMParser
 {

@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
-import com.runwaysdk.eclipse.plugin.runway.RunwayPackage;
+import com.runwaysdk.eclipse.model.runway.RunwayPackage;
 import com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDBusinessEditPart;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramUpdater;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayNodeDescriptor;

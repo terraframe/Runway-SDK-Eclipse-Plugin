@@ -153,7 +153,7 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
-import com.runwaysdk.eclipse.plugin.runway.provider.RunwayItemProviderAdapterFactory;
+import com.runwaysdk.eclipse.model.runway.provider.RunwayItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 

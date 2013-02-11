@@ -8,9 +8,9 @@ import java.util.List;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 
-import com.runwaysdk.eclipse.plugin.runway.DocumentRoot;
-import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
-import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
+import com.runwaysdk.eclipse.model.runway.DocumentRoot;
+import com.runwaysdk.eclipse.model.runway.MDAttribute;
+import com.runwaysdk.eclipse.model.runway.MDBusiness;
 import com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.DocumentRootEditPart;
 import com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDBusinessEditPart;
 import com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDBusinessMdBusinessCompartmentEditPart;

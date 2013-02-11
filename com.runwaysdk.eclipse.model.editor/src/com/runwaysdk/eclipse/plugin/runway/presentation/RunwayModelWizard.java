@@ -69,9 +69,9 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
-import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
-import com.runwaysdk.eclipse.plugin.runway.RunwayPackage;
-import com.runwaysdk.eclipse.plugin.runway.provider.RunwayEditPlugin;
+import com.runwaysdk.eclipse.model.runway.RunwayFactory;
+import com.runwaysdk.eclipse.model.runway.RunwayPackage;
+import com.runwaysdk.eclipse.model.runway.provider.RunwayEditPlugin;
 
 
 import org.eclipse.core.runtime.Path;

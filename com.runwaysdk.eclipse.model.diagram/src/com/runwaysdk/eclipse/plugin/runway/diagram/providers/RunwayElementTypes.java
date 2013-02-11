@@ -16,7 +16,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
 
-import com.runwaysdk.eclipse.plugin.runway.RunwayPackage;
+import com.runwaysdk.eclipse.model.runway.RunwayPackage;
 import com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.DocumentRootEditPart;
 import com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDBusinessEditPart;
 import com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MdAttributeBlobEditPart;

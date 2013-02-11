@@ -12,9 +12,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
-import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
-import com.runwaysdk.eclipse.plugin.runway.MdAttributeDateTime;
-import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
+import com.runwaysdk.eclipse.model.runway.MDBusiness;
+import com.runwaysdk.eclipse.model.runway.MdAttributeDateTime;
+import com.runwaysdk.eclipse.model.runway.RunwayFactory;
 
 /**
  * @generated

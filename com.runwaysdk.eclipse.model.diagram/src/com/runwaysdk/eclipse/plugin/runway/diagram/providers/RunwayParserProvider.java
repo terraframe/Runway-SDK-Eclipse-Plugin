@@ -13,7 +13,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 
-import com.runwaysdk.eclipse.plugin.runway.RunwayPackage;
+import com.runwaysdk.eclipse.model.runway.RunwayPackage;
 import com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDBusinessClassNameEditPart;
 import com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MdAttributeBlobNameEditPart;
 import com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MdAttributeBooleanNameEditPart;

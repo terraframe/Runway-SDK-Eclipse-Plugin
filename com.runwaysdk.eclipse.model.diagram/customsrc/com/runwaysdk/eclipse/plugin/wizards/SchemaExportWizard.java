@@ -17,12 +17,12 @@ import org.eclipse.ui.IWorkbench;
 
 import xmlParserTest.RunwayDOMParser;
 
-import com.runwaysdk.eclipse.plugin.runway.MdAttributeCharacter;
-import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
-import com.runwaysdk.eclipse.plugin.runway.RunwayPackage;
+import com.runwaysdk.eclipse.model.runway.MdAttributeCharacter;
+import com.runwaysdk.eclipse.model.runway.RunwayFactory;
+import com.runwaysdk.eclipse.model.runway.RunwayPackage;
+import com.runwaysdk.eclipse.model.runway.impl.DocumentRootImpl;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardPage;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
-import com.runwaysdk.eclipse.plugin.runway.impl.DocumentRootImpl;
 
 public class SchemaExportWizard extends Wizard implements INewWizard
 {

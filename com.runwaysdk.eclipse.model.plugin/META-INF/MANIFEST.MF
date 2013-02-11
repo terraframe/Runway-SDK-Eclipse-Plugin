@@ -7,9 +7,9 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: com.runwaysdk.eclipse.plugin.runway,
- com.runwaysdk.eclipse.plugin.runway.impl,
- com.runwaysdk.eclipse.plugin.runway.util
+Export-Package: com.runwaysdk.eclipse.model.runway,
+ com.runwaysdk.eclipse.model.runway.impl,
+ com.runwaysdk.eclipse.model.runway.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

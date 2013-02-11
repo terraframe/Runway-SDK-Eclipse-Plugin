@@ -49,8 +49,8 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
-import com.runwaysdk.eclipse.plugin.runway.DocumentRoot;
-import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
+import com.runwaysdk.eclipse.model.runway.DocumentRoot;
+import com.runwaysdk.eclipse.model.runway.RunwayFactory;
 import com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.DocumentRootEditPart;
 
 /**

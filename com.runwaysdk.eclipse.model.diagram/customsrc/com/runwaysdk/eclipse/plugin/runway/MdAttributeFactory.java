@@ -1,5 +1,8 @@
 package com.runwaysdk.eclipse.plugin.runway;
 
+import com.runwaysdk.eclipse.model.runway.MDAttribute;
+import com.runwaysdk.eclipse.model.runway.RunwayFactory;
+
 public class MdAttributeFactory
 {
   public static MDAttribute createMdAttribute(String attrName) {

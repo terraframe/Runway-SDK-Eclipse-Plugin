@@ -20,8 +20,8 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
+import com.runwaysdk.eclipse.model.runway.provider.RunwayItemProviderAdapterFactory;
 import com.runwaysdk.eclipse.plugin.runway.diagram.providers.ElementInitializers;
-import com.runwaysdk.eclipse.plugin.runway.provider.RunwayItemProviderAdapterFactory;
 
 /**
  * @generated

@@ -7,8 +7,8 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
 
-import com.runwaysdk.eclipse.plugin.runway.DocumentRoot;
-import com.runwaysdk.eclipse.plugin.runway.RunwayPackage;
+import com.runwaysdk.eclipse.model.runway.DocumentRoot;
+import com.runwaysdk.eclipse.model.runway.RunwayPackage;
 import com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.DocumentRootEditPart;
 import com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDBusinessClassNameEditPart;
 import com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDBusinessEditPart;
