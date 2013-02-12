@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.runwaysdk.eclipse.plugin/src" modelPluginID="com.runwaysdk.eclipse.plugin"
+    modelName="Runway" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false">
+  <foreignModel>runway.ecore</foreignModel>
+  <genPackages prefix="Runway" basePackage="com.runwaysdk.eclipse.plugin" disposableProviderFactory="true"
+      ecorePackage="runway.ecore#/">
+    <genClasses ecoreClass="runway.ecore#//MDBusiness">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDBusiness/className"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference runway.ecore#//MDBusiness/attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDBusiness/displayLabel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDBusiness/column"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDBusiness/isRemovable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDBusiness/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDBusiness/isExtendable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDBusiness/isAbstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDBusiness/extends"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDBusiness/cacheAlgorithm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDBusiness/cacheSize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDBusiness/publish"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="runway.ecore#//MDAttribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttribute/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttribute/required"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttribute/immutable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttribute/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttribute/displayLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//DocumentRoot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference runway.ecore#//DocumentRoot/MDBusinesses"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeBlob">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeBlob/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeBoolean">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeBoolean/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeCharacter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeCharacter/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeDate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeDate/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeDateTime">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeDateTime/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeDecimal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeDecimal/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeDouble">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeDouble/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeEnumeration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeEnumeration/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeFloat">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeFloat/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeHash">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeHash/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeInteger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeInteger/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeNumber">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeNumber/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeStruct"/>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeText">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeText/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeTime">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeTime/defaultValue"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="runway.ecore#//MDAttributeLocal"/>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeLocalCharacter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeLocalCharacter/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeLocalText">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeLocalText/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="runway.ecore#//MDAttributeLong">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runway.ecore#//MDAttributeLong/defaultValue"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

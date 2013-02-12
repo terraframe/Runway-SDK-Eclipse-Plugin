@@ -1,0 +1,312 @@
+<version xsi:noNamespaceSchemaLocation="../../profiles/version_gis.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <doIt>
+    <create>
+    
+      <!-- Define clinical category master list datatype -->
+  <enumerationMaster name = "library.GenreMaster" label = "Genre Master"/>
+
+  <mdEnumeration
+             name  = "library.Genre"
+             label = "Genere"
+             type  = "library.GenreMaster">
+    <addEnumItem name="ROMANCE"/>
+    <addEnumItem name="DRAMA"/>
+    <addEnumItem name="SCI_FI"/>
+    <addEnumItem name="NON_FICTION"/>
+  </mdEnumeration>
+
+  <!-- Library User -->
+  <mdBusiness name       = "library.LibraryUser"
+          label       = "User"
+          description = "Library User"
+          isAbstract  = "false"
+          extendable  = "false">
+    <attributes>
+      <char name		= "libraryId"
+      		label		= "Library Card Id"
+      		description = ""
+      		size		= "32"
+      		required	= "true"/>
+      <char name		= "firstName"
+      		label		= "First Name"
+      		description = ""
+      		size		= "32"
+      		required	= "true"/>
+      <char name		= "lastName"
+      		label		= "Last Name"
+      		description = ""
+      		size		= "32"
+      		required	= "true"/>
+    </attributes>
+  </mdBusiness>
+
+  <!-- Authors -->
+  <mdBusiness name    = "library.Author"
+          label       = "Author"
+          description = "Authors the library manages"
+          isAbstract  = "false"
+          extendable  = "false">
+    <attributes>
+      <char name		= "firstName"
+      		label		= "First Name"
+      		description = ""
+      		size		= "32"
+      		required	= "true"/>
+      <char name		= "lastName"
+      		label		= "Last Name"
+      		description = ""
+      		size		= "32"
+      		required	= "true"/>
+    </attributes>
+
+   	<mdMethod name="getCitedBooks" returnType="library.Book[]" label="Returns all books by the given author that have been cited"/>
+
+    <mdMethod static="true" name="findAuthorByName" returnType="library.Author[]" label="Returns all Authors with the given name">
+      <mdParameter name="search" type="java.lang.String" order="1" label="search String"/>
+    </mdMethod>
+
+  </mdBusiness>
+
+  <!-- Library Facade 
+  <mdFacade
+            name="library.LibraryFacade"
+            label="Library Facade"
+            description="Library Facade"
+            removable="true">
+    <mdMethod name="getUserCheckedOutBooks" returnType="library.Book[]" label="Returns all checked out books">
+      <mdParameter name="userLibraryId" type="java.lang.String" order="1" label="user library id"/>
+    </mdMethod>
+  </mdFacade>
+-->
+
+  <!-- Library Item -->
+  <mdBusiness name    = "library.Item"
+          label       = "Library Item"
+          isAbstract  = "true"
+          description = "Item the library manages"
+          extendable  = "true"
+          removable   = "true">
+    <attributes>
+      <char name		= "title"
+      		label		= "Title"
+      		description = "Publication Title"
+      		size		= "32"
+      		required	= "true"/>
+      <text name		= "description"
+      		label		= "Description"
+      		description = "Description of the item"
+      		required	= "true"/>
+    </attributes>
+  </mdBusiness>
+
+  <!-- Media -->
+  <mdBusiness name       = "library.Media"
+          label       = "Media"
+          description = "Media the library manages"
+          isAbstract  = "true"
+          extendable  = "true"
+          extends     = "library.Item" >
+  </mdBusiness>
+
+  <!-- Video -->
+  <mdBusiness name       = "library.Video"
+          label       = "Video"
+          description = "Video the library manages"
+          isAbstract  = "false"
+          extendable  = "false"
+          extends     = "library.Media" >
+  </mdBusiness>
+
+  <!-- Publication -->
+  <mdBusiness name       = "library.Publication"
+          label       = "Publication"
+          description = "Publication the library manages"
+          isAbstract  = "true"
+          extendable  = "true"
+          extends     = "library.Item" >
+    <attributes>
+      <date name        = "publicationDate"
+            label       = "Publication Date"
+            description = "Date of Publication"
+            required    = "true" />
+    </attributes>
+  </mdBusiness>
+
+  <!-- Journal -->
+  <mdBusiness name    = "library.Journal"
+          label       = "Journal"
+          description = "Journal the library manages"
+          isAbstract  = "false"
+          extendable  = "false"
+          extends     = "library.Publication" >
+  </mdBusiness>
+
+  <!-- Book -->
+  <mdBusiness name    = "library.Book"
+          label       = "Book"
+          description = "Book the library manages"
+          isAbstract  = "false"
+          extendable  = "false"
+          extends     = "library.Publication" >
+    <attributes>
+      <integer
+            name		= "isbn"
+      		label		= "ISBN"
+      		description = "ISBN"
+      		indexType   = "unique index"
+      		required	= "true"/>
+      <reference
+            name	    = "author"
+            label       = "Author"
+            required	= "true"
+            type        = "library.Author"/>
+      <enumeration
+            name           = "genre"
+            label          = "Genre"
+            type           = "library.Genre"
+            selectMultiple = "false"
+            removable      = "true"
+            required       = "true"/>
+    </attributes>
+
+    <mdMethod static="true" name="getAllBooksByGenre" returnType="library.Book[]" label="Returns all by the given genre">
+      <mdParameter name="genre" type="library.Genre[]" order="1" label="genre"/>
+    </mdMethod>
+
+  </mdBusiness>
+
+  <!-- Item Copy -->
+  <mdBusiness name    = "library.ItemCopy"
+          label       = "Item Copy"
+          description = "Copy of an Item in the Library"
+          isAbstract  = "false"
+          extendable  = "false">
+    <attributes>
+      <char name		= "serialNumber"
+      		label		= "Serial Number"
+      		description = "Copy serial number"
+      		size		= "32"
+            indexType   = "unique index"
+      		required	= "true"/>
+      <char name		= "copyLocation"
+      		label		= "Location"
+      		description = "Location of the book when it is checked in"
+      		size		= "64"
+      		required	= "true"/>
+      <date name        = "dateCheckedOut"
+            label       = "Date Checked Out"
+            description = "Date the copy was checked out"
+            required    = "false" />
+      <date name        = "dateCheckedIn"
+            label       = "Date Checked In"
+            description = "Date the copy was checked in"
+            required    = "false" />
+      <!--reference
+            name	    = "item"
+            label       = "Item"
+            description = "Library Item"
+            required	= "true"
+            type        = "library.Item"
+            indexType   = "non-unique index"/>
+      <reference
+            name	    = "libraryUser"
+            label       = "User"
+            description = "User who has the book checked out"
+            required	= "false"
+            type        = "library.LibraryUser"
+            indexType   = "non-unique index"/-->
+    </attributes>
+
+    <mdStateMachine label="library.ItemCopyStateMachine" description="State Machine of ItemCopy" name="library.ItemCopyStateMachine">
+        <states>
+          <state entry="default" name="Available"/>
+          <state entry="false" name="CheckedOut"/>
+          <state entry="true" name="CheckedIn"/>
+        </states>
+        <transitions>
+          <transition name="Stock"  label="Stock"  sink="Available" source="CheckedIn"  />
+          <transition name="CheckIn" label="CheckIn" sink="CheckedIn" source="CheckedOut"/>
+          <transition name="CheckOut" label="CheckOUt" sink="CheckedOut" source="Available"/>
+        </transitions>
+    </mdStateMachine>
+
+  </mdBusiness>
+
+ <!-- Relationship between publications -->
+  <mdGraph name="library.Cites"
+                  label="Cites"
+                  description="Publications cite other publications"
+                  isAbstract="false"
+                  composition="false">
+   <parent cardinality="*"
+           label="Cites"
+           method="CitedByPublications"
+           name="library.Publication"/>
+    <child cardinality="*"
+           label="Is Cited By"
+           method="CitesPublications"
+           name="library.Publication"/>
+  </mdGraph>
+
+
+  <mdView
+      name="library.BookView"
+      label="Book View"
+      description="Includes attributes from a Book and it's author"
+      isAbstract="false"
+      extendable="true">
+    <attributes>
+        <char
+          name="authorName"
+          label="Author"
+          description="Name of the Author"
+          size="80"
+          required="true" />
+        <char
+          name="title"
+          label="Title"
+          description="Title of the Book"
+          size="32"
+          required="true" />
+    </attributes>
+  </mdView>
+
+  <object type = "library.Author"     key = "library.Author.Melville.Herman">
+    <attribute name="firstName"       value="Herman"/>
+    <attribute name="lastName"        value="Melville"/>
+  </object>
+
+  <object type = "library.Author"     key = "library.Author.Clancy.Tom">
+    <attribute name="firstName"       value="Tom"/>
+    <attribute name="lastName"        value="Clancy"/>
+  </object>
+
+  <!--  Define individual Genres -->
+  <object type = "library.GenreMaster" key = "library.GenreMaster.ACTION">
+    <attribute name="enumName"       value="ACTION"/>
+    <attribute name="displayLabel"   value="Action"/>
+  </object>
+  <object type = "library.GenreMaster" key = "library.GenreMaster.DRAMA">
+    <attribute name="enumName"       value="DRAMA"/>
+    <attribute name="displayLabel"   value="Drama"/>
+  </object>
+  <object type = "library.GenreMaster" key = "library.GenreMaster.NON_FICTION">
+    <attribute name="enumName"       value="NON_FICTION"/>
+    <attribute name="displayLabel"   value="Non Fiction"/>
+  </object>
+  <object type = "library.GenreMaster" key = "library.GenreMaster.ROMANCE">
+    <attribute name="enumName"       value="ROMANCE"/>
+    <attribute name="displayLabel"   value="Romance"/>
+  </object>
+  <object type = "library.GenreMaster" key = "library.GenreMaster.SCI_FI">
+    <attribute name="enumName"       value="SCI_FI"/>
+    <attribute name="displayLabel"   value="Science Fiction"/>
+  </object>
+    
+    </create>
+    <update></update>
+  </doIt>
+  <undoIt>
+    <delete></delete>
+  </undoIt>
+</version>

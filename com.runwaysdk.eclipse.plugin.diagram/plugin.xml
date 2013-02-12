@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
+      <?gmfgen generated="true"?>
+      <fileTypes type="text" extension="runway_diagram"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
+      <?gmfgen generated="true"?>
+      <parser
+         type="runway_diagram"
+         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
+      </parser>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors" id="gmf-editor">
+      <?gmfgen generated="true"?>
+      <editor
+         id="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorID"
+         name="%editorName"
+         icon="icons/obj16/RunwayDiagramFile.gif"
+         extensions="runway_diagram"
+         default="true"
+         class="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditor"
+         matchingStrategy="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayMatchingStrategy"
+         contributorClass="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramActionBarContributor">
+      </editor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.contexts" id="ui-context">
+      <?gmfgen generated="true"?>
+      <context
+         description="%context.description"
+         id="com.runwaysdk.eclipse.plugin.runway.diagram.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+   </extension>
+
+   <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
+      <?gmfgen generated="true"?>
+      <objectContribution
+            id="com.runwaysdk.eclipse.plugin.diagram.InitDiagram"
+            nameFilter="*.runway"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               label="%initDiagramActionLabel"
+               class="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayInitDiagramFileAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="com.runwaysdk.eclipse.plugin.diagram.InitDiagramAction">
+         </action>
+      </objectContribution>
+   </extension>
+	
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
+      <?gmfgen generated="true"?>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+         id="RunwayPresentation">
+         <Priority name="Lowest"/>
+         <ViewId id="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="delete"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
+               <GlobalActionId actionId="save"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="save">
+               </GlobalActionId>
+            </ElementType>        
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
+         id="RunwayPresentationIDE">
+         <Priority name="Lowest"/>
+         <ViewId id="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="bookmark"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
+            id="RunwayRender">
+         <Priority name="Lowest"/>
+         <ViewId id="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="cut"/>
+               <GlobalActionId actionId="copy"/>
+               <GlobalActionId actionId="paste"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+   </extension>
+
+
+   <extension point="org.eclipse.core.runtime.preferences" id="prefs">
+      <?gmfgen generated="true"?>
+      <initializer class="com.runwaysdk.eclipse.plugin.runway.diagram.preferences.DiagramPreferenceInitializer"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.preferencePages" id="prefpages">
+      <?gmfgen generated="true"?>
+      <page
+            id="com.runwaysdk.eclipse.plugin.diagram.general"
+            name="%prefpage.com.runwaysdk.eclipse.plugin.diagram.general"
+            class="com.runwaysdk.eclipse.plugin.runway.diagram.preferences.DiagramGeneralPreferencePage">
+      </page>
+      <page
+            id="com.runwaysdk.eclipse.plugin.diagram.appearance"
+            name="%prefpage.com.runwaysdk.eclipse.plugin.diagram.appearance"
+            category="com.runwaysdk.eclipse.plugin.diagram.general"
+            class="com.runwaysdk.eclipse.plugin.runway.diagram.preferences.DiagramAppearancePreferencePage">
+      </page>
+      <page
+            id="com.runwaysdk.eclipse.plugin.diagram.connections"
+            name="%prefpage.com.runwaysdk.eclipse.plugin.diagram.connections"
+            category="com.runwaysdk.eclipse.plugin.diagram.general"
+            class="com.runwaysdk.eclipse.plugin.runway.diagram.preferences.DiagramConnectionsPreferencePage">
+      </page>
+      <page
+            id="com.runwaysdk.eclipse.plugin.diagram.printing"
+            name="%prefpage.com.runwaysdk.eclipse.plugin.diagram.printing"
+            category="com.runwaysdk.eclipse.plugin.diagram.general"
+            class="com.runwaysdk.eclipse.plugin.runway.diagram.preferences.DiagramPrintingPreferencePage">
+      </page>
+      <page
+            id="com.runwaysdk.eclipse.plugin.diagram.rulersAndGrid"
+            name="%prefpage.com.runwaysdk.eclipse.plugin.diagram.rulersAndGrid"
+            category="com.runwaysdk.eclipse.plugin.diagram.general"
+            class="com.runwaysdk.eclipse.plugin.runway.diagram.preferences.DiagramRulersAndGridPreferencePage">
+      </page>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
+      <?gmfgen generated="true"?>
+      <propertyContributor
+            contributorId="com.runwaysdk.eclipse.plugin.diagram"
+            labelProvider="com.runwaysdk.eclipse.plugin.runway.diagram.sheet.RunwaySheetLabelProvider">
+         <propertyCategory category="domain"/>
+         <propertyCategory category="visual"/>
+         <propertyCategory category="extra"/>
+      </propertyContributor>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs" id="proptabs">
+      <?gmfgen generated="true"?>   
+      <propertyTabs contributorId="com.runwaysdk.eclipse.plugin.diagram">
+         <propertyTab
+             category="visual"
+             id="property.tab.AppearancePropertySection"
+             label="%tab.appearance"/>
+          <propertyTab
+             category="visual"
+             id="property.tab.DiagramPropertySection"
+             label="%tab.diagram"/>
+          <propertyTab
+             category="domain"
+             id="property.tab.domain"
+             label="%tab.domain"/>
+      </propertyTabs>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections" id="propsections">
+      <?gmfgen generated="true"?>   
+      <propertySections contributorId="com.runwaysdk.eclipse.plugin.diagram">
+         <propertySection id="property.section.ConnectorAppearancePropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ConnectionEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ConnectionAppearancePropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>
+         <propertySection id="property.section.ShapeColorAndFontPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection> 
+         <propertySection id="property.section.DiagramColorsAndFontsPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.DiagramColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>     
+         <propertySection id="property.section.RulerGridPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.grid.RulerGridPropertySection" 
+            tab="property.tab.DiagramPropertySection">
+         </propertySection>     
+         <propertySection
+            id="property.section.domain" 
+            tab="property.tab.domain"
+            class="com.runwaysdk.eclipse.plugin.runway.diagram.sheet.RunwayPropertySection">
+            <input type="org.eclipse.gmf.runtime.notation.View"/>
+            <input type="org.eclipse.gef.EditPart"/>
+            <input type="com.runwaysdk.eclipse.plugin.runway.diagram.navigator.RunwayAbstractNavigatorItem"/>
+         </propertySection>
+      </propertySections>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
+      <?gmfgen generated="true"?>
+      <viewProvider class="com.runwaysdk.eclipse.plugin.runway.diagram.providers.RunwayViewProvider">
+         <Priority name="Lowest"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Runway"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2002,3019,3020,3021,3022,3023,3024,3025,3026,3027,3028,3029,3030,3031,3032,3033,3034,3035"/>
+      </viewProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
+      <?gmfgen generated="true"?>
+      <editpartProvider class="com.runwaysdk.eclipse.plugin.runway.diagram.providers.RunwayEditPartProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+            <method name="getType()" value="Runway"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
+            <method name="getType()" value="2002,3019,3020,3021,3022,3023,3024,3025,3026,3027,3028,3029,3030,3031,3032,3033,3034,3035"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
+            <method name="getType()" value=""/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
+            <method name="getType()" value="5037,5020,5021,5022,5023,5024,5025,5026,5027,5028,5029,5030,5031,5032,5033,5034,5035,5036"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
+            <method name="getType()" value="7002"/>
+         </object>
+         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
+      </editpartProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
+      <?gmfgen generated="true"?>
+      <modelingAssistantProvider class="com.runwaysdk.eclipse.plugin.runway.diagram.providers.RunwayModelingAssistantProvider">
+         <Priority name="Lowest"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.DocumentRootEditPart" id="DocumentRoot_1000"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDBusinessEditPart" id="MDBusiness_2002"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeTextEditPart" id="MDAttributeText_3019"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeDateEditPart" id="MDAttributeDate_3020"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeBlobEditPart" id="MDAttributeBlob_3021"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeLocalCharacterEditPart" id="MDAttributeLocalCharacter_3022"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeDoubleEditPart" id="MDAttributeDouble_3023"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeDecimalEditPart" id="MDAttributeDecimal_3024"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeLongEditPart" id="MDAttributeLong_3025"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeTimeEditPart" id="MDAttributeTime_3026"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeBooleanEditPart" id="MDAttributeBoolean_3027"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeNumberEditPart" id="MDAttributeNumber_3028"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeDateTimeEditPart" id="MDAttributeDateTime_3029"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeIntegerEditPart" id="MDAttributeInteger_3030"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeLocalTextEditPart" id="MDAttributeLocalText_3031"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeCharacterEditPart" id="MDAttributeCharacter_3032"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeFloatEditPart" id="MDAttributeFloat_3033"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeEnumerationEditPart" id="MDAttributeEnumeration_3034"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeHashEditPart" id="MDAttributeHash_3035"/>
+         <context elements="DocumentRoot_1000,MDBusiness_2002,MDAttributeText_3019,MDAttributeDate_3020,MDAttributeBlob_3021,MDAttributeLocalCharacter_3022,MDAttributeDouble_3023,MDAttributeDecimal_3024,MDAttributeLong_3025,MDAttributeTime_3026,MDAttributeBoolean_3027,MDAttributeNumber_3028,MDAttributeDateTime_3029,MDAttributeInteger_3030,MDAttributeLocalText_3031,MDAttributeCharacter_3032,MDAttributeFloat_3033,MDAttributeEnumeration_3034,MDAttributeHash_3035"/>
+      </modelingAssistantProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
+      <?gmfgen generated="true"?>
+      <IconProvider class="com.runwaysdk.eclipse.plugin.runway.diagram.providers.RunwayIconProvider">
+         <Priority name="Low"/>
+      </IconProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
+      <?gmfgen generated="true"?>
+      <ParserProvider class="com.runwaysdk.eclipse.plugin.runway.diagram.providers.RunwayParserProvider">
+         <Priority name="Lowest"/>
+      </ParserProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
+      <?gmfgen generated="true"?>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.DocumentRoot_1000"
+               name="%metatype.name.DocumentRoot_1000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DocumentRoot"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.DocumentRootEditHelper">
+            <param name="semanticHint" value="1000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDBusiness_2002"
+               name="%metatype.name.MDBusiness_2002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDBusiness"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDBusinessEditHelper">
+            <param name="semanticHint" value="2002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeText_3019"
+               name="%metatype.name.MDAttributeText_3019"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeText"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeTextEditHelper">
+            <param name="semanticHint" value="3019"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDate_3020"
+               name="%metatype.name.MDAttributeDate_3020"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeDate"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeDateEditHelper">
+            <param name="semanticHint" value="3020"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeBlob_3021"
+               name="%metatype.name.MDAttributeBlob_3021"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeBlob"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeBlobEditHelper">
+            <param name="semanticHint" value="3021"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLocalCharacter_3022"
+               name="%metatype.name.MDAttributeLocalCharacter_3022"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeLocalCharacter"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeLocalCharacterEditHelper">
+            <param name="semanticHint" value="3022"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDouble_3023"
+               name="%metatype.name.MDAttributeDouble_3023"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeDouble"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeDoubleEditHelper">
+            <param name="semanticHint" value="3023"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDecimal_3024"
+               name="%metatype.name.MDAttributeDecimal_3024"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeDecimal"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeDecimalEditHelper">
+            <param name="semanticHint" value="3024"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLong_3025"
+               name="%metatype.name.MDAttributeLong_3025"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeLong"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeLongEditHelper">
+            <param name="semanticHint" value="3025"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeTime_3026"
+               name="%metatype.name.MDAttributeTime_3026"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeTime"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeTimeEditHelper">
+            <param name="semanticHint" value="3026"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeBoolean_3027"
+               name="%metatype.name.MDAttributeBoolean_3027"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeBoolean"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeBooleanEditHelper">
+            <param name="semanticHint" value="3027"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeNumber_3028"
+               name="%metatype.name.MDAttributeNumber_3028"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeNumber"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeNumberEditHelper">
+            <param name="semanticHint" value="3028"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDateTime_3029"
+               name="%metatype.name.MDAttributeDateTime_3029"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeDateTime"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeDateTimeEditHelper">
+            <param name="semanticHint" value="3029"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeInteger_3030"
+               name="%metatype.name.MDAttributeInteger_3030"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeInteger"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeIntegerEditHelper">
+            <param name="semanticHint" value="3030"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLocalText_3031"
+               name="%metatype.name.MDAttributeLocalText_3031"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeLocalText"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeLocalTextEditHelper">
+            <param name="semanticHint" value="3031"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeCharacter_3032"
+               name="%metatype.name.MDAttributeCharacter_3032"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeCharacter"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeCharacterEditHelper">
+            <param name="semanticHint" value="3032"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeFloat_3033"
+               name="%metatype.name.MDAttributeFloat_3033"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeFloat"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeFloatEditHelper">
+            <param name="semanticHint" value="3033"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeEnumeration_3034"
+               name="%metatype.name.MDAttributeEnumeration_3034"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeEnumeration"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeEnumerationEditHelper">
+            <param name="semanticHint" value="3034"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="runway">
+         <metamodelType
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeHash_3035"
+               name="%metatype.name.MDAttributeHash_3035"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MDAttributeHash"
+               edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeHashEditHelper">
+            <param name="semanticHint" value="3035"/>
+         </metamodelType>
+      </metamodel>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="com.runwaysdk.eclipse.plugin.diagram.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="com.runwaysdk.eclipse.plugin.diagram.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="com.runwaysdk.eclipse.plugin.diagram.TypeContext">
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.DocumentRoot_1000"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDBusiness_2002"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeText_3019"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDate_3020"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeBlob_3021"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLocalCharacter_3022"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDouble_3023"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDecimal_3024"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLong_3025"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeTime_3026"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeBoolean_3027"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeNumber_3028"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDateTime_3029"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeInteger_3030"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLocalText_3031"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeCharacter_3032"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeFloat_3033"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeEnumeration_3034"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeHash_3035"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isURIEditorInput">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="com.runwaysdk.eclipse.plugin.diagram.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
+           namespace="com.runwaysdk.eclipse.plugin.diagram"
+           properties="isURIEditorInput"
+           class="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayUriEditorInputTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.ui.navigator.viewer" id="navigator-viewbinding">
+      <?gmfgen generated="true"?>
+      <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <contentExtension pattern="com.runwaysdk.eclipse.plugin.diagram.resourceContent"/>
+			<contentExtension pattern="com.runwaysdk.eclipse.plugin.diagram.domainResourceContent"/>
+            <contentExtension pattern="com.runwaysdk.eclipse.plugin.diagram.navigatorLinkHelper"/>
+         </includes>
+      </viewerContentBinding>
+      <viewerActionBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <actionExtension pattern="com.runwaysdk.eclipse.plugin.diagram.navigatorActionProvider"/>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+
+   <extension point="org.eclipse.ui.navigator.navigatorContent" id="navigator-content">
+      <?gmfgen generated="true"?>
+      <navigatorContent
+            id="com.runwaysdk.eclipse.plugin.diagram.resourceContent" 
+            name="%navigatorContentName" 
+            priority="normal" 
+            contentProvider="com.runwaysdk.eclipse.plugin.runway.diagram.navigator.RunwayNavigatorContentProvider" 
+            labelProvider="com.runwaysdk.eclipse.plugin.runway.diagram.navigator.RunwayNavigatorLabelProvider"
+            icon="icons/obj16/RunwayDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="runway_diagram"/>
+               </and>
+               <instanceof value="com.runwaysdk.eclipse.plugin.runway.diagram.navigator.RunwayAbstractNavigatorItem"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+         	   <instanceof value="com.runwaysdk.eclipse.plugin.runway.diagram.navigator.RunwayAbstractNavigatorItem"/>
+            </or>
+         </possibleChildren>
+         <commonSorter 
+               id="com.runwaysdk.eclipse.plugin.diagram.navigatorSorter" 
+               class="com.runwaysdk.eclipse.plugin.runway.diagram.navigator.RunwayNavigatorSorter">
+            <parentExpression>
+               <or>
+	              <and>
+    	             <instanceof value="org.eclipse.core.resources.IFile"/>
+        	         <test property="org.eclipse.core.resources.extension" value="runway_diagram"/>
+                  </and>
+                  <instanceof value="com.runwaysdk.eclipse.plugin.runway.diagram.navigator.RunwayAbstractNavigatorItem"/>
+               </or>
+            </parentExpression>
+         </commonSorter>
+      </navigatorContent>
+      <navigatorContent
+            id="com.runwaysdk.eclipse.plugin.diagram.domainResourceContent" 
+            name="%domainNavigatorContentName" 
+            priority="normal" 
+            contentProvider="com.runwaysdk.eclipse.plugin.runway.diagram.navigator.RunwayDomainNavigatorContentProvider" 
+            labelProvider="com.runwaysdk.eclipse.plugin.runway.diagram.navigator.RunwayDomainNavigatorLabelProvider"
+            icon="icons/obj16/RunwayDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="runway"/>
+               </and>
+               <instanceof value="com.runwaysdk.eclipse.plugin.runway.diagram.navigator.RunwayDomainNavigatorItem"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <instanceof value="com.runwaysdk.eclipse.plugin.runway.diagram.navigator.RunwayDomainNavigatorItem"/>
+         </possibleChildren>
+      </navigatorContent>
+      <actionProvider
+            id="com.runwaysdk.eclipse.plugin.diagram.navigatorActionProvider"
+            class="com.runwaysdk.eclipse.plugin.runway.diagram.navigator.RunwayNavigatorActionProvider">
+         <enablement>
+            <or>
+               <instanceof value="com.runwaysdk.eclipse.plugin.runway.diagram.navigator.RunwayAbstractNavigatorItem"/>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+   
+	   <extension point="org.eclipse.ui.navigator.linkHelper" id="navigator-linkhelper">
+      <?gmfgen generated="true"?>
+      <linkHelper
+            id="com.runwaysdk.eclipse.plugin.diagram.navigatorLinkHelper"
+            class="com.runwaysdk.eclipse.plugin.runway.diagram.navigator.RunwayNavigatorLinkHelper">
+         <editorInputEnablement>
+            <and>
+               <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
+               <test property="com.runwaysdk.eclipse.plugin.diagram.isURIEditorInput"/>
+            </and>
+         </editorInputEnablement>
+         <selectionEnablement>
+            <instanceof value="com.runwaysdk.eclipse.plugin.runway.diagram.navigator.RunwayAbstractNavigatorItem"/>
+         </selectionEnablement>
+      </linkHelper>
+   </extension>
+   <extension point="org.eclipse.ui.commands" id="update-cmd">
+      <?gmfgen generated="true"?>
+      <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramUpdateCommand"
+         description="%update.diagram.description"
+         id="com.runwaysdk.eclipse.plugin.runway.diagram.updateDiagram"
+         name="%update.diagram.name"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
+      <?gmfgen generated="true"?>
+      <key 
+         commandId="com.runwaysdk.eclipse.plugin.runway.diagram.updateDiagram"
+         contextId="com.runwaysdk.eclipse.plugin.runway.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F5"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.menus" id="context-menus">
+      <?gmfgen generated="true"?>
+      <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
+      </menuContribution -->
+      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command commandId="com.runwaysdk.eclipse.plugin.diagram.LoadResourceAction">
+            <visibleWhen>
+               <and>
+                  <with variable="activePartId"><equals value="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorID"/></with>
+                  <with variable="selection"><iterate ifEmpty="false"> 
+                     <instanceof value="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.DocumentRootEditPart"/>
+                  </iterate></with>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands" id="menu-commands">
+      <?gmfgen generated="true"?>
+      <category id="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <command id="com.runwaysdk.eclipse.plugin.diagram.LoadResourceAction"
+         name="Load Resource"
+         categoryId="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorID"
+         defaultHandler="com.runwaysdk.eclipse.plugin.runway.diagram.part.LoadResourceAction"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
+   
+   <!-- optionally, specify keybindings -->
+   
+   
+   
+   
+   
+   
+   
+   <!-- Generated Extension Points that have been modified -->
+   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
+      <?gmfgen generated="false"?>
+      <category 
+        id="com.runwaysdk.Runway" 
+        name="Runway"> 
+      </category>
+      <wizard
+         name="%newWizardName"
+         icon="icons/obj16/RunwayDiagramFile.gif"
+         category="com.runwaysdk.Runway"
+         class="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizard"
+         id="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardID">
+         <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+   
+   
+   <!-- Custom Extension Points (Not Generated) -->
+   <extension point="org.eclipse.ui.newWizards" id="com.runwaysdk.new">
+      <?gmfgen generated="false"?>
+      <category 
+        id="com.runwaysdk.Runway" 
+        name="Runway"> 
+      </category>
+      <wizard
+         name="New Runway Project"
+         icon="icons/obj16/RunwayDiagramFile.gif"
+         category="com.runwaysdk.Runway"
+         class="com.runwaysdk.eclipse.plugin.wizards.NewRunwayProjectWizard"
+         id="com.runwaysdk.eclipse.plugin.runway.diagram.part.NewRunwayProjectWizardId">
+         <description>Used to create an XML Schema and a Runway Class Diagram.</description>  
+      </wizard>
+   </extension>
+   
+   
+   <extension point="org.eclipse.ui.importWizards" id="com.runwaysdk.import">
+      <?gmfgen generated="false"?>
+      <category 
+        id="com.runwaysdk.Runway" 
+        name="Runway"> 
+      </category>
+      <wizard
+         name="Import Runway XML Schema"
+         icon="icons/obj16/RunwayDiagramFile.gif"
+         category="com.runwaysdk.Runway"
+         class="com.runwaysdk.eclipse.plugin.wizards.SchemaImportWizard"
+         id="com.runwaysdk.eclipse.plugin.runway.diagram.part.SchemaImportWizardId">
+         <description>Used to import an XML Schema into a Runway Class Diagram.</description>  
+      </wizard>
+   </extension>
+
+
+   <extension point="org.eclipse.ui.exportWizards" id="com.runwaysdk.export">
+      <?gmfgen generated="false"?>
+      <category 
+        id="com.runwaysdk.Runway" 
+        name="Runway"> 
+      </category>
+      <wizard
+         name="Export Runway XML Schema"
+         icon="icons/obj16/RunwayDiagramFile.gif"
+         category="com.runwaysdk.Runway"
+         class="com.runwaysdk.eclipse.plugin.wizards.SchemaExportWizard"
+         id="com.runwaysdk.eclipse.plugin.runway.diagram.part.SchemaExportWizardId">
+         <description>Used to export a Runway Class Diagraman into an XML Schema.</description>  
+      </wizard>
+   </extension>
+   
+   
+   <!--
+   <extension point="org.eclipse.ui.exportWizards" id="com.runwaysdk.export">
+      <?gmfgen generated="false"?>
+      <wizard
+         name="%newWizardName"
+         icon="icons/obj16/RunwayDiagramFile.gif"
+         category="com.runwaysdk.Runway"
+          class="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizard"
+         id="com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardID">
+         <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+   -->
+   
+</plugin>
