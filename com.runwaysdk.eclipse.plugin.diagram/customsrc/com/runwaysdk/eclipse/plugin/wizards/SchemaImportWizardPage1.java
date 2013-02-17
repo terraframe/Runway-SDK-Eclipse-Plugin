@@ -41,6 +41,16 @@ public class SchemaImportWizardPage1 extends WizardPage
     schemaFileFieldEditor = new FileFieldEditor("SchemaURI", "Runway XML Schema", container); 
     ((FileFieldEditor)schemaFileFieldEditor).setFileExtensions(new String[]{"xml"}); 
     schemaFileFieldEditor.setEmptyStringAllowed(false);
+    
+    
+    // Auto-fill this value if they've right-clicked on a schema file and then did import
+    Object obj = selection.getFirstElement();
+    if (obj != null && obj instanceof org.eclipse.core.internal.resources.File) {
+      org.eclipse.core.internal.resources.File file = (org.eclipse.core.internal.resources.File) obj;
+      
+      schemaFileFieldEditor.setStringValue(file.getFullPath().toPortableString());
+    }
+    
     schemaFileFieldEditor.setPropertyChangeListener(new IPropertyChangeListener() {
       
       @Override
