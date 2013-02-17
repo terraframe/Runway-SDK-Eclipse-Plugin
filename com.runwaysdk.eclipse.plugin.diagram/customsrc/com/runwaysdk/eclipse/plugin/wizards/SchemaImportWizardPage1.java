@@ -1,5 +1,6 @@
 package com.runwaysdk.eclipse.plugin.wizards;
 
+import org.eclipse.core.internal.resources.File;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.preference.StringButtonFieldEditor;
 import org.eclipse.jface.util.IPropertyChangeListener;
@@ -8,8 +9,10 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.PlatformUI;
@@ -21,10 +24,11 @@ public class SchemaImportWizardPage1 extends WizardPage
 {
   private Composite container;
   private StringButtonFieldEditor modelFileFieldEditor;
+  private boolean didSpecifyModelFilename = false;
   private StringButtonFieldEditor schemaFileFieldEditor;
   private Button newDiagramButton;
   protected String modelPath = "";
-  protected String schemaPath = "";
+  protected File schemaFile;
   protected IStructuredSelection selection;
   private RunwayCreationWizardWithFinishListeners newDiagramWizard;
   
@@ -37,8 +41,21 @@ public class SchemaImportWizardPage1 extends WizardPage
   @Override
   public void createControl(Composite parent) {
     container = new Composite(parent, SWT.NULL);
+    RowLayout rowLayout = new RowLayout();
+    rowLayout.wrap = false;
+    rowLayout.pack = false;
+    rowLayout.justify = true;
+    rowLayout.type = SWT.VERTICAL;
+    rowLayout.marginLeft = 5;
+    rowLayout.marginTop = 5;
+    rowLayout.marginRight = 5;
+    rowLayout.marginBottom = 5;
+    rowLayout.spacing = 0;
+    container.setLayout(rowLayout);
     
-    schemaFileFieldEditor = new FileFieldEditor("SchemaURI", "Runway XML Schema", container); 
+    
+    Composite schemaContainer = new Composite(container, SWT.NULL);
+    schemaFileFieldEditor = new FileFieldEditor("SchemaURI", "Runway XML Schema", schemaContainer); 
     ((FileFieldEditor)schemaFileFieldEditor).setFileExtensions(new String[]{"xml"}); 
     schemaFileFieldEditor.setEmptyStringAllowed(false);
     
@@ -46,9 +63,13 @@ public class SchemaImportWizardPage1 extends WizardPage
     // Auto-fill this value if they've right-clicked on a schema file and then did import
     Object obj = selection.getFirstElement();
     if (obj != null && obj instanceof org.eclipse.core.internal.resources.File) {
-      org.eclipse.core.internal.resources.File file = (org.eclipse.core.internal.resources.File) obj;
+      schemaFile = (org.eclipse.core.internal.resources.File) obj;
+      schemaFileFieldEditor.setStringValue(schemaFile.getFullPath().toPortableString());
       
-      schemaFileFieldEditor.setStringValue(file.getFullPath().toPortableString());
+      setPageComplete(true);
+    }
+    else {
+      setPageComplete(false);
     }
     
     schemaFileFieldEditor.setPropertyChangeListener(new IPropertyChangeListener() {
@@ -57,23 +78,35 @@ public class SchemaImportWizardPage1 extends WizardPage
       public void propertyChange(PropertyChangeEvent arg0)
       {
         if (arg0.getNewValue() instanceof String) {
-          schemaPath = (String) arg0.getNewValue();
-          System.out.println("SchemaPath = '" + schemaPath + "'");
-          
-          if (modelPath.trim().length() != 0 && schemaPath.trim().length() != 0) {
-            setPageComplete(true);
-          }
-          else {
-            setPageComplete(false);
-          }
+//          schemaFile =  new File(arg0.getNewValue());
         }
       }
       
     });
     
-    modelFileFieldEditor = new FileFieldEditor("ModelURI", "Runway Model", container); 
+    final Button enableButton = new Button(container, SWT.CHECK);
+    enableButton.setText("Create new runway diagram files of the same name.");
+    enableButton.setSelection(true);
+    
+    
+    final Composite modelFileFieldContainer = new Composite(container, SWT.NONE);
+    
+    enableButton.addSelectionListener(new SelectionAdapter() {
+        @Override
+        public void widgetSelected(final SelectionEvent e) {
+          modelFileFieldEditor.setEnabled(!enableButton.getSelection(), modelFileFieldContainer);
+          newDiagramButton.setEnabled(!enableButton.getSelection());
+          container.layout();
+          didSpecifyModelFilename = !enableButton.getSelection();
+        }
+    });
+    
+    
+    
+    modelFileFieldEditor = new FileFieldEditor("ModelURI", "Runway Model", modelFileFieldContainer); 
     ((FileFieldEditor)modelFileFieldEditor).setFileExtensions(new String[]{"runway"}); 
     modelFileFieldEditor.setEmptyStringAllowed(false);
+    modelFileFieldEditor.setEnabled(false, modelFileFieldContainer);
     modelFileFieldEditor.setPropertyChangeListener(new IPropertyChangeListener() {
       
       @Override
@@ -81,21 +114,14 @@ public class SchemaImportWizardPage1 extends WizardPage
       {
         if (arg0.getNewValue() instanceof String) {
           modelPath = (String) arg0.getNewValue();
-          System.out.println("ModelPath = '" + schemaPath + "'");
-          
-          if (modelPath.trim().length() != 0 && schemaPath.trim().length() != 0) {
-            setPageComplete(true);
-          }
-          else {
-            setPageComplete(false);
-          }
         }
       }
       
     });
     
-    newDiagramButton = new Button(container, SWT.PUSH);
+    newDiagramButton = new Button(modelFileFieldContainer, SWT.PUSH);
     newDiagramButton.setText("Create New Diagram/Model");
+    newDiagramButton.setEnabled(false);
     newDiagramButton.addSelectionListener(new SelectionListener(){
       @Override
       public void widgetDefaultSelected(SelectionEvent arg0)
@@ -114,8 +140,6 @@ public class SchemaImportWizardPage1 extends WizardPage
     });
     
     setControl(container);
-    
-    setPageComplete(false);
   }
   
   private OnPerformFinishListenerIF listener = new OnPerformFinishListenerIF(){
@@ -141,8 +165,12 @@ public class SchemaImportWizardPage1 extends WizardPage
     return modelPath;
   }
   
-  public String getSchemaPath() {
-    return schemaPath;
+  public File getSchemaFile() {
+    return schemaFile;
+  }
+  
+  public boolean getDidSpecifyModelFilename() {
+    return didSpecifyModelFilename;
   }
   
   public IStructuredSelection getSelection()

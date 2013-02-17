@@ -1,23 +1,36 @@
 package com.runwaysdk.eclipse.plugin.wizards;
 
+import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 import xmlParserTest.RunwayDOMParser;
 
+import com.runwaysdk.eclipse.plugin.runway.diagram.part.Messages;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardPage;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
+import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorUtil;
 import com.runwaysdk.eclipse.plugin.runway.impl.DocumentRootImpl;
 
 public class SchemaImportWizard extends Wizard implements IImportWizard
@@ -25,6 +38,7 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
   protected RunwayCreationWizardPage diagramModelFilePage;
   protected SchemaImportWizardPage1 page1;
   protected IStructuredSelection     selection;
+  protected Resource diagram;
   
   public SchemaImportWizard() {
     super();
@@ -47,12 +61,84 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
   @Override
   public boolean performFinish()
   {
+    String modelPath = page1.getModelPath();
+    String schemaPath = "platform:/resource" + page1.getSchemaFile().getFullPath().toPortableString();
+    
+    URL url = Platform.getInstanceLocation().getURL();
+    String fullSchemaPath = new File(url.getPath()).getAbsolutePath() + page1.getSchemaFile().getFullPath();
+    
+    System.out.println("fullSchemaPath = " + fullSchemaPath);
+    
+    /*
+     *  Create the gmf model files (runway and runway_diagram)
+     */
+    if (modelPath.length() == 0 || !page1.getDidSpecifyModelFilename()) {
+      final URI diagramModel = URI.createURI(schemaPath.replace("individual", "model").replace(".xml", ".runway_diagram"));
+      final URI domainModel = URI.createURI(schemaPath.replace("individual", "model").replace(".xml", ".runway"));
+      modelPath = domainModel.toPlatformString(true);
+      
+      System.out.println("diagramModel = " + diagramModel);
+      System.out.println("domainModel = " + domainModel);
+      
+      IRunnableWithProgress op = new WorkspaceModifyOperation(null)
+      {
+
+        protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException
+        {
+          diagram = RunwayDiagramEditorUtil.createDiagram(diagramModel, domainModel, monitor);
+          
+          if (diagram != null) {
+            try
+            {
+              RunwayDiagramEditorUtil.openDiagram(diagram);
+            }
+            catch (PartInitException e)
+            {
+              ErrorDialog.openError(getContainer().getShell(), Messages.RunwayCreationWizardOpenEditorError, null, e.getStatus());
+            }
+          }
+          else {
+            ErrorDialog.openError(getContainer().getShell(), "Error creating Runway Diagram.", null, null);
+          }
+        }
+      };
+      try
+      {
+        getContainer().run(false, true, op);
+      }
+      catch (InterruptedException e)
+      {
+        return false;
+      }
+      catch (InvocationTargetException e)
+      {
+        if (e.getTargetException() instanceof CoreException)
+        {
+          ErrorDialog.openError(getContainer().getShell(), Messages.RunwayCreationWizardCreationError, null,
+              ( (CoreException) e.getTargetException() ).getStatus());
+        }
+        else
+        {
+          RunwayDiagramEditorPlugin.getInstance().logError("Error creating diagram", e.getTargetException()); //$NON-NLS-1$
+        }
+        return false;
+      }
+      
+      if (diagram == null) {
+        return false;
+      }
+    }
+    
+    
+    /**
+     * Import the schema into the domain file.
+     */
     AdapterFactory adapterFactory = RunwayDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory();
     AdapterFactoryEditingDomain editer = new AdapterFactoryEditingDomain(
         adapterFactory,
         new BasicCommandStack()
     );
-    Resource resource = editer.createResource(page1.getModelPath());
+    Resource resource = editer.createResource(modelPath);
     try
     {
       // Load the file
@@ -65,7 +151,7 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
       
       // Parse the schema and add it to GMF
       RunwayDOMParser parser = new RunwayDOMParser(editingDomain, documentRoot);
-      parser.parse(page1.getSchemaPath());
+      parser.parse(fullSchemaPath);
       
       resource.save(null);
       
