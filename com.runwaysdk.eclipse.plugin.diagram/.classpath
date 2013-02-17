@@ -27,11 +27,8 @@
 	<classpathentry exported="true" kind="lib" path="lib/plexus-sec-dispatcher-1.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/plexus-utils-1.5.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/runwaysdk-client-0.0.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/runwaysdk-client.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/runwaysdk-common-0.0.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/runwaysdk-common.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/runwaysdk-server-0.0.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/runwaysdk-server.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/sisu-guice-2.1.7-noaop.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/sisu-inject-bean-1.4.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/sisu-inject-plexus-1.4.2.jar"/>

@@ -10,11 +10,9 @@ import org.apache.maven.shared.invoker.DefaultInvoker;
 import org.apache.maven.shared.invoker.InvocationRequest;
 import org.apache.maven.shared.invoker.Invoker;
 import org.apache.maven.shared.invoker.MavenInvocationException;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IProjectDescription;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -32,20 +30,31 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.eclipse.ui.dialogs.IOverwriteQuery;
+import org.eclipse.ui.internal.ide.filesystem.FileSystemStructureProvider;
+import org.eclipse.ui.wizards.datatransfer.ImportOperation;
 
 import xmlParserTest.RunwayDOMParser;
 
-import com.runwaysdk.eclipse.plugin.runway.impl.DocumentRootImpl;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.Messages;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardPage;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorUtil;
+import com.runwaysdk.eclipse.plugin.runway.impl.DocumentRootImpl;
 
 public class NewRunwayProjectWizard extends Wizard implements INewWizard
 {
   protected RunwayCreationWizardPage diagramModelFilePage;
   protected NewRunwayProjectWizardPage1 page1;
   protected IStructuredSelection     selection;
+  
+  private final String schemaFileName = "schema(0001352140861497)HelloWorld";
+  private final String schemaFileNameWithExtension = schemaFileName + ".xml";
+  
+  private final String runwayArchetypeVersion = "0.0.2-SNAPSHOT";
+  
+  private final String runway_diagram_filename = schemaFileName;
+  private final String runway_filename = runway_diagram_filename;
   
   public NewRunwayProjectWizard() {
     super();
@@ -74,9 +83,9 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
     InvocationRequest request = new DefaultInvocationRequest();
     request.setBaseDirectory(new File(page1.getLocation()));
     request.setGoals( Collections.singletonList( "archetype:generate" +
-    		" -DarchetypeGroupId=com.runwaysdk " +
+    		" -DarchetypeGroupId=com.runwaysdk" +
     		" -DarchetypeArtifactId=runwaysdk-archetype " +
-    		" -DarchetypeVersion=0.0.2-SNAPSHOT " +
+    		" -DarchetypeVersion=" + runwayArchetypeVersion +
     		" -DgroupId=" + page1.getGroupId() +
     		" -DartifactId=" + page1.getArtifactId() +
     		" -Dpackage=" + page1.getPkge() +
@@ -97,21 +106,45 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
     
     String baseDir = page1.getLocation() + "/" + page1.getArtifactId();
     
-    /*
-     * Import the generated Eclipse project
+    /**
+     * Import the generated project into Eclipse.
      */
+    IOverwriteQuery overwriteQuery = new IOverwriteQuery() {
+      public String queryOverwrite(String file) { return ALL; }
+    };
+    
+    ImportOperation importOperation = new ImportOperation(new Path(page1.getArtifactId()),
+          new File(baseDir), new FileSystemStructureProvider(), overwriteQuery);
+    importOperation.setCreateContainerStructure(false);
     try
     {
-      IProjectDescription description;
-      description = ResourcesPlugin.getWorkspace().loadProjectDescription(new Path(page1.getLocation() + "/" + page1.getArtifactId() + "/.project"));
-      IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(description.getName());
-      project.create(description, null);
-      project.open(null);
+      importOperation.run(new NullProgressMonitor());
     }
-    catch (CoreException e)
+    catch (InvocationTargetException e)
     {
+      // TODO Auto-generated catch block
       e.printStackTrace();
     }
+    catch (InterruptedException e)
+    {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    
+    
+    // This code creates a .project file (and fails if one already exists)
+//    try
+//    {
+//      IProjectDescription description;
+//      description = ResourcesPlugin.getWorkspace().loadProjectDescription(new Path(page1.getLocation() + "/" + page1.getArtifactId() + "/.project"));
+//      IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(description.getName());
+//      project.create(description, null);
+//      project.open(null);
+//    }
+//    catch (CoreException e)
+//    {
+//      e.printStackTrace();
+//    }
     
     // Attempted M2E Import integration
 //    final Collection<MavenProjectInfo> projects = new ArrayList<MavenProjectInfo>();
@@ -144,35 +177,11 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
 //      }
 //    };
     
-//    IOverwriteQuery overwriteQuery = new IOverwriteQuery() {
-//          public String queryOverwrite(String file) { return ALL; }
-//    };
-//    
-//    String baseDir = page1.getLocation() + "/" + page1.getArtifactId();
-//    System.out.println("baseDir = " + baseDir);
-//    ImportOperation importOperation = new ImportOperation(new Path(page1.getArtifactId()),
-//          new File(baseDir), new FileSystemStructureProvider(), overwriteQuery);
-//    importOperation.setCreateContainerStructure(false);
-//    try
-//    {
-//      importOperation.run(new NullProgressMonitor());
-//    }
-//    catch (InvocationTargetException e)
-//    {
-//      // TODO Auto-generated catch block
-//      e.printStackTrace();
-//    }
-//    catch (InterruptedException e)
-//    {
-//      // TODO Auto-generated catch block
-//      e.printStackTrace();
-//    }
-    
     /*
      * Create a new diagram file in the project and open the diagram file.
      */
-    final URI diagramModel = URI.createURI("platform:/resource/" + page1.getArtifactId() + "/domain/model/core.runway_diagram");
-    final URI domainModel = URI.createURI("platform:/resource/" + page1.getArtifactId() + "/domain/model/core.runway");
+    final URI diagramModel = URI.createURI("platform:/resource/" + page1.getArtifactId() + "/domain/model/" + runway_diagram_filename + ".runway_diagram");
+    final URI domainModel = URI.createURI("platform:/resource/" + page1.getArtifactId() + "/domain/model/" + runway_filename + ".runway");
     
     IRunnableWithProgress op = new WorkspaceModifyOperation(null)
     {
@@ -240,7 +249,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
       
       // Parse the schema and add it to GMF
       RunwayDOMParser parser = new RunwayDOMParser(editingDomain, documentRoot);
-      parser.parse(baseDir + "/domain/individual/schema(0001352140861497)HelloWorld.xml");
+      parser.parse(baseDir + "/domain/individual/" + schemaFileNameWithExtension);
       
       resource.save(null);
       
