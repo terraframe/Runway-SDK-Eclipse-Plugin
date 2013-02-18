@@ -24,163 +24,137 @@ import com.runwaysdk.eclipse.plugin.runway.RunwayPackage;
 
 public class RunwayDOMParser
 {
-	// These two objects are used to modify GMF's domain model.
-	private final EditingDomain editingDomain;
-	private final DocumentRoot documentRoot;
+  // These two objects are used to modify GMF's domain model.
+  private final EditingDomain editingDomain;
+  private final DocumentRoot documentRoot;
+  
+  public RunwayDOMParser(EditingDomain editingDomain, DocumentRoot documentRoot) {
+    this.editingDomain = editingDomain;
+    this.documentRoot = documentRoot;
+  }
+  
+  public void parse(String file)
+  {
+    try
+    {
+		// Create a new xml File
+		File xmlFile = new File(file);
 
-	public RunwayDOMParser(EditingDomain editingDomain, DocumentRoot documentRoot) {
-		this.editingDomain = editingDomain;
-		this.documentRoot = documentRoot;
+		// Obtain a parser that produces DOM object trees from XML documents.
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+
+		// XSD validator
+  		String xsdPath = "/com.runwaysdk.eclipse.plugin.diagram/xmlFiles/datatype.xsd";
+  		dbFactory.setAttribute(XMLConstants.JAXP_SCHEMA_LANGUAGE, XMLConstants.W3C_XML_SCHEMA);
+  		dbFactory.setAttribute(XMLConstants.JAXP_SCHEMA_SOURCE, new File(xsdPath));
+
+  		// Initialization of DocumentBuilder, Document and Normalization
+  		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+  		Document doc = dBuilder.parse(xmlFile);
+  		doc.getDocumentElement().normalize(); // Not sure if this method is neccessary. 
+
+  		// 1. Get all MDBusiness objects in the xmlFile using getElementsByTagName method and store them in the "mdBusinessNodeList" variable
+  		
+  		// 2. For each MDBusiness node, get its children (i.e. attributes) and create new children classes with the extracted information
+  		parseMDBusiness(doc);
 	}
-
-	/**
-	 * Bullshit constructor for testing our parser without going through GMF
-	 */
-	public RunwayDOMParser(){
-		editingDomain = null;
-		documentRoot = null;
+	catch (Exception e){
+		e.printStackTrace();
 	}
+  }
 
+  private static void printAttributes(NamedNodeMap nodeMap, String customMessage)
+  {
+    System.out.println(customMessage);
+    for (int p = 0; p < nodeMap.getLength(); p++)
+    {
+      System.out.println(nodeMap.item(p).getNodeName() + " = " + nodeMap.item(p).getNodeValue());
+    }
 
-	public void parse(String file)
-	{
-		try
-		{
-			File fXmlFile = new File(file);
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+  }
 
-			//XML validator. Has nothing to do with runway schema.
-			//TODO DO NOT HARD CODE THIS PATH! Change this. 
-			String workspaceFilePathToDataTypeXSDschema = "/com.runwaysdk.eclipse.plugin.diagram/xmlFiles/datatype.xsd";
+  private static String getTagValue(String sTag, Element eElement)
+  {
+    NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
 
-			dbFactory.setAttribute(XMLConstants.JAXP_SCHEMA_LANGUAGE, XMLConstants.W3C_XML_SCHEMA);
-			dbFactory.setAttribute(XMLConstants.JAXP_SCHEMA_SOURCE, new File(workspaceFilePathToDataTypeXSDschema));
+    Node nValue = (Node) nlList.item(0);
 
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(fXmlFile);
-			doc.getDocumentElement().normalize();
+    return nValue.getNodeValue();
+  }
 
-			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-			NodeList mdBusinessNodeList = doc.getElementsByTagName(XMLTags.MD_BUSINESS_TAG);
-			System.out.println("-----------------------");
+private MDBusiness newMdBusiness(NamedNodeMap attrs){
+	MDBusiness biz = RunwayFactory.eINSTANCE.createMDBusiness();
+	biz.setClassName(attrs.getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
+	biz.setDisplayLabel(attrs.getNamedItem(XMLTags.DISPLAY_LABEL_ATTRIBUTE).getNodeValue());
 
-			for (int i = 0; i < mdBusinessNodeList.getLength(); i++)
-			{
-				Node mdBusinessNode = mdBusinessNodeList.item(i);
+	//TODO Commenting out GMF stuff for testing purposes.
 
-				if (mdBusinessNode.getNodeType() == Node.ELEMENT_NODE)
-				{
-					NamedNodeMap attrs = mdBusinessNode.getAttributes();
+	Command command = AddCommand.create(editingDomain, documentRoot, RunwayPackage.eINSTANCE.getDocumentRoot_MDBusinesses(), biz);
+	editingDomain.getCommandStack().execute(command);
 
-					// Create a new MdBusiness
-					MDBusiness biz = newMdBusiness(attrs);
-							//attrs.getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue(), attrs.getNamedItem(XMLTags.DISPLAY_LABEL_ATTRIBUTE).getNodeValue());
-					biz.setClassName(attrs.getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
-					biz.setDisplayLabel(attrs.getNamedItem(XMLTags.DISPLAY_LABEL_ATTRIBUTE).getNodeValue());
+	System.out.println("Business class name: " + biz.getClassName());
+	
+	return biz;
+}
+  
+  private void newMdAttribute(MDBusiness biz, String attrName, NamedNodeMap attrs) {
+    
+	// Create a new MdAttribute and add it to the MdAttribute's container
+	MDAttribute attr = MdAttributeFactory.createMdAttribute(attrName);    
+	
+	attr.setName(attrs.getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
+	attr.setRequired(new Boolean(attrs.getNamedItem(XMLTags.REQUIRED_ATTRIBUTE).getNodeValue()));
+	attr.setDisplayLabel(attrs.getNamedItem(XMLTags.DISPLAY_LABEL_ATTRIBUTE).getNodeValue());
+	
+	System.out.println("Attribute name: " + attrName);
+	// TODO Commenting this out for testing our parser
+	Command command = AddCommand.create(editingDomain, biz, RunwayPackage.eINSTANCE.getMDBusiness_Attributes(), attr);
 
-					NodeList mdBusinessChildNodeList = mdBusinessNode.getChildNodes();
+	editingDomain.getCommandStack().execute(command);
+  }
+  
+  
+  private void parseMDBusiness(Document document){
+	NodeList mdBusinessNodeList = document.getElementsByTagName(XMLTags.MD_BUSINESS_TAG);
+	for (int i = 0; i < mdBusinessNodeList.getLength(); i++){	
+		
+		// Get the MDBusiness node from the mdBusinessNodeList
+		Node mdBusinessNode = mdBusinessNodeList.item(i);
 
-					printAttributes(mdBusinessNode.getAttributes(), "MDBusiness Tag Attributes Information");
-					for (int j = 0; j < mdBusinessChildNodeList.getLength(); j++)
-					{
-						Node mdBusinessChildNode = mdBusinessChildNodeList.item(j);
+		if (mdBusinessNode.getNodeType() == Node.ELEMENT_NODE){
+  			NamedNodeMap attrs = mdBusinessNode.getAttributes();
+  
+  			// 2.1 Create a new MdBusiness and set the appropriate values (i.e. name, label)
+  			MDBusiness biz = newMdBusiness(attrs);
+           
+  			// 2.2 Get all children objects of the MDBusiness node and store them in the "mdBusinessChildNodeList" variable
+  			NodeList mdBusinessChildNodeList = mdBusinessNode.getChildNodes();
 
-						if (mdBusinessChildNode.getNodeType() == Node.ELEMENT_NODE)
-						{
-
-							NodeList mdBusinessGrandChildNodeList = mdBusinessChildNode.getChildNodes();
-
-							System.out.println(mdBusinessChildNode.getNodeName());
-							printAttributes(mdBusinessChildNode.getAttributes(), "Attributes for: " + mdBusinessChildNode.getNodeName() + " tag");
-							for (int k = 0; k < mdBusinessGrandChildNodeList.getLength(); k++)
-							{
-								Node mdBusinessGrandChildNode = mdBusinessGrandChildNodeList.item(k);
-
-								System.out.println("Reading grand child node '" + mdBusinessChildNode.getNodeName() + "'");
-
-								if (mdBusinessGrandChildNode.getNodeType() == Node.ELEMENT_NODE)
-								{
-									if (mdBusinessChildNode.getNodeName() == XMLTags.ATTRIBUTES_TAG) {
-										printAttributes(mdBusinessGrandChildNode.getAttributes(), "Attributes for: " + mdBusinessGrandChildNode.getNodeName() + " tag");
-										NamedNodeMap attrAttrs = mdBusinessGrandChildNode.getAttributes();
-										addNewMdAttribute(biz, mdBusinessGrandChildNode.getNodeName(), attrAttrs);
-										
-									}
-									else if (mdBusinessChildNode.getNodeName() == XMLTags.MD_METHOD_TAG) {
-										printAttributes(mdBusinessGrandChildNode.getAttributes(), "Methods for: " + mdBusinessGrandChildNode.getNodeName() + " tag");
-										NamedNodeMap methodAttrs = mdBusinessGrandChildNode.getAttributes();
-										//MDMthod
-
-									}
-								}
-							}
-
-						}
-					}
-				}
+  			printAttributes(mdBusinessNode.getAttributes(), "MDBusiness Tag Attributes Information");
+			for (int j = 0; j < mdBusinessChildNodeList.getLength(); j++){
+			    Node mdBusinessChildNode = mdBusinessChildNodeList.item(j);
+			
+			    if (mdBusinessChildNode.getNodeType() == Node.ELEMENT_NODE){
+			     
+			      NodeList attributesNodeList = mdBusinessChildNode.getChildNodes();
+				  
+				  for (int k = 0; k < attributesNodeList.getLength(); k++)
+			      {
+			        Node attributeNode = attributesNodeList.item(k);
+			        
+			        if (attributeNode.getNodeType() == Node.ELEMENT_NODE)
+			        {
+			          if (mdBusinessChildNode.getNodeName() == "attributes") {
+			            printAttributes(attributeNode.getAttributes(), "Attributes for: " + attributeNode.getNodeName() + " tag");
+			            NamedNodeMap attrAttrs = attributeNode.getAttributes();
+			            newMdAttribute(biz, attributeNode.getNodeName(), attrAttrs);
+			          }
+			        }
+			      }
+			   }
 			}
-
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
 		}
 	}
-
-	private static void printAttributes(NamedNodeMap nodeMap, String customMessage)
-	{
-		System.out.println(customMessage);
-		for (int p = 0; p < nodeMap.getLength(); p++)
-		{
-			System.out.println(nodeMap.item(p).getNodeName() + " = " + nodeMap.item(p).getNodeValue());
-		}
-
-	}
-
-	private static String getTagValue(String sTag, Element eElement)
-	{
-		NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
-
-		Node nValue = (Node) nlList.item(0);
-
-		return nValue.getNodeValue();
-	}
-
-	private MDBusiness newMdBusiness(NamedNodeMap attrs)
-	{
-		MDBusiness biz = RunwayFactory.eINSTANCE.createMDBusiness();
-		biz.setClassName(attrs.getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
-		biz.setDisplayLabel(attrs.getNamedItem(XMLTags.DISPLAY_LABEL_ATTRIBUTE).getNodeValue());
-
-		//TODO Commenting out GMF stuff for testing purposes.
-
-		Command command = AddCommand.create(editingDomain, documentRoot, RunwayPackage.eINSTANCE.getDocumentRoot_MDBusinesses(), biz);
-		editingDomain.getCommandStack().execute(command);
-
-		System.out.println("Business class name: " + biz.getClassName());
-		
-		return biz;
-	}
-
-	private void addNewMdAttribute(MDBusiness biz, String attrName, NamedNodeMap attrs) {
-		// Create a new MdAttribute and add it to the MdBusiness's container
-		MDAttribute attr = MdAttributeFactory.createMdAttribute(attrName);    
-		
-		attr.setName(attrs.getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
-		attr.setRequired(new Boolean(attrs.getNamedItem(XMLTags.REQUIRED_ATTRIBUTE).getNodeValue()));
-		attr.setDisplayLabel(attrs.getNamedItem(XMLTags.DISPLAY_LABEL_ATTRIBUTE).getNodeValue());
-		
-		System.out.println("Attribute name: " + attrName);
-		// TODO Commenting this out for testing our parser
-		Command command = AddCommand.create(editingDomain, biz, RunwayPackage.eINSTANCE.getMDBusiness_Attributes(), attr);
-
-		editingDomain.getCommandStack().execute(command);
-
-	}
-
-	private void newMDMethod(MDBusiness biz, String methodName){
-
-		//return null;
-	}
+  }
 
 }
