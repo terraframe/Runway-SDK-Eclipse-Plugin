@@ -66,10 +66,10 @@ public class SchemaImportWizardPage1 extends WizardPage
       schemaFile = (org.eclipse.core.internal.resources.File) obj;
       schemaFileFieldEditor.setStringValue(schemaFile.getFullPath().toPortableString());
       
-      setPageComplete(true);
+//      setPageComplete(true);
     }
     else {
-      setPageComplete(false);
+//      setPageComplete(false);
     }
     
     schemaFileFieldEditor.setPropertyChangeListener(new IPropertyChangeListener() {
@@ -140,6 +140,8 @@ public class SchemaImportWizardPage1 extends WizardPage
     });
     
     setControl(container);
+    
+    setPageComplete(true);
   }
   
   private OnPerformFinishListenerIF listener = new OnPerformFinishListenerIF(){

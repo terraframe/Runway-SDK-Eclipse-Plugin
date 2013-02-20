@@ -67,8 +67,6 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
     URL url = Platform.getInstanceLocation().getURL();
     String fullSchemaPath = new File(url.getPath()).getAbsolutePath() + page1.getSchemaFile().getFullPath();
     
-    System.out.println("fullSchemaPath = " + fullSchemaPath);
-    
     /*
      *  Create the gmf model files (runway and runway_diagram)
      */
@@ -76,9 +74,6 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
       final URI diagramModel = URI.createURI(schemaPath.replace("individual", "model").replace(".xml", ".runway_diagram"));
       final URI domainModel = URI.createURI(schemaPath.replace("individual", "model").replace(".xml", ".runway"));
       modelPath = domainModel.toPlatformString(true);
-      
-      System.out.println("diagramModel = " + diagramModel);
-      System.out.println("domainModel = " + domainModel);
       
       IRunnableWithProgress op = new WorkspaceModifyOperation(null)
       {
