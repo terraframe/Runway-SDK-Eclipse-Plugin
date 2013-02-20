@@ -62,10 +62,8 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
   public boolean performFinish()
   {
     String modelPath = page1.getModelPath();
-    String schemaPath = "platform:/resource" + page1.getSchemaFile().getFullPath().toPortableString();
-    
-    URL url = Platform.getInstanceLocation().getURL();
-    String fullSchemaPath = new File(url.getPath()).getAbsolutePath() + page1.getSchemaFile().getFullPath();
+//    String schemaPath = "platform:/resource" + page1.getSchemaFile();
+    String schemaPath = page1.getSchemaFile();
     
     /*
      *  Create the gmf model files (runway and runway_diagram)
@@ -146,7 +144,7 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
       
       // Parse the schema and add it to GMF
       RunwayDOMParser parser = new RunwayDOMParser(editingDomain, documentRoot);
-      parser.parse(fullSchemaPath);
+      parser.parse(schemaPath);
       
       resource.save(null);
       

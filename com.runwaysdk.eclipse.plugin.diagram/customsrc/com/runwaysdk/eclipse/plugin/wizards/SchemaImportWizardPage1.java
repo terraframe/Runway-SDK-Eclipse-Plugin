@@ -1,6 +1,10 @@
 package com.runwaysdk.eclipse.plugin.wizards;
 
-import org.eclipse.core.internal.resources.File;
+import java.io.File;
+import java.net.URL;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.preference.StringButtonFieldEditor;
 import org.eclipse.jface.util.IPropertyChangeListener;
@@ -28,7 +32,7 @@ public class SchemaImportWizardPage1 extends WizardPage
   private StringButtonFieldEditor schemaFileFieldEditor;
   private Button newDiagramButton;
   protected String modelPath = "";
-  protected File schemaFile;
+  protected String schemaPath;
   protected IStructuredSelection selection;
   private RunwayCreationWizardWithFinishListeners newDiagramWizard;
   
@@ -62,9 +66,14 @@ public class SchemaImportWizardPage1 extends WizardPage
     
     // Auto-fill this value if they've right-clicked on a schema file and then did import
     Object obj = selection.getFirstElement();
-    if (obj != null && obj instanceof org.eclipse.core.internal.resources.File) {
-      schemaFile = (org.eclipse.core.internal.resources.File) obj;
-      schemaFileFieldEditor.setStringValue(schemaFile.getFullPath().toPortableString());
+    if (obj != null && obj instanceof IFile) {
+      schemaPath = ((IFile) obj).getFullPath().toPortableString();
+      
+      // The selection doesn't return the absolute path.
+      URL url = Platform.getInstanceLocation().getURL();
+      schemaPath = new File(url.getPath()).getAbsolutePath() + schemaPath;
+      
+      schemaFileFieldEditor.setStringValue(schemaPath);
       
 //      setPageComplete(true);
     }
@@ -78,7 +87,7 @@ public class SchemaImportWizardPage1 extends WizardPage
       public void propertyChange(PropertyChangeEvent arg0)
       {
         if (arg0.getNewValue() instanceof String) {
-//          schemaFile =  new File(arg0.getNewValue());
+          schemaPath = (String) arg0.getNewValue();
         }
       }
       
@@ -167,8 +176,8 @@ public class SchemaImportWizardPage1 extends WizardPage
     return modelPath;
   }
   
-  public File getSchemaFile() {
-    return schemaFile;
+  public String getSchemaFile() {
+    return schemaPath;
   }
   
   public boolean getDidSpecifyModelFilename() {
