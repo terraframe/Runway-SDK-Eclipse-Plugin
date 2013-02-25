@@ -37,7 +37,7 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
 {
   protected RunwayCreationWizardPage diagramModelFilePage;
   protected SchemaImportWizardPage1 page1;
-  protected IStructuredSelection     selection;
+  protected IStructuredSelection selection;
   protected Resource diagram;
   
   public SchemaImportWizard() {
@@ -64,14 +64,20 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
     String modelPath = page1.getModelPath();
 //    String schemaPath = "platform:/resource" + page1.getSchemaFile();
     String schemaPath = page1.getSchemaFile();
-    
+
     /*
      *  Create the gmf model files (runway and runway_diagram)
      */
-    if (modelPath.length() == 0 || !page1.getDidSpecifyModelFilename()) {
-      final URI diagramModel = URI.createURI(schemaPath.replace("individual", "model").replace(".xml", ".runway_diagram"));
-      final URI domainModel = URI.createURI(schemaPath.replace("individual", "model").replace(".xml", ".runway"));
-      modelPath = domainModel.toPlatformString(true);
+    if (modelPath.length() == 0 || page1.wantsGMFFilesCreated()) {
+      final String gmfModelPath = "platform:/resource/" + modelPath;
+      final URI domainModel = URI.createURI(gmfModelPath);
+      final URI diagramModel = URI.createURI(gmfModelPath.replace(".runway", ".runway_diagram"));
+      
+      if (diagramModel == null) {
+        throw new RuntimeException("URI creation failed.");
+      }
+      
+      System.out.println("Attempting to create diagramModel at path [" + diagramModel + "].");
       
       IRunnableWithProgress op = new WorkspaceModifyOperation(null)
       {

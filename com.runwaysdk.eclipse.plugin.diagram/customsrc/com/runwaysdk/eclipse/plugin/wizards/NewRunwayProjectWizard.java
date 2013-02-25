@@ -48,15 +48,15 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
   protected NewRunwayProjectWizardPage1 page1;
   protected IStructuredSelection     selection;
   
-  private final String schemaFileName = "schema(0001352140861497)HelloWorld";
-  private final String schemaFileNameWithExtension = schemaFileName + ".xml";
-  private final String schemaPath = "/src/main/domain/application/" + schemaFileNameWithExtension;
+  static final String schemaFileName = "schema(0001352140861497)HelloWorld";
+  private static final String schemaFileNameWithExtension = schemaFileName + ".xml";
+  private static final String schemaPath = "/src/main/domain/application/" + schemaFileNameWithExtension;
   
-  private final String runwayArchetypeVersion = "0.0.2-SNAPSHOT";
+  private static final String runwayArchetypeVersion = "0.0.2-SNAPSHOT";
   
-  private final String runway_diagram_filename = schemaFileName;
-  private final String runway_filename = runway_diagram_filename;
-  private final String diagram_files_path = "/src/main/domain/display/";
+  private static final String runway_diagram_filename = schemaFileName;
+  private static final String runway_filename = runway_diagram_filename;
+  private static final String diagram_files_path = "/src/main/domain/display/";
   
   public NewRunwayProjectWizard() {
     super();
@@ -106,7 +106,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
     }
     
     
-    String baseDir = page1.getLocation() + "/" + page1.getArtifactId();
+    String projectDir = page1.getLocation() + "/" + page1.getArtifactId();
     
     /**
      * Import the generated project into Eclipse.
@@ -116,7 +116,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
     };
     
     ImportOperation importOperation = new ImportOperation(new Path(page1.getArtifactId()),
-          new File(baseDir), new FileSystemStructureProvider(), overwriteQuery);
+          new File(projectDir), new FileSystemStructureProvider(), overwriteQuery);
     importOperation.setCreateContainerStructure(false);
     try
     {
@@ -251,7 +251,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
       
       // Parse the schema and add it to GMF
       RunwayDOMParser parser = new RunwayDOMParser(editingDomain, documentRoot);
-      parser.parse(baseDir + schemaPath);
+      parser.parse(projectDir + schemaPath);
       
       resource.save(null);
       

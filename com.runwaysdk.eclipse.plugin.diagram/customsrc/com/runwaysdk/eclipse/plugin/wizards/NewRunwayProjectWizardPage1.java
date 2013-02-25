@@ -38,7 +38,7 @@ public class NewRunwayProjectWizardPage1 extends WizardPage
   public NewRunwayProjectWizardPage1() {
     super("New Runway Project Wizard");
     setTitle("New Runway Project Wizard");
-    setDescription("Crates a new Runway project.");
+    setDescription("Creates a new Runway project.");
   }
   
   @Override
@@ -85,8 +85,12 @@ public class NewRunwayProjectWizardPage1 extends WizardPage
 //    setWorkspace.setText("Use default workspace");
 //    setWorkspace.setSelection(true);
     
+    
+    // This code retrieves the workspace from Eclipse.
     URL url = Platform.getInstanceLocation().getURL();
     location = new File(url.getPath()).getAbsolutePath();
+    
+    
     
     final Composite locationFieldBase = new Composite(base, SWT.NONE);
 //    locationFieldBase.setLayout(new GridLayout());

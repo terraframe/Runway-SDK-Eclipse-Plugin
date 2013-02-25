@@ -31,7 +31,7 @@ public class SchemaExportWizardPage1 extends WizardPage
   public SchemaExportWizardPage1() {
     super("Runway Schema New Wizard");
     setTitle("Runway Schema New Wizard");
-    setDescription("Crates a Runway XML Schema into a Runway Model/Diagram file.");
+    setDescription("Imports a Runwaysdk XML Schema into a Runwaysdk GMF Model/Diagram file for display purposes.");
   }
   
   @Override
