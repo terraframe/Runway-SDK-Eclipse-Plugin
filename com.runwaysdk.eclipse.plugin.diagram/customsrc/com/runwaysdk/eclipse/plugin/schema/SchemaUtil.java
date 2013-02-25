@@ -15,7 +15,7 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugi
 
 public class SchemaUtil
 {
-  private static SchemaUtil INSTANCE;
+//  private static SchemaUtil INSTANCE;
 
   private static String     workspacePath;
 
@@ -23,43 +23,47 @@ public class SchemaUtil
 
   private static String     defaultTempFileLoc;
 
-  public static void initialize(IStructuredSelection selection)
+  public SchemaUtil(String projectName)
   {
     // This code retrieves the workspace from Eclipse.
     URL url = Platform.getInstanceLocation().getURL();
     workspacePath = new File(url.getPath()).getAbsolutePath();
 
-    activeProjectName = getActiveProjectNameFromSelection(selection);
+    activeProjectName = projectName;
 
     defaultTempFileLoc = workspacePath + File.pathSeparator + activeProjectName + "/src/main/domain/temp/";
   }
 
-  public static SchemaUtil getInstance()
-  {
-    if (INSTANCE == null)
-    {
-      throw new RuntimeException("The SchemaUtil has not been initialized with a project state.");
-    }
-
-    return INSTANCE;
-  }
+//  public static SchemaUtil getInstance()
+//  {
+//    if (INSTANCE == null)
+//    {
+//      throw new RuntimeException("The SchemaUtil has not been initialized with a project state.");
+//    }
+//
+//    return INSTANCE;
+//  }
 
   /**
    * This method will be called by the SchemaImportWizard (and eventually the
    * ExportWizard) to flatten (merge) a directory of schema files into a single
    * temporary schema file.
    */
-  public String flattenSchemaDirToSingleTempFile(String pathToDir, String dirName)
-  {
-    return null;
+  public static String flattenSchemaDirToSingleTempFile(String projectName) {
+    return new SchemaUtil(projectName).flattenSchemaDirToSingleTempFile();
   }
-
+  
   public String flattenSchemaDirToSingleTempFile()
   {
     return flattenSchemaDirToSingleTempFile(
         workspacePath + "/" + activeProjectName + "/src/main/domain", "application");
   }
-
+  
+  public String flattenSchemaDirToSingleTempFile(String pathToDir, String dirName)
+  {
+    throw new UnsupportedOperationException("Method not yet implemented.");
+  }
+  
   /**
    * This code reads the selection tree and figures out the active project name
    * and return it. Note that this code is legacy and needs to be rewritten in a
