@@ -1,6 +1,9 @@
-package com.runwaysdk.eclipse.plugin.runway;
+package com.runwaysdk.eclipse.plugin.schema;
 
-import xmlParserTest.XMLTags;
+import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
+import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
+import com.runwaysdk.eclipse.plugin.schema.importer.XMLTags;
+
 
 
 public class MdAttributeFactory

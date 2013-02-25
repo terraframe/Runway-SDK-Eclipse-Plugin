@@ -25,13 +25,13 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
-import xmlParserTest.RunwayDOMParser;
 
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.Messages;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardPage;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorUtil;
 import com.runwaysdk.eclipse.plugin.runway.impl.DocumentRootImpl;
+import com.runwaysdk.eclipse.plugin.schema.importer.RunwayDOMParser;
 
 public class SchemaImportWizard extends Wizard implements IImportWizard
 {

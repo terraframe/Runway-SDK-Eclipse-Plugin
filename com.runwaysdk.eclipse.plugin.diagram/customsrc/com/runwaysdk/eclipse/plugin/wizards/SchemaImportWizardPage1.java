@@ -4,15 +4,12 @@ import java.io.File;
 import java.net.URL;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.preference.StringButtonFieldEditor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -22,12 +19,10 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.views.navigator.ResourceNavigator;
 
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardPage;
-import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
+import com.runwaysdk.eclipse.plugin.schema.SchemaUtil;
 import com.runwaysdk.eclipse.plugin.wizards.RunwayCreationWizardWithFinishListeners.OnPerformFinishListenerIF;
 
 public class SchemaImportWizardPage1 extends WizardPage
@@ -175,7 +170,7 @@ public class SchemaImportWizardPage1 extends WizardPage
     });
     
     // Calculate a default model path.
-    String activeProjectName = getActiveProjectNameFromSelection();
+    String activeProjectName = SchemaUtil.getActiveProjectNameFromSelection(selection);
     if (activeProjectName != null)
     {
       URL url = Platform.getInstanceLocation().getURL();
@@ -255,25 +250,5 @@ public class SchemaImportWizardPage1 extends WizardPage
   public void setSelection(IStructuredSelection selection)
   {
     this.selection = selection;
-  }
-
-  private String getActiveProjectNameFromSelection()
-  {
-    IViewPart[] parts = RunwayDiagramEditorPlugin.getInstance().getWorkbench()
-        .getActiveWorkbenchWindow().getActivePage().getViews();
-    IProject activeProject = null;
-
-    for (int i = 0; i < parts.length; i++)
-    {
-      if (parts[i] instanceof ResourceNavigator)
-      {
-        ResourceNavigator navigator = (ResourceNavigator) parts[i];
-        StructuredSelection sel = (StructuredSelection) navigator.getTreeViewer().getSelection();
-        IResource resource = (IResource) sel.getFirstElement();
-        activeProject = resource.getProject();
-        break;
-      }
-    }
-    return activeProject.getName();
   }
 }

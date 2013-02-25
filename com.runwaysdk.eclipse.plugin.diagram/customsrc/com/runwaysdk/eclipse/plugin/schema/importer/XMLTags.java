@@ -1,4 +1,4 @@
-package xmlParserTest;
+package com.runwaysdk.eclipse.plugin.schema.importer;
 /*
 import com.runwaysdk.business.rbac.Operation;
 import com.runwaysdk.constants.XMLConstants;

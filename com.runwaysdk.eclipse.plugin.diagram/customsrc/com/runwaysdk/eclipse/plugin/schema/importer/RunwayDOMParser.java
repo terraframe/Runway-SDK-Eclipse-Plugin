@@ -1,4 +1,4 @@
-package xmlParserTest;
+package com.runwaysdk.eclipse.plugin.schema.importer;
 
 import java.io.File;
 
@@ -18,9 +18,9 @@ import com.runwaysdk.constants.XMLConstants;
 import com.runwaysdk.eclipse.plugin.runway.DocumentRoot;
 import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
 import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
-import com.runwaysdk.eclipse.plugin.runway.MdAttributeFactory;
 import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
 import com.runwaysdk.eclipse.plugin.runway.RunwayPackage;
+import com.runwaysdk.eclipse.plugin.schema.MdAttributeFactory;
 
 public class RunwayDOMParser
 {

@@ -14,11 +14,11 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
-import xmlParserTest.RunwayDOMParser;
 
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardPage;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
 import com.runwaysdk.eclipse.plugin.runway.impl.DocumentRootImpl;
+import com.runwaysdk.eclipse.plugin.schema.importer.RunwayDOMParser;
 
 public class SchemaExportWizard extends Wizard implements INewWizard
 {

@@ -1,3 +1,4 @@
+package com.runwaysdk.eclipse.plugin.schema.importer;
 //package xmlParserTest;
 //
 //
