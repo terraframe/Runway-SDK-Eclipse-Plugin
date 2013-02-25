@@ -50,11 +50,13 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
   
   private final String schemaFileName = "schema(0001352140861497)HelloWorld";
   private final String schemaFileNameWithExtension = schemaFileName + ".xml";
+  private final String schemaPath = "/src/main/domain/application/" + schemaFileNameWithExtension;
   
   private final String runwayArchetypeVersion = "0.0.2-SNAPSHOT";
   
   private final String runway_diagram_filename = schemaFileName;
   private final String runway_filename = runway_diagram_filename;
+  private final String diagram_files_path = "/src/main/domain/display/";
   
   public NewRunwayProjectWizard() {
     super();
@@ -180,8 +182,8 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
     /*
      * Create a new diagram file in the project and open the diagram file.
      */
-    final URI diagramModel = URI.createURI("platform:/resource/" + page1.getArtifactId() + "/domain/model/" + runway_diagram_filename + ".runway_diagram");
-    final URI domainModel = URI.createURI("platform:/resource/" + page1.getArtifactId() + "/domain/model/" + runway_filename + ".runway");
+    final URI diagramModel = URI.createURI("platform:/resource/" + page1.getArtifactId() + diagram_files_path + runway_diagram_filename + ".runway_diagram");
+    final URI domainModel = URI.createURI("platform:/resource/" + page1.getArtifactId() + diagram_files_path + runway_filename + ".runway");
     
     IRunnableWithProgress op = new WorkspaceModifyOperation(null)
     {
@@ -249,7 +251,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
       
       // Parse the schema and add it to GMF
       RunwayDOMParser parser = new RunwayDOMParser(editingDomain, documentRoot);
-      parser.parse(baseDir + "/domain/individual/" + schemaFileNameWithExtension);
+      parser.parse(baseDir + schemaPath);
       
       resource.save(null);
       
