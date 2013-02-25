@@ -18,59 +18,79 @@ public class SchemaUtil
 {
   // private static SchemaUtil INSTANCE;
 
-  private static String workspacePath;
+  private String workspacePath;
 
-  private static String activeProjectName;
+  private String activeProjectName;
 
-  private static String defaultTempFileLoc;
+  private String defaultTempFileLoc;
+
+  public SchemaUtil(String projectName, String workspacePath)
+  {
+    init(projectName, workspacePath);
+  }
 
   public SchemaUtil(String projectName)
   {
-    // This code retrieves the workspace from Eclipse.
-    URL url = Platform.getInstanceLocation().getURL();
-    workspacePath = new File(url.getPath()).getAbsolutePath();
+    init(projectName, null);
+  }
+
+  public void init(String projectName, String workspacePath)
+  {
+    this.workspacePath = workspacePath;
+    if (this.workspacePath == null)
+    {
+      // This code retrieves the workspace from Eclipse.
+      URL url = Platform.getInstanceLocation().getURL();
+      workspacePath = new File(url.getPath()).getAbsolutePath();
+    }
 
     activeProjectName = projectName;
 
     defaultTempFileLoc = workspacePath + File.pathSeparator + activeProjectName
         + "/src/main/domain/temp/";
   }
-
-  // public static SchemaUtil getInstance()
-  // {
-  // if (INSTANCE == null)
-  // {
-  // throw new
-  // RuntimeException("The SchemaUtil has not been initialized with a project state.");
-  // }
-  //
-  // return INSTANCE;
-  // }
+  
+  public static void main(String[] args)
+  {
+    flattenSchemaDirToSingleTempFile("RunwayMavenTemplate", "/Users/terraframe/documents/workspace/Runway-SDK");
+  }
 
   /**
    * This method will be called by the SchemaImportWizard (and eventually the
    * ExportWizard) to flatten (merge) a directory of schema files into a single
    * temporary schema file.
    * 
+   * PreCondition: src/main/domain/application contains valid runway xml schema
+   * files for the application.
+   * 
    * PostCondition: A new, merged runway xml schema file now exists at
-   * tempFileLoc.
+   * defaultTempFileLoc with the name "application.xml".
    */
-  public static void flattenSchemaDirToSingleTempFile(String projectName)
+  public static void flattenSchemaDirToSingleTempFile(String projectName, String workspacePath)
   {
-    new SchemaUtil(projectName).flattenSchemaDirToSingleTempFile();
+    new SchemaUtil(projectName, workspacePath).flattenSchemaDirToSingleTempFile();
   }
+
   public void flattenSchemaDirToSingleTempFile()
   {
     String projectPath = workspacePath + "/" + activeProjectName + "/";
     flattenSchemaDirToSingleTempFile(projectPath + "src/main/domain", "application", projectPath
-        + "src/main/domain/runway/schema.xsd", defaultTempFileLoc + "application.xml");
+        + "src/main/domain/runway/schema.xsd", defaultTempFileLoc);
   }
+
   public void flattenSchemaDirToSingleTempFile(String pathToDir, String dirName, String xsdAbsPath,
       String tempFilePath)
   {
-    SchemaManager.main(new String[] { "-dir", pathToDir + "/" + dirName, xsdAbsPath, tempFilePath });
+    SchemaManager.main(new String[] { "-dir", pathToDir + "/" + dirName, xsdAbsPath,
+        tempFilePath + dirName + ".xml" });
   }
 
+  
+  public static String getActiveProjectNameFromSelection(IStructuredSelection selection)
+  {
+    return getActiveProjectNameFromWorkbench();
+  }
+  
   /**
    * This code reads the selection tree and figures out the active project name
    * and return it. Note that this code is legacy and needs to be rewritten in a
@@ -80,8 +100,7 @@ public class SchemaUtil
    * http://stackoverflow.com/questions/1206095/how-to-get-the-project-name-in-
    * eclipse
    */
-  public static String getActiveProjectNameFromSelection(IStructuredSelection selection)
-  {
+  private static String getActiveProjectNameFromWorkbench() {
     IViewPart[] parts = RunwayDiagramEditorPlugin.getInstance().getWorkbench()
         .getActiveWorkbenchWindow().getActivePage().getViews();
     IProject activeProject = null;
