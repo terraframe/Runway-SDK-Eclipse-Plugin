@@ -11,17 +11,18 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.views.navigator.ResourceNavigator;
 
+import com.runwaysdk.dataaccess.schemamanager.SchemaManager;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
 
 public class SchemaUtil
 {
-//  private static SchemaUtil INSTANCE;
+  // private static SchemaUtil INSTANCE;
 
-  private static String     workspacePath;
+  private static String workspacePath;
 
-  private static String     activeProjectName;
+  private static String activeProjectName;
 
-  private static String     defaultTempFileLoc;
+  private static String defaultTempFileLoc;
 
   public SchemaUtil(String projectName)
   {
@@ -31,39 +32,45 @@ public class SchemaUtil
 
     activeProjectName = projectName;
 
-    defaultTempFileLoc = workspacePath + File.pathSeparator + activeProjectName + "/src/main/domain/temp/";
+    defaultTempFileLoc = workspacePath + File.pathSeparator + activeProjectName
+        + "/src/main/domain/temp/";
   }
 
-//  public static SchemaUtil getInstance()
-//  {
-//    if (INSTANCE == null)
-//    {
-//      throw new RuntimeException("The SchemaUtil has not been initialized with a project state.");
-//    }
-//
-//    return INSTANCE;
-//  }
+  // public static SchemaUtil getInstance()
+  // {
+  // if (INSTANCE == null)
+  // {
+  // throw new
+  // RuntimeException("The SchemaUtil has not been initialized with a project state.");
+  // }
+  //
+  // return INSTANCE;
+  // }
 
   /**
    * This method will be called by the SchemaImportWizard (and eventually the
    * ExportWizard) to flatten (merge) a directory of schema files into a single
    * temporary schema file.
+   * 
+   * PostCondition: A new, merged runway xml schema file now exists at
+   * tempFileLoc.
    */
-  public static String flattenSchemaDirToSingleTempFile(String projectName) {
-    return new SchemaUtil(projectName).flattenSchemaDirToSingleTempFile();
-  }
-  
-  public String flattenSchemaDirToSingleTempFile()
+  public static void flattenSchemaDirToSingleTempFile(String projectName)
   {
-    return flattenSchemaDirToSingleTempFile(
-        workspacePath + "/" + activeProjectName + "/src/main/domain", "application");
+    new SchemaUtil(projectName).flattenSchemaDirToSingleTempFile();
   }
-  
-  public String flattenSchemaDirToSingleTempFile(String pathToDir, String dirName)
+  public void flattenSchemaDirToSingleTempFile()
   {
-    throw new UnsupportedOperationException("Method not yet implemented.");
+    String projectPath = workspacePath + "/" + activeProjectName + "/";
+    flattenSchemaDirToSingleTempFile(projectPath + "src/main/domain", "application", projectPath
+        + "src/main/domain/runway/schema.xsd", defaultTempFileLoc + "application.xml");
   }
-  
+  public void flattenSchemaDirToSingleTempFile(String pathToDir, String dirName, String xsdAbsPath,
+      String tempFilePath)
+  {
+    SchemaManager.main(new String[] { "-dir", pathToDir + "/" + dirName, xsdAbsPath, tempFilePath });
+  }
+
   /**
    * This code reads the selection tree and figures out the active project name
    * and return it. Note that this code is legacy and needs to be rewritten in a
