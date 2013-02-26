@@ -23,6 +23,8 @@ public class SchemaUtil
   private String activeProjectName;
 
   private String defaultTempFileLoc;
+  
+  private String runwayResources;
 
   public SchemaUtil(String projectName, String workspacePath)
   {
@@ -34,7 +36,7 @@ public class SchemaUtil
     init(projectName, null);
   }
 
-  public void init(String projectName, String workspacePath)
+  private void init(String projectName, String workspacePath)
   {
     this.workspacePath = workspacePath;
     if (this.workspacePath == null)
@@ -46,13 +48,14 @@ public class SchemaUtil
 
     activeProjectName = projectName;
 
-    defaultTempFileLoc = workspacePath + File.pathSeparator + activeProjectName
-        + "/src/main/domain/temp/";
+    defaultTempFileLoc = workspacePath + "/" + activeProjectName + "/src/main/domain/temp/";
+    runwayResources = workspacePath + "/" + activeProjectName + "/target/classes/com/runwaysdk/resources/";
   }
-  
-  public static void main(String[] args)
+
+  public static void main(String[] args) throws ProjectNotCompiledException
   {
-    flattenSchemaDirToSingleTempFile("RunwayMavenTemplate", "/Users/terraframe/documents/workspace/Runway-SDK");
+    flattenSchemaDirToSingleTempFile("RunwayMavenTemplate",
+        "/Users/terraframe/documents/workspace/Runway-SDK");
   }
 
   /**
@@ -61,36 +64,54 @@ public class SchemaUtil
    * temporary schema file.
    * 
    * PreCondition: src/main/domain/application contains valid runway xml schema
-   * files for the application.
+   * files for the application. The project must have been compiled using Maven
+   * with runwaysdk-common as a dependency.
    * 
    * PostCondition: A new, merged runway xml schema file now exists at
    * defaultTempFileLoc with the name "application.xml".
+   * 
+   * @throws ProjectNotCompiledException
    */
   public static void flattenSchemaDirToSingleTempFile(String projectName, String workspacePath)
+      throws ProjectNotCompiledException
   {
     new SchemaUtil(projectName, workspacePath).flattenSchemaDirToSingleTempFile();
   }
 
-  public void flattenSchemaDirToSingleTempFile()
+  public void flattenSchemaDirToSingleTempFile() throws ProjectNotCompiledException
   {
     String projectPath = workspacePath + "/" + activeProjectName + "/";
-    flattenSchemaDirToSingleTempFile(projectPath + "src/main/domain", "application", projectPath
-        + "src/main/domain/runway/schema.xsd", defaultTempFileLoc);
+    File versionXSD = new File(runwayResources + "version.xsd");
+    if (!versionXSD.exists())
+    {
+      throw new ProjectNotCompiledException(
+          "The project ["
+              + activeProjectName
+              + "] has not been compiled (using Maven) with a dependency on runwaysdk-common, unable to find required resources in the target directory ["
+              + versionXSD.getAbsolutePath() + "].");
+    }
+
+    flattenSchemaDirToSingleTempFile(projectPath + "src/main/domain", "application",
+        versionXSD.getAbsolutePath(), defaultTempFileLoc);
   }
 
   public void flattenSchemaDirToSingleTempFile(String pathToDir, String dirName, String xsdAbsPath,
       String tempFilePath)
   {
-    SchemaManager.main(new String[] { "-dir", pathToDir + "/" + dirName, xsdAbsPath,
-        tempFilePath + dirName + ".xml" });
+    String[] args = new String[] { "-dir", pathToDir + "/" + dirName, xsdAbsPath,
+        tempFilePath + dirName + ".xml" };
+
+    SchemaManager.main(args);
   }
 
-  
+  /**
+   * TODO
+   */
   public static String getActiveProjectNameFromSelection(IStructuredSelection selection)
   {
     return getActiveProjectNameFromWorkbench();
   }
-  
+
   /**
    * This code reads the selection tree and figures out the active project name
    * and return it. Note that this code is legacy and needs to be rewritten in a
@@ -100,7 +121,8 @@ public class SchemaUtil
    * http://stackoverflow.com/questions/1206095/how-to-get-the-project-name-in-
    * eclipse
    */
-  private static String getActiveProjectNameFromWorkbench() {
+  private static String getActiveProjectNameFromWorkbench()
+  {
     IViewPart[] parts = RunwayDiagramEditorPlugin.getInstance().getWorkbench()
         .getActiveWorkbenchWindow().getActivePage().getViews();
     IProject activeProject = null;
