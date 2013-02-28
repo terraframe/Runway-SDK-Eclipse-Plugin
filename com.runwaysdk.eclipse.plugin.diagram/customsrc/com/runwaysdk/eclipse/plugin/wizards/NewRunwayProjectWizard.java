@@ -108,6 +108,15 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
   @Override
   public boolean performFinish()
   {
+    File file = new File(page1.getLocation() + "/" + page1.getArtifactId() + "/pom.xml");
+    
+    if (file.exists()) {
+      MessageDialog dialog = new MessageDialog(this.getShell(), "Project already exists at location.", null,
+          "A pom.xml already exists at " + file.getAbsolutePath(), MessageDialog.ERROR, new String[] { "Ok" }, 0);
+      int result = dialog.open();
+      return false;
+    }
+    
     /*
      * Generate the project with a mvn archetype:generate
      * 
@@ -128,9 +137,9 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
         
         if (retVal != 0) {
           MessageDialog dialog = new MessageDialog(this.getShell(), "An error has occurred.", null,
-              "An exception has occurred while generating the maven archetype. (Maven exited with status code " + retVal + ")", MessageDialog.ERROR, new String[] { "First",
-            "Second", "Third" }, 0);
+              "An exception has occurred while generating the maven archetype. (Maven exited with status code " + retVal + ")", MessageDialog.ERROR, new String[] { "Ok" }, 0);
           int result = dialog.open();
+          return false;
         }
       }
       catch (Exception e) {
