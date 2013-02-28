@@ -87,12 +87,12 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
 
   public static void main(String[] args)
   {
-    new MavenCli().doMain(new String[] { "archetype:generate", "-U", "-DarchetypeGroupId=com.runwaysdk",
+    System.out.println( new MavenCli().doMain(new String[] { "archetype:generate", "-U", "-DarchetypeGroupId=com.runwaysdk",
         "-DarchetypeArtifactId=runwaysdk-archetype", "-DarchetypeVersion=0.0.2-SNAPSHOT",
         "-DgroupId=com.example", "-DartifactId=RunwayMavenTemplate", "-Dpackage=com.example",
         "-Dversion=0.0.1-SNAPSHOT", "-DinteractiveMode=false" },
 
-    "/users/terraframe/documents/workspace/runway-sdk", System.out, System.out);
+    "/users/terraframe/documents/workspace/runway-sdk", System.out, System.out));
   }
   
   private boolean handleError(Exception e) {
@@ -116,7 +116,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
     if (page1.getMavenLoc() == MAVEN_EMBEDDED)
     {
       try {
-        new MavenCli()
+        int retVal = new MavenCli()
             .doMain(new String[] {
                 "archetype:generate",
                 "-U", // Force update
@@ -125,6 +125,13 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
                 "-DartifactId=" + page1.getArtifactId(), "-Dpackage=" + page1.getPkge(),
                 "-Dversion=" + page1.getVersion(), "-DinteractiveMode=false",
                 "-DarchetypeRepository=" + ARCHETYPE_SERVER }, page1.getLocation(), System.out, System.out);
+        
+        if (retVal != 0) {
+          MessageDialog dialog = new MessageDialog(this.getShell(), "An error has occurred.", null,
+              "An exception has occurred while generating the maven archetype. (Maven exited with status code " + retVal + ")", MessageDialog.ERROR, new String[] { "First",
+            "Second", "Third" }, 0);
+          int result = dialog.open();
+        }
       }
       catch (Exception e) {
         return handleError(e);
@@ -294,6 +301,9 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
       }
       return false;
     }
+    catch (Exception e) {
+      return handleError(e);
+    }
 
     /*
      * Import the HelloWorld schema.
@@ -322,7 +332,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
 
       resource.unload();
     }
-    catch (IOException e)
+    catch (Exception e)
     {
       return handleError(e);
     }
