@@ -13,6 +13,7 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
+import com.runwaysdk.eclipse.plugin.wizards.NewRunwayProjectWizard;
 
 public class NewRunwayProjectWizardPage1 extends WizardPage
 {
@@ -194,13 +195,26 @@ public class NewRunwayProjectWizardPage1 extends WizardPage
   }
   
   public String findMavenLoc() {
+    /*
+     * This code computes the maven path from the classpath.
+     * 
     String mavenHomePath = System.getProperty("maven.home");
     
     if (mavenHomePath == null) {
-      return findExecutableOnPath("mvn").getAbsolutePath();
+      File mvnExe = findExecutableOnPath("mvn");
+      
+      if (mvnExe != null) {
+        mavenHomePath = mvnExe.getAbsolutePath();
+        return mavenHomePath;
+      }
+      
+      return "";
     }
     
     return mavenHomePath;
+    */
+    
+    return NewRunwayProjectWizard.MAVEN_EMBEDDED;
   }
   
   private static File findExecutableOnPath(String executableName)
