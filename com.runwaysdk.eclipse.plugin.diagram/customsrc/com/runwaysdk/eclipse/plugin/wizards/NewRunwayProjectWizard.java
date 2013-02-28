@@ -3,13 +3,8 @@ package com.runwaysdk.eclipse.plugin.wizards;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collections;
 
-import org.apache.maven.shared.invoker.DefaultInvocationRequest;
-import org.apache.maven.shared.invoker.DefaultInvoker;
-import org.apache.maven.shared.invoker.InvocationRequest;
-import org.apache.maven.shared.invoker.Invoker;
-import org.apache.maven.shared.invoker.MavenInvocationException;
+import org.apache.maven.cli.MavenCli;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -43,44 +38,79 @@ import com.runwaysdk.eclipse.plugin.schema.importer.RunwayDOMParser;
 
 public class NewRunwayProjectWizard extends Wizard implements INewWizard
 {
-  protected RunwayCreationWizardPage diagramModelFilePage;
+  protected RunwayCreationWizardPage    diagramModelFilePage;
+
   protected NewRunwayProjectWizardPage1 page1;
-  protected IStructuredSelection     selection;
-  
-  static final String schemaFileName = "schema(0001352140861497)HelloWorld";
-  private static final String schemaFileNameWithExtension = schemaFileName + ".xml";
-  private static final String schemaPath = "/src/main/domain/application/" + schemaFileNameWithExtension;
-  
-  private static final String runwayArchetypeVersion = "0.0.2-SNAPSHOT";
-  
-  private static final String runway_diagram_filename = schemaFileName;
-  private static final String runway_filename = runway_diagram_filename;
-  private static final String diagram_files_path = "/src/main/domain/display/";
-  
-  public NewRunwayProjectWizard() {
+
+  protected IStructuredSelection        selection;
+
+  static final String                   schemaFileName              = "schema(0001352140861497)HelloWorld";
+
+  private static final String           schemaFileNameWithExtension = schemaFileName + ".xml";
+
+  private static final String           schemaPath                  = "/src/main/domain/application/"
+                                                                        + schemaFileNameWithExtension;
+
+  private static final String           runwayArchetypeVersion      = "0.0.2-SNAPSHOT";
+
+  private static final String           runway_diagram_filename     = schemaFileName;
+
+  private static final String           runway_filename             = runway_diagram_filename;
+
+  private static final String           diagram_files_path          = "/src/main/domain/display/";
+
+  public NewRunwayProjectWizard()
+  {
     super();
-    //setNeedsProgressMonitor(true);
+    // setNeedsProgressMonitor(true);
   }
-  
+
   @Override
   public void init(IWorkbench arg0, IStructuredSelection arg1)
   {
     this.selection = arg1;
   }
-  
+
   @Override
-  public void addPages() {
+  public void addPages()
+  {
     page1 = new NewRunwayProjectWizardPage1();
     page1.setSelection(selection);
     addPage(page1);
   }
-  
+
+  public static void main(String[] args)
+  {
+    new MavenCli().doMain(new String[] { "archetype:generate", "-U", "-DarchetypeGroupId=com.runwaysdk",
+        "-DarchetypeArtifactId=runwaysdk-archetype", "-DarchetypeVersion=0.0.2-SNAPSHOT",
+        "-DgroupId=com.example", "-DartifactId=RunwayMavenTemplate", "-Dpackage=com.example",
+        "-Dversion=0.0.1-SNAPSHOT", "-DinteractiveMode=false" },
+
+    "/users/terraframe/documents/workspace/runway-sdk", System.out, System.out);
+  }
+
   @Override
   public boolean performFinish()
   {
     /*
      *  Generate the project with a mvn archetype:generate
      */
+    new MavenCli().doMain(new String[] { "archetype:generate",
+        "-U", // Force update
+        "-DarchetypeGroupId=com.runwaysdk",
+        "-DarchetypeArtifactId=runwaysdk-archetype",
+        "-DarchetypeVersion=" + runwayArchetypeVersion,
+        "-DgroupId=" + page1.getGroupId(),
+        "-DartifactId=" + page1.getArtifactId(),
+        "-Dpackage=" + page1.getPkge(),
+        "-Dversion=" + page1.getVersion(),
+        "-DinteractiveMode=false"
+    },
+    page1.getLocation(), System.out, System.out);
+    
+    /*
+     * This code uses an external installation of mvn
+     * 
     InvocationRequest request = new DefaultInvocationRequest();
     request.setBaseDirectory(new File(page1.getLocation()));
     request.setGoals( Collections.singletonList( "archetype:generate" +
@@ -103,7 +133,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
     {
       e.printStackTrace();
     }
-    
+    */
     
     String projectDir = page1.getLocation() + "/" + page1.getArtifactId();
     
@@ -264,5 +294,4 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
     
     return true;
   }
-  
 }

@@ -1,4 +1,4 @@
-Create a new file  ~/.m2/settings.xml
+<!-- Place this code in  ~/.m2/settings.xml -->
 
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

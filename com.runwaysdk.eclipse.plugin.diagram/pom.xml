@@ -10,51 +10,60 @@
 	If not, see <http://www.gnu.org/licenses/>. -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>com.runwaysdk</groupId>
-    <artifactId>runwaysdk-main</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
-    <relativePath>../runwaysdk-main/pom.xml</relativePath>
-  </parent>
-  <artifactId>runwaysdk-test</artifactId>
-  <packaging>jar</packaging>
+	<artifactId>com.runwaysdk.eclipse.plugin.diagram</artifactId>
+	<groupId>com.runwaysdk.eclipse.plugin.diagram</groupId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
-  <name>runwaysdk-test</name>
-  <url>${runway.url}</url>
-  
-  <dependencies>
-    <dependency>
-      <groupId>com.runwaysdk</groupId>
-      <artifactId>runwaysdk-client</artifactId>
-      <version>0.0.2-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>com.runwaysdk</groupId>
-      <artifactId>runwaysdk-server</artifactId>
-      <version>0.0.2-SNAPSHOT</version>
-    </dependency>
-  </dependencies>
-  
-  <build>
-    <plugins>
-      <!-- This maven plugin copies maven dependencies to the lib directory. (LIB HACK) -->
-      <plugin>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>generate-test-resources</phase>
-            <goals>
-              <goal>copy-dependencies</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>lib</outputDirectory>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-  
+	<name>com.runwaysdk.eclipse.plugin.diagram</name>
+	<url>www.terraframe.com</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.runwaysdk</groupId>
+			<artifactId>runwaysdk-common</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>guice</artifactId>
+					<groupId>com.google.inject</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.runwaysdk</groupId>
+			<artifactId>runwaysdk-server</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>guice</artifactId>
+					<groupId>com.google.inject</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- This maven plugin copies maven dependencies to the lib directory. 
+				(LIB HACK) -->
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>lib</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
