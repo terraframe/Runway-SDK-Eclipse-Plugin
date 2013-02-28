@@ -1,9 +1,13 @@
 package com.runwaysdk.eclipse.plugin.wizards;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.maven.cli.MavenCli;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -108,7 +112,12 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
   @Override
   public boolean performFinish()
   {
-    File file = new File(page1.getLocation() + "/" + page1.getArtifactId() + "/pom.xml");
+    final String projectDir = page1.getLocation() + "/" + page1.getArtifactId();
+    
+    /*
+     * Does a project already exist at this location?
+     */
+    File file = new File(projectDir + "/pom.xml");
     
     if (file.exists()) {
       MessageDialog dialog = new MessageDialog(this.getShell(), "Project already exists at location.", null,
@@ -120,7 +129,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
     /*
      * Generate the project with a mvn archetype:generate
      * 
-     * This call uses the Maven API provided by M2E.
+     * This call uses the Embedded Maven API provided by M2E.
      */
     if (page1.getMavenLoc() == MAVEN_EMBEDDED)
     {
@@ -172,10 +181,13 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
         return handleError(e);
       }
     }
+    
+    /*
+     * Replace a string in the launches to get them working in Eclipse.
+     */
+    replaceLaunches(projectDir);
 
-    String projectDir = page1.getLocation() + "/" + page1.getArtifactId();
-
-    /**
+    /*
      * Import the generated project into Eclipse.
      */
     IOverwriteQuery overwriteQuery = new IOverwriteQuery()
@@ -347,5 +359,25 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
     }
 
     return true;
+  }
+  
+  private void replaceLaunches(String projectDir) {
+    File folder = new File(projectDir + "/launches");
+    File[] listOfFiles = folder.listFiles();
+    for (File file : listOfFiles) {
+      try {
+        String content = IOUtils.toString(new FileInputStream(file), "UTF-8");
+        content = content.replaceAll("REPLACE_ME", "workspace_loc:/" + page1.getArtifactId());
+        IOUtils.write(content, new FileOutputStream(file), "UTF-8");
+      }
+      catch (FileNotFoundException e)
+      {
+        e.printStackTrace();
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+    }
   }
 }
