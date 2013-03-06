@@ -5,6 +5,9 @@ import javax.xml.transform.dom.*;
 import javax.xml.transform.stream.*;
 import org.w3c.dom.*;
 
+import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
+import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -15,7 +18,22 @@ public class DOMExporter {
 	public static void main(String[] args) {
 		String fileName = "garbledMan.xml";
 		saveToXML(fileName);
+		
+		
+//		writeMdBusiness(fileName, );
 	}
+
+	public static void writeMdBusiness(String filename, MDBusiness mdBiz) {
+	  
+	}
+	
+	public static void writeMdBusiness(String filename, String name, String display) {
+      
+    }
+	
+	public static void writeMdAttribute(String filename, MDAttribute mdAttr) {
+      
+    }
 	
 	public static void saveToXML(String xml) {
 	    Document dom;
