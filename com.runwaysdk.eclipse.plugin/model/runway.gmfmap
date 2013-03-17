@@ -7,7 +7,7 @@
     xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
   <nodes>
     <containmentFeature
-        href="runway.ecore#//DocumentRoot/MDBusinesses"/>
+        href="runway.ecore#//DocumentRoot/MetaData"/>
     <ownedChild>
       <domainMetaElement
           href="runway.ecore#//MDBusiness"/>
@@ -16,7 +16,7 @@
         <diagramLabel
             href="runway.gmfgraph#MDBusinessClassName"/>
         <features
-            href="runway.ecore#//MDBusiness/className"/>
+            href="runway.ecore#//MDType/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -26,7 +26,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeText"/>
@@ -47,7 +47,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeDate"/>
@@ -68,7 +68,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeBlob"/>
@@ -89,7 +89,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeLocalCharacter"/>
@@ -110,7 +110,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeDouble"/>
@@ -131,7 +131,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeDecimal"/>
@@ -152,7 +152,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeLong"/>
@@ -173,7 +173,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeTime"/>
@@ -194,7 +194,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeBoolean"/>
@@ -215,7 +215,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeNumber"/>
@@ -236,7 +236,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeDateTime"/>
@@ -257,7 +257,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeInteger"/>
@@ -278,7 +278,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeLocalText"/>
@@ -299,7 +299,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeCharacter"/>
@@ -320,7 +320,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeFloat"/>
@@ -341,7 +341,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeEnumeration"/>
@@ -362,7 +362,7 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="runway.ecore#//MDBusiness/attributes"/>
+            href="runway.ecore#//MDClass/attributes"/>
         <ownedChild>
           <domainMetaElement
               href="runway.ecore#//MDAttributeHash"/>

@@ -4,132 +4,132 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:trace="http://www.eclipse.org/gmf/2006/Trace">
   <nodeTraces
-      visualID="2002"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'DocumentRoot') and _containmentMF_.name = 'MDBusinesses')">
+      visualID="2003"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'DocumentRoot') and _containmentMF_.name = 'MetaData')">
     <nodeLabelTraces
-        visualID="5037"
+        visualID="5055"
         queryText="true"/>
     <compartmentTraces
-        visualID="7002"
+        visualID="7003"
         queryText="true"/>
   </nodeTraces>
   <childNodeTraces
-      visualID="3019"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeText') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3036"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeText') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5020"
+        visualID="5038"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3020"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeDate') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3037"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeDate') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5021"
+        visualID="5039"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3021"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeBlob') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3038"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeBlob') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5022"
+        visualID="5040"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3022"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeLocalCharacter') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3039"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeLocalCharacter') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5023"
+        visualID="5041"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3023"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeDouble') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3040"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeDouble') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5024"
+        visualID="5042"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3024"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeDecimal') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3041"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeDecimal') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5025"
+        visualID="5043"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3025"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeLong') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3042"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeLong') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5026"
+        visualID="5044"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3026"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeTime') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3043"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeTime') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5027"
+        visualID="5045"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3027"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeBoolean') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3044"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeBoolean') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5028"
+        visualID="5046"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3028"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeNumber') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3045"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeNumber') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5029"
+        visualID="5047"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3029"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeDateTime') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3046"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeDateTime') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5030"
+        visualID="5048"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3030"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeInteger') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3047"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeInteger') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5031"
+        visualID="5049"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3031"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeLocalText') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3048"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeLocalText') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5032"
+        visualID="5050"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3032"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeCharacter') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3049"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeCharacter') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5033"
+        visualID="5051"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3033"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeFloat') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3050"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeFloat') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5034"
+        visualID="5052"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3034"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeEnumeration') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3051"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeEnumeration') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5035"
+        visualID="5053"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3035"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeHash') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDBusiness') and _containmentMF_.name = 'attributes')">
+      visualID="3052"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDAttributeHash') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'runway' and _eClass_.name = 'MDClass') and _containmentMF_.name = 'attributes')">
     <nodeLabelTraces
-        visualID="5036"
+        visualID="5054"
         queryText="true"/>
   </childNodeTraces>
 </trace:TraceModel>

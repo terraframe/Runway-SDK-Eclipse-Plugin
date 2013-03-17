@@ -13,6 +13,5 @@ package com.runwaysdk.eclipse.plugin.runway;
  * @model
  * @generated
  */
-public interface MDAttributeStruct extends MDAttribute
-{
+public interface MDAttributeStruct extends MDAttribute {
 } // MDAttributeStruct

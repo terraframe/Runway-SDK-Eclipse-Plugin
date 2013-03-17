@@ -13,6 +13,5 @@ package com.runwaysdk.eclipse.plugin.runway;
  * @model abstract="true"
  * @generated
  */
-public interface MDAttributeLocal extends MDAttributeStruct
-{
+public interface MDAttributeLocal extends MDAttributeStruct {
 } // MDAttributeLocal

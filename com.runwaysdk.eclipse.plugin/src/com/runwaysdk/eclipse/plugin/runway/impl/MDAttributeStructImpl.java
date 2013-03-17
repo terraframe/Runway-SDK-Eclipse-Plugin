@@ -16,27 +16,24 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class MDAttributeStructImpl extends MDAttributeImpl implements MDAttributeStruct
-{
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected MDAttributeStructImpl()
-  {
-    super();
-  }
+public class MDAttributeStructImpl extends MDAttributeImpl implements MDAttributeStruct {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MDAttributeStructImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return RunwayPackage.Literals.MD_ATTRIBUTE_STRUCT;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return RunwayPackage.Literals.MD_ATTRIBUTE_STRUCT;
+	}
 
 } //MDAttributeStructImpl

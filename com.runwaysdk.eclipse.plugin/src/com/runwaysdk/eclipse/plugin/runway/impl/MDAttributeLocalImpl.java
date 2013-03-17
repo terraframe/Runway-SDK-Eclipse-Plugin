@@ -16,27 +16,24 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public abstract class MDAttributeLocalImpl extends MDAttributeStructImpl implements MDAttributeLocal
-{
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected MDAttributeLocalImpl()
-  {
-    super();
-  }
+public abstract class MDAttributeLocalImpl extends MDAttributeStructImpl implements MDAttributeLocal {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MDAttributeLocalImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return RunwayPackage.Literals.MD_ATTRIBUTE_LOCAL;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return RunwayPackage.Literals.MD_ATTRIBUTE_LOCAL;
+	}
 
 } //MDAttributeLocalImpl

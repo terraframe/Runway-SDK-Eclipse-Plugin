@@ -22,10 +22,9 @@
     <domainDiagramElement
         href="runway.genmodel#//runway/DocumentRoot"/>
     <childNodes
-        visualID="3019"
+        visualID="3036"
         editPartClassName="MDAttributeTextEditPart"
         itemSemanticEditPolicyClassName="MDAttributeTextItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeTextViewFactory"
         canonicalEditPolicyClassName="MDAttributeTextCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeTextGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeTextCreateCommand"
@@ -44,15 +43,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeText"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5020"
+          visualID="5038"
           editPartClassName="MDAttributeTextNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeTextNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeTextNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -69,10 +67,9 @@
       </labels>
     </childNodes>
     <childNodes
-        visualID="3020"
+        visualID="3037"
         editPartClassName="MDAttributeDateEditPart"
         itemSemanticEditPolicyClassName="MDAttributeDateItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeDateViewFactory"
         canonicalEditPolicyClassName="MDAttributeDateCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeDateGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeDateCreateCommand"
@@ -91,15 +88,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeDate"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5021"
+          visualID="5039"
           editPartClassName="MDAttributeDateNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeDateNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeDateNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -116,10 +112,9 @@
       </labels>
     </childNodes>
     <childNodes
-        visualID="3021"
+        visualID="3038"
         editPartClassName="MDAttributeBlobEditPart"
         itemSemanticEditPolicyClassName="MDAttributeBlobItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeBlobViewFactory"
         canonicalEditPolicyClassName="MDAttributeBlobCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeBlobGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeBlobCreateCommand"
@@ -138,15 +133,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeBlob"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5022"
+          visualID="5040"
           editPartClassName="MDAttributeBlobNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeBlobNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeBlobNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -163,10 +157,9 @@
       </labels>
     </childNodes>
     <childNodes
-        visualID="3022"
+        visualID="3039"
         editPartClassName="MDAttributeLocalCharacterEditPart"
         itemSemanticEditPolicyClassName="MDAttributeLocalCharacterItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeLocalCharacterViewFactory"
         canonicalEditPolicyClassName="MDAttributeLocalCharacterCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeLocalCharacterGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeLocalCharacterCreateCommand"
@@ -185,15 +178,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeLocalCharacter"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5023"
+          visualID="5041"
           editPartClassName="MDAttributeLocalCharacterNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeLocalCharacterNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeLocalCharacterNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -210,10 +202,9 @@
       </labels>
     </childNodes>
     <childNodes
-        visualID="3023"
+        visualID="3040"
         editPartClassName="MDAttributeDoubleEditPart"
         itemSemanticEditPolicyClassName="MDAttributeDoubleItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeDoubleViewFactory"
         canonicalEditPolicyClassName="MDAttributeDoubleCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeDoubleGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeDoubleCreateCommand"
@@ -232,15 +223,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeDouble"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5024"
+          visualID="5042"
           editPartClassName="MDAttributeDoubleNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeDoubleNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeDoubleNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -257,10 +247,9 @@
       </labels>
     </childNodes>
     <childNodes
-        visualID="3024"
+        visualID="3041"
         editPartClassName="MDAttributeDecimalEditPart"
         itemSemanticEditPolicyClassName="MDAttributeDecimalItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeDecimalViewFactory"
         canonicalEditPolicyClassName="MDAttributeDecimalCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeDecimalGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeDecimalCreateCommand"
@@ -279,15 +268,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeDecimal"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5025"
+          visualID="5043"
           editPartClassName="MDAttributeDecimalNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeDecimalNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeDecimalNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -304,10 +292,9 @@
       </labels>
     </childNodes>
     <childNodes
-        visualID="3025"
+        visualID="3042"
         editPartClassName="MDAttributeLongEditPart"
         itemSemanticEditPolicyClassName="MDAttributeLongItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeLongViewFactory"
         canonicalEditPolicyClassName="MDAttributeLongCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeLongGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeLongCreateCommand"
@@ -326,15 +313,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeLong"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5026"
+          visualID="5044"
           editPartClassName="MDAttributeLongNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeLongNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeLongNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -351,10 +337,9 @@
       </labels>
     </childNodes>
     <childNodes
-        visualID="3026"
+        visualID="3043"
         editPartClassName="MDAttributeTimeEditPart"
         itemSemanticEditPolicyClassName="MDAttributeTimeItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeTimeViewFactory"
         canonicalEditPolicyClassName="MDAttributeTimeCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeTimeGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeTimeCreateCommand"
@@ -373,15 +358,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeTime"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5027"
+          visualID="5045"
           editPartClassName="MDAttributeTimeNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeTimeNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeTimeNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -398,10 +382,9 @@
       </labels>
     </childNodes>
     <childNodes
-        visualID="3027"
+        visualID="3044"
         editPartClassName="MDAttributeBooleanEditPart"
         itemSemanticEditPolicyClassName="MDAttributeBooleanItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeBooleanViewFactory"
         canonicalEditPolicyClassName="MDAttributeBooleanCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeBooleanGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeBooleanCreateCommand"
@@ -420,15 +403,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeBoolean"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5028"
+          visualID="5046"
           editPartClassName="MDAttributeBooleanNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeBooleanNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeBooleanNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -445,10 +427,9 @@
       </labels>
     </childNodes>
     <childNodes
-        visualID="3028"
+        visualID="3045"
         editPartClassName="MDAttributeNumberEditPart"
         itemSemanticEditPolicyClassName="MDAttributeNumberItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeNumberViewFactory"
         canonicalEditPolicyClassName="MDAttributeNumberCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeNumberGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeNumberCreateCommand"
@@ -467,15 +448,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeNumber"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5029"
+          visualID="5047"
           editPartClassName="MDAttributeNumberNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeNumberNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeNumberNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -492,10 +472,9 @@
       </labels>
     </childNodes>
     <childNodes
-        visualID="3029"
+        visualID="3046"
         editPartClassName="MDAttributeDateTimeEditPart"
         itemSemanticEditPolicyClassName="MDAttributeDateTimeItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeDateTimeViewFactory"
         canonicalEditPolicyClassName="MDAttributeDateTimeCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeDateTimeGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeDateTimeCreateCommand"
@@ -514,15 +493,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeDateTime"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5030"
+          visualID="5048"
           editPartClassName="MDAttributeDateTimeNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeDateTimeNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeDateTimeNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -539,10 +517,9 @@
       </labels>
     </childNodes>
     <childNodes
-        visualID="3030"
+        visualID="3047"
         editPartClassName="MDAttributeIntegerEditPart"
         itemSemanticEditPolicyClassName="MDAttributeIntegerItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeIntegerViewFactory"
         canonicalEditPolicyClassName="MDAttributeIntegerCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeIntegerGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeIntegerCreateCommand"
@@ -561,15 +538,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeInteger"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5031"
+          visualID="5049"
           editPartClassName="MDAttributeIntegerNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeIntegerNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeIntegerNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -586,10 +562,9 @@
       </labels>
     </childNodes>
     <childNodes
-        visualID="3031"
+        visualID="3048"
         editPartClassName="MDAttributeLocalTextEditPart"
         itemSemanticEditPolicyClassName="MDAttributeLocalTextItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeLocalTextViewFactory"
         canonicalEditPolicyClassName="MDAttributeLocalTextCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeLocalTextGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeLocalTextCreateCommand"
@@ -608,15 +583,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeLocalText"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5032"
+          visualID="5050"
           editPartClassName="MDAttributeLocalTextNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeLocalTextNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeLocalTextNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -633,10 +607,9 @@
       </labels>
     </childNodes>
     <childNodes
-        visualID="3032"
+        visualID="3049"
         editPartClassName="MDAttributeCharacterEditPart"
         itemSemanticEditPolicyClassName="MDAttributeCharacterItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeCharacterViewFactory"
         canonicalEditPolicyClassName="MDAttributeCharacterCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeCharacterGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeCharacterCreateCommand"
@@ -655,15 +628,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeCharacter"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5033"
+          visualID="5051"
           editPartClassName="MDAttributeCharacterNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeCharacterNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeCharacterNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -680,10 +652,9 @@
       </labels>
     </childNodes>
     <childNodes
-        visualID="3033"
+        visualID="3050"
         editPartClassName="MDAttributeFloatEditPart"
         itemSemanticEditPolicyClassName="MDAttributeFloatItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeFloatViewFactory"
         canonicalEditPolicyClassName="MDAttributeFloatCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeFloatGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeFloatCreateCommand"
@@ -702,15 +673,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeFloat"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5034"
+          visualID="5052"
           editPartClassName="MDAttributeFloatNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeFloatNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeFloatNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -727,10 +697,9 @@
       </labels>
     </childNodes>
     <childNodes
-        visualID="3034"
+        visualID="3051"
         editPartClassName="MDAttributeEnumerationEditPart"
         itemSemanticEditPolicyClassName="MDAttributeEnumerationItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeEnumerationViewFactory"
         canonicalEditPolicyClassName="MDAttributeEnumerationCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeEnumerationGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeEnumerationCreateCommand"
@@ -749,15 +718,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeEnumeration"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5035"
+          visualID="5053"
           editPartClassName="MDAttributeEnumerationNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeEnumerationNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeEnumerationNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -774,10 +742,9 @@
       </labels>
     </childNodes>
     <childNodes
-        visualID="3035"
+        visualID="3052"
         editPartClassName="MDAttributeHashEditPart"
         itemSemanticEditPolicyClassName="MDAttributeHashItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDAttributeHashViewFactory"
         canonicalEditPolicyClassName="MDAttributeHashCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MDAttributeHashGraphicalNodeEditPolicy"
         createCommandClassName="MDAttributeHashCreateCommand"
@@ -796,15 +763,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDAttributeHash"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/MDBusiness/attributes"/>
+            href="runway.genmodel#//runway/MDClass/attributes"/>
       </modelFacet>
       <labels
-          visualID="5036"
+          visualID="5054"
           editPartClassName="MDAttributeHashNameEditPart"
           itemSemanticEditPolicyClassName="MDAttributeHashNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDAttributeHashNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -821,10 +787,9 @@
       </labels>
     </childNodes>
     <topLevelNodes
-        visualID="2002"
+        visualID="2003"
         editPartClassName="MDBusinessEditPart"
         itemSemanticEditPolicyClassName="MDBusinessItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDBusinessViewFactory"
         canonicalEditPolicyClassName="MDBusinessCanonicalEditPolicy"
         compartments="//@diagram/@compartments.0"
         graphicalNodeEditPolicyClassName="MDBusinessGraphicalNodeEditPolicy"
@@ -843,15 +808,14 @@
         <metaClass
             href="runway.genmodel#//runway/MDBusiness"/>
         <containmentMetaFeature
-            href="runway.genmodel#//runway/DocumentRoot/MDBusinesses"/>
+            href="runway.genmodel#//runway/DocumentRoot/MetaData"/>
         <childMetaFeature
-            href="runway.genmodel#//runway/DocumentRoot/MDBusinesses"/>
+            href="runway.genmodel#//runway/DocumentRoot/MetaData"/>
       </modelFacet>
       <labels
-          visualID="5037"
-          editPartClassName="MDBusinessClassNameEditPart"
-          itemSemanticEditPolicyClassName="MDBusinessClassNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MDBusinessClassNameViewFactory"
+          visualID="5055"
+          editPartClassName="MDBusinessNameEditPart"
+          itemSemanticEditPolicyClassName="MDBusinessNameItemSemanticEditPolicy"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -863,15 +827,14 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             parser="//@labelParsers/@implementations.0">
           <metaFeatures
-              href="runway.genmodel#//runway/MDBusiness/className"/>
+              href="runway.genmodel#//runway/MDType/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
     <compartments
-        visualID="7002"
+        visualID="7003"
         editPartClassName="MDBusinessMdBusinessCompartmentEditPart"
         itemSemanticEditPolicyClassName="MDBusinessMdBusinessCompartmentItemSemanticEditPolicy"
-        notationViewFactoryClassName="MDBusinessMdBusinessCompartmentViewFactory"
         canonicalEditPolicyClassName="MDBusinessMdBusinessCompartmentCanonicalEditPolicy"
         childNodes="//@diagram/@childNodes.0 //@diagram/@childNodes.1 //@diagram/@childNodes.2 //@diagram/@childNodes.3 //@diagram/@childNodes.4 //@diagram/@childNodes.5 //@diagram/@childNodes.6 //@diagram/@childNodes.7 //@diagram/@childNodes.8 //@diagram/@childNodes.9 //@diagram/@childNodes.10 //@diagram/@childNodes.11 //@diagram/@childNodes.12 //@diagram/@childNodes.13 //@diagram/@childNodes.14 //@diagram/@childNodes.15 //@diagram/@childNodes.16"
         title="MdBusinessCompartment"
@@ -881,8 +844,9 @@
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <viewmap
-          xsi:type="gmfgen:FigureViewmap"
-          figureQualifiedClassName="XXX"/>
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="MDBusinessFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MDBusinessFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureMDBusinessClassNameFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MDBusinessFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.FlowLayout layoutThis = new org.eclipse.draw2d.FlowLayout();&#xA;&#x9;layoutThis.setStretchMinorAxis(false);&#xA;&#x9;layoutThis.setMinorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#xA;&#x9;layoutThis.setMajorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#x9;layoutThis.setMajorSpacing(5);&#xA;&#x9;layoutThis.setMinorSpacing(5);&#xA;&#x9;layoutThis.setHorizontal(true);&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureMDBusinessClassNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureMDBusinessClassNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureMDBusinessClassNameFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureMDBusinessClassNameFigure() {&#xA;&#x9;&#x9;return fFigureMDBusinessClassNameFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
     </compartments>
     <palette>
       <groups

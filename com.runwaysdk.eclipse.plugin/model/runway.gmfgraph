@@ -351,7 +351,8 @@
       name="MdAttributeLong"
       figure="MdAttributeLongFigure"/>
   <compartments
-      name="MdBusinessCompartment"/>
+      name="MdBusinessCompartment"
+      figure="MDBusinessFigure"/>
   <labels
       name="MDBusinessClassName"
       figure="MDBusinessFigure"
