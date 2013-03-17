@@ -19,78 +19,69 @@ import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
 /**
  * @generated
  */
-public class MDBusinessCreateCommand extends EditElementCommand
-{
+public class MDBusinessCreateCommand extends EditElementCommand {
 
-  /**
-   * @generated
-   */
-  public MDBusinessCreateCommand(CreateElementRequest req)
-  {
-    super(req.getLabel(), null, req);
-    System.out.println("Uno"); 
-  }
+	/**
+	 * @generated
+	 */
+	public MDBusinessCreateCommand(CreateElementRequest req) {
+		super(req.getLabel(), null, req);
+	}
 
-  /**
-   * FIXME: replace with setElementToEdit()
-   * @generated
-   */
-  protected EObject getElementToEdit()
-  {
-    EObject container = ( (CreateElementRequest) getRequest() ).getContainer();
-    if (container instanceof View)
-    {
-      container = ( (View) container ).getElement();
-      
-    }
-    System.out.println("Dos"); 
-    return container;
-  }
+	/**
+	 * FIXME: replace with setElementToEdit()
+	 * @generated
+	 */
+	protected EObject getElementToEdit() {
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
+		if (container instanceof View) {
+			container = ((View) container).getElement();
+		}
+		return container;
+	}
 
-  /**
-   * @generated
-   */
-  public boolean canExecute()
-  {
-	System.out.println("Tres"); 
-    return true;
+	/**
+	 * @generated
+	 */
+	public boolean canExecute() {
+		return true;
 
-  }
+	}
 
-  /**
-   * @generated
-   */
-  protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-      throws ExecutionException
-  {
-    MDBusiness newElement = RunwayFactory.eINSTANCE.createMDBusiness();
+	/**
+	 * @generated
+	 */
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		MDBusiness newElement = RunwayFactory.eINSTANCE.createMDBusiness();
 
-    DocumentRoot owner = (DocumentRoot) getElementToEdit();
-    owner.getMDBusinesses().add(newElement);
+		DocumentRoot owner = (DocumentRoot) getElementToEdit();
+		owner.getMetaData().add(newElement);
 
-    doConfigure(newElement, monitor, info);
+		doConfigure(newElement, monitor, info);
 
-    ( (CreateElementRequest) getRequest() ).setNewElement(newElement);
-	System.out.println("Quatro"); 
-    return CommandResult.newOKCommandResult(newElement);
-  }
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
+	}
 
-  /**
-   * @generated
-   */
-  protected void doConfigure(MDBusiness newElement, IProgressMonitor monitor, IAdaptable info)
-      throws ExecutionException
-  {
-    IElementType elementType = ( (CreateElementRequest) getRequest() ).getElementType();
-    ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-    configureRequest.setClientContext( ( (CreateElementRequest) getRequest() ).getClientContext());
-    configureRequest.addParameters(getRequest().getParameters());
-    ICommand configureCommand = elementType.getEditCommand(configureRequest);
-    if (configureCommand != null && configureCommand.canExecute())
-    {
-      configureCommand.execute(monitor, info);
-    }
-    System.out.println("Cinco");
-  }
+	/**
+	 * @generated
+	 */
+	protected void doConfigure(MDBusiness newElement, IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest) getRequest())
+				.getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(
+				getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest) getRequest())
+				.getClientContext());
+		configureRequest.addParameters(getRequest().getParameters());
+		ICommand configureCommand = elementType
+				.getEditCommand(configureRequest);
+		if (configureCommand != null && configureCommand.canExecute()) {
+			configureCommand.execute(monitor, info);
+		}
+	}
 
 }

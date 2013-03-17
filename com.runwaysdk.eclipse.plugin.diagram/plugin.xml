@@ -205,7 +205,7 @@
       <viewProvider class="com.runwaysdk.eclipse.plugin.runway.diagram.providers.RunwayViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Runway"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2002,3019,3020,3021,3022,3023,3024,3025,3026,3027,3028,3029,3030,3031,3032,3033,3034,3035"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2003,3036,3037,3038,3039,3040,3041,3042,3043,3044,3045,3046,3047,3048,3049,3050,3051,3052"/>
       </viewProvider>
    </extension>
 
@@ -217,16 +217,16 @@
             <method name="getType()" value="Runway"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2002,3019,3020,3021,3022,3023,3024,3025,3026,3027,3028,3029,3030,3031,3032,3033,3034,3035"/>
+            <method name="getType()" value="2003,3036,3037,3038,3039,3040,3041,3042,3043,3044,3045,3046,3047,3048,3049,3050,3051,3052"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value=""/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5037,5020,5021,5022,5023,5024,5025,5026,5027,5028,5029,5030,5031,5032,5033,5034,5035,5036"/>
+            <method name="getType()" value="5055,5038,5039,5040,5041,5042,5043,5044,5045,5046,5047,5048,5049,5050,5051,5052,5053,5054"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7002"/>
+            <method name="getType()" value="7003"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -237,25 +237,25 @@
       <modelingAssistantProvider class="com.runwaysdk.eclipse.plugin.runway.diagram.providers.RunwayModelingAssistantProvider">
          <Priority name="Lowest"/>
          <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.DocumentRootEditPart" id="DocumentRoot_1000"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDBusinessEditPart" id="MDBusiness_2002"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeTextEditPart" id="MDAttributeText_3019"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeDateEditPart" id="MDAttributeDate_3020"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeBlobEditPart" id="MDAttributeBlob_3021"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeLocalCharacterEditPart" id="MDAttributeLocalCharacter_3022"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeDoubleEditPart" id="MDAttributeDouble_3023"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeDecimalEditPart" id="MDAttributeDecimal_3024"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeLongEditPart" id="MDAttributeLong_3025"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeTimeEditPart" id="MDAttributeTime_3026"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeBooleanEditPart" id="MDAttributeBoolean_3027"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeNumberEditPart" id="MDAttributeNumber_3028"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeDateTimeEditPart" id="MDAttributeDateTime_3029"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeIntegerEditPart" id="MDAttributeInteger_3030"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeLocalTextEditPart" id="MDAttributeLocalText_3031"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeCharacterEditPart" id="MDAttributeCharacter_3032"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeFloatEditPart" id="MDAttributeFloat_3033"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeEnumerationEditPart" id="MDAttributeEnumeration_3034"/>
-         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeHashEditPart" id="MDAttributeHash_3035"/>
-         <context elements="DocumentRoot_1000,MDBusiness_2002,MDAttributeText_3019,MDAttributeDate_3020,MDAttributeBlob_3021,MDAttributeLocalCharacter_3022,MDAttributeDouble_3023,MDAttributeDecimal_3024,MDAttributeLong_3025,MDAttributeTime_3026,MDAttributeBoolean_3027,MDAttributeNumber_3028,MDAttributeDateTime_3029,MDAttributeInteger_3030,MDAttributeLocalText_3031,MDAttributeCharacter_3032,MDAttributeFloat_3033,MDAttributeEnumeration_3034,MDAttributeHash_3035"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDBusinessEditPart" id="MDBusiness_2003"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeTextEditPart" id="MDAttributeText_3036"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeDateEditPart" id="MDAttributeDate_3037"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeBlobEditPart" id="MDAttributeBlob_3038"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeLocalCharacterEditPart" id="MDAttributeLocalCharacter_3039"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeDoubleEditPart" id="MDAttributeDouble_3040"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeDecimalEditPart" id="MDAttributeDecimal_3041"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeLongEditPart" id="MDAttributeLong_3042"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeTimeEditPart" id="MDAttributeTime_3043"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeBooleanEditPart" id="MDAttributeBoolean_3044"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeNumberEditPart" id="MDAttributeNumber_3045"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeDateTimeEditPart" id="MDAttributeDateTime_3046"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeIntegerEditPart" id="MDAttributeInteger_3047"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeLocalTextEditPart" id="MDAttributeLocalText_3048"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeCharacterEditPart" id="MDAttributeCharacter_3049"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeFloatEditPart" id="MDAttributeFloat_3050"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeEnumerationEditPart" id="MDAttributeEnumeration_3051"/>
+         <object class="com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts.MDAttributeHashEditPart" id="MDAttributeHash_3052"/>
+         <context elements="DocumentRoot_1000,MDBusiness_2003,MDAttributeText_3036,MDAttributeDate_3037,MDAttributeBlob_3038,MDAttributeLocalCharacter_3039,MDAttributeDouble_3040,MDAttributeDecimal_3041,MDAttributeLong_3042,MDAttributeTime_3043,MDAttributeBoolean_3044,MDAttributeNumber_3045,MDAttributeDateTime_3046,MDAttributeInteger_3047,MDAttributeLocalText_3048,MDAttributeCharacter_3049,MDAttributeFloat_3050,MDAttributeEnumeration_3051,MDAttributeHash_3052"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -287,182 +287,182 @@
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDBusiness_2002"
-               name="%metatype.name.MDBusiness_2002"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDBusiness_2003"
+               name="%metatype.name.MDBusiness_2003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDBusiness"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDBusinessEditHelper">
-            <param name="semanticHint" value="2002"/>
+            <param name="semanticHint" value="2003"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeText_3019"
-               name="%metatype.name.MDAttributeText_3019"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeText_3036"
+               name="%metatype.name.MDAttributeText_3036"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeText"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeTextEditHelper">
-            <param name="semanticHint" value="3019"/>
+            <param name="semanticHint" value="3036"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDate_3020"
-               name="%metatype.name.MDAttributeDate_3020"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDate_3037"
+               name="%metatype.name.MDAttributeDate_3037"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeDate"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeDateEditHelper">
-            <param name="semanticHint" value="3020"/>
+            <param name="semanticHint" value="3037"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeBlob_3021"
-               name="%metatype.name.MDAttributeBlob_3021"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeBlob_3038"
+               name="%metatype.name.MDAttributeBlob_3038"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeBlob"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeBlobEditHelper">
-            <param name="semanticHint" value="3021"/>
+            <param name="semanticHint" value="3038"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLocalCharacter_3022"
-               name="%metatype.name.MDAttributeLocalCharacter_3022"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLocalCharacter_3039"
+               name="%metatype.name.MDAttributeLocalCharacter_3039"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeLocalCharacter"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeLocalCharacterEditHelper">
-            <param name="semanticHint" value="3022"/>
+            <param name="semanticHint" value="3039"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDouble_3023"
-               name="%metatype.name.MDAttributeDouble_3023"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDouble_3040"
+               name="%metatype.name.MDAttributeDouble_3040"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeDouble"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeDoubleEditHelper">
-            <param name="semanticHint" value="3023"/>
+            <param name="semanticHint" value="3040"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDecimal_3024"
-               name="%metatype.name.MDAttributeDecimal_3024"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDecimal_3041"
+               name="%metatype.name.MDAttributeDecimal_3041"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeDecimal"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeDecimalEditHelper">
-            <param name="semanticHint" value="3024"/>
+            <param name="semanticHint" value="3041"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLong_3025"
-               name="%metatype.name.MDAttributeLong_3025"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLong_3042"
+               name="%metatype.name.MDAttributeLong_3042"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeLong"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeLongEditHelper">
-            <param name="semanticHint" value="3025"/>
+            <param name="semanticHint" value="3042"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeTime_3026"
-               name="%metatype.name.MDAttributeTime_3026"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeTime_3043"
+               name="%metatype.name.MDAttributeTime_3043"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeTime"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeTimeEditHelper">
-            <param name="semanticHint" value="3026"/>
+            <param name="semanticHint" value="3043"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeBoolean_3027"
-               name="%metatype.name.MDAttributeBoolean_3027"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeBoolean_3044"
+               name="%metatype.name.MDAttributeBoolean_3044"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeBoolean"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeBooleanEditHelper">
-            <param name="semanticHint" value="3027"/>
+            <param name="semanticHint" value="3044"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeNumber_3028"
-               name="%metatype.name.MDAttributeNumber_3028"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeNumber_3045"
+               name="%metatype.name.MDAttributeNumber_3045"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeNumber"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeNumberEditHelper">
-            <param name="semanticHint" value="3028"/>
+            <param name="semanticHint" value="3045"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDateTime_3029"
-               name="%metatype.name.MDAttributeDateTime_3029"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDateTime_3046"
+               name="%metatype.name.MDAttributeDateTime_3046"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeDateTime"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeDateTimeEditHelper">
-            <param name="semanticHint" value="3029"/>
+            <param name="semanticHint" value="3046"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeInteger_3030"
-               name="%metatype.name.MDAttributeInteger_3030"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeInteger_3047"
+               name="%metatype.name.MDAttributeInteger_3047"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeInteger"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeIntegerEditHelper">
-            <param name="semanticHint" value="3030"/>
+            <param name="semanticHint" value="3047"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLocalText_3031"
-               name="%metatype.name.MDAttributeLocalText_3031"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLocalText_3048"
+               name="%metatype.name.MDAttributeLocalText_3048"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeLocalText"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeLocalTextEditHelper">
-            <param name="semanticHint" value="3031"/>
+            <param name="semanticHint" value="3048"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeCharacter_3032"
-               name="%metatype.name.MDAttributeCharacter_3032"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeCharacter_3049"
+               name="%metatype.name.MDAttributeCharacter_3049"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeCharacter"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeCharacterEditHelper">
-            <param name="semanticHint" value="3032"/>
+            <param name="semanticHint" value="3049"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeFloat_3033"
-               name="%metatype.name.MDAttributeFloat_3033"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeFloat_3050"
+               name="%metatype.name.MDAttributeFloat_3050"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeFloat"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeFloatEditHelper">
-            <param name="semanticHint" value="3033"/>
+            <param name="semanticHint" value="3050"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeEnumeration_3034"
-               name="%metatype.name.MDAttributeEnumeration_3034"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeEnumeration_3051"
+               name="%metatype.name.MDAttributeEnumeration_3051"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeEnumeration"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeEnumerationEditHelper">
-            <param name="semanticHint" value="3034"/>
+            <param name="semanticHint" value="3051"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="runway">
          <metamodelType
-               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeHash_3035"
-               name="%metatype.name.MDAttributeHash_3035"
+               id="com.runwaysdk.eclipse.plugin.diagram.MDAttributeHash_3052"
+               name="%metatype.name.MDAttributeHash_3052"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MDAttributeHash"
                edithelper="com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers.MDAttributeHashEditHelper">
-            <param name="semanticHint" value="3035"/>
+            <param name="semanticHint" value="3052"/>
          </metamodelType>
       </metamodel>
    </extension>
@@ -478,24 +478,24 @@
       </clientContext> 
       <binding context="com.runwaysdk.eclipse.plugin.diagram.TypeContext">
          <elementType ref="com.runwaysdk.eclipse.plugin.diagram.DocumentRoot_1000"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDBusiness_2002"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeText_3019"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDate_3020"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeBlob_3021"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLocalCharacter_3022"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDouble_3023"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDecimal_3024"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLong_3025"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeTime_3026"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeBoolean_3027"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeNumber_3028"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDateTime_3029"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeInteger_3030"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLocalText_3031"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeCharacter_3032"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeFloat_3033"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeEnumeration_3034"/>
-         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeHash_3035"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDBusiness_2003"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeText_3036"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDate_3037"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeBlob_3038"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLocalCharacter_3039"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDouble_3040"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDecimal_3041"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLong_3042"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeTime_3043"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeBoolean_3044"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeNumber_3045"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeDateTime_3046"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeInteger_3047"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeLocalText_3048"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeCharacter_3049"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeFloat_3050"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeEnumeration_3051"/>
+         <elementType ref="com.runwaysdk.eclipse.plugin.diagram.MDAttributeHash_3052"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

@@ -20,72 +20,69 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayVisualIDRegistry;
 /**
  * @generated
  */
-public class DocumentRootEditPart extends DiagramEditPart
-{
+public class DocumentRootEditPart extends DiagramEditPart {
 
-  /**
-   * @generated
-   */
-  public final static String MODEL_ID  = "Runway"; //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public final static String MODEL_ID = "Runway"; //$NON-NLS-1$
 
-  /**
-   * @generated
-   */
-  public static final int    VISUAL_ID = 1000;
+	/**
+	 * @generated
+	 */
+	public static final int VISUAL_ID = 1000;
 
-  /**
-   * @generated
-   */
-  public DocumentRootEditPart(View view)
-  {
-    super(view);
-  }
+	/**
+	 * @generated
+	 */
+	public DocumentRootEditPart(View view) {
+		super(view);
+	}
 
-  /**
-   * @generated
-   */
-  protected void createDefaultEditPolicies()
-  {
-    super.createDefaultEditPolicies();
-    installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DocumentRootItemSemanticEditPolicy());
-    installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new DocumentRootCanonicalEditPolicy());
-    installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicyWithCustomReparent(
-        RunwayVisualIDRegistry.TYPED_INSTANCE));
-    // removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
-  }
+	/**
+	 * @generated
+	 */
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new DocumentRootItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
+				new DocumentRootCanonicalEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicyWithCustomReparent(
+						RunwayVisualIDRegistry.TYPED_INSTANCE));
+		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
+	}
 
-  /**
-   * @generated
-   */
-  /*package-local*/static class NodeLabelDragPolicy extends NonResizableEditPolicy
-  {
+	/**
+	 * @generated
+	 */
+	/*package-local*/static class NodeLabelDragPolicy extends
+			NonResizableEditPolicy {
 
-    /**
-     * @generated
-     */
-    @SuppressWarnings("rawtypes")
-    protected List createSelectionHandles()
-    {
-      MoveHandle h = new MoveHandle((GraphicalEditPart) getHost());
-      h.setBorder(null);
-      return Collections.singletonList(h);
-    }
+		/**
+		 * @generated
+		 */
+		@SuppressWarnings("rawtypes")
+		protected List createSelectionHandles() {
+			MoveHandle h = new MoveHandle((GraphicalEditPart) getHost());
+			h.setBorder(null);
+			return Collections.singletonList(h);
+		}
 
-    /**
-     * @generated
-     */
-    public Command getCommand(Request request)
-    {
-      return null;
-    }
+		/**
+		 * @generated
+		 */
+		public Command getCommand(Request request) {
+			return null;
+		}
 
-    /**
-     * @generated
-     */
-    public boolean understandsRequest(Request request)
-    {
-      return false;
-    }
-  }
+		/**
+		 * @generated
+		 */
+		public boolean understandsRequest(Request request) {
+			return false;
+		}
+	}
 
 }

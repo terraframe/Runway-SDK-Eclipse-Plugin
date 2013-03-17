@@ -3,6 +3,5 @@ package com.runwaysdk.eclipse.plugin.runway.diagram.edit.helpers;
 /**
  * @generated
  */
-public class MDAttributeTextEditHelper extends RunwayBaseEditHelper
-{
+public class MDAttributeTextEditHelper extends RunwayBaseEditHelper {
 }

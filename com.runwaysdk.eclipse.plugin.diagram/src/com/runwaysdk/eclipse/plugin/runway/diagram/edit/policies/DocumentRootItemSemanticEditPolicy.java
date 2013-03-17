@@ -13,54 +13,52 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.providers.RunwayElementTypes;
 /**
  * @generated
  */
-public class DocumentRootItemSemanticEditPolicy extends RunwayBaseItemSemanticEditPolicy
-{
+public class DocumentRootItemSemanticEditPolicy extends
+		RunwayBaseItemSemanticEditPolicy {
 
-  /**
-   * @generated
-   */
-  public DocumentRootItemSemanticEditPolicy()
-  {
-    super(RunwayElementTypes.DocumentRoot_1000);
-  }
+	/**
+	 * @generated
+	 */
+	public DocumentRootItemSemanticEditPolicy() {
+		super(RunwayElementTypes.DocumentRoot_1000);
+	}
 
-  /**
-   * @generated
-   */
-  protected Command getCreateCommand(CreateElementRequest req)
-  {
-    if (RunwayElementTypes.MDBusiness_2002 == req.getElementType())
-    {
-      return getGEFWrapper(new MDBusinessCreateCommand(req));
-    }
-    return super.getCreateCommand(req);
-  }
+	/**
+	 * @generated
+	 */
+	protected Command getCreateCommand(CreateElementRequest req) {
+		if (RunwayElementTypes.MDBusiness_2003 == req.getElementType()) {
+			return getGEFWrapper(new MDBusinessCreateCommand(req));
+		}
+		return super.getCreateCommand(req);
+	}
 
-  /**
-   * @generated
-   */
-  protected Command getDuplicateCommand(DuplicateElementsRequest req)
-  {
-    TransactionalEditingDomain editingDomain = ( (IGraphicalEditPart) getHost() ).getEditingDomain();
-    return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req));
-  }
+	/**
+	 * @generated
+	 */
+	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
+				.getEditingDomain();
+		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req));
+	}
 
-  /**
-   * @generated
-   */
-  private static class DuplicateAnythingCommand extends DuplicateEObjectsCommand
-  {
+	/**
+	 * @generated
+	 */
+	private static class DuplicateAnythingCommand extends
+			DuplicateEObjectsCommand {
 
-    /**
-     * @generated
-     */
-    public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain,
-        DuplicateElementsRequest req)
-    {
-      super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req
-          .getAllDuplicatedElementsMap());
-    }
+		/**
+		 * @generated
+		 */
+		public DuplicateAnythingCommand(
+				TransactionalEditingDomain editingDomain,
+				DuplicateElementsRequest req) {
+			super(editingDomain, req.getLabel(), req
+					.getElementsToBeDuplicated(), req
+					.getAllDuplicatedElementsMap());
+		}
 
-  }
+	}
 
 }

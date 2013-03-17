@@ -7,23 +7,21 @@ import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
 /**
  * @generated
  */
-public class RunwayLinkDescriptor extends UpdaterLinkDescriptor
-{
-  /**
-   * @generated
-   */
-  public RunwayLinkDescriptor(EObject source, EObject destination, IElementType elementType, int linkVID)
-  {
-    super(source, destination, elementType, linkVID);
-  }
+public class RunwayLinkDescriptor extends UpdaterLinkDescriptor {
+	/**
+	 * @generated
+	 */
+	public RunwayLinkDescriptor(EObject source, EObject destination,
+			IElementType elementType, int linkVID) {
+		super(source, destination, elementType, linkVID);
+	}
 
-  /**
-   * @generated
-   */
-  public RunwayLinkDescriptor(EObject source, EObject destination, EObject linkElement,
-      IElementType elementType, int linkVID)
-  {
-    super(source, destination, linkElement, elementType, linkVID);
-  }
+	/**
+	 * @generated
+	 */
+	public RunwayLinkDescriptor(EObject source, EObject destination,
+			EObject linkElement, IElementType elementType, int linkVID) {
+		super(source, destination, linkElement, elementType, linkVID);
+	}
 
 }

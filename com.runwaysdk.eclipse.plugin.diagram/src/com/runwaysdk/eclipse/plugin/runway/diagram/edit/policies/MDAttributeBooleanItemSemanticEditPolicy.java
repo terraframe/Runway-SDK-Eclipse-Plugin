@@ -13,38 +13,34 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.providers.RunwayElementTypes;
 /**
  * @generated
  */
-public class MDAttributeBooleanItemSemanticEditPolicy extends RunwayBaseItemSemanticEditPolicy
-{
+public class MDAttributeBooleanItemSemanticEditPolicy extends
+		RunwayBaseItemSemanticEditPolicy {
 
-  /**
-   * @generated
-   */
-  public MDAttributeBooleanItemSemanticEditPolicy()
-  {
-    super(RunwayElementTypes.MDAttributeBoolean_3027);
-  }
+	/**
+	 * @generated
+	 */
+	public MDAttributeBooleanItemSemanticEditPolicy() {
+		super(RunwayElementTypes.MDAttributeBoolean_3044);
+	}
 
-  /**
-   * @generated
-   */
-  protected Command getDestroyElementCommand(DestroyElementRequest req)
-  {
-    View view = (View) getHost().getModel();
-    CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-    cmd.setTransactionNestingEnabled(false);
-    EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-    if (annotation == null)
-    {
-      // there are indirectly referenced children, need extra commands: false
-      addDestroyShortcutsCommand(cmd, view);
-      // delete host element
-      cmd.add(new DestroyElementCommand(req));
-    }
-    else
-    {
-      cmd.add(new DeleteCommand(getEditingDomain(), view));
-    }
-    return getGEFWrapper(cmd.reduce());
-  }
+	/**
+	 * @generated
+	 */
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+		View view = (View) getHost().getModel();
+		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
+				getEditingDomain(), null);
+		cmd.setTransactionNestingEnabled(false);
+		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
+		if (annotation == null) {
+			// there are indirectly referenced children, need extra commands: false
+			addDestroyShortcutsCommand(cmd, view);
+			// delete host element
+			cmd.add(new DestroyElementCommand(req));
+		} else {
+			cmd.add(new DeleteCommand(getEditingDomain(), view));
+		}
+		return getGEFWrapper(cmd.reduce());
+	}
 
 }

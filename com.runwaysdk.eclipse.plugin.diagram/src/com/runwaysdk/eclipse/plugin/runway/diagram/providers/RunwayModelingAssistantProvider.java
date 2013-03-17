@@ -29,166 +29,166 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugi
 /**
  * @generated
  */
-public class RunwayModelingAssistantProvider extends ModelingAssistantProvider
-{
+public class RunwayModelingAssistantProvider extends ModelingAssistantProvider {
 
-  /**
-   * @generated
-   */
-  public List getTypesForPopupBar(IAdaptable host)
-  {
-    IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
-    if (editPart instanceof DocumentRootEditPart)
-    {
-      ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-      types.add(RunwayElementTypes.MDBusiness_2002);
-      return types;
-    }
-    if (editPart instanceof MDBusinessEditPart)
-    {
-      ArrayList<IElementType> types = new ArrayList<IElementType>(17);
-      types.add(RunwayElementTypes.MDAttributeText_3019);
-      types.add(RunwayElementTypes.MDAttributeDate_3020);
-      types.add(RunwayElementTypes.MDAttributeBlob_3021);
-      types.add(RunwayElementTypes.MDAttributeLocalCharacter_3022);
-      types.add(RunwayElementTypes.MDAttributeDouble_3023);
-      types.add(RunwayElementTypes.MDAttributeDecimal_3024);
-      types.add(RunwayElementTypes.MDAttributeLong_3025);
-      types.add(RunwayElementTypes.MDAttributeTime_3026);
-      types.add(RunwayElementTypes.MDAttributeBoolean_3027);
-      types.add(RunwayElementTypes.MDAttributeNumber_3028);
-      types.add(RunwayElementTypes.MDAttributeDateTime_3029);
-      types.add(RunwayElementTypes.MDAttributeInteger_3030);
-      types.add(RunwayElementTypes.MDAttributeLocalText_3031);
-      types.add(RunwayElementTypes.MDAttributeCharacter_3032);
-      types.add(RunwayElementTypes.MDAttributeFloat_3033);
-      types.add(RunwayElementTypes.MDAttributeEnumeration_3034);
-      types.add(RunwayElementTypes.MDAttributeHash_3035);
-      return types;
-    }
-    return Collections.EMPTY_LIST;
-  }
+	/**
+	 * @generated
+	 */
+	public List getTypesForPopupBar(IAdaptable host) {
+		IGraphicalEditPart editPart = (IGraphicalEditPart) host
+				.getAdapter(IGraphicalEditPart.class);
+		if (editPart instanceof DocumentRootEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(RunwayElementTypes.MDBusiness_2003);
+			return types;
+		}
+		if (editPart instanceof MDBusinessEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(17);
+			types.add(RunwayElementTypes.MDAttributeText_3036);
+			types.add(RunwayElementTypes.MDAttributeDate_3037);
+			types.add(RunwayElementTypes.MDAttributeBlob_3038);
+			types.add(RunwayElementTypes.MDAttributeLocalCharacter_3039);
+			types.add(RunwayElementTypes.MDAttributeDouble_3040);
+			types.add(RunwayElementTypes.MDAttributeDecimal_3041);
+			types.add(RunwayElementTypes.MDAttributeLong_3042);
+			types.add(RunwayElementTypes.MDAttributeTime_3043);
+			types.add(RunwayElementTypes.MDAttributeBoolean_3044);
+			types.add(RunwayElementTypes.MDAttributeNumber_3045);
+			types.add(RunwayElementTypes.MDAttributeDateTime_3046);
+			types.add(RunwayElementTypes.MDAttributeInteger_3047);
+			types.add(RunwayElementTypes.MDAttributeLocalText_3048);
+			types.add(RunwayElementTypes.MDAttributeCharacter_3049);
+			types.add(RunwayElementTypes.MDAttributeFloat_3050);
+			types.add(RunwayElementTypes.MDAttributeEnumeration_3051);
+			types.add(RunwayElementTypes.MDAttributeHash_3052);
+			return types;
+		}
+		return Collections.EMPTY_LIST;
+	}
 
-  /**
-   * @generated
-   */
-  public List getRelTypesOnSource(IAdaptable source)
-  {
-    IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
-    return Collections.EMPTY_LIST;
-  }
+	/**
+	 * @generated
+	 */
+	public List getRelTypesOnSource(IAdaptable source) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+				.getAdapter(IGraphicalEditPart.class);
+		return Collections.EMPTY_LIST;
+	}
 
-  /**
-   * @generated
-   */
-  public List getRelTypesOnTarget(IAdaptable target)
-  {
-    IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
-    return Collections.EMPTY_LIST;
-  }
+	/**
+	 * @generated
+	 */
+	public List getRelTypesOnTarget(IAdaptable target) {
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+				.getAdapter(IGraphicalEditPart.class);
+		return Collections.EMPTY_LIST;
+	}
 
-  /**
-   * @generated
-   */
-  public List getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target)
-  {
-    IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
-    IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
-    return Collections.EMPTY_LIST;
-  }
+	/**
+	 * @generated
+	 */
+	public List getRelTypesOnSourceAndTarget(IAdaptable source,
+			IAdaptable target) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+				.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+				.getAdapter(IGraphicalEditPart.class);
+		return Collections.EMPTY_LIST;
+	}
 
-  /**
-   * @generated
-   */
-  public List getTypesForSource(IAdaptable target, IElementType relationshipType)
-  {
-    IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
-    return Collections.EMPTY_LIST;
-  }
+	/**
+	 * @generated
+	 */
+	public List getTypesForSource(IAdaptable target,
+			IElementType relationshipType) {
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+				.getAdapter(IGraphicalEditPart.class);
+		return Collections.EMPTY_LIST;
+	}
 
-  /**
-   * @generated
-   */
-  public List getTypesForTarget(IAdaptable source, IElementType relationshipType)
-  {
-    IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
-    return Collections.EMPTY_LIST;
-  }
+	/**
+	 * @generated
+	 */
+	public List getTypesForTarget(IAdaptable source,
+			IElementType relationshipType) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+				.getAdapter(IGraphicalEditPart.class);
+		return Collections.EMPTY_LIST;
+	}
 
-  /**
-   * @generated
-   */
-  public EObject selectExistingElementForSource(IAdaptable target, IElementType relationshipType)
-  {
-    return selectExistingElement(target, getTypesForSource(target, relationshipType));
-  }
+	/**
+	 * @generated
+	 */
+	public EObject selectExistingElementForSource(IAdaptable target,
+			IElementType relationshipType) {
+		return selectExistingElement(target,
+				getTypesForSource(target, relationshipType));
+	}
 
-  /**
-   * @generated
-   */
-  public EObject selectExistingElementForTarget(IAdaptable source, IElementType relationshipType)
-  {
-    return selectExistingElement(source, getTypesForTarget(source, relationshipType));
-  }
+	/**
+	 * @generated
+	 */
+	public EObject selectExistingElementForTarget(IAdaptable source,
+			IElementType relationshipType) {
+		return selectExistingElement(source,
+				getTypesForTarget(source, relationshipType));
+	}
 
-  /**
-   * @generated
-   */
-  protected EObject selectExistingElement(IAdaptable host, Collection types)
-  {
-    if (types.isEmpty())
-    {
-      return null;
-    }
-    IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
-    if (editPart == null)
-    {
-      return null;
-    }
-    Diagram diagram = (Diagram) editPart.getRoot().getContents().getModel();
-    HashSet<EObject> elements = new HashSet<EObject>();
-    for (Iterator<EObject> it = diagram.getElement().eAllContents(); it.hasNext();)
-    {
-      EObject element = it.next();
-      if (isApplicableElement(element, types))
-      {
-        elements.add(element);
-      }
-    }
-    if (elements.isEmpty())
-    {
-      return null;
-    }
-    return selectElement((EObject[]) elements.toArray(new EObject[elements.size()]));
-  }
+	/**
+	 * @generated
+	 */
+	protected EObject selectExistingElement(IAdaptable host, Collection types) {
+		if (types.isEmpty()) {
+			return null;
+		}
+		IGraphicalEditPart editPart = (IGraphicalEditPart) host
+				.getAdapter(IGraphicalEditPart.class);
+		if (editPart == null) {
+			return null;
+		}
+		Diagram diagram = (Diagram) editPart.getRoot().getContents().getModel();
+		HashSet<EObject> elements = new HashSet<EObject>();
+		for (Iterator<EObject> it = diagram.getElement().eAllContents(); it
+				.hasNext();) {
+			EObject element = it.next();
+			if (isApplicableElement(element, types)) {
+				elements.add(element);
+			}
+		}
+		if (elements.isEmpty()) {
+			return null;
+		}
+		return selectElement((EObject[]) elements.toArray(new EObject[elements
+				.size()]));
+	}
 
-  /**
-   * @generated
-   */
-  protected boolean isApplicableElement(EObject element, Collection types)
-  {
-    IElementType type = ElementTypeRegistry.getInstance().getElementType(element);
-    return types.contains(type);
-  }
+	/**
+	 * @generated
+	 */
+	protected boolean isApplicableElement(EObject element, Collection types) {
+		IElementType type = ElementTypeRegistry.getInstance().getElementType(
+				element);
+		return types.contains(type);
+	}
 
-  /**
-   * @generated
-   */
-  protected EObject selectElement(EObject[] elements)
-  {
-    Shell shell = Display.getCurrent().getActiveShell();
-    ILabelProvider labelProvider = new AdapterFactoryLabelProvider(RunwayDiagramEditorPlugin
-        .getInstance().getItemProvidersAdapterFactory());
-    ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
-    dialog.setMessage(Messages.RunwayModelingAssistantProviderMessage);
-    dialog.setTitle(Messages.RunwayModelingAssistantProviderTitle);
-    dialog.setMultipleSelection(false);
-    dialog.setElements(elements);
-    EObject selected = null;
-    if (dialog.open() == Window.OK)
-    {
-      selected = (EObject) dialog.getFirstResult();
-    }
-    return selected;
-  }
+	/**
+	 * @generated
+	 */
+	protected EObject selectElement(EObject[] elements) {
+		Shell shell = Display.getCurrent().getActiveShell();
+		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
+				RunwayDiagramEditorPlugin.getInstance()
+						.getItemProvidersAdapterFactory());
+		ElementListSelectionDialog dialog = new ElementListSelectionDialog(
+				shell, labelProvider);
+		dialog.setMessage(Messages.RunwayModelingAssistantProviderMessage);
+		dialog.setTitle(Messages.RunwayModelingAssistantProviderTitle);
+		dialog.setMultipleSelection(false);
+		dialog.setElements(elements);
+		EObject selected = null;
+		if (dialog.open() == Window.OK) {
+			selected = (EObject) dialog.getFirstResult();
+		}
+		return selected;
+	}
 }

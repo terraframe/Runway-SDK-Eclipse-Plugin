@@ -7,14 +7,13 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugi
 /**
  * @generated
  */
-public class DiagramConnectionsPreferencePage extends ConnectionsPreferencePage
-{
+public class DiagramConnectionsPreferencePage extends ConnectionsPreferencePage {
 
-  /**
-   * @generated
-   */
-  public DiagramConnectionsPreferencePage()
-  {
-    setPreferenceStore(RunwayDiagramEditorPlugin.getInstance().getPreferenceStore());
-  }
+	/**
+	 * @generated
+	 */
+	public DiagramConnectionsPreferencePage() {
+		setPreferenceStore(RunwayDiagramEditorPlugin.getInstance()
+				.getPreferenceStore());
+	}
 }

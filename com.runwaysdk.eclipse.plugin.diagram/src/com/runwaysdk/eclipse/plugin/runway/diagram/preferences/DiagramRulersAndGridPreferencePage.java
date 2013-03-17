@@ -7,14 +7,13 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugi
 /**
  * @generated
  */
-public class DiagramRulersAndGridPreferencePage extends RulerGridPreferencePage
-{
+public class DiagramRulersAndGridPreferencePage extends RulerGridPreferencePage {
 
-  /**
-   * @generated
-   */
-  public DiagramRulersAndGridPreferencePage()
-  {
-    setPreferenceStore(RunwayDiagramEditorPlugin.getInstance().getPreferenceStore());
-  }
+	/**
+	 * @generated
+	 */
+	public DiagramRulersAndGridPreferencePage() {
+		setPreferenceStore(RunwayDiagramEditorPlugin.getInstance()
+				.getPreferenceStore());
+	}
 }

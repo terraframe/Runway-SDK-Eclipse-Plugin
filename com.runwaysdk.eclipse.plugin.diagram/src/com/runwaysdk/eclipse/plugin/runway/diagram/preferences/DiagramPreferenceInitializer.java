@@ -8,28 +8,25 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugi
 /**
  * @generated
  */
-public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer
-{
+public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer {
 
-  /**
-   * @generated
-   */
-  public void initializeDefaultPreferences()
-  {
-    IPreferenceStore store = getPreferenceStore();
-    DiagramGeneralPreferencePage.initDefaults(store);
-    DiagramAppearancePreferencePage.initDefaults(store);
-    DiagramConnectionsPreferencePage.initDefaults(store);
-    DiagramPrintingPreferencePage.initDefaults(store);
-    DiagramRulersAndGridPreferencePage.initDefaults(store);
+	/**
+	 * @generated
+	 */
+	public void initializeDefaultPreferences() {
+		IPreferenceStore store = getPreferenceStore();
+		DiagramGeneralPreferencePage.initDefaults(store);
+		DiagramAppearancePreferencePage.initDefaults(store);
+		DiagramConnectionsPreferencePage.initDefaults(store);
+		DiagramPrintingPreferencePage.initDefaults(store);
+		DiagramRulersAndGridPreferencePage.initDefaults(store);
 
-  }
+	}
 
-  /**
-   * @generated
-   */
-  protected IPreferenceStore getPreferenceStore()
-  {
-    return RunwayDiagramEditorPlugin.getInstance().getPreferenceStore();
-  }
+	/**
+	 * @generated
+	 */
+	protected IPreferenceStore getPreferenceStore() {
+		return RunwayDiagramEditorPlugin.getInstance().getPreferenceStore();
+	}
 }

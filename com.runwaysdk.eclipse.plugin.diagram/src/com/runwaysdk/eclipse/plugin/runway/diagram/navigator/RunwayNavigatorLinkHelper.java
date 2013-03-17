@@ -27,114 +27,102 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugi
 /**
  * @generated
  */
-public class RunwayNavigatorLinkHelper implements ILinkHelper
-{
+public class RunwayNavigatorLinkHelper implements ILinkHelper {
 
-  /**
-   * @generated
-   */
-  private static IEditorInput getEditorInput(Diagram diagram)
-  {
-    Resource diagramResource = diagram.eResource();
-    for (EObject nextEObject : diagramResource.getContents())
-    {
-      if (nextEObject == diagram)
-      {
-        return new FileEditorInput(WorkspaceSynchronizer.getFile(diagramResource));
-      }
-      if (nextEObject instanceof Diagram)
-      {
-        break;
-      }
-    }
-    URI uri = EcoreUtil.getURI(diagram);
-    String editorName = uri.lastSegment() + '#' + diagram.eResource().getContents().indexOf(diagram);
-    IEditorInput editorInput = new URIEditorInput(uri, editorName);
-    return editorInput;
-  }
+	/**
+	 * @generated
+	 */
+	private static IEditorInput getEditorInput(Diagram diagram) {
+		Resource diagramResource = diagram.eResource();
+		for (EObject nextEObject : diagramResource.getContents()) {
+			if (nextEObject == diagram) {
+				return new FileEditorInput(
+						WorkspaceSynchronizer.getFile(diagramResource));
+			}
+			if (nextEObject instanceof Diagram) {
+				break;
+			}
+		}
+		URI uri = EcoreUtil.getURI(diagram);
+		String editorName = uri.lastSegment() + '#'
+				+ diagram.eResource().getContents().indexOf(diagram);
+		IEditorInput editorInput = new URIEditorInput(uri, editorName);
+		return editorInput;
+	}
 
-  /**
-   * @generated
-   */
-  public IStructuredSelection findSelection(IEditorInput anInput)
-  {
-    IDiagramDocument document = RunwayDiagramEditorPlugin.getInstance().getDocumentProvider()
-        .getDiagramDocument(anInput);
-    if (document == null)
-    {
-      return StructuredSelection.EMPTY;
-    }
-    Diagram diagram = document.getDiagram();
-    if (diagram == null || diagram.eResource() == null)
-    {
-      return StructuredSelection.EMPTY;
-    }
-    IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
-    if (file != null)
-    {
-      RunwayNavigatorItem item = new RunwayNavigatorItem(diagram, file, false);
-      return new StructuredSelection(item);
-    }
-    return StructuredSelection.EMPTY;
-  }
+	/**
+	 * @generated
+	 */
+	public IStructuredSelection findSelection(IEditorInput anInput) {
+		IDiagramDocument document = RunwayDiagramEditorPlugin.getInstance()
+				.getDocumentProvider().getDiagramDocument(anInput);
+		if (document == null) {
+			return StructuredSelection.EMPTY;
+		}
+		Diagram diagram = document.getDiagram();
+		if (diagram == null || diagram.eResource() == null) {
+			return StructuredSelection.EMPTY;
+		}
+		IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
+		if (file != null) {
+			RunwayNavigatorItem item = new RunwayNavigatorItem(diagram, file,
+					false);
+			return new StructuredSelection(item);
+		}
+		return StructuredSelection.EMPTY;
+	}
 
-  /**
-   * @generated
-   */
-  public void activateEditor(IWorkbenchPage aPage, IStructuredSelection aSelection)
-  {
-    if (aSelection == null || aSelection.isEmpty())
-    {
-      return;
-    }
-    if (false == aSelection.getFirstElement() instanceof RunwayAbstractNavigatorItem)
-    {
-      return;
-    }
+	/**
+	 * @generated
+	 */
+	public void activateEditor(IWorkbenchPage aPage,
+			IStructuredSelection aSelection) {
+		if (aSelection == null || aSelection.isEmpty()) {
+			return;
+		}
+		if (false == aSelection.getFirstElement() instanceof RunwayAbstractNavigatorItem) {
+			return;
+		}
 
-    RunwayAbstractNavigatorItem abstractNavigatorItem = (RunwayAbstractNavigatorItem) aSelection
-        .getFirstElement();
-    View navigatorView = null;
-    if (abstractNavigatorItem instanceof RunwayNavigatorItem)
-    {
-      navigatorView = ( (RunwayNavigatorItem) abstractNavigatorItem ).getView();
-    }
-    else if (abstractNavigatorItem instanceof RunwayNavigatorGroup)
-    {
-      RunwayNavigatorGroup navigatorGroup = (RunwayNavigatorGroup) abstractNavigatorItem;
-      if (navigatorGroup.getParent() instanceof RunwayNavigatorItem)
-      {
-        navigatorView = ( (RunwayNavigatorItem) navigatorGroup.getParent() ).getView();
-      }
-    }
-    if (navigatorView == null)
-    {
-      return;
-    }
-    IEditorInput editorInput = getEditorInput(navigatorView.getDiagram());
-    IEditorPart editor = aPage.findEditor(editorInput);
-    if (editor == null)
-    {
-      return;
-    }
-    aPage.bringToTop(editor);
-    if (editor instanceof DiagramEditor)
-    {
-      DiagramEditor diagramEditor = (DiagramEditor) editor;
-      ResourceSet diagramEditorResourceSet = diagramEditor.getEditingDomain().getResourceSet();
-      EObject selectedView = diagramEditorResourceSet.getEObject(EcoreUtil.getURI(navigatorView), true);
-      if (selectedView == null)
-      {
-        return;
-      }
-      GraphicalViewer graphicalViewer = (GraphicalViewer) diagramEditor
-          .getAdapter(GraphicalViewer.class);
-      EditPart selectedEditPart = (EditPart) graphicalViewer.getEditPartRegistry().get(selectedView);
-      if (selectedEditPart != null)
-      {
-        graphicalViewer.select(selectedEditPart);
-      }
-    }
-  }
+		RunwayAbstractNavigatorItem abstractNavigatorItem = (RunwayAbstractNavigatorItem) aSelection
+				.getFirstElement();
+		View navigatorView = null;
+		if (abstractNavigatorItem instanceof RunwayNavigatorItem) {
+			navigatorView = ((RunwayNavigatorItem) abstractNavigatorItem)
+					.getView();
+		} else if (abstractNavigatorItem instanceof RunwayNavigatorGroup) {
+			RunwayNavigatorGroup navigatorGroup = (RunwayNavigatorGroup) abstractNavigatorItem;
+			if (navigatorGroup.getParent() instanceof RunwayNavigatorItem) {
+				navigatorView = ((RunwayNavigatorItem) navigatorGroup
+						.getParent()).getView();
+			}
+		}
+		if (navigatorView == null) {
+			return;
+		}
+		IEditorInput editorInput = getEditorInput(navigatorView.getDiagram());
+		IEditorPart editor = aPage.findEditor(editorInput);
+		if (editor == null) {
+			return;
+		}
+		aPage.bringToTop(editor);
+		if (editor instanceof DiagramEditor) {
+			DiagramEditor diagramEditor = (DiagramEditor) editor;
+			ResourceSet diagramEditorResourceSet = diagramEditor
+					.getEditingDomain().getResourceSet();
+			EObject selectedView = diagramEditorResourceSet.getEObject(
+					EcoreUtil.getURI(navigatorView), true);
+			if (selectedView == null) {
+				return;
+			}
+			GraphicalViewer graphicalViewer = (GraphicalViewer) diagramEditor
+					.getAdapter(GraphicalViewer.class);
+			EditPart selectedEditPart = (EditPart) graphicalViewer
+					.getEditPartRegistry().get(selectedView);
+			if (selectedEditPart != null) {
+				graphicalViewer.select(selectedEditPart);
+			}
+		}
+	}
 
 }

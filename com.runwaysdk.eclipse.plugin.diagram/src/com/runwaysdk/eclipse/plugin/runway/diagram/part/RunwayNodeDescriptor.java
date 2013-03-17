@@ -6,14 +6,12 @@ import org.eclipse.gmf.tooling.runtime.update.UpdaterNodeDescriptor;
 /**
  * @generated
  */
-public class RunwayNodeDescriptor extends UpdaterNodeDescriptor
-{
-  /**
-   * @generated
-   */
-  public RunwayNodeDescriptor(EObject modelElement, int visualID)
-  {
-    super(modelElement, visualID);
-  }
+public class RunwayNodeDescriptor extends UpdaterNodeDescriptor {
+	/**
+	 * @generated
+	 */
+	public RunwayNodeDescriptor(EObject modelElement, int visualID) {
+		super(modelElement, visualID);
+	}
 
 }

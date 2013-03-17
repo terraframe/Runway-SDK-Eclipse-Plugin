@@ -17,70 +17,67 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayVisualIDRegistry;
 /**
  * @generated
  */
-public class MDBusinessMdBusinessCompartmentEditPart extends ListCompartmentEditPart
-{
+public class MDBusinessMdBusinessCompartmentEditPart extends
+		ListCompartmentEditPart {
 
-  /**
-   * @generated
-   */
-  public static final int VISUAL_ID = 7002;
+	/**
+	 * @generated
+	 */
+	public static final int VISUAL_ID = 7003;
 
-  /**
-   * @generated
-   */
-  public MDBusinessMdBusinessCompartmentEditPart(View view)
-  {
-    super(view);
-  }
+	/**
+	 * @generated
+	 */
+	public MDBusinessMdBusinessCompartmentEditPart(View view) {
+		super(view);
+	}
 
-  /**
-   * @generated
-   */
-  protected boolean hasModelChildrenChanged(Notification evt)
-  {
-    return false;
-  }
+	/**
+	 * @generated
+	 */
+	protected boolean hasModelChildrenChanged(Notification evt) {
+		return false;
+	}
 
-  /**
-   * @generated
-   */
-  public String getCompartmentName()
-  {
-    return Messages.MDBusinessMdBusinessCompartmentEditPart_title;
-  }
+	/**
+	 * @generated
+	 */
+	public String getCompartmentName() {
+		return Messages.MDBusinessMdBusinessCompartmentEditPart_title;
+	}
 
-  /**
-   * @generated
-   */
-  public IFigure createFigure()
-  {
-    ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
-    result.setTitleVisibility(false);
-    return result;
-  }
+	/**
+	 * @generated
+	 */
+	public IFigure createFigure() {
+		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
+				.createFigure();
+		result.setTitleVisibility(false);
+		return result;
+	}
 
-  /**
-   * @generated
-   */
-  protected void createDefaultEditPolicies()
-  {
-    super.createDefaultEditPolicies();
-    installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-        new MDBusinessMdBusinessCompartmentItemSemanticEditPolicy());
-    installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicyWithCustomReparent(
-        RunwayVisualIDRegistry.TYPED_INSTANCE));
-    installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-    installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
-        new MDBusinessMdBusinessCompartmentCanonicalEditPolicy());
-  }
+	/**
+	 * @generated
+	 */
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new MDBusinessMdBusinessCompartmentItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicyWithCustomReparent(
+						RunwayVisualIDRegistry.TYPED_INSTANCE));
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
+				new DragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
+				new MDBusinessMdBusinessCompartmentCanonicalEditPolicy());
+	}
 
-  /**
-   * @generated
-   */
-  protected void setRatio(Double ratio)
-  {
-    // nothing to do -- parent layout does not accept Double constraints as ratio
-    // super.setRatio(ratio); 
-  }
+	/**
+	 * @generated
+	 */
+	protected void setRatio(Double ratio) {
+		// nothing to do -- parent layout does not accept Double constraints as ratio
+		// super.setRatio(ratio); 
+	}
 
 }
