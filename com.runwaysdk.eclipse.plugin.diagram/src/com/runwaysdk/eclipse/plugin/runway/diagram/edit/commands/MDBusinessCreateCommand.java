@@ -28,6 +28,7 @@ public class MDBusinessCreateCommand extends EditElementCommand
   public MDBusinessCreateCommand(CreateElementRequest req)
   {
     super(req.getLabel(), null, req);
+    System.out.println("Uno"); 
   }
 
   /**
@@ -40,7 +41,9 @@ public class MDBusinessCreateCommand extends EditElementCommand
     if (container instanceof View)
     {
       container = ( (View) container ).getElement();
+      
     }
+    System.out.println("Dos"); 
     return container;
   }
 
@@ -49,6 +52,7 @@ public class MDBusinessCreateCommand extends EditElementCommand
    */
   public boolean canExecute()
   {
+	System.out.println("Tres"); 
     return true;
 
   }
@@ -67,6 +71,7 @@ public class MDBusinessCreateCommand extends EditElementCommand
     doConfigure(newElement, monitor, info);
 
     ( (CreateElementRequest) getRequest() ).setNewElement(newElement);
+	System.out.println("Quatro"); 
     return CommandResult.newOKCommandResult(newElement);
   }
 
@@ -85,6 +90,7 @@ public class MDBusinessCreateCommand extends EditElementCommand
     {
       configureCommand.execute(monitor, info);
     }
+    System.out.println("Cinco");
   }
 
 }
