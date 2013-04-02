@@ -56,6 +56,8 @@ public class RunwayDOMParser
 
 			// 1. Get all "Top Level" objects in the xmlFile using getElementsByTagName method and store them in the "mdBusinessNodeList" variable
 			NodeList mdBusinessNodeList = doc.getElementsByTagName(XMLTags.MD_BUSINESS_TAG);
+			
+			//Example
 			NodeList mdEnumNodeList = doc.getElementsByTagName(XMLTags.MD_ENUMERATION_TAG);
 			
 			for (int i = 0; i < mdBusinessNodeList.getLength(); i++){	
@@ -66,6 +68,9 @@ public class RunwayDOMParser
 				parseMDBusiness(mdBusinessNode);
 			}
 			
+			/**
+			 * Just doing this as an example for now...
+			 */
 			for (int i = 0; i < mdEnumNodeList.getLength(); i++){	
 				// Get the MDBusiness node from the mdBusinessNodeList
 				Node mdEnumNode = mdEnumNodeList.item(i);
