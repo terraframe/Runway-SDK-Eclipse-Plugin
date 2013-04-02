@@ -18,6 +18,7 @@ import com.runwaysdk.constants.XMLConstants;
 import com.runwaysdk.eclipse.plugin.runway.DocumentRoot;
 import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
 import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
+import com.runwaysdk.eclipse.plugin.runway.MDClass;
 import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
 import com.runwaysdk.eclipse.plugin.runway.RunwayPackage;
 import com.runwaysdk.eclipse.plugin.schema.MdAttributeFactory;
@@ -110,7 +111,8 @@ public class RunwayDOMParser
 		return biz;
 	}
 
-	private void newMdAttribute(MDBusiness biz, String attrName, NamedNodeMap attrs) {
+	// Proposed newMdAttribute
+	private void newMdAttribute(MDClass mdclass, String attrName, NamedNodeMap attrs) {
 
 		// Create a new MdAttribute and add it to the MdAttribute's container
 		MDAttribute attr = MdAttributeFactory.createMdAttribute(attrName);    
@@ -121,31 +123,41 @@ public class RunwayDOMParser
 
 		System.out.println("Attribute name: " + attrName);
 		// TODO Commenting this out for testing our parser
-		Command command = AddCommand.create(editingDomain, biz, RunwayPackage.eINSTANCE.getMDClass_Attributes(), attr);
+		Command command = AddCommand.create(editingDomain, mdclass, RunwayPackage.eINSTANCE.getMDClass_Attributes(), attr);
 
 		editingDomain.getCommandStack().execute(command);
 	}
+	
+	/*private void parseMDAttributes(Node mdNode){
+		NodeList ChildNodeList = mdNode.getChildNodes();
+		
+		for(int i = 0; i < ChildNodeList.getLength(); i++){
+			Node ChildNode = ChildNodeList.item(i);
+			
+			if(ChildNode.getNodeType() == Node.ELEMENT_NODE){
+				NodeList attrNodeList = ChildNode.getChildNodes();
+				
+			}
+		}
+	}*/
 
-
-	private void parseMDBusiness(Node mdBusinessNode){
-
-
-		if (mdBusinessNode.getNodeType() == Node.ELEMENT_NODE){
-			NamedNodeMap attrs = mdBusinessNode.getAttributes();
+	private void parseMDAtrributes(Node mdNode){
+		
+		if (mdNode.getNodeType() == Node.ELEMENT_NODE){
+			NamedNodeMap attrs = mdNode.getAttributes();
 
 			// 2.1 Create a new MdBusiness and set the appropriate values (i.e. name, label)
-			MDBusiness biz = newMdBusiness(attrs);
+			//MDBusiness biz = newMdBusiness(attrs);
 
 			// 2.2 Get all children objects of the MDBusiness node and store them in the "mdBusinessChildNodeList" variable
-			NodeList mdBusinessChildNodeList = mdBusinessNode.getChildNodes();
+			NodeList ChildNodeList = mdNode.getChildNodes();
 
-			printAttributes(mdBusinessNode.getAttributes(), "MDBusiness Tag Attributes Information");
-			for (int j = 0; j < mdBusinessChildNodeList.getLength(); j++){
-				Node mdBusinessChildNode = mdBusinessChildNodeList.item(j);
+			for (int j = 0; j < ChildNodeList.getLength(); j++){
+				Node ChildNode = ChildNodeList.item(j);
 
-				if (mdBusinessChildNode.getNodeType() == Node.ELEMENT_NODE){
+				if (ChildNode.getNodeType() == Node.ELEMENT_NODE){
 
-					NodeList attributesNodeList = mdBusinessChildNode.getChildNodes();
+					NodeList attributesNodeList = ChildNode.getChildNodes();
 
 					for (int k = 0; k < attributesNodeList.getLength(); k++)
 					{
@@ -153,10 +165,10 @@ public class RunwayDOMParser
 
 						if (attributeNode.getNodeType() == Node.ELEMENT_NODE)
 						{
-							if (mdBusinessChildNode.getNodeName() == "attributes") {
+							if (ChildNode.getNodeName() == "attributes") {
 								printAttributes(attributeNode.getAttributes(), "Attributes for: " + attributeNode.getNodeName() + " tag");
 								NamedNodeMap attrAttrs = attributeNode.getAttributes();
-								newMdAttribute(biz, attributeNode.getNodeName(), attrAttrs);
+								//newMdAttribute(mdclass, attributeNode.getNodeName(), attrAttrs);
 							}
 						}
 					}
