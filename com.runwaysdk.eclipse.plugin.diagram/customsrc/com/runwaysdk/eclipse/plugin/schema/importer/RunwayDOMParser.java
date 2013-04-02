@@ -21,6 +21,7 @@ import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
 import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
 import com.runwaysdk.eclipse.plugin.runway.RunwayPackage;
 import com.runwaysdk.eclipse.plugin.schema.MdAttributeFactory;
+import com.runwaysdk.eclipse.plugin.schema.importer.MdParsers.MdStaticParsers;
 
 public class RunwayDOMParser
 {
@@ -53,8 +54,10 @@ public class RunwayDOMParser
 			Document doc = dBuilder.parse(xmlFile);
 			doc.getDocumentElement().normalize(); // Not sure if this method is neccessary. 
 
-			// 1. Get all MDBusiness objects in the xmlFile using getElementsByTagName method and store them in the "mdBusinessNodeList" variable
+			// 1. Get all "Top Level" objects in the xmlFile using getElementsByTagName method and store them in the "mdBusinessNodeList" variable
 			NodeList mdBusinessNodeList = doc.getElementsByTagName(XMLTags.MD_BUSINESS_TAG);
+			NodeList mdEnumNodeList = doc.getElementsByTagName(XMLTags.MD_ENUMERATION_TAG);
+			
 			for (int i = 0; i < mdBusinessNodeList.getLength(); i++){	
 
 				// Get the MDBusiness node from the mdBusinessNodeList
@@ -62,7 +65,13 @@ public class RunwayDOMParser
 				// 2. For each MDBusiness node, get its children (i.e. attributes) and create new children classes with the extracted information
 				parseMDBusiness(mdBusinessNode);
 			}
-
+			
+			for (int i = 0; i < mdEnumNodeList.getLength(); i++){	
+				// Get the MDBusiness node from the mdBusinessNodeList
+				Node mdEnumNode = mdEnumNodeList.item(i);
+				// 2. For each MDBusiness node, get its children (i.e. attributes) and create new children classes with the extracted information
+				//parseMdEnum(mdEnumNode);
+			}
 
 		}
 		catch (Exception e){
@@ -80,26 +89,18 @@ public class RunwayDOMParser
 
 	}
 
-	private static String getTagValue(String sTag, Element eElement)
-	{
-		NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
-
-		Node nValue = (Node) nlList.item(0);
-
-		return nValue.getNodeValue();
-	}
 
 	private MDBusiness newMdBusiness(NamedNodeMap attrs){
 		MDBusiness biz = RunwayFactory.eINSTANCE.createMDBusiness();
-		biz.setClassName(attrs.getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
-		biz.setDisplayLabel(attrs.getNamedItem(XMLTags.DISPLAY_LABEL_ATTRIBUTE).getNodeValue());
-
+		
+		//Fill in Business Values
+		MdStaticParsers.parseMdBusiness(biz, attrs);
 		//TODO Commenting out GMF stuff for testing purposes.
 
-		Command command = AddCommand.create(editingDomain, documentRoot, RunwayPackage.eINSTANCE.getDocumentRoot_MDBusinesses(), biz);
+		Command command = AddCommand.create(editingDomain, documentRoot, RunwayPackage.eINSTANCE.getDocumentRoot_MetaData(), biz);
 		editingDomain.getCommandStack().execute(command);
 
-		System.out.println("Business class name: " + biz.getClassName());
+		System.out.println("Business class name: " + biz.getName());
 
 		return biz;
 	}
@@ -115,7 +116,7 @@ public class RunwayDOMParser
 
 		System.out.println("Attribute name: " + attrName);
 		// TODO Commenting this out for testing our parser
-		Command command = AddCommand.create(editingDomain, biz, RunwayPackage.eINSTANCE.getMDBusiness_Attributes(), attr);
+		Command command = AddCommand.create(editingDomain, biz, RunwayPackage.eINSTANCE.getMDClass_Attributes(), attr);
 
 		editingDomain.getCommandStack().execute(command);
 	}
