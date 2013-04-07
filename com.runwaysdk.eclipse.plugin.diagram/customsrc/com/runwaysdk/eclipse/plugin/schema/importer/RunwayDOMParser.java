@@ -66,7 +66,7 @@ public class RunwayDOMParser
 				// Get the MDBusiness node from the mdBusinessNodeList
 				Node mdBusinessNode = mdBusinessNodeList.item(i);
 				// 2. For each MDBusiness node, get its children (i.e. attributes) and create new children classes with the extracted information
-				//parseMDBusiness(mdBusinessNode);
+				parseMDBusiness(mdBusinessNode);
 			}
 			
 			/**
@@ -112,7 +112,7 @@ public class RunwayDOMParser
 	}
 
 	// Proposed newMdAttribute
-	private void newMdAttribute(MDClass mdclass, String attrName, NamedNodeMap attrs) {
+	private void newMdAttribute(MDClass mdclass, String attrName, NamedNodeMap attrs) {	
 
 		// Create a new MdAttribute and add it to the MdAttribute's container
 		MDAttribute attr = MdAttributeFactory.createMdAttribute(attrName);    
