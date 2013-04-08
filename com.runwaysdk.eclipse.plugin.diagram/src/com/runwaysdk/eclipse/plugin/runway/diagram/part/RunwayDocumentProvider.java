@@ -54,6 +54,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
 
+import com.runwaysdk.eclipse.plugin.schema.exporter.ModelOperationListener;
+
 /**
  * @generated
  */
@@ -193,6 +195,9 @@ public class RunwayDocumentProvider extends AbstractDocumentProvider implements
 			}
 
 		});
+		
+		// Custom src:
+		ModelOperationListener.registerListeners(editingDomain);
 
 		return editingDomain;
 	}
@@ -578,6 +583,15 @@ public class RunwayDocumentProvider extends AbstractDocumentProvider implements
 	 */
 	protected void doSaveDocument(IProgressMonitor monitor, Object element,
 			IDocument document, boolean overwrite) throws CoreException {
+	  
+	  
+	  // Custom src  
+      ModelOperationListener.onDocumentSave(document);
+	  
+	    
+	    
+	    
+	  
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			if (!overwrite && !info.isSynchronized()) {

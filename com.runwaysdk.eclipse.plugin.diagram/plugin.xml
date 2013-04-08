@@ -691,6 +691,15 @@
    
    
    <!-- Custom Extension Points (Not Generated) -->
+   <!--
+   <extension point="org.eclipse.emf.transaction.listeners">
+      <?gmfgen generated="false"?>
+      <listener class="com.runwaysdk.eclipse.plugin.schema.exporter.ModelOperationListener">
+         <editingDomain id="com.runwaysdk.eclipse.plugin.diagram.EditingDomain"/>
+      </listener>
+  </extension>
+   -->
+   
    <extension point="org.eclipse.ui.newWizards" id="com.runwaysdk.new">
       <?gmfgen generated="false"?>
       <category 
