@@ -3,19 +3,19 @@ package com.runwaysdk.eclipse.plugin.schema.exporter;
 import java.util.ArrayList;
 import java.util.List;
 
-import runwayMdParsingClasses.XMLMdBusiness;
-import runwayMdParsingClasses.XMLMetadata;
 
 import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
+import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMdBusiness;
+import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMetadata;
 
 
 public class XMLRecordFactory
 {
-  private static List<XMLMdBusiness> record = new ArrayList<XMLMdBusiness>();
+  private static List<XMLMdBusiness> recordStore = new ArrayList<XMLMdBusiness>();
   
   public static XMLMdBusiness getXMLMdBusiness(MDBusiness biz) {
-    for (int i = 0; i < record.size(); ++i) {
-      XMLMdBusiness xmlBiz = record.get(i);
+    for (int i = 0; i < recordStore.size(); ++i) {
+      XMLMdBusiness xmlBiz = recordStore.get(i);
       
       if (xmlBiz.getMetadata() == biz) {
         return xmlBiz;
@@ -25,7 +25,7 @@ public class XMLRecordFactory
     XMLMdBusiness xmlBiz = new XMLMdBusiness();
     xmlBiz.setMetadata(biz);
     xmlBiz.setCrudFlag(XMLMdBusiness.UPDATE);
-    record.add(xmlBiz);
+    recordStore.add(xmlBiz);
     return xmlBiz;
   }
   
@@ -33,10 +33,12 @@ public class XMLRecordFactory
     
     System.out.println("Records in store:");
     
-    for (int i = 0; i < record.size(); ++i) {
-      XMLMdBusiness xmlBiz = record.get(i);
+    for (int i = 0; i < recordStore.size(); ++i) {
+      XMLMdBusiness xmlBiz = recordStore.get(i);
       
       System.out.println(xmlBiz.writeToXML());
     }
+    
+    recordStore.clear();
   }
 }

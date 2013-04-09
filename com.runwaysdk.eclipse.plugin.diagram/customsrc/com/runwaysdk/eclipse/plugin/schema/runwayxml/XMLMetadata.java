@@ -1,4 +1,4 @@
-package runwayMdParsingClasses;
+package com.runwaysdk.eclipse.plugin.schema.runwayxml;
 
 import java.util.HashMap;
 import java.util.Map;

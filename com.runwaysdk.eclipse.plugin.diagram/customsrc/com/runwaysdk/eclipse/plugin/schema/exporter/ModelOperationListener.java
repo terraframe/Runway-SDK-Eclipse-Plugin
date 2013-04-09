@@ -13,10 +13,10 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 
-import runwayMdParsingClasses.XMLMdBusiness;
-import runwayMdParsingClasses.XMLMetadata;
 
 import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
+import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMdBusiness;
+import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMetadata;
 
 
 // This class requires custom changes to generated GMF source:
@@ -50,7 +50,7 @@ public class ModelOperationListener extends ResourceSetListenerImpl implements R
       Object feature = note.getFeature();
       Object newValue = note.getNewValue();
       
-//      System.out.println("feature = " + feature + "; newValue = " + newValue);
+      System.out.println("feature = " + feature + "; newValue = " + newValue);
       
       if (feature instanceof EReference) {
         if (newValue instanceof MDBusiness && note.getEventType() == 1) {

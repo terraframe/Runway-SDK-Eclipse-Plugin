@@ -1,4 +1,4 @@
-package runwayMdParsingClasses;
+package com.runwaysdk.eclipse.plugin.schema.runwayxml;
 
 import org.w3c.dom.NamedNodeMap;
 
