@@ -1,4 +1,4 @@
-<version xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../profiles/version_gis.xsd">
+<versionrhfghfgh xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../profiles/version_gis.xsd">
     <doIt>
         <create>
             <mdBusiness label="HelloWorld" name="com.terraframe.runwaytemplate.HelloWorld">
@@ -15,4 +15,4 @@
             <object key="com.terraframe.runwaytemplate.HelloWorld" type="com.runwaysdk.system.metadata.MdBusiness"/>
         </delete>
     </undoIt>
-</version>
+</versionrhfghfgh>
