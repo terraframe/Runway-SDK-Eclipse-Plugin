@@ -29,6 +29,10 @@ public class XMLRecordFactory
     return xmlBiz;
   }
   
+  public static List<XMLMdBusiness> getRecords() {
+    return recordStore;
+  }
+  
   public static void saveRecords() {
     
     System.out.println("Records in store:");
