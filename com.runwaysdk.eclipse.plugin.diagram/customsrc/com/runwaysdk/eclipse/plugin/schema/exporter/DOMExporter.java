@@ -36,17 +36,11 @@ public class DOMExporter {
 		writeMdBusiness(fileName, elements);
 		
 	}
-
-//	public static void writeMdBusiness(String filename, MDBusiness mdBiz) {
-//	  
-//	}
-//
-//	public static void writeMdAttribute(String filename, MDAttribute mdAttr) {
-//		String belongsTo;
-//		String listOfAttributes;
-//		
-//    }
 	
+	// This method is called when the user saves the document.
+	public static void doExport() {
+	  
+    }
 	
 	public static void writeMdBusiness(String filename, List<XmlElement> elementList) {
 	    Document dom;

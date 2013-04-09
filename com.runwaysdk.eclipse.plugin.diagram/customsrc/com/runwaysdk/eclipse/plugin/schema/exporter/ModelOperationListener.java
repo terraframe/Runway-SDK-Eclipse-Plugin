@@ -99,10 +99,9 @@ public class ModelOperationListener extends ResourceSetListenerImpl implements R
     super.resourceSetChanged(event);
   }
   
-  
   // Requires custom hook in RunwayDocumentProvider
   public static void onDocumentSave(IDocument document) {
-    XMLRecordFactory.saveRecords();
+    DOMExporter.doExport();
   }
 
   /*
