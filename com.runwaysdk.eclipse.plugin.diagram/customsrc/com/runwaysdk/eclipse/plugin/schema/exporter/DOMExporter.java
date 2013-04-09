@@ -97,7 +97,6 @@ public class DOMExporter {
     	}
     	if (parent != null) {
     		// i need to change parent from XmlElement to Element
-    		
  //   		elementBuilder.getNodeName(); // Just test code
     		
     		String parentName = parent.getElementName(); // Get's the parents name
