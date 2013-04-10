@@ -52,7 +52,7 @@ public class DOMExporter
     URL url = Platform.getInstanceLocation().getURL();
     String location = new File(url.getPath()).getAbsolutePath();
     
-    String fileName = location + "/garbledMen";
+    String fileName = location + "/garbledMen.xml";
     
     System.out.println("Writing file to '" + fileName + "'");
 
@@ -69,17 +69,21 @@ public class DOMExporter
       
       if (record.getCrudFlag() == XMLMetadata.CREATE)
       {
-        el.appendChild(instance.doItCreate);
+        instance.doItCreate.appendChild(el);
       }
       else if (record.getCrudFlag() == XMLMetadata.UPDATE)
       {
-        el.appendChild(instance.doItUpdate);
+        instance.doItUpdate.appendChild(el);
       }
       else if (record.getCrudFlag() == XMLMetadata.DELETE)
       {
-        el.appendChild(instance.doItDelete);
+        instance.doItDelete.appendChild(el);
+      }
+      else {
+        throw new RuntimeException("Unrecognized Crud Flag on XMLMdBusiness [" + record.getCrudFlag() + "]");
       }
     }
+    
     try
     {
       Transformer tr = TransformerFactory.newInstance().newTransformer();
@@ -134,16 +138,15 @@ public class DOMExporter
       version.appendChild(undoIt);
 
       undoItCreate = dom.createElement("create");
-      doIt.appendChild(undoItCreate);
+      undoIt.appendChild(undoItCreate);
 
       undoItUpdate = dom.createElement("update");
-      doIt.appendChild(undoItUpdate);
+      undoIt.appendChild(undoItUpdate);
 
       undoItDelete = dom.createElement("delete");
       undoIt.appendChild(undoItDelete);
 
       dom.appendChild(version);
-
     }
     catch (ParserConfigurationException pce)
     {
