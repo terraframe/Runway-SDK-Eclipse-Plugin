@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -46,29 +45,6 @@ public class DOMExporter
   private Element  undoItUpdate;
 
   private Element  undoItDelete;
-
-  public static void main(String[] args)
-  {
-
-    List<XmlAttribute> attributes = new ArrayList<XmlAttribute>();
-    List<XmlElement> elements = new ArrayList<XmlElement>();
-
-    XmlAttribute attTest = new XmlAttribute("name", "value");
-    XmlAttribute attTest2 = new XmlAttribute("name2", "value2");
-    attributes.add(attTest);
-    attributes.add(attTest2);
-
-    XmlElement eleTest = new XmlElement("XmlName", null, attributes);
-    XmlElement eleTest2 = new XmlElement("XmlName2", eleTest, attributes);
-    elements.add(eleTest);
-    elements.add(eleTest2);
-
-    System.out.println(elements.size());
-
-    String fileName = "garbledMen.xml";
-    // writeMdBusiness(fileName, elements);
-
-  }
 
   // This method is called when the user saves the document.
   public static void doExport()
@@ -124,39 +100,6 @@ public class DOMExporter
     {
       System.out.println(ioe.getMessage());
     }
-  }
-
-  static Document elementBuilder(Document dom, String elementName, List<XmlAttribute> attributeList,
-      XmlElement parent)
-  {
-    Element elementBuilder = dom.createElement(elementName);
-    for (int j = 0; j < attributeList.size(); j++)
-    {
-      elementBuilder.setAttribute(attributeList.get(j).getAttributeName(), attributeList.get(j)
-          .getAttributeValue());
-    }
-    if (parent != null)
-    {
-      // i need to change parent from XmlElement to Element
-      // elementBuilder.getNodeName(); // Just test code
-
-      String parentName = parent.getElementName(); // Get's the parents name
-
-      // Where do I set the parents id?
-      // This assumes that the node's name is its id. Which is false.
-      Element parentId = dom.getElementById(parentName); // Get's the parents
-                                                         // unique id?
-
-      parentId.appendChild(elementBuilder); // Should append the child to the
-                                            // parent in the dom
-
-    }
-    else
-    {
-      // Declares the Element as the root node
-      dom.appendChild(elementBuilder);
-    }
-    return dom;
   }
 
   public void generateEmptySchema(String filename)
