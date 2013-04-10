@@ -1,9 +1,10 @@
 package com.runwaysdk.eclipse.plugin.schema.runwayxml;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 
 import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
-import com.runwaysdk.eclipse.plugin.runway.MetaData;
 import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
 import com.runwaysdk.eclipse.plugin.schema.importer.XMLTags;
 
@@ -28,11 +29,9 @@ public class XMLMdBusiness extends XMLMetadata
   }
   
   @Override
-  public String writeToXML() {
-    String xml = "";
-    
-    xml = xml + super.writeToXML();
-    
-    return xml;
+  public Element writeDoItXML(Document dom) {
+    Element xml = dom.createElement("MdBusiness");
+    this.setDoItExport(xml);
+    return super.writeDoItXML(dom);
   }
 }

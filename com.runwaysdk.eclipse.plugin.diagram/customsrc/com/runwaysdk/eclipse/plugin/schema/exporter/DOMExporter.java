@@ -1,19 +1,37 @@
 package com.runwaysdk.eclipse.plugin.schema.exporter;
-import javax.xml.parsers.*;
-import javax.xml.transform.*;
-import javax.xml.transform.dom.*;
-import javax.xml.transform.stream.*;
-import org.w3c.dom.*;
-
-import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
-import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMdBusiness;
+import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMetadata;
+
 public class DOMExporter {
+	
+    private Document dom;
+    private Element version;
+    private Element doIt;
+    private Element doItCreate;
+    private Element doItUpdate;
+    private Element doItDelete;
+    private Element undoIt;
+    private Element undoItCreate;
+    private Element undoItUpdate;
+    private Element undoItDelete;
 
 	public static void main(String[] args) {
 		
@@ -39,12 +57,42 @@ public class DOMExporter {
 	
 	// This method is called when the user saves the document.
 	public static void doExport() {
-	  
+		// Generates an empty Runway XML file
+		DOMExporter instance = new DOMExporter();
+		String fileName = "garbledMen";
+		instance.generateEmptySchema(fileName);
+		
+		List<XMLMdBusiness> records = XMLRecordFactory.getRecords();
+		for (int i = 0; i < records.size(); i++) {
+			XMLMdBusiness record = records.get(i);
+			Element el = record.writeDoItXML(instance.dom);
+			if (record.getCrudFlag() == XMLMetadata.CREATE) {
+				el.appendChild(instance.doItCreate);
+			} else if (record.getCrudFlag() == XMLMetadata.UPDATE) {
+				el.appendChild(instance.doItUpdate);
+			} else if (record.getCrudFlag() == XMLMetadata.DELETE) {
+				el.appendChild(instance.doItDelete);
+			}
+		}
+        try {
+            Transformer tr = TransformerFactory.newInstance().newTransformer();
+            tr.setOutputProperty(OutputKeys.INDENT, "yes");
+            tr.setOutputProperty(OutputKeys.METHOD, "xml");
+            tr.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+            tr.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+            tr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+
+            // send DOM to file
+            tr.transform(new DOMSource(instance.dom), 
+                                 new StreamResult(new FileOutputStream(fileName)));
+        } catch (TransformerException te) {
+            System.out.println(te.getMessage());
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
     }
 	
 	public static void writeMdBusiness(String filename, List<XmlElement> elementList) {
-	    Document dom;
-
 	    // instance of a DocumentBuilderFactory
 	    DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 	    try {
@@ -108,12 +156,59 @@ public class DOMExporter {
     	return dom;
     }
 
+	public void generateEmptySchema (String filename) {
+	    Document dom;
+
+	    // instance of a DocumentBuilderFactory
+	    DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+	    try {
+	        // use factory to get an instance of document builder
+	        DocumentBuilder db = dbf.newDocumentBuilder();
+	        // create instance of DOM
+	        dom = db.newDocument();
+	        
+	        // create data elements and place them in the structure
+	        version = dom.createElement("version");
+	        version.setAttribute("xsi:noNamespaceSchemaLocation", "../../profiles/version_gis.xsd");
+	        version.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+
+	        doIt = dom.createElement("doIt");
+	        version.appendChild(doIt);
+
+	        doItCreate = dom.createElement("create");
+	        doIt.appendChild(doItCreate);
+
+	        doItUpdate = dom.createElement("update");
+	        doIt.appendChild(doItUpdate);
+
+	        doItDelete = dom.createElement("delete");
+	        doIt.appendChild(doItDelete);
+
+	        undoIt = dom.createElement("undoIt");
+	        version.appendChild(undoIt);
+
+	        undoItCreate = dom.createElement("create");
+	        doIt.appendChild(undoItCreate);
+
+	        undoItUpdate = dom.createElement("update");
+	        doIt.appendChild(undoItUpdate);
+
+	        undoItDelete = dom.createElement("delete");
+	        undoIt.appendChild(undoItDelete);
+
+	        dom.appendChild(version);
+
+	    } catch (ParserConfigurationException pce) {
+	        System.out.println("UsersXML: Error trying to instantiate DocumentBuilder " + pce);
+	    }
+	}
+
+	
     
     
     
     
-    
-	public static void writeMdBusiness(String filename, String name, String display) {
+/*	public static void writeMdBusiness(String filename, String name, String display) {
 	    Document dom;
 
 	    // instance of a DocumentBuilderFactory
@@ -189,7 +284,6 @@ public class DOMExporter {
 	    } catch (ParserConfigurationException pce) {
 	        System.out.println("UsersXML: Error trying to instantiate DocumentBuilder " + pce);
 	    }
-	}
-
+	} */
 	
 }

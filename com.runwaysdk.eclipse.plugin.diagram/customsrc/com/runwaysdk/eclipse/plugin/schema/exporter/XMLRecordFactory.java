@@ -40,7 +40,7 @@ public class XMLRecordFactory
     for (int i = 0; i < recordStore.size(); ++i) {
       XMLMdBusiness xmlBiz = recordStore.get(i);
       
-      System.out.println(xmlBiz.writeToXML());
+      System.out.println(xmlBiz.writeDoItXML());
     }
     
     recordStore.clear();

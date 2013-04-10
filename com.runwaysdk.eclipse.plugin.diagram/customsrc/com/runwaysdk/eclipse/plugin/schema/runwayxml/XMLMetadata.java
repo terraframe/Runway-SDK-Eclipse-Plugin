@@ -2,8 +2,9 @@ package com.runwaysdk.eclipse.plugin.schema.runwayxml;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 
 import com.runwaysdk.eclipse.plugin.runway.MetaData;
@@ -13,8 +14,9 @@ abstract public class XMLMetadata
   private Map<String, String> xmlAttributes = new HashMap<String, String>();
   
   private MetaData metadata;
+  private Element doItExport, undoItExport;
   
-  public static final int UNMODIFIED = 0;
+public static final int UNMODIFIED = 0;
   public static final int CREATE = 1;
   public static final int UPDATE = 2;
   public static final int DELETE = 3;
@@ -40,22 +42,30 @@ abstract public class XMLMetadata
     return metadata;
   }
   
-  public String writeToXML() {
-    String xml = "";
-    
-    xml = "<MdBusiness crudFlag:" + this.getCrudFlag();
+  public Element writeDoItXML(Document dom) {
+    Element xml = doItExport;
     
     Object[] keys = xmlAttributes.keySet().toArray();
     for (int i = 0; i < keys.length; ++i) {
       String key = (String) keys[i];
-      xml = xml + " " + key + ":" + xmlAttributes.get(key);
+      xml.setAttribute(key, xmlAttributes.get(key));
     }
-    
-    xml = xml + ">\n<MdBusiness/>";
     
     return xml;
   }
   
+  public Element writeUndoItXML() {
+	    Element xml = doItExport;
+	    
+	    Object[] keys = xmlAttributes.keySet().toArray();
+	    for (int i = 0; i < keys.length; ++i) {
+	      String key = (String) keys[i];
+	      xml.setAttribute(key, xmlAttributes.get(key));
+	    }
+	    
+	    return xml;
+	  }
+
   public MetaData getMetadata()
   {
     return metadata;
@@ -75,4 +85,22 @@ abstract public class XMLMetadata
   {
     this.crudFlag = crudFlag;
   }
+  
+  public Element getDoItExport() {
+	return doItExport;
+}
+
+public void setDoItExport(Element doItExport) {
+	this.doItExport = doItExport;
+}
+
+public Element getUndoItExport() {
+	return undoItExport;
+}
+
+public void setUndoItExport(Element undoItExport) {
+	this.undoItExport = undoItExport;
+}
+
+
 }
