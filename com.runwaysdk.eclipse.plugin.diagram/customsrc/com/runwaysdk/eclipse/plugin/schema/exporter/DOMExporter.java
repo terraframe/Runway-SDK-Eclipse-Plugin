@@ -51,7 +51,7 @@ public class DOMExporter {
 		System.out.println(elements.size());
 
 		String fileName = "garbledMen.xml";
-		writeMdBusiness(fileName, elements);
+//		writeMdBusiness(fileName, elements);
 		
 	}
 	
@@ -91,44 +91,6 @@ public class DOMExporter {
             System.out.println(ioe.getMessage());
         }
     }
-	
-	public static void writeMdBusiness(String filename, List<XmlElement> elementList) {
-	    // instance of a DocumentBuilderFactory
-	    DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-	    try {
-	        // use factory to get an instance of document builder
-	        DocumentBuilder db = dbf.newDocumentBuilder();
-	        // create instance of DOM
-	        dom = db.newDocument();
-	        
-	        for (int i = 0; i < elementList.size(); i++) {
-	        	dom = elementBuilder(dom,
-	    			elementList.get(i).getElementName(),
-	    			elementList.get(i).getAttributeList(),
-	    			elementList.get(i).getChildOf());
-	        }
-	
-	        try {
-	            Transformer tr = TransformerFactory.newInstance().newTransformer();
-	            tr.setOutputProperty(OutputKeys.INDENT, "yes");
-	            tr.setOutputProperty(OutputKeys.METHOD, "xml");
-	            tr.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-	            tr.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-	            tr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-
-	            // send DOM to file
-	            tr.transform(new DOMSource(dom), 
-	                                 new StreamResult(new FileOutputStream(filename)));
-
-	        } catch (TransformerException te) {
-	            System.out.println(te.getMessage());
-	        } catch (IOException ioe) {
-	            System.out.println(ioe.getMessage());
-	        }
-	    } catch (ParserConfigurationException pce) {
-	        System.out.println("UsersXML: Error trying to instantiate DocumentBuilder " + pce);
-	    }
-	}
 
 
     static Document elementBuilder(Document dom, String elementName, List<XmlAttribute> attributeList, XmlElement parent) {
