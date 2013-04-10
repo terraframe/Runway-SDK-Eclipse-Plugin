@@ -33,4 +33,8 @@ public class XMLRecordFactory
     return recordStore;
   }
   
+  public static void clearRecordStore() {
+    recordStore.clear();
+  }
+  
 }

@@ -84,6 +84,8 @@ public class DOMExporter
       }
     }
     
+    XMLRecordFactory.clearRecordStore();
+    
     try
     {
       Transformer tr = TransformerFactory.newInstance().newTransformer();
