@@ -8,7 +8,7 @@ import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
 import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
 import com.runwaysdk.eclipse.plugin.schema.importer.XMLTags;
 
-public class XMLMdBusiness extends XMLMetadata
+public class XMLMdBusiness extends XMLMdElement
 {
   public XMLMdBusiness() {
     
