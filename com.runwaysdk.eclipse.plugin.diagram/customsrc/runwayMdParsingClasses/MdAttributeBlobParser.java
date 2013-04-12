@@ -12,7 +12,8 @@ public abstract class MdAttributeBlobParser extends MdAttributeParser{
 		super(RunwayFactory.eINSTANCE.createMDAttributeBlob(), nodeMap);
 	}
 	
-	public MDAttributeBlob parser(){
+	@Override
+	public MDAttributeBlob parse(){
 		MDAttributeBlob mdAttributeBlob = getMetaData();
 		mdAttributeBlob.setDefaultValue((nodeMap.getNamedItem(XMLTags.BLOB_TAG).getNodeValue()).getBytes());
 		return (MDAttributeBlob)super.parse();

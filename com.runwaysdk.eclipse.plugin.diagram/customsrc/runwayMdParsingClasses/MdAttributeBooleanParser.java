@@ -13,7 +13,8 @@ public class MdAttributeBooleanParser extends MdAttributeParser{
 		super(RunwayFactory.eINSTANCE.createMDAttributeBoolean(), nodeMap);
 	}
 	
-	public MDAttributeBoolean parser(){
+	@Override
+	public MDAttributeBoolean parse(){
 		MDAttributeBoolean mdAttributeBoolean = getMetaData();
 		mdAttributeBoolean.setDefaultValue(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.BOOLEAN_TAG).getNodeValue()));
 		return (MDAttributeBoolean)super.parse();

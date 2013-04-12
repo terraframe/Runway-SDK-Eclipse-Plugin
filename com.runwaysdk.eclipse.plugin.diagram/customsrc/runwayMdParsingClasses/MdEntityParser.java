@@ -13,6 +13,7 @@ public abstract class MdEntityParser extends MdClassParser {
 		super(mdElement, nodeMap);
 	}
 	
+	@Override
 	public MDEntity parse(){
 		MDEntity entity = getMetaData();
 		entity.setTable(nodeMap.getNamedItem(XMLTags.ENTITY_TABLE).getNodeValue());

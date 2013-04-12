@@ -13,7 +13,8 @@ public class MdAttributeCharacterParser extends MdAttributeParser{
 		super(RunwayFactory.eINSTANCE.createMDAttributeCharacter(), nodeMap);
 	}
 	
-	public MDAttributeCharacter parser(){
+	@Override
+	public MDAttributeCharacter parse(){
 		MDAttributeCharacter mdAttributeCharacter = getMetaData();
 		mdAttributeCharacter.setDefaultValue((nodeMap.getNamedItem(XMLTags.CHARACTER_TAG).getNodeValue()).charAt(0));
 		return (MDAttributeCharacter)super.parse();

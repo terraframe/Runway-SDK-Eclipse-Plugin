@@ -14,6 +14,7 @@ public abstract class MdClassParser extends MdTypeParser {
 	}
 	
 
+	@Override
 	public MDClass parse(){
 		MDClass mdClass = getMetaData();
 		mdClass.setPublish(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.PUBLISH_ATTRIBUTE).getNodeValue()));

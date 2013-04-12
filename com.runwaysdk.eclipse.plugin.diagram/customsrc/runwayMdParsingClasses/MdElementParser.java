@@ -11,6 +11,7 @@ public abstract class MdElementParser extends MdEntityParser{
 		super(mdElement, nodeMap);
 	}
 
+	@Override
 	public MDElement parse(){
 		MDElement element = getMetaData();
 		element.setExtendable(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.EXTENDABLE_ATTRIBUTE).getNodeValue()));
