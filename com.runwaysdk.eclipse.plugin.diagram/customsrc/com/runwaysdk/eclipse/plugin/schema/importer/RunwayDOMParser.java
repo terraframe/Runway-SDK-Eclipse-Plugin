@@ -73,19 +73,43 @@ public class RunwayDOMParser
 	}
 
 	private void parseDoItNode(NodeList doIt) {
-		if(doIt.getLength() == 1){
-			System.out.println("Inside DoIt. DoIt has " + doIt.getLength() + " child(children)");
+		/*if(doIt.getLength() == 1){
+			System.out.println("There is " + doIt.getLength() + " doIt");
 			Node doItNode = doIt.item(0);
 			if(doItNode.getNodeType() == Node.ELEMENT_NODE){
 				System.out.println("Checking type of DoItNode");
 				NodeList createNodeList = doItNode.getChildNodes();
-				if(createNodeList.getLength() == 1){
-					System.out.println("<create>List has" + createNodeList.getLength() + "children");
-					Node createNode = createNodeList.item(0);
-					if(createNode.getNodeType() == Node.ELEMENT_NODE){
-						System.out.println("Checking nodetype of CreateNode");
+				System.out.println("<createNodeList> has " + createNodeList.getLength() + " children");
+				for(int i = 0; i < createNodeList.getLength(); i++){
+					System.out.println("Inside <create> child #" + i);
+					Node createNode = createNodeList.item(i);
+					System.out.println(createNode.getNodeName());
+					if(createNode.getNodeName().equals(XMLTags.CREATE_TAG)){
+						System.out.println("Inside <create> tag");
+						if(createNode.getNodeType() == Node.ELEMENT_NODE){
+							System.out.println("Checking nodetype of CreateNode");
+							parseCreateNode(createNode);
+						}
+					}
+				}
+			}
+		}*/
+		if(doIt.getLength() == 1){
+			System.out.println("There is " + doIt.getLength() + " doIt");
+			Element doItNode = (Element)doIt.item(0);
+			NodeList doItChildren = doItNode.getChildNodes();
+			System.out.println("<doIt> has " + doItChildren.getLength() + " children");
+			for(int i = 0; i < doItChildren.getLength(); i++){
+				Node createNode = doItChildren.item(i);
+				if(createNode instanceof Element){
+					System.out.println("Here");
+					System.out.println(createNode.getNodeName());
+					if(createNode.getNodeName().equals(XMLTags.CREATE_TAG)){
+						System.out.println("Inside <"+createNode.getNodeName()+">");
 						parseCreateNode(createNode);
 					}
+				}else{
+					System.out.println("Not an element node");
 				}
 			}
 		}
@@ -95,26 +119,34 @@ public class RunwayDOMParser
 	private void parseCreateNode(Node createNode) {
 		NodeList mdNodeList = createNode.getChildNodes();
 		// 1. Go through each element of the list
-		System.out.println("Inside <create>, which has " + mdNodeList.getLength() + " child(children)");
 		for(int i = 0; i < mdNodeList.getLength(); i++){
-			System.out.println("Inside mdNodeList child #" + i);
 			Node mdNode = mdNodeList.item(i);
-			if(mdNode.getNodeType() == Node.ELEMENT_NODE){
-				System.out.println("Inside child #" + i);
+			if(mdNode instanceof Element){
+				System.out.println("mdNode#" + i);
+				System.out.println(mdNode.getNodeName());
+				System.out.println(mdNode.getAttributes().getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
+				System.out.println("LOOK HERE");
 				MetaData mdNodeObject = factory.getContentFromNode(mdNode);
-				//Node is a subclass of MDClass and 
-				if(mdNodeObject instanceof MDClass){
-					//1. Find <attributes> of this object
+				System.out.println("DONE CREATING Medata");
+				if((MDClass)mdNodeObject instanceof MDClass){
+					System.out.println("Inside an MDClass");
 					NodeList attributeList = mdNode.getChildNodes();
-					if(attributeList.getLength() == 1){
-						Node attributeNode = attributeList.item(0);
-						if(attributeNode.getNodeType() == Node.ELEMENT_NODE){
+					for(int j = 0; j < attributeList.getLength(); j++){
+						Node attributeNode = attributeList.item(j);
+						if(attributeNode instanceof Element){
+							System.out.println("About to read <attributes>");
 							List<MDAttribute> mdAttributeList = parseAttributeNode(attributeNode);
 							linkAttributes((MDClass)mdNodeObject, mdAttributeList);
 						}
+						else{
+							System.out.println("Not an element node");
+						}
 					}
-					
+				}else{
+					System.out.println("mdNodeObject is not an instance of MDClass");
 				}
+			}else{
+				System.out.println("Not an element node");
 			}
 		}
 	}

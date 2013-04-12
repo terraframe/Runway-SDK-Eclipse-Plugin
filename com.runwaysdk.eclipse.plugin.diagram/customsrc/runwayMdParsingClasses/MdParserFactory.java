@@ -20,12 +20,16 @@ public class MdParserFactory {
 	public MetaData getContentFromNode(Node node){
 		String nodeName = node.getNodeName();
 		NamedNodeMap nodeMap = node.getAttributes();
+		
+		System.out.println("Inside MdParserFactory");
 
 		MdMetaDataParser contentParser = null; 
 
 		//Try to keep these in Alphabetical Order
 		if(nodeName == XMLTags.MD_BUSINESS_TAG){
+			System.out.println("Reading an MD_BUSINESS_TAG");
 			contentParser = new MdBusinessParser(nodeMap);
+			System.out.println("Done reading an MD_BUSINESS_TAG");
 		}
 
 		else if (nodeName == XMLTags.BLOB_TAG) {
