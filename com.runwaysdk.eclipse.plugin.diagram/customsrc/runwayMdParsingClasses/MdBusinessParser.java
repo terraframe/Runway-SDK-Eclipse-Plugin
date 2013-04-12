@@ -17,9 +17,26 @@ public class MdBusinessParser extends MdElementParser {
 	@Override
 	public MDBusiness parse(){
 		MDBusiness business = getMetaData();
-		business.setCacheAlgorithm(nodeMap.getNamedItem(XMLTags.CACHE_ALGORITHM_ATTRIBUTE).getNodeValue());
-		business.setCacheSize(nodeMap.getNamedItem(XMLTags.CACHE_SIZE_ATTRIBUTE).getNodeValue());
-		business.setExtends(nodeMap.getNamedItem(XMLTags.EXTENDS_ATTRIBUTE).getNodeValue());
+		System.out.print("Inside MdBusinessParser");
+		// The code starts breaking here.
+		if(!nodeMap.getNamedItem(XMLTags.CACHE_ALGORITHM_ATTRIBUTE).getNodeValue().equals("")){
+			business.setCacheAlgorithm(nodeMap.getNamedItem(XMLTags.CACHE_ALGORITHM_ATTRIBUTE).getNodeValue());
+		}else{
+			System.out.println("CACHE_ALGORITHM_ATTRIBUTE is not defined.");
+		}
+		
+		if(!nodeMap.getNamedItem(XMLTags.CACHE_SIZE_ATTRIBUTE).getNodeValue().equals("")){
+			business.setCacheAlgorithm(nodeMap.getNamedItem(XMLTags.CACHE_ALGORITHM_ATTRIBUTE).getNodeValue());
+		}else{
+			System.out.println("CACHE_SIZE_ATTRIBUTE is not defined.");
+		}
+		
+		if(!nodeMap.getNamedItem(XMLTags.EXTENDS_ATTRIBUTE).getNodeValue().equals("")){
+			business.setExtends(nodeMap.getNamedItem(XMLTags.EXTENDS_ATTRIBUTE).getNodeValue());
+		}else{
+			System.out.println("EXTENDS_ATTRIBUTE is not defined.");
+		}
+		
 		return (MDBusiness)super.parse();
 	
 	}
