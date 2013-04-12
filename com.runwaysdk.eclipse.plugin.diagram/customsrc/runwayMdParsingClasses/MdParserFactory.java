@@ -81,9 +81,6 @@ public class MdParserFactory {
 			contentParser = new MdAttributeTextParser(nodeMap);
 		}
 
-
-
-
 		return contentParser.parse();
 	}
 }
