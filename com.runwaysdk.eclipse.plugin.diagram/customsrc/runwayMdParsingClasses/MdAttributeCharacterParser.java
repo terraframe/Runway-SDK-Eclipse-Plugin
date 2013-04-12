@@ -14,13 +14,15 @@ public class MdAttributeCharacterParser extends MdAttributeParser{
 	}
 	
 	public MDAttributeCharacter parser(){
-		MDAttributeCharacter mdAttributeCharacter = getMdAttribute();
+		MDAttributeCharacter mdAttributeCharacter = getMetaData();
 		mdAttributeCharacter.setDefaultValue((nodeMap.getNamedItem(XMLTags.CHARACTER_TAG).getNodeValue()).charAt(0));
 		return (MDAttributeCharacter)super.parse();
 	
 	}
-	protected MDAttributeCharacter getMdAttribute(){
-		return (MDAttributeCharacter)super.getMdAttribute();
+	
+	@Override
+	protected MDAttributeCharacter getMetaData(){
+		return (MDAttributeCharacter)super.getMetaData();
 	}
 
 }

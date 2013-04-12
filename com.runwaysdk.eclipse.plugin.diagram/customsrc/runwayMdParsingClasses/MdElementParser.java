@@ -12,13 +12,14 @@ public abstract class MdElementParser extends MdEntityParser{
 	}
 
 	public MDElement parse(){
-		MDElement element = getMdType();
+		MDElement element = getMetaData();
 		element.setExtendable(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.EXTENDABLE_ATTRIBUTE).getNodeValue()));
 		element.setIsAbstract(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.ABSTRACT_ATTRIBUTE).getNodeValue()));
 		return (MDElement)super.parse();
 	}
 
-	protected MDElement getMdType(){
-		return (MDElement)super.getMdType();
+	@Override
+	protected MDElement getMetaData(){
+		return (MDElement)super.getMetaData();
 	}
 }

@@ -14,14 +14,15 @@ public abstract class MdEntityParser extends MdClassParser {
 	}
 	
 	public MDEntity parse(){
-		MDEntity entity = getMdType();
+		MDEntity entity = getMetaData();
 		entity.setTable(nodeMap.getNamedItem(XMLTags.ENTITY_TABLE).getNodeValue());
 		entity.setGenerateController(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.GENERATE_CONTROLLER).getNodeValue()));
 		entity.setEnforceSiteMaster(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.ENFORCE_SITE_MASTER_ATTRIBUTE).getNodeValue()));
 		return (MDEntity)super.parse();
 		}
 	
-	protected MDEntity getMdType(){
-		return (MDEntity)super.getMdType();
+	@Override
+	protected MDEntity getMetaData(){
+		return (MDEntity)super.getMetaData();
 	}
 }

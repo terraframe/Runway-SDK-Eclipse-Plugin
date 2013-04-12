@@ -15,13 +15,14 @@ public abstract class MdClassParser extends MdTypeParser {
 	
 
 	public MDClass parse(){
-		MDClass mdClass = getMdClass();
+		MDClass mdClass = getMetaData();
 		mdClass.setPublish(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.PUBLISH_ATTRIBUTE).getNodeValue()));
 		return (MDClass)super.parse();
 		
 	}
 	
-	protected MDClass getMdClass(){
-		return (MDClass)super.getMdType();
+	@Override
+	protected MDClass getMetaData() {
+		return (MDClass)super.getMetaData();
 	}
 }

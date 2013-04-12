@@ -14,13 +14,15 @@ public class MdAttributeBooleanParser extends MdAttributeParser{
 	}
 	
 	public MDAttributeBoolean parser(){
-		MDAttributeBoolean mdAttributeBoolean = getMdAttribute();
+		MDAttributeBoolean mdAttributeBoolean = getMetaData();
 		mdAttributeBoolean.setDefaultValue(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.BOOLEAN_TAG).getNodeValue()));
 		return (MDAttributeBoolean)super.parse();
 	
 	}
-	protected MDAttributeBoolean getMdAttribute(){
-		return (MDAttributeBoolean)super.getMdAttribute();
+	
+	@Override
+	protected MDAttributeBoolean getMetaData(){
+		return (MDAttributeBoolean)super.getMetaData();
 	}
 
 }

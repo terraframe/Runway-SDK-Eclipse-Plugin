@@ -15,7 +15,7 @@ public class MdBusinessParser extends MdElementParser {
 	}
 
 	public MDBusiness parse(){
-		MDBusiness business = getMdType();
+		MDBusiness business = getMetaData();
 		business.setCacheAlgorithm(nodeMap.getNamedItem(XMLTags.CACHE_ALGORITHM_ATTRIBUTE).getNodeValue());
 		business.setCacheSize(nodeMap.getNamedItem(XMLTags.CACHE_SIZE_ATTRIBUTE).getNodeValue());
 		business.setExtends(nodeMap.getNamedItem(XMLTags.EXTENDS_ATTRIBUTE).getNodeValue());
@@ -23,8 +23,9 @@ public class MdBusinessParser extends MdElementParser {
 	
 	}
 
-	protected MDBusiness getMdType(){
-		return (MDBusiness)super.getMdType();
+	@Override
+	protected MDBusiness getMetaData(){
+		return (MDBusiness)super.getMetaData();
 	}
 
 
