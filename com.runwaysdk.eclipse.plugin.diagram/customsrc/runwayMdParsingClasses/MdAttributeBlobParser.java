@@ -6,7 +6,7 @@ import com.runwaysdk.eclipse.plugin.runway.MDAttributeBlob;
 import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
 import com.runwaysdk.eclipse.plugin.schema.importer.XMLTags;
 
-public abstract class MdAttributeBlobParser extends MdAttributeParser{
+public class MdAttributeBlobParser extends MdAttributeParser{
 	
 	public MdAttributeBlobParser(NamedNodeMap nodeMap){
 		super(RunwayFactory.eINSTANCE.createMDAttributeBlob(), nodeMap);
