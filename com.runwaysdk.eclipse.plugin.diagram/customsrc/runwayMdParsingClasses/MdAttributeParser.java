@@ -7,7 +7,7 @@ import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
 import com.runwaysdk.eclipse.plugin.schema.importer.XMLTags;
 
 
-public class MdAttributeParser extends MdMetaDataParser{
+public abstract class MdAttributeParser extends MdMetaDataParser{
 
 	public MdAttributeParser(MDAttribute mdAttribute, NamedNodeMap nodeMap){
 		super(mdAttribute, nodeMap);
