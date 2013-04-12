@@ -128,19 +128,20 @@ public class RunwayDOMParser
 		editingDomain.getCommandStack().execute(command);
 	}
 	
-	/*private void parseMDAttributes(Node mdNode){
-		NodeList ChildNodeList = mdNode.getChildNodes();
+	/* 1. Get all of the mdbusiness records under <doit><create> -> store it in a list (mdBusiness)
+	 * 2. For each element of the list
+	 * 		2.1 Generate instance of mdBusiness node
+	 *		2.2 Get a list of all mdAttribute
+	 *		2.3 Link the mdBusiness with the list of mdAttribute
+	 * 
+	 * */
+	
+	private void getMdBusiness(){
 		
-		for(int i = 0; i < ChildNodeList.getLength(); i++){
-			Node ChildNode = ChildNodeList.item(i);
-			
-			if(ChildNode.getNodeType() == Node.ELEMENT_NODE){
-				NodeList attrNodeList = ChildNode.getChildNodes();
-				
-			}
-		}
-	}*/
-
+	}
+	
+	
+	
 	private void parseMDAtrributes(Node mdNode){
 		
 		if (mdNode.getNodeType() == Node.ELEMENT_NODE){
