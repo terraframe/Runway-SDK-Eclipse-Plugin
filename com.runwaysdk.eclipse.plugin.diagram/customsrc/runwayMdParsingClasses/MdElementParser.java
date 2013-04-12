@@ -14,8 +14,20 @@ public abstract class MdElementParser extends MdEntityParser{
 	@Override
 	public MDElement parse(){
 		MDElement element = getMetaData();
-		element.setExtendable(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.EXTENDABLE_ATTRIBUTE).getNodeValue()));
-		element.setIsAbstract(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.ABSTRACT_ATTRIBUTE).getNodeValue()));
+		if(nodeMap.getNamedItem(XMLTags.EXTENDABLE_ATTRIBUTE) != null){
+			element.setExtendable(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.EXTENDABLE_ATTRIBUTE).getNodeValue()));
+		}
+		else{
+			System.out.println(XMLTags.EXTENDABLE_ATTRIBUTE + " is not defined");
+		}
+		
+		if(nodeMap.getNamedItem(XMLTags.ABSTRACT_ATTRIBUTE) != null){
+			element.setIsAbstract(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.ABSTRACT_ATTRIBUTE).getNodeValue()));
+
+		}
+		else{
+			System.out.println("ABSTRACT_ATTRIBUTE" + " is not defined");
+		}
 		return (MDElement)super.parse();
 	}
 

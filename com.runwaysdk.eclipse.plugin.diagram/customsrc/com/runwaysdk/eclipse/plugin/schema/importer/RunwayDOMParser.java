@@ -12,7 +12,6 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -21,13 +20,9 @@ import runwayMdParsingClasses.MdParserFactory;
 import com.runwaysdk.constants.XMLConstants;
 import com.runwaysdk.eclipse.plugin.runway.DocumentRoot;
 import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
-import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
 import com.runwaysdk.eclipse.plugin.runway.MDClass;
 import com.runwaysdk.eclipse.plugin.runway.MetaData;
-import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
 import com.runwaysdk.eclipse.plugin.runway.RunwayPackage;
-import com.runwaysdk.eclipse.plugin.schema.MdAttributeFactory;
-import com.runwaysdk.eclipse.plugin.schema.importer.MdParsers.MdStaticParsers;
 
 public class RunwayDOMParser
 {
@@ -65,6 +60,8 @@ public class RunwayDOMParser
 			NodeList doItList = doc.getElementsByTagName(XMLTags.DO_IT_TAG);
 
 			parseDoItNode(doItList);
+			System.out.println("Done!!");
+
 
 		}
 		catch (Exception e){
@@ -137,6 +134,7 @@ public class RunwayDOMParser
 							System.out.println("About to read <attributes>");
 							List<MDAttribute> mdAttributeList = parseAttributeNode(attributeNode);
 							linkAttributes((MDClass)mdNodeObject, mdAttributeList);
+							System.out.println("Done linking attribtues!!!!!!!!!!!!!!!!");
 						}
 						else{
 							System.out.println("Not an element node");

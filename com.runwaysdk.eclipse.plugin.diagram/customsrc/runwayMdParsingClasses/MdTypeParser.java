@@ -16,8 +16,15 @@ public abstract class MdTypeParser extends MdMetaDataParser {
 	public MDType parse(){
 
 		MDType mdType = getMetaData();
-		mdType.setName(nodeMap.getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
-		mdType.setExported(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.EXPORTED_ATTRIBUTE).getNodeValue()));
+		
+		if(nodeMap.getNamedItem(XMLTags.NAME_ATTRIBUTE) != null){
+			mdType.setName(nodeMap.getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
+
+		}
+		if(nodeMap.getNamedItem(XMLTags.EXPORTED_ATTRIBUTE) != null){
+			mdType.setExported(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.EXPORTED_ATTRIBUTE).getNodeValue()));
+
+		}
 
 
 		return (MDType)super.parse();

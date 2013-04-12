@@ -16,7 +16,13 @@ public class MdAttributeCharacterParser extends MdAttributeParser{
 	@Override
 	public MDAttributeCharacter parse(){
 		MDAttributeCharacter mdAttributeCharacter = getMetaData();
-		mdAttributeCharacter.setDefaultValue((nodeMap.getNamedItem(XMLTags.CHARACTER_TAG).getNodeValue()).charAt(0));
+		try{
+			mdAttributeCharacter.setDefaultValue((nodeMap.getNamedItem(XMLTags.CHARACTER_TAG).getNodeValue()).charAt(0));
+
+		}
+		catch(NullPointerException e){
+			System.out.println("Value not present in Attribute Character");
+		}
 		return (MDAttributeCharacter)super.parse();
 	
 	}

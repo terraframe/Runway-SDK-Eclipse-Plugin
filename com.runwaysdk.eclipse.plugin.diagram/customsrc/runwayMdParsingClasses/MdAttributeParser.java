@@ -17,10 +17,27 @@ public abstract class MdAttributeParser extends MdMetaDataParser{
 	@Override
 	public MDAttribute parse(){
 		MDAttribute mdAttribute = getMetaData();
-		mdAttribute.setName(nodeMap.getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
-		mdAttribute.setRequired(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.REQUIRED_ATTRIBUTE).getNodeValue()));
-		mdAttribute.setImmutable(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.IMMUTABLE_ATTRIBUTE).getNodeValue()));
-		mdAttribute.setDisplayLabel(nodeMap.getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
+
+		if(nodeMap.getNamedItem(XMLTags.NAME_ATTRIBUTE) != null){
+			mdAttribute.setName(nodeMap.getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
+
+		}
+
+		if(nodeMap.getNamedItem(XMLTags.REQUIRED_ATTRIBUTE) != null){
+			mdAttribute.setRequired(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.REQUIRED_ATTRIBUTE).getNodeValue()));
+
+		}
+
+		if(nodeMap.getNamedItem(XMLTags.IMMUTABLE_ATTRIBUTE) != null){
+			mdAttribute.setImmutable(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.IMMUTABLE_ATTRIBUTE).getNodeValue()));
+
+		}
+
+		if(nodeMap.getNamedItem(XMLTags.NAME_ATTRIBUTE) != null){
+			mdAttribute.setDisplayLabel(nodeMap.getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
+
+		}
+
 		return (MDAttribute)super.parse();
 	}
 

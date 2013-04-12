@@ -19,19 +19,19 @@ public class MdBusinessParser extends MdElementParser {
 		MDBusiness business = getMetaData();
 		System.out.print("Inside MdBusinessParser");
 		// The code starts breaking here.
-		if(!nodeMap.getNamedItem(XMLTags.CACHE_ALGORITHM_ATTRIBUTE).getNodeValue().equals("")){
+		if(nodeMap.getNamedItem(XMLTags.CACHE_ALGORITHM_ATTRIBUTE) != null){
 			business.setCacheAlgorithm(nodeMap.getNamedItem(XMLTags.CACHE_ALGORITHM_ATTRIBUTE).getNodeValue());
 		}else{
 			System.out.println("CACHE_ALGORITHM_ATTRIBUTE is not defined.");
 		}
 		
-		if(!nodeMap.getNamedItem(XMLTags.CACHE_SIZE_ATTRIBUTE).getNodeValue().equals("")){
+		if(nodeMap.getNamedItem(XMLTags.CACHE_SIZE_ATTRIBUTE) != null){
 			business.setCacheAlgorithm(nodeMap.getNamedItem(XMLTags.CACHE_ALGORITHM_ATTRIBUTE).getNodeValue());
 		}else{
 			System.out.println("CACHE_SIZE_ATTRIBUTE is not defined.");
 		}
 		
-		if(!nodeMap.getNamedItem(XMLTags.EXTENDS_ATTRIBUTE).getNodeValue().equals("")){
+		if(nodeMap.getNamedItem(XMLTags.EXTENDS_ATTRIBUTE) != null){
 			business.setExtends(nodeMap.getNamedItem(XMLTags.EXTENDS_ATTRIBUTE).getNodeValue());
 		}else{
 			System.out.println("EXTENDS_ATTRIBUTE is not defined.");

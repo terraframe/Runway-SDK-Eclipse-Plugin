@@ -16,9 +16,18 @@ public class MdMetaDataParser {
 
 	public MetaData parse(){
 
-		metaData.setLabel(nodeMap.getNamedItem(XMLTags.DISPLAY_LABEL_ATTRIBUTE).getNodeValue());
-		metaData.setDescription(nodeMap.getNamedItem(XMLTags.DESCRIPTION_ATTRIBUTE).getNodeValue());
-		metaData.setRemovable(nodeMap.getNamedItem(XMLTags.REMOVE_ATTRIBUTE).getNodeValue());
+		if(nodeMap.getNamedItem(XMLTags.DISPLAY_LABEL_ATTRIBUTE) != null){
+			metaData.setLabel(nodeMap.getNamedItem(XMLTags.DISPLAY_LABEL_ATTRIBUTE).getNodeValue());
+		}
+		if(nodeMap.getNamedItem(XMLTags.DESCRIPTION_ATTRIBUTE) != null){
+			metaData.setDescription(nodeMap.getNamedItem(XMLTags.DESCRIPTION_ATTRIBUTE).getNodeValue());
+
+		}
+		if(nodeMap.getNamedItem(XMLTags.REMOVE_ATTRIBUTE) != null){
+			metaData.setRemovable(nodeMap.getNamedItem(XMLTags.REMOVE_ATTRIBUTE).getNodeValue());
+
+		}
+
 		return metaData;
 	}
 
