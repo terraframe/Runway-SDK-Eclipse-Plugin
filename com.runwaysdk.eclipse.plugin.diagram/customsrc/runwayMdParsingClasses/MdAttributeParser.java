@@ -14,6 +14,7 @@ public class MdAttributeParser extends MdMetaDataParser{
 	}
 
 
+	@Override
 	public MDAttribute parse(){
 		MDAttribute mdAttribute = getMetaData();
 		mdAttribute.setName(nodeMap.getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());

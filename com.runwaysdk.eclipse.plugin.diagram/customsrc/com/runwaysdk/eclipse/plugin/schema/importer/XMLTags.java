@@ -6,8 +6,7 @@ import com.runwaysdk.constants.XMLConstants;
 
 
 /**
- * LOTS OF HACKY WORKAROUNDS 
- * TODO Import additional shit
+ * TODO Import additional tags as needed 
  * @author armiller5
  *
  */
