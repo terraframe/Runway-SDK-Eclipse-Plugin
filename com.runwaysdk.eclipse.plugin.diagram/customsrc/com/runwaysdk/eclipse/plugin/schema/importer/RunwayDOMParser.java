@@ -1,6 +1,8 @@
 package com.runwaysdk.eclipse.plugin.schema.importer;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -32,6 +34,8 @@ public class RunwayDOMParser
 	// These two objects are used to modify GMF's domain model.
 	private final EditingDomain editingDomain;
 	private final DocumentRoot documentRoot;
+	private MdParserFactory factory = new MdParserFactory();
+
 
 	public RunwayDOMParser(EditingDomain editingDomain, DocumentRoot documentRoot) {
 		this.editingDomain = editingDomain;
@@ -57,9 +61,6 @@ public class RunwayDOMParser
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(xmlFile);
 			doc.getDocumentElement().normalize(); // Not sure if this method is neccessary. 
-
-			/* 1. Get all "Top Level" objects in the xmlFile using getElementsByTagName method and store them in the "mdBusinessNodeList" variable
-			//NodeList mdBusinessNodeList = doc.getElementsByTagName(XMLTags.MD_BUSINESS_TAG);*/
 			
 			NodeList doItList = doc.getElementsByTagName(XMLTags.DO_IT_TAG);
 
@@ -73,44 +74,17 @@ public class RunwayDOMParser
 
 	private void parseDoItNode(NodeList doIt) {
 		if(doIt.getLength() == 1){
+			System.out.println("Inside DoIt. DoIt has " + doIt.getLength() + " child(children)");
 			Node doItNode = doIt.item(0);
 			if(doItNode.getNodeType() == Node.ELEMENT_NODE){
+				System.out.println("Checking type of DoItNode");
 				NodeList createNodeList = doItNode.getChildNodes();
-				parseCreateNode(createNodeList);
-			}
-		}
-		
-	}
-
-	private void parseCreateNode(NodeList createList) {
-		if(createList.getLength() == 1){
-			Node createNode = createList.item(0);
-			if(createNode.getNodeType() == Node.ELEMENT_NODE){
-				NodeList mdNodeList = createNode.getChildNodes();
-				// 1. Go through each element of the list
-				for(int i = 0; i < mdNodeList.getLength(); i++){
-					Node mdNode = mdNodeList.item(i);
-					if(mdNode.getNodeType() == Node.ELEMENT_NODE){
-						MdParserFactory factory = new MdParserFactory();
-						MetaData mdNodeObject = factory.getContentFromNode(mdNode);
-						
-						//Node is a subclass of MDClass and 
-						if(mdNodeObject instanceof MDClass){
-							//1. Find <attributes> of this object
-							NodeList attributeList = mdNode.getChildNodes();
-							if(attributeList.getLength() == 1){
-								Node attributeNode = attributeList.item(0);
-								if(attributeNode.getNodeType() == Node.ELEMENT_NODE){
-									parseAttributeNode(mdNodeObject, attributeNode);
-								}
-							}
-							
-							//MetaData mdAttributeThing = factory.getContentFromNode(mdNode);
-									
-							/*// 2. Link them
-							if(mdAttributeThing instanceof MDAttribute)
-								//link*/
-						}
+				if(createNodeList.getLength() == 1){
+					System.out.println("<create>List has" + createNodeList.getLength() + "children");
+					Node createNode = createNodeList.item(0);
+					if(createNode.getNodeType() == Node.ELEMENT_NODE){
+						System.out.println("Checking nodetype of CreateNode");
+						parseCreateNode(createNode);
 					}
 				}
 			}
@@ -118,19 +92,57 @@ public class RunwayDOMParser
 		
 	}
 
+	private void parseCreateNode(Node createNode) {
+		NodeList mdNodeList = createNode.getChildNodes();
+		// 1. Go through each element of the list
+		System.out.println("Inside <create>, which has " + mdNodeList.getLength() + " child(children)");
+		for(int i = 0; i < mdNodeList.getLength(); i++){
+			System.out.println("Inside mdNodeList child #" + i);
+			Node mdNode = mdNodeList.item(i);
+			if(mdNode.getNodeType() == Node.ELEMENT_NODE){
+				System.out.println("Inside child #" + i);
+				MetaData mdNodeObject = factory.getContentFromNode(mdNode);
+				//Node is a subclass of MDClass and 
+				if(mdNodeObject instanceof MDClass){
+					//1. Find <attributes> of this object
+					NodeList attributeList = mdNode.getChildNodes();
+					if(attributeList.getLength() == 1){
+						Node attributeNode = attributeList.item(0);
+						if(attributeNode.getNodeType() == Node.ELEMENT_NODE){
+							List<MDAttribute> mdAttributeList = parseAttributeNode(attributeNode);
+							linkAttributes((MDClass)mdNodeObject, mdAttributeList);
+						}
+					}
+					
+				}
+			}
+		}
+	}
 
-	private void parseAttributeNode(MetaData mdClassNode, Node attrNode) {
+
+	private List<MDAttribute> parseAttributeNode(Node attrNode) {
 		NodeList attrList = attrNode.getChildNodes();
+		List<MDAttribute> mdAttributeList = new ArrayList<MDAttribute>();
+		
 		for (int i = 0; i < attrList.getLength(); i++){
 			Node attribute = attrList.item(i);
 			if(attribute.getNodeType() == Node.ELEMENT_NODE){
-				//MetaData attributeNode = 
+				mdAttributeList.add((MDAttribute) factory.getContentFromNode(attribute));
 			}
 		}
+		return mdAttributeList;
 		
 	}
+	
+	private void linkAttributes(MDClass mdClass, List<MDAttribute> mdAttributeList){
+		for(int i = 0; i < mdAttributeList.size(); i++){
+			MDAttribute mdAttribute = mdAttributeList.get(i);
+			Command command = AddCommand.create(editingDomain, mdClass, RunwayPackage.eINSTANCE.getMDClass_Attributes(), mdAttribute);
+			editingDomain.getCommandStack().execute(command);
+		}
+	}
 
-	private MDBusiness newMdBusiness(NamedNodeMap attrs){
+    /*private MDBusiness newMdBusiness(NamedNodeMap attrs){
 		MDBusiness biz = RunwayFactory.eINSTANCE.createMDBusiness();
 		
 		//Fill in Business Values
@@ -160,15 +172,6 @@ public class RunwayDOMParser
 		Command command = AddCommand.create(editingDomain, mdclass, RunwayPackage.eINSTANCE.getMDClass_Attributes(), attr);
 
 		editingDomain.getCommandStack().execute(command);
-	}
-	
-	/* 1. Get all of the mdbusiness records under <doit><create> 
-	 * 2. For each element of the list
-	 * 		2.1 Generate instance of mdBusiness node
-	 *		2.2 Get a list of all mdAttribute
-	 *		2.3 Link the mdBusiness with the list of mdAttribute
-	 * 
-	 * */
-	
+	}*/
 
 }
