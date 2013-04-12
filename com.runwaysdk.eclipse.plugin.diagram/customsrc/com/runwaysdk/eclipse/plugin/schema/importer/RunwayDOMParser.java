@@ -14,11 +14,14 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import runwayMdParsingClasses.MdParserFactory;
+
 import com.runwaysdk.constants.XMLConstants;
 import com.runwaysdk.eclipse.plugin.runway.DocumentRoot;
 import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
 import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
 import com.runwaysdk.eclipse.plugin.runway.MDClass;
+import com.runwaysdk.eclipse.plugin.runway.MetaData;
 import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
 import com.runwaysdk.eclipse.plugin.runway.RunwayPackage;
 import com.runwaysdk.eclipse.plugin.schema.MdAttributeFactory;
@@ -55,29 +58,12 @@ public class RunwayDOMParser
 			Document doc = dBuilder.parse(xmlFile);
 			doc.getDocumentElement().normalize(); // Not sure if this method is neccessary. 
 
-			// 1. Get all "Top Level" objects in the xmlFile using getElementsByTagName method and store them in the "mdBusinessNodeList" variable
-			NodeList mdBusinessNodeList = doc.getElementsByTagName(XMLTags.MD_BUSINESS_TAG);
+			/* 1. Get all "Top Level" objects in the xmlFile using getElementsByTagName method and store them in the "mdBusinessNodeList" variable
+			//NodeList mdBusinessNodeList = doc.getElementsByTagName(XMLTags.MD_BUSINESS_TAG);*/
 			
-			//Example
-			NodeList mdEnumNodeList = doc.getElementsByTagName(XMLTags.MD_ENUMERATION_TAG);
-			
-			for (int i = 0; i < mdBusinessNodeList.getLength(); i++){	
+			NodeList doItList = doc.getElementsByTagName(XMLTags.DO_IT_TAG);
 
-				// Get the MDBusiness node from the mdBusinessNodeList
-				Node mdBusinessNode = mdBusinessNodeList.item(i);
-				// 2. For each MDBusiness node, get its children (i.e. attributes) and create new children classes with the extracted information
-//				parseMDBusiness(mdBusinessNode);
-			}
-			
-			/**
-			 * Just doing this as an example for now...
-			 */
-			for (int i = 0; i < mdEnumNodeList.getLength(); i++){	
-				// Get the MDBusiness node from the mdBusinessNodeList
-				Node mdEnumNode = mdEnumNodeList.item(i);
-				// 2. For each MDBusiness node, get its children (i.e. attributes) and create new children classes with the extracted information
-				//parseMdEnum(mdEnumNode);
-			}
+			parseDoItNode(doItList);
 
 		}
 		catch (Exception e){
@@ -85,16 +71,64 @@ public class RunwayDOMParser
 		}
 	}
 
-	private static void printAttributes(NamedNodeMap nodeMap, String customMessage)
-	{
-		System.out.println(customMessage);
-		for (int p = 0; p < nodeMap.getLength(); p++)
-		{
-			System.out.println(nodeMap.item(p).getNodeName() + " = " + nodeMap.item(p).getNodeValue());
+	private void parseDoItNode(NodeList doIt) {
+		if(doIt.getLength() == 1){
+			Node doItNode = doIt.item(0);
+			if(doItNode.getNodeType() == Node.ELEMENT_NODE){
+				NodeList createNodeList = doItNode.getChildNodes();
+				parseCreateNode(createNodeList);
+			}
 		}
-
+		
 	}
 
+	private void parseCreateNode(NodeList createList) {
+		if(createList.getLength() == 1){
+			Node createNode = createList.item(0);
+			if(createNode.getNodeType() == Node.ELEMENT_NODE){
+				NodeList mdNodeList = createNode.getChildNodes();
+				// 1. Go through each element of the list
+				for(int i = 0; i < mdNodeList.getLength(); i++){
+					Node mdNode = mdNodeList.item(i);
+					if(mdNode.getNodeType() == Node.ELEMENT_NODE){
+						MdParserFactory factory = new MdParserFactory();
+						MetaData mdNodeObject = factory.getContentFromNode(mdNode);
+						
+						//Node is a subclass of MDClass and 
+						if(mdNodeObject instanceof MDClass){
+							//1. Find <attributes> of this object
+							NodeList attributeList = mdNode.getChildNodes();
+							if(attributeList.getLength() == 1){
+								Node attributeNode = attributeList.item(0);
+								if(attributeNode.getNodeType() == Node.ELEMENT_NODE){
+									parseAttributeNode(mdNodeObject, attributeNode);
+								}
+							}
+							
+							//MetaData mdAttributeThing = factory.getContentFromNode(mdNode);
+									
+							/*// 2. Link them
+							if(mdAttributeThing instanceof MDAttribute)
+								//link*/
+						}
+					}
+				}
+			}
+		}
+		
+	}
+
+
+	private void parseAttributeNode(MetaData mdClassNode, Node attrNode) {
+		NodeList attrList = attrNode.getChildNodes();
+		for (int i = 0; i < attrList.getLength(); i++){
+			Node attribute = attrList.item(i);
+			if(attribute.getNodeType() == Node.ELEMENT_NODE){
+				//MetaData attributeNode = 
+			}
+		}
+		
+	}
 
 	private MDBusiness newMdBusiness(NamedNodeMap attrs){
 		MDBusiness biz = RunwayFactory.eINSTANCE.createMDBusiness();
@@ -128,7 +162,7 @@ public class RunwayDOMParser
 		editingDomain.getCommandStack().execute(command);
 	}
 	
-	/* 1. Get all of the mdbusiness records under <doit><create> -> store it in a list (mdBusiness)
+	/* 1. Get all of the mdbusiness records under <doit><create> 
 	 * 2. For each element of the list
 	 * 		2.1 Generate instance of mdBusiness node
 	 *		2.2 Get a list of all mdAttribute
@@ -136,47 +170,5 @@ public class RunwayDOMParser
 	 * 
 	 * */
 	
-	private void getMdBusiness(){
-		
-	}
-	
-	
-	
-	private void parseMDAtrributes(Node mdNode){
-		
-		if (mdNode.getNodeType() == Node.ELEMENT_NODE){
-			NamedNodeMap attrs = mdNode.getAttributes();
-
-			// 2.1 Create a new MdBusiness and set the appropriate values (i.e. name, label)
-			//MDBusiness biz = newMdBusiness(attrs);
-
-			// 2.2 Get all children objects of the MDBusiness node and store them in the "mdBusinessChildNodeList" variable
-			NodeList ChildNodeList = mdNode.getChildNodes();
-
-			for (int j = 0; j < ChildNodeList.getLength(); j++){
-				Node ChildNode = ChildNodeList.item(j);
-
-				if (ChildNode.getNodeType() == Node.ELEMENT_NODE){
-
-					NodeList attributesNodeList = ChildNode.getChildNodes();
-
-					for (int k = 0; k < attributesNodeList.getLength(); k++)
-					{
-						Node attributeNode = attributesNodeList.item(k);
-
-						if (attributeNode.getNodeType() == Node.ELEMENT_NODE)
-						{
-							if (ChildNode.getNodeName() == "attributes") {
-								printAttributes(attributeNode.getAttributes(), "Attributes for: " + attributeNode.getNodeName() + " tag");
-								NamedNodeMap attrAttrs = attributeNode.getAttributes();
-								//newMdAttribute(mdclass, attributeNode.getNodeName(), attrAttrs);
-							}
-						}
-					}
-				}
-			}
-
-		}
-	}
 
 }
