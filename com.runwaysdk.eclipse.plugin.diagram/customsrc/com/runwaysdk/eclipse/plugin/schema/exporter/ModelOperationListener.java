@@ -1,20 +1,29 @@
 package com.runwaysdk.eclipse.plugin.schema.exporter;
 
+import java.io.File;
+import java.net.URL;
 import java.util.List;
 
-import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
-
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.part.FileEditorInput;
 
 import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
+import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
+import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDocumentProvider;
 import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMdBusiness;
 import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMetadata;
 
@@ -100,7 +109,7 @@ public class ModelOperationListener extends ResourceSetListenerImpl implements R
   }
   
   // Requires custom hook in RunwayDocumentProvider
-  public static void onDocumentSave(IDocument document) {
+  public static void onDocumentSave(IDocument document, Object element, RunwayDocumentProvider docProvider) {
     DOMExporter.doExport();
   }
 

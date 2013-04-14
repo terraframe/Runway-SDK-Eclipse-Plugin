@@ -586,7 +586,7 @@ public class RunwayDocumentProvider extends AbstractDocumentProvider implements
 	  
 	  
 	  // Custom src  
-      ModelOperationListener.onDocumentSave(document);
+      ModelOperationListener.onDocumentSave(document, element, this);
 	  
 	    
 	    

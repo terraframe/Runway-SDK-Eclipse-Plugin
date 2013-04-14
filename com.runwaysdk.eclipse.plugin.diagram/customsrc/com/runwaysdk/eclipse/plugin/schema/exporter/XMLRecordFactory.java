@@ -13,6 +13,15 @@ public class XMLRecordFactory
 {
   private static List<XMLMdBusiness> recordStore = new ArrayList<XMLMdBusiness>();
   
+  /**
+   * This method will search for an existing XMLMdBusiness that wraps the given
+   * MDBusiness and will return one if it already exists in the record store. If
+   * none such object exists it will create a new one, store it in the record
+   * store (for future requests), and return it.
+   * 
+   * @param biz
+   * @return
+   */
   public static XMLMdBusiness getXMLMdBusiness(MDBusiness biz) {
     for (int i = 0; i < recordStore.size(); ++i) {
       XMLMdBusiness xmlBiz = recordStore.get(i);

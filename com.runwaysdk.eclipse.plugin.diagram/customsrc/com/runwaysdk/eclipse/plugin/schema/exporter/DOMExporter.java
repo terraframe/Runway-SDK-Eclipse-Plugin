@@ -16,16 +16,24 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IFileEditorInput;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.runwaysdk.dataaccess.CoreException;
+import com.runwaysdk.dataaccess.cache.globalcache.ehcache.CacheShutdown;
+import com.runwaysdk.dataaccess.io.CreateDomainModel;
+import com.runwaysdk.dataaccess.io.TimeFormat;
+import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
 import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMdBusiness;
 import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMetadata;
 
 public class DOMExporter
 {
-
   private Document dom;
 
   private Element  version;
@@ -49,10 +57,7 @@ public class DOMExporter
   // This method is called when the user saves the document.
   public static void doExport()
   {
-    URL url = Platform.getInstanceLocation().getURL();
-    String location = new File(url.getPath()).getAbsolutePath();
-    
-    String fileName = location + "/garbledMen.xml";
+    String fileName = getExportPath();
     
     System.out.println("Writing file to '" + fileName + "'");
 
@@ -100,12 +105,48 @@ public class DOMExporter
     }
     catch (TransformerException te)
     {
-      System.out.println(te.getMessage());
+      throw new RuntimeException(te);
     }
     catch (IOException ioe)
     {
-      System.out.println(ioe.getMessage());
+      throw new RuntimeException(ioe);
     }
+  }
+  
+  private static String getExportPath() {
+    String activeProjectName;
+    String activeDiagramFilename;
+    try {
+      IEditorPart editorPart = RunwayDiagramEditorPlugin.getInstance().getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+      IFileEditorInput input = (IFileEditorInput)editorPart.getEditorInput() ;
+      IFile file = input.getFile();
+      IProject activeProject = file.getProject();
+      
+      activeProjectName = activeProject.getName();
+      activeDiagramFilename = file.getName();
+      activeDiagramFilename = activeDiagramFilename.substring(0, activeDiagramFilename.length() - file.getFileExtension().length() - 1);
+    }
+    catch (Exception e) {
+      throw new RuntimeException("Unable to retrieve the project name from the active Runway diagram.");
+    }
+    
+    URL url = Platform.getInstanceLocation().getURL();
+    String workspace = new File(url.getPath()).getAbsolutePath();
+    
+    String saveDirectory = workspace + "/.metadata/.plugins/com.runwaysdk.eclipse.plugin/" + activeProjectName + "/" + activeDiagramFilename;
+    
+    // Use Runway to create a new schema file.
+    String path;
+    try
+    {
+      path = new CreateDomainModel(saveDirectory).create();
+    }
+    finally
+    {
+      CacheShutdown.shutdown();
+    }
+    
+    return path;
   }
 
   public void generateEmptySchema(String filename)
