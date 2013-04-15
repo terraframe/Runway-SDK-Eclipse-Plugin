@@ -29,12 +29,14 @@ public class RunwayDOMParser
 	// These two objects are used to modify GMF's domain model.
 	private final EditingDomain editingDomain;
 	private final DocumentRoot documentRoot;
-	private MdParserFactory factory = new MdParserFactory();
+	private MdParserFactory factory;
 
 
 	public RunwayDOMParser(EditingDomain editingDomain, DocumentRoot documentRoot) {
 		this.editingDomain = editingDomain;
 		this.documentRoot = documentRoot;
+		this.factory = new MdParserFactory();
+
 	}
 
 	public void parse(String file)
@@ -116,23 +118,40 @@ public class RunwayDOMParser
 	private void parseCreateNode(Node createNode) {
 		NodeList mdNodeList = createNode.getChildNodes();
 		// 1. Go through each element of the list
+		//Note: Here we are parsing all "top level" nodes within the <create/> tag. 
 		for(int i = 0; i < mdNodeList.getLength(); i++){
 			Node mdNode = mdNodeList.item(i);
+			
+			//A node must be an element in order for our logic to continue
+			//A node can either be an Element, Text, etc node, but we only care about "Element" Nodes 
 			if(mdNode instanceof Element){
 				System.out.println("mdNode#" + i);
 				System.out.println(mdNode.getNodeName());
 				System.out.println(mdNode.getAttributes().getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
 				System.out.println("LOOK HERE");
+				
+				//This is where we actually instantiate and parse our EMF object.
+				//The factory abstracts all creation and parsing. Look there for more!
 				MetaData mdNodeObject = factory.getContentFromNode(mdNode);
 				System.out.println("DONE CREATING Medata");
+				
+				
+				//Because only MDClass and its subclasses can actually have MDAttributes, we do this type checking to make sure
 				if((MDClass)mdNodeObject instanceof MDClass){
 					System.out.println("Inside an MDClass");
 					NodeList attributeList = mdNode.getChildNodes();
+					
+					//We have our MDClass (or its child) object, now we want to parse and link its attributes 
 					for(int j = 0; j < attributeList.getLength(); j++){
 						Node attributeNode = attributeList.item(j);
 						if(attributeNode instanceof Element){
 							System.out.println("About to read <attributes>");
+							
+							//Get all instantiated MDAttributes for the MDClass (or sub) 
 							List<MDAttribute> mdAttributeList = parseAttributeNode(attributeNode);
+							
+							//This is for actually "linking" the MDClass (or sub) object with its respective MDAttribtues
+							//for the sake of EMF/GMF
 							linkAttributes((MDClass)mdNodeObject, mdAttributeList);
 							System.out.println("Done linking attribtues!!!!!!!!!!!!!!!!");
 						}
@@ -150,14 +169,28 @@ public class RunwayDOMParser
 	}
 
 
+	/**
+	 * This function will return all MDAttributes for a given MDClass (or sub) node.
+	 * @param The "attribute" node within the MDClass (or sub) object 
+	 * @return instantiated list of MDAttribtues
+	 */
 	private List<MDAttribute> parseAttributeNode(Node attrNode) {
+		
+		
 		NodeList attrList = attrNode.getChildNodes();
 		List<MDAttribute> mdAttributeList = new ArrayList<MDAttribute>();
 		
 		for (int i = 0; i < attrList.getLength(); i++){
 			Node attribute = attrList.item(i);
-			if(attribute.getNodeType() == Node.ELEMENT_NODE){
+			
+			//Check to make sure our node is an Element, instead of a Text, etc Node. 
+			if(attribute instanceof Element){
+				
+				//Call our factory to create respective MDAttribute and add it to our list
 				mdAttributeList.add((MDAttribute) factory.getContentFromNode(attribute));
+			}
+			else{
+				System.out.println("MDAttribute node is not an element");
 			}
 		}
 		return mdAttributeList;
