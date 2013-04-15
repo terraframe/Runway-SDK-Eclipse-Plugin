@@ -30,7 +30,7 @@ public class XMLMdBusiness extends XMLMdElement
   
   @Override
   public Element writeDoItXML(Document dom) {
-    Element xml = dom.createElement("MdBusiness");
+    Element xml = dom.createElement("mdBusiness");
     this.setDoItExport(xml);
     return super.writeDoItXML(dom);
   }

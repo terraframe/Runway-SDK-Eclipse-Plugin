@@ -1,7 +1,10 @@
 package com.runwaysdk.eclipse.plugin.wizards;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.EList;
@@ -15,6 +18,7 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
 
+import com.runwaysdk.dataaccess.schemamanager.SchemaManager;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardPage;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
 import com.runwaysdk.eclipse.plugin.runway.impl.DocumentRootImpl;
@@ -47,34 +51,15 @@ public class SchemaExportWizard extends Wizard implements INewWizard
   @Override
   public boolean performFinish()
   {
-    AdapterFactory adapterFactory = RunwayDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory();
-    AdapterFactoryEditingDomain editer = new AdapterFactoryEditingDomain(
-        adapterFactory,
-        new BasicCommandStack()
-    );
-    Resource resource = editer.createResource(page1.getModelPath());
-    try
-    {
-      // Load the file
-      resource.load(null);
-      
-      // Retrieve the editing domain on the DocumentRoot
-      EList<EObject> contents = resource.getContents();
-      DocumentRootImpl documentRoot = (DocumentRootImpl) contents.get(0); //(DocumentRootImpl) diagram.getElement();
-      EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(documentRoot);
-      
-      // Parse the schema and add it to GMF
-      RunwayDOMParser parser = new RunwayDOMParser(editingDomain, documentRoot);
-      parser.parse(page1.getSchemaPath());
-      
-      resource.save(null);
-      
-      resource.unload();
-    }
-    catch (IOException e)
-    {
-      e.printStackTrace();
-    }
+    URL url = Platform.getInstanceLocation().getURL();
+    String workspace = new File(url.getPath()).getAbsolutePath();
+    
+    String[] args = new String[] { "-dir",
+        workspace + "/.metadata/.plugins/com.runwaysdk.eclipse.plugin/" + page1.getProjectName() + "/schema(0001352140861497)HelloWorld",
+        "/Users/terraframe/Documents/workspace/Runway-SDK-Eclipse-Plugin/com.runwaysdk.eclipse.plugin.diagram/resources/version.xsd",
+        workspace + "/" + page1.getProjectName() + "/src/main/domain/application/" + page1.getSchemaName() };
+
+    SchemaManager.main(args);
     
     return true;
   }

@@ -16,86 +16,19 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugi
 
 public class SchemaUtil
 {
-  // private static SchemaUtil INSTANCE;
-
-  private String workspacePath;
-
-  private String activeProjectName;
-
-  private String defaultTempFileLoc;
-  
-  private String runwayResources;
-
-  public SchemaUtil(String projectName, String workspacePath)
+  public static void main(String[] argz)
   {
-    init(projectName, workspacePath);
+    //System.out.println(SchemaUtil.class.getClassLoader().getResource("com/runwaysdk/resources/schema.xsd"));
+    
+    String[] args = new String[] { "-dir",
+        "/Users/terraframe/Documents/runtime-Runway_runtime_configuration/.metadata/.plugins/com.runwaysdk.eclipse.plugin/my-runway-project/schema(0001352140861497)HelloWorld",
+        "/Users/terraframe/Documents/workspace/Runway-SDK-Eclipse-Plugin/com.runwaysdk.eclipse.plugin.diagram/resources/version.xsd",
+        "/Users/terraframe/Documents/runtime-Runway_runtime_configuration/my-runway-project/src/main/domain/application/testy.xml" };
+
+    SchemaManager.main(args);
   }
 
-  public SchemaUtil(String projectName)
-  {
-    init(projectName, null);
-  }
-
-  private void init(String projectName, String workspacePath)
-  {
-    this.workspacePath = workspacePath;
-    if (this.workspacePath == null)
-    {
-      // This code retrieves the workspace from Eclipse.
-      URL url = Platform.getInstanceLocation().getURL();
-      workspacePath = new File(url.getPath()).getAbsolutePath();
-    }
-
-    activeProjectName = projectName;
-
-    defaultTempFileLoc = workspacePath + "/" + activeProjectName + "/src/main/domain/temp/";
-    runwayResources = workspacePath + "/" + activeProjectName + "/target/classes/com/runwaysdk/resources/";
-  }
-
-  public static void main(String[] args) throws ProjectNotCompiledException
-  {
-    flattenSchemaDirToSingleTempFile("RunwayMavenTemplate",
-        "/Users/terraframe/documents/workspace/Runway-SDK");
-  }
-
-  /**
-   * This method will be called by the SchemaImportWizard (and eventually the
-   * ExportWizard) to flatten (merge) a directory of schema files into a single
-   * temporary schema file.
-   * 
-   * PreCondition: src/main/domain/application contains valid runway xml schema
-   * files for the application. The project must have been compiled using Maven
-   * with runwaysdk-common as a dependency.
-   * 
-   * PostCondition: A new, merged runway xml schema file now exists at
-   * defaultTempFileLoc with the name "application.xml".
-   * 
-   * @throws ProjectNotCompiledException
-   */
-  public static void flattenSchemaDirToSingleTempFile(String projectName, String workspacePath)
-      throws ProjectNotCompiledException
-  {
-    new SchemaUtil(projectName, workspacePath).flattenSchemaDirToSingleTempFile();
-  }
-
-  public void flattenSchemaDirToSingleTempFile() throws ProjectNotCompiledException
-  {
-    String projectPath = workspacePath + "/" + activeProjectName + "/";
-    File versionXSD = new File(runwayResources + "version.xsd");
-    if (!versionXSD.exists())
-    {
-      throw new ProjectNotCompiledException(
-          "The project ["
-              + activeProjectName
-              + "] has not been compiled (using Maven) with a dependency on runwaysdk-common, unable to find required resources in the target directory ["
-              + versionXSD.getAbsolutePath() + "].");
-    }
-
-    flattenSchemaDirToSingleTempFile(projectPath + "src/main/domain", "application",
-        versionXSD.getAbsolutePath(), defaultTempFileLoc);
-  }
-
-  public void flattenSchemaDirToSingleTempFile(String pathToDir, String dirName, String xsdAbsPath,
+  public static void flattenSchemaDirToSingleTempFile(String pathToDir, String dirName, String xsdAbsPath,
       String tempFilePath)
   {
     String[] args = new String[] { "-dir", pathToDir + "/" + dirName, xsdAbsPath,
@@ -138,6 +71,11 @@ public class SchemaUtil
         break;
       }
     }
+    
+    if (activeProject == null) {
+      return "";
+    }
+    
     return activeProject.getName();
   }
 }
