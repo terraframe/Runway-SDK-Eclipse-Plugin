@@ -138,7 +138,7 @@ public class RunwayDOMParser
 
 
 				//Because only MDClass and its subclasses can actually have MDAttributes, we do this type checking to make sure
-				if((MDClass)mdNodeObject instanceof MDClass){
+				if(mdNodeObject instanceof MDClass){
 
 					Command command = AddCommand.create(editingDomain, documentRoot, RunwayPackage.eINSTANCE.getDocumentRoot_MetaData(), mdNodeObject);
 					editingDomain.getCommandStack().execute(command);
