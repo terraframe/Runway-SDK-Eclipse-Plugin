@@ -12,7 +12,6 @@ public class MdAttributeTextParser extends MdAttributeParser {
 
 	public MdAttributeTextParser(NamedNodeMap nodeMap) {
 		super(RunwayFactory.eINSTANCE.createMDAttributeText(), nodeMap);
-		// TODO Auto-generated constructor stub
 	}
 
 
@@ -20,7 +19,10 @@ public class MdAttributeTextParser extends MdAttributeParser {
 	@Override
 	public MDAttributeText parse(){
 		MDAttributeText mdAttributeText = getMetaData();
-		mdAttributeText.setDefaultValue(nodeMap.getNamedItem(XMLTags.TEXT_TAG).getNodeValue());
+		if(nodeMap.getNamedItem(XMLTags.TEXT_TAG) != null ){
+			mdAttributeText.setDefaultValue(nodeMap.getNamedItem(XMLTags.TEXT_TAG).getNodeValue());
+
+		}
 		return (MDAttributeText)super.parse();
 	}
 

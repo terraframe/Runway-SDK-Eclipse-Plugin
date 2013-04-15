@@ -58,8 +58,9 @@ public class RunwayDOMParser
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(xmlFile);
 			doc.getDocumentElement().normalize(); // Not sure if this method is neccessary. 
-			
+
 			NodeList doItList = doc.getElementsByTagName(XMLTags.DO_IT_TAG);
+
 
 			parseDoItNode(doItList);
 			System.out.println("Done!!");
@@ -112,7 +113,7 @@ public class RunwayDOMParser
 				}
 			}
 		}
-		
+
 	}
 
 	private void parseCreateNode(Node createNode) {
@@ -121,7 +122,7 @@ public class RunwayDOMParser
 		//Note: Here we are parsing all "top level" nodes within the <create/> tag. 
 		for(int i = 0; i < mdNodeList.getLength(); i++){
 			Node mdNode = mdNodeList.item(i);
-			
+
 			//A node must be an element in order for our logic to continue
 			//A node can either be an Element, Text, etc node, but we only care about "Element" Nodes 
 			if(mdNode instanceof Element){
@@ -129,29 +130,34 @@ public class RunwayDOMParser
 				System.out.println(mdNode.getNodeName());
 				System.out.println(mdNode.getAttributes().getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
 				System.out.println("LOOK HERE");
-				
+
 				//This is where we actually instantiate and parse our EMF object.
 				//The factory abstracts all creation and parsing. Look there for more!
 				MetaData mdNodeObject = factory.getContentFromNode(mdNode);
 				System.out.println("DONE CREATING Medata");
-				
-				
+
+
 				//Because only MDClass and its subclasses can actually have MDAttributes, we do this type checking to make sure
 				if((MDClass)mdNodeObject instanceof MDClass){
+
+					Command command = AddCommand.create(editingDomain, documentRoot, RunwayPackage.eINSTANCE.getDocumentRoot_MetaData(), mdNodeObject);
+					editingDomain.getCommandStack().execute(command);
+
+
 					System.out.println("Inside an MDClass");
 					NodeList attributeList = mdNode.getChildNodes();
-					
+
 					//We have our MDClass (or its child) object, now we want to parse and link its attributes 
 					for(int j = 0; j < attributeList.getLength(); j++){
 						Node attributeNode = attributeList.item(j);
 						if(attributeNode instanceof Element){
 							System.out.println("About to read <attributes>");
-							
+
 							//Get all instantiated MDAttributes for the MDClass (or sub) 
 							List<MDAttribute> mdAttributeList = parseAttributeNode(attributeNode);
-							
+
 							//This is for actually "linking" the MDClass (or sub) object with its respective MDAttribtues
-							//for the sake of EMF/GMF
+							// for the sake of EMF/GMF
 							linkAttributes((MDClass)mdNodeObject, mdAttributeList);
 							System.out.println("Done linking attribtues!!!!!!!!!!!!!!!!");
 						}
@@ -175,17 +181,18 @@ public class RunwayDOMParser
 	 * @return instantiated list of MDAttribtues
 	 */
 	private List<MDAttribute> parseAttributeNode(Node attrNode) {
-		
-		
+
+
 		NodeList attrList = attrNode.getChildNodes();
+		System.out.println("Attribtue List has: " + attrList.getLength());
 		List<MDAttribute> mdAttributeList = new ArrayList<MDAttribute>();
-		
+
 		for (int i = 0; i < attrList.getLength(); i++){
 			Node attribute = attrList.item(i);
-			
+
 			//Check to make sure our node is an Element, instead of a Text, etc Node. 
 			if(attribute instanceof Element){
-				
+
 				//Call our factory to create respective MDAttribute and add it to our list
 				mdAttributeList.add((MDAttribute) factory.getContentFromNode(attribute));
 			}
@@ -194,9 +201,9 @@ public class RunwayDOMParser
 			}
 		}
 		return mdAttributeList;
-		
+
 	}
-	
+
 	private void linkAttributes(MDClass mdClass, List<MDAttribute> mdAttributeList){
 		for(int i = 0; i < mdAttributeList.size(); i++){
 			MDAttribute mdAttribute = mdAttributeList.get(i);
@@ -205,9 +212,9 @@ public class RunwayDOMParser
 		}
 	}
 
-    /*private MDBusiness newMdBusiness(NamedNodeMap attrs){
+	/*private MDBusiness newMdBusiness(NamedNodeMap attrs){
 		MDBusiness biz = RunwayFactory.eINSTANCE.createMDBusiness();
-		
+
 		//Fill in Business Values
 		MdStaticParsers.parseMdBusiness(biz, attrs);
 		//TODO Commenting out GMF stuff for testing purposes.
