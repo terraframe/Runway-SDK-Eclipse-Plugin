@@ -61,10 +61,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: com.runwaysdk.eclipse.plugin.runway.diagram.edit.parts,
  com.runwaysdk.eclipse.plugin.runway.diagram.part,
- com.runwaysdk.eclipse.plugin.runway.diagram.providers,
- runway.diagram.edit.parts,
- runway.diagram.part,
- runway.diagram.providers
+ com.runwaysdk.eclipse.plugin.runway.diagram.providers
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.core.expressions,

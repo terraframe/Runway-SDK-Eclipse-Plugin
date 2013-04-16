@@ -209,10 +209,6 @@ public class RunwayDOMParser
 	private void linkAttributes(MDClass mdClass, List<MDAttribute> mdAttributeList){
 		for(int i = 0; i < mdAttributeList.size(); i++){
 			MDAttribute mdAttribute = mdAttributeList.get(i);
-			//MDClass mdClassTEST =RunwayFactory.eINSTANCE.createMDClass();
-			//mdClassTEST.setAttributes(value)
-			mdClass.setAttributes(mdAttribute);
-			
 			Command command = AddCommand.create(editingDomain, mdClass, RunwayPackage.eINSTANCE.getMDClass_Attributes(), mdAttribute);
 			editingDomain.getCommandStack().execute(command);
 		}
