@@ -7,22 +7,25 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayVisualIDRegistry;
 /**
  * @generated
  */
-public class RunwayNavigatorSorter extends ViewerSorter {
+public class RunwayNavigatorSorter extends ViewerSorter
+{
 
-	/**
-	 * @generated
-	 */
-	private static final int GROUP_CATEGORY = 7005;
+  /**
+   * @generated
+   */
+  private static final int GROUP_CATEGORY = 7005;
 
-	/**
-	 * @generated
-	 */
-	public int category(Object element) {
-		if (element instanceof RunwayNavigatorItem) {
-			RunwayNavigatorItem item = (RunwayNavigatorItem) element;
-			return RunwayVisualIDRegistry.getVisualID(item.getView());
-		}
-		return GROUP_CATEGORY;
-	}
+  /**
+   * @generated
+   */
+  public int category(Object element)
+  {
+    if (element instanceof RunwayNavigatorItem)
+    {
+      RunwayNavigatorItem item = (RunwayNavigatorItem) element;
+      return RunwayVisualIDRegistry.getVisualID(item.getView());
+    }
+    return GROUP_CATEGORY;
+  }
 
 }

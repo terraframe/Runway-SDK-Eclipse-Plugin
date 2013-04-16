@@ -13,58 +13,64 @@ import junit.textui.TestRunner;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MDAttributeTextTest extends MDAttributeTest {
+public class MDAttributeTextTest extends MDAttributeTest
+{
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static void main(String[] args) {
-		TestRunner.run(MDAttributeTextTest.class);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public static void main(String[] args)
+  {
+    TestRunner.run(MDAttributeTextTest.class);
+  }
 
-	/**
-	 * Constructs a new MD Attribute Text test case with the given name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MDAttributeTextTest(String name) {
-		super(name);
-	}
+  /**
+   * Constructs a new MD Attribute Text test case with the given name.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MDAttributeTextTest(String name)
+  {
+    super(name);
+  }
 
-	/**
-	 * Returns the fixture for this MD Attribute Text test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected MDAttributeText getFixture() {
-		return (MDAttributeText)fixture;
-	}
+  /**
+   * Returns the fixture for this MD Attribute Text test case.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected MDAttributeText getFixture()
+  {
+    return (MDAttributeText)fixture;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		setFixture(RunwayFactory.eINSTANCE.createMDAttributeText());
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see junit.framework.TestCase#setUp()
+   * @generated
+   */
+  @Override
+  protected void setUp() throws Exception
+  {
+    setFixture(RunwayFactory.eINSTANCE.createMDAttributeText());
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
-	@Override
-	protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see junit.framework.TestCase#tearDown()
+   * @generated
+   */
+  @Override
+  protected void tearDown() throws Exception
+  {
+    setFixture(null);
+  }
 
 } //MDAttributeTextTest

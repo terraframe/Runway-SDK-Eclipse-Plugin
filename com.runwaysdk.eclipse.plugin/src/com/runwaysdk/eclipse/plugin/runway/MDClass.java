@@ -2,6 +2,7 @@
  */
 package com.runwaysdk.eclipse.plugin.runway;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,57 +21,48 @@ package com.runwaysdk.eclipse.plugin.runway;
  * @model
  * @generated
  */
-public interface MDClass extends MDType {
-	/**
-	 * Returns the value of the '<em><b>Publish</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Publish</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Publish</em>' attribute.
-	 * @see #setPublish(boolean)
-	 * @see com.runwaysdk.eclipse.plugin.runway.RunwayPackage#getMDClass_Publish()
-	 * @model
-	 * @generated
-	 */
-	boolean isPublish();
+public interface MDClass extends MDType
+{
+  /**
+   * Returns the value of the '<em><b>Publish</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Publish</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Publish</em>' attribute.
+   * @see #setPublish(boolean)
+   * @see com.runwaysdk.eclipse.plugin.runway.RunwayPackage#getMDClass_Publish()
+   * @model
+   * @generated
+   */
+  boolean isPublish();
 
-	/**
-	 * Sets the value of the '{@link com.runwaysdk.eclipse.plugin.runway.MDClass#isPublish <em>Publish</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Publish</em>' attribute.
-	 * @see #isPublish()
-	 * @generated
-	 */
-	void setPublish(boolean value);
+  /**
+   * Sets the value of the '{@link com.runwaysdk.eclipse.plugin.runway.MDClass#isPublish <em>Publish</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Publish</em>' attribute.
+   * @see #isPublish()
+   * @generated
+   */
+  void setPublish(boolean value);
 
-	/**
-	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Attributes</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Attributes</em>' containment reference.
-	 * @see #setAttributes(MDAttribute)
-	 * @see com.runwaysdk.eclipse.plugin.runway.RunwayPackage#getMDClass_Attributes()
-	 * @model containment="true"
-	 * @generated
-	 */
-	MDAttribute getAttributes();
-
-	/**
-	 * Sets the value of the '{@link com.runwaysdk.eclipse.plugin.runway.MDClass#getAttributes <em>Attributes</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Attributes</em>' containment reference.
-	 * @see #getAttributes()
-	 * @generated
-	 */
-	void setAttributes(MDAttribute value);
+  /**
+   * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
+   * The list contents are of type {@link com.runwaysdk.eclipse.plugin.runway.MDAttribute}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Attributes</em>' containment reference list.
+   * @see com.runwaysdk.eclipse.plugin.runway.RunwayPackage#getMDClass_Attributes()
+   * @model containment="true"
+   * @generated
+   */
+  EList<MDAttribute> getAttributes();
 
 } // MDClass

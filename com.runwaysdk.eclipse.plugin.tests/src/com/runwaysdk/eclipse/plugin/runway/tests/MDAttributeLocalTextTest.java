@@ -13,58 +13,64 @@ import junit.textui.TestRunner;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MDAttributeLocalTextTest extends MDAttributeLocalTest {
+public class MDAttributeLocalTextTest extends MDAttributeLocalTest
+{
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static void main(String[] args) {
-		TestRunner.run(MDAttributeLocalTextTest.class);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public static void main(String[] args)
+  {
+    TestRunner.run(MDAttributeLocalTextTest.class);
+  }
 
-	/**
-	 * Constructs a new MD Attribute Local Text test case with the given name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MDAttributeLocalTextTest(String name) {
-		super(name);
-	}
+  /**
+   * Constructs a new MD Attribute Local Text test case with the given name.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MDAttributeLocalTextTest(String name)
+  {
+    super(name);
+  }
 
-	/**
-	 * Returns the fixture for this MD Attribute Local Text test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected MDAttributeLocalText getFixture() {
-		return (MDAttributeLocalText)fixture;
-	}
+  /**
+   * Returns the fixture for this MD Attribute Local Text test case.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected MDAttributeLocalText getFixture()
+  {
+    return (MDAttributeLocalText)fixture;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		setFixture(RunwayFactory.eINSTANCE.createMDAttributeLocalText());
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see junit.framework.TestCase#setUp()
+   * @generated
+   */
+  @Override
+  protected void setUp() throws Exception
+  {
+    setFixture(RunwayFactory.eINSTANCE.createMDAttributeLocalText());
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
-	@Override
-	protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see junit.framework.TestCase#tearDown()
+   * @generated
+   */
+  @Override
+  protected void tearDown() throws Exception
+  {
+    setFixture(null);
+  }
 
 } //MDAttributeLocalTextTest

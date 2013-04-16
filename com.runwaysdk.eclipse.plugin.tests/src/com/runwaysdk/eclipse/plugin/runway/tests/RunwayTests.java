@@ -13,34 +13,38 @@ import junit.textui.TestRunner;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RunwayTests extends TestSuite {
+public class RunwayTests extends TestSuite
+{
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static void main(String[] args) {
-		TestRunner.run(suite());
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public static void main(String[] args)
+  {
+    TestRunner.run(suite());
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static Test suite() {
-		TestSuite suite = new RunwayTests("runway Tests");
-		return suite;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public static Test suite()
+  {
+    TestSuite suite = new RunwayTests("runway Tests");
+    return suite;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RunwayTests(String name) {
-		super(name);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RunwayTests(String name)
+  {
+    super(name);
+  }
 
 } //RunwayTests

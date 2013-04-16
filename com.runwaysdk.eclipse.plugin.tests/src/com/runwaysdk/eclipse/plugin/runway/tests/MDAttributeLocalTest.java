@@ -10,27 +10,30 @@ import com.runwaysdk.eclipse.plugin.runway.MDAttributeLocal;
  * <!-- end-user-doc -->
  * @generated
  */
-public abstract class MDAttributeLocalTest extends MDAttributeStructTest {
+public abstract class MDAttributeLocalTest extends MDAttributeStructTest
+{
 
-	/**
-	 * Constructs a new MD Attribute Local test case with the given name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MDAttributeLocalTest(String name) {
-		super(name);
-	}
+  /**
+   * Constructs a new MD Attribute Local test case with the given name.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MDAttributeLocalTest(String name)
+  {
+    super(name);
+  }
 
-	/**
-	 * Returns the fixture for this MD Attribute Local test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected MDAttributeLocal getFixture() {
-		return (MDAttributeLocal)fixture;
-	}
+  /**
+   * Returns the fixture for this MD Attribute Local test case.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected MDAttributeLocal getFixture()
+  {
+    return (MDAttributeLocal)fixture;
+  }
 
 } //MDAttributeLocalTest

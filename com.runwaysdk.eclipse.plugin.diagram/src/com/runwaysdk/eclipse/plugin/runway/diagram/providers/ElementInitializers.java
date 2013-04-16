@@ -5,22 +5,24 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugi
 /**
  * @generated
  */
-public class ElementInitializers {
+public class ElementInitializers
+{
 
-	protected ElementInitializers() {
-		// use #getInstance to access cached instance
-	}
+  protected ElementInitializers()
+  {
+    // use #getInstance to access cached instance
+  }
 
-	/**
-	 * @generated
-	 */
-	public static ElementInitializers getInstance() {
-		ElementInitializers cached = RunwayDiagramEditorPlugin.getInstance()
-				.getElementInitializers();
-		if (cached == null) {
-			RunwayDiagramEditorPlugin.getInstance().setElementInitializers(
-					cached = new ElementInitializers());
-		}
-		return cached;
-	}
+  /**
+   * @generated
+   */
+  public static ElementInitializers getInstance()
+  {
+    ElementInitializers cached = RunwayDiagramEditorPlugin.getInstance().getElementInitializers();
+    if (cached == null)
+    {
+      RunwayDiagramEditorPlugin.getInstance().setElementInitializers(cached = new ElementInitializers());
+    }
+    return cached;
+  }
 }

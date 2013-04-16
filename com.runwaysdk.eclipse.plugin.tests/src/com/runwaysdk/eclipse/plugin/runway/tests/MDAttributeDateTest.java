@@ -13,58 +13,64 @@ import junit.textui.TestRunner;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MDAttributeDateTest extends MDAttributeTest {
+public class MDAttributeDateTest extends MDAttributeTest
+{
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static void main(String[] args) {
-		TestRunner.run(MDAttributeDateTest.class);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public static void main(String[] args)
+  {
+    TestRunner.run(MDAttributeDateTest.class);
+  }
 
-	/**
-	 * Constructs a new MD Attribute Date test case with the given name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MDAttributeDateTest(String name) {
-		super(name);
-	}
+  /**
+   * Constructs a new MD Attribute Date test case with the given name.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MDAttributeDateTest(String name)
+  {
+    super(name);
+  }
 
-	/**
-	 * Returns the fixture for this MD Attribute Date test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected MDAttributeDate getFixture() {
-		return (MDAttributeDate)fixture;
-	}
+  /**
+   * Returns the fixture for this MD Attribute Date test case.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected MDAttributeDate getFixture()
+  {
+    return (MDAttributeDate)fixture;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		setFixture(RunwayFactory.eINSTANCE.createMDAttributeDate());
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see junit.framework.TestCase#setUp()
+   * @generated
+   */
+  @Override
+  protected void setUp() throws Exception
+  {
+    setFixture(RunwayFactory.eINSTANCE.createMDAttributeDate());
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
-	@Override
-	protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see junit.framework.TestCase#tearDown()
+   * @generated
+   */
+  @Override
+  protected void tearDown() throws Exception
+  {
+    setFixture(null);
+  }
 
 } //MDAttributeDateTest

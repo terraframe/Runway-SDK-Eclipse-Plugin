@@ -15,67 +15,77 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.providers.RunwayElementTypes;
 /**
  * @generated
  */
-public class RunwaySheetLabelProvider extends BaseLabelProvider implements
-		ILabelProvider {
+public class RunwaySheetLabelProvider extends BaseLabelProvider implements ILabelProvider
+{
 
-	/**
-	 * @generated
-	 */
-	public String getText(Object element) {
-		element = unwrap(element);
-		if (element instanceof RunwayNavigatorGroup) {
-			return ((RunwayNavigatorGroup) element).getGroupName();
-		}
-		IElementType etype = getElementType(getView(element));
-		return etype == null ? "" : etype.getDisplayName();
-	}
+  /**
+   * @generated
+   */
+  public String getText(Object element)
+  {
+    element = unwrap(element);
+    if (element instanceof RunwayNavigatorGroup)
+    {
+      return ( (RunwayNavigatorGroup) element ).getGroupName();
+    }
+    IElementType etype = getElementType(getView(element));
+    return etype == null ? "" : etype.getDisplayName();
+  }
 
-	/**
-	 * @generated
-	 */
-	public Image getImage(Object element) {
-		IElementType etype = getElementType(getView(unwrap(element)));
-		return etype == null ? null : RunwayElementTypes.getImage(etype);
-	}
+  /**
+   * @generated
+   */
+  public Image getImage(Object element)
+  {
+    IElementType etype = getElementType(getView(unwrap(element)));
+    return etype == null ? null : RunwayElementTypes.getImage(etype);
+  }
 
-	/**
-	 * @generated
-	 */
-	private Object unwrap(Object element) {
-		if (element instanceof IStructuredSelection) {
-			return ((IStructuredSelection) element).getFirstElement();
-		}
-		return element;
-	}
+  /**
+   * @generated
+   */
+  private Object unwrap(Object element)
+  {
+    if (element instanceof IStructuredSelection)
+    {
+      return ( (IStructuredSelection) element ).getFirstElement();
+    }
+    return element;
+  }
 
-	/**
-	 * @generated
-	 */
-	private View getView(Object element) {
-		if (element instanceof View) {
-			return (View) element;
-		}
-		if (element instanceof IAdaptable) {
-			return (View) ((IAdaptable) element).getAdapter(View.class);
-		}
-		return null;
-	}
+  /**
+   * @generated
+   */
+  private View getView(Object element)
+  {
+    if (element instanceof View)
+    {
+      return (View) element;
+    }
+    if (element instanceof IAdaptable)
+    {
+      return (View) ( (IAdaptable) element ).getAdapter(View.class);
+    }
+    return null;
+  }
 
-	/**
-	 * @generated
-	 */
-	private IElementType getElementType(View view) {
-		// For intermediate views climb up the containment hierarchy to find the one associated with an element type.
-		while (view != null) {
-			int vid = RunwayVisualIDRegistry.getVisualID(view);
-			IElementType etype = RunwayElementTypes.getElementType(vid);
-			if (etype != null) {
-				return etype;
-			}
-			view = view.eContainer() instanceof View ? (View) view.eContainer()
-					: null;
-		}
-		return null;
-	}
+  /**
+   * @generated
+   */
+  private IElementType getElementType(View view)
+  {
+    // For intermediate views climb up the containment hierarchy to find the one associated with an element type.
+    while (view != null)
+    {
+      int vid = RunwayVisualIDRegistry.getVisualID(view);
+      IElementType etype = RunwayElementTypes.getElementType(vid);
+      if (etype != null)
+      {
+        return etype;
+      }
+      view = view.eContainer() instanceof View ? (View) view.eContainer() : null;
+    }
+    return null;
+  }
 
 }

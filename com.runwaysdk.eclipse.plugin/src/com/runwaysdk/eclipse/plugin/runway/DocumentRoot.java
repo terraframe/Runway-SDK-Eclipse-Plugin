@@ -22,21 +22,22 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface DocumentRoot extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Meta Data</b></em>' containment reference list.
-	 * The list contents are of type {@link com.runwaysdk.eclipse.plugin.runway.MetaData}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Meta Data</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Meta Data</em>' containment reference list.
-	 * @see com.runwaysdk.eclipse.plugin.runway.RunwayPackage#getDocumentRoot_MetaData()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<MetaData> getMetaData();
+public interface DocumentRoot extends EObject
+{
+  /**
+   * Returns the value of the '<em><b>Meta Data</b></em>' containment reference list.
+   * The list contents are of type {@link com.runwaysdk.eclipse.plugin.runway.MetaData}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Meta Data</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Meta Data</em>' containment reference list.
+   * @see com.runwaysdk.eclipse.plugin.runway.RunwayPackage#getDocumentRoot_MetaData()
+   * @model containment="true"
+   * @generated
+   */
+  EList<MetaData> getMetaData();
 
 } // DocumentRoot
