@@ -12,8 +12,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MDClass" eSuperTypes="#//MDType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="publish" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" eType="#//MDAttribute"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+        eType="#//MDAttribute" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MDEntity" eSuperTypes="#//MDClass">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="table" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
