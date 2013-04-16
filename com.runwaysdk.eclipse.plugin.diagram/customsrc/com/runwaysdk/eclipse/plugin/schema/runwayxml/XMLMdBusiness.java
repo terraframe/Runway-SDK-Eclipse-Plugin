@@ -34,4 +34,12 @@ public class XMLMdBusiness extends XMLMdElement
     this.setDoItExport(xml);
     return super.writeDoItXML(dom);
   }
+  
+  @Override
+  public Element writeUndoItXML(Document dom) {
+    Element xml = dom.createElement("object");
+    this.setUndoItExport(xml);
+    return super.writeUndoItXML(dom);
+  }
+
 }
