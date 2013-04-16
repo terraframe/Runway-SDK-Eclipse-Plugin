@@ -15,6 +15,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import runwayMdParsingClasses.MdMetaDataParser;
 import runwayMdParsingClasses.MdParserFactory;
 
 import com.runwaysdk.constants.XMLConstants;
@@ -22,6 +23,7 @@ import com.runwaysdk.eclipse.plugin.runway.DocumentRoot;
 import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
 import com.runwaysdk.eclipse.plugin.runway.MDClass;
 import com.runwaysdk.eclipse.plugin.runway.MetaData;
+import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
 import com.runwaysdk.eclipse.plugin.runway.RunwayPackage;
 
 public class RunwayDOMParser
@@ -207,6 +209,10 @@ public class RunwayDOMParser
 	private void linkAttributes(MDClass mdClass, List<MDAttribute> mdAttributeList){
 		for(int i = 0; i < mdAttributeList.size(); i++){
 			MDAttribute mdAttribute = mdAttributeList.get(i);
+			//MDClass mdClassTEST =RunwayFactory.eINSTANCE.createMDClass();
+			//mdClassTEST.setAttributes(value)
+			mdClass.setAttributes(mdAttribute);
+			
 			Command command = AddCommand.create(editingDomain, mdClass, RunwayPackage.eINSTANCE.getMDClass_Attributes(), mdAttribute);
 			editingDomain.getCommandStack().execute(command);
 		}
