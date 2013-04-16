@@ -65,15 +65,19 @@ abstract public class XMLMetadata
     return xml;
   }
 
-  public Element writeUndoItXML()
+  public Element writeUndoItXML(Document dom)
   {
-    Element xml = doItExport;
+    Element xml = undoItExport;
 
     Object[] keys = xmlAttributes.keySet().toArray();
     for (int i = 0; i < keys.length; ++i)
     {
       String key = (String) keys[i];
-      xml.setAttribute(key, xmlAttributes.get(key));
+      if (key == "name") {
+    	xml.setAttribute("key", xmlAttributes.get(key));
+    	xml.setAttribute("type", "com.runwaysdk.system.metadata." + doItExport.getLocalName());
+    	break;
+      }
     }
 
     return xml;
