@@ -75,7 +75,7 @@ abstract public class XMLMetadata
       String key = (String) keys[i];
       if (key == "name") {
     	xml.setAttribute("key", xmlAttributes.get(key));
-    	xml.setAttribute("type", "com.runwaysdk.system.metadata." + doItExport.getLocalName());
+    	xml.setAttribute("type", "com.runwaysdk.system.metadata." + doItExport.getNodeName());
     	break;
       }
     }

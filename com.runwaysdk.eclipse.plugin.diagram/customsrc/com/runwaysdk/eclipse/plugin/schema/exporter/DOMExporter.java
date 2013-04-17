@@ -80,6 +80,8 @@ public class DOMExporter
       }
       else if (record.getCrudFlag() == XMLMetadata.UPDATE)
       {
+        instance.doItUpdate.appendChild(el);
+        instance.undoItDelete.appendChild(el);
       }
       else if (record.getCrudFlag() == XMLMetadata.DELETE)
       {
