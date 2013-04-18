@@ -27,8 +27,18 @@ import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMetadata;
 
 public class ModelOperationListener extends ResourceSetListenerImpl implements ResourceSetListener
 {
+  private static boolean shouldListen = true;
+  
   public ModelOperationListener()
   {
+  }
+  
+  public static void stopListening() {
+    shouldListen = false;
+  }
+  
+  public static void resumeListening() {
+    shouldListen = true;
   }
   
   public static void registerListeners(TransactionalEditingDomain editDomain) {
@@ -39,6 +49,8 @@ public class ModelOperationListener extends ResourceSetListenerImpl implements R
   @Override
   public void resourceSetChanged(ResourceSetChangeEvent event)
   {
+    if (!shouldListen) { return; }
+    
     List<Notification> notes = event.getNotifications();
     
     for (int i = 0; i < notes.size(); ++i) {
@@ -100,6 +112,8 @@ public class ModelOperationListener extends ResourceSetListenerImpl implements R
   
   // Requires custom hook in RunwayDocumentProvider
   public static void onDocumentSave() {
+    if (!shouldListen) { return; }
+    
     DOMExporter.doExport();
   }
 

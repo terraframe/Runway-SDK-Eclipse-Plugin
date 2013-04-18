@@ -32,6 +32,7 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugi
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorUtil;
 import com.runwaysdk.eclipse.plugin.runway.impl.DocumentRootImpl;
 import com.runwaysdk.eclipse.plugin.schema.SchemaUtil;
+import com.runwaysdk.eclipse.plugin.schema.exporter.ModelOperationListener;
 import com.runwaysdk.eclipse.plugin.schema.importer.RunwayDOMParser;
 
 public class SchemaImportWizard extends Wizard implements IImportWizard
@@ -133,6 +134,8 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
     /**
      * Import the schema into the domain file.
      */
+    ModelOperationListener.stopListening();
+    
     AdapterFactory adapterFactory = RunwayDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory();
     AdapterFactoryEditingDomain editer = new AdapterFactoryEditingDomain(
         adapterFactory,
@@ -153,6 +156,8 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
       RunwayDOMParser parser = new RunwayDOMParser(editingDomain, documentRoot);
       parser.parse(schemaPath);
       
+      editingDomain.getCommandStack().flush();
+      
       resource.save(null);
       
       resource.unload();
@@ -170,6 +175,8 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
     {
       ErrorDialog.openError(getContainer().getShell(), Messages.RunwayCreationWizardOpenEditorError, null, e.getStatus());
     }
+    
+    ModelOperationListener.resumeListening();
     
     return true;
   }

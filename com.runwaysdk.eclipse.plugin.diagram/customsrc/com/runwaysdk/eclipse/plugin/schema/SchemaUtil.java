@@ -2,6 +2,8 @@ package com.runwaysdk.eclipse.plugin.schema;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -27,13 +29,27 @@ public class SchemaUtil
     SchemaManager.main(args);
   }
   
+  public static void handleError(Shell shell, String msg) {
+    handleError(shell, "An error has occurred.", msg);
+  }
+  
+  public static void handleError(Shell shell, String title, String msg) {
+    System.out.println("An error has occurred: " + msg);
+    
+    MessageDialog dialog = new MessageDialog(shell, title, null,
+        msg, MessageDialog.ERROR, new String[] { "Ok" }, 0);
+    int result = dialog.open();
+  }
+  
   public static boolean handleError(Shell shell, Exception e) {
     e.printStackTrace();
-//    MessageDialog dialog = new MessageDialog(shell, "An exception has occurred.", null,
-//        e.getLocalizedMessage(), MessageDialog.ERROR, new String[] { "First",
-//      "Second", "Third" }, 0);
-    ErrorDialog.openError(shell, "An error has occurred", e.getLocalizedMessage(), null);
-//    int result = dialog.open();
+    
+    MessageDialog dialog = new MessageDialog(shell, "An error has occurred.", null,
+        e.getLocalizedMessage(), MessageDialog.ERROR, new String[] { "Ok" }, 0);
+    int result = dialog.open();
+    
+//    IStatus status = new Status(IStatus.ERROR, "SCS Admin", Util.getStackTrace(e), e);
+//    ErrorDialog.openError(shell, "An error has occurred", e.getLocalizedMessage(), null);
     
     return false;
   }
@@ -47,9 +63,6 @@ public class SchemaUtil
     SchemaManager.main(args);
   }
 
-  /**
-   * TODO
-   */
   public static String getActiveProjectNameFromSelection(IStructuredSelection selection)
   {
 //    return getActiveProjectNameFromWorkbench();

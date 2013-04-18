@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.swt.widgets.Shell;
 
@@ -51,14 +53,13 @@ public class XMLRecordFactory
     {
       XMLMdBusiness record = iterator.next();
       
-      if (!record.hasXMLAttributes()) {
-        iterator.remove();
-        continue;
-      }
+//      if (!record.hasXMLAttributes()) {
+//        iterator.remove();
+//        continue;
+//      }
       
       if (record.getXMLAttribute("name") == null || record.getXMLAttribute("name") == "") {
-        ErrorDialog.openError(shell, "The document you are trying to save is invalid.", "You must specify a name for all Runway classes.", null);
-        return false;
+        throw new RuntimeException("The document you are trying to save is invalid. You must specify a name for all Runway classes.");
       }
     }
     

@@ -40,6 +40,7 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugi
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorUtil;
 import com.runwaysdk.eclipse.plugin.runway.impl.DocumentRootImpl;
 import com.runwaysdk.eclipse.plugin.schema.SchemaUtil;
+import com.runwaysdk.eclipse.plugin.schema.exporter.ModelOperationListener;
 import com.runwaysdk.eclipse.plugin.schema.importer.RunwayDOMParser;
 
 public class NewRunwayProjectWizard extends Wizard implements INewWizard
@@ -325,6 +326,8 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
     /*
      * Import the HelloWorld schema.
      */
+    ModelOperationListener.stopListening();
+    
     AdapterFactory adapterFactory = RunwayDiagramEditorPlugin.getInstance()
         .getItemProvidersAdapterFactory();
     AdapterFactoryEditingDomain editer = new AdapterFactoryEditingDomain(adapterFactory,
@@ -346,6 +349,8 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
       // Parse the schema and add it to GMF
       RunwayDOMParser parser = new RunwayDOMParser(editingDomain, documentRoot);
       parser.parse(projectDir + schemaPath);
+      
+      editingDomain.getCommandStack().flush();
 
       resource.save(null);
 
@@ -364,6 +369,8 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
     {
       ErrorDialog.openError(getContainer().getShell(), Messages.RunwayCreationWizardOpenEditorError, null, e.getStatus());
     }
+    
+    ModelOperationListener.resumeListening();
 
     return true;
   }

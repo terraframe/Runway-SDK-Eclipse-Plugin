@@ -56,8 +56,7 @@ public class DOMExporter
   // This method is called when the user saves the document.
   public static void doExport()
   {
-    boolean valid = XMLRecordFactory.validateRecords();
-    if (!valid) { return; }
+    XMLRecordFactory.validateRecords();
     
     List<XMLMdBusiness> records = XMLRecordFactory.getRecords();
     if (records.size() <= 0) { return; }
