@@ -618,7 +618,7 @@ public class RunwayDocumentProvider extends AbstractDocumentProvider implements 
   protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document,
       boolean overwrite) throws CoreException
   {
-    ModelOperationListener.onDocumentSave(document, element, this);
+    ModelOperationListener.onDocumentSave();
     
     ResourceSetInfo info = getResourceSetInfo(element);
     if (info != null)

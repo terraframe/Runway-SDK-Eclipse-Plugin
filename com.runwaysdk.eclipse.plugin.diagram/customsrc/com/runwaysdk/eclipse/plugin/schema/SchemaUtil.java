@@ -1,13 +1,12 @@
 package com.runwaysdk.eclipse.plugin.schema;
 
-import java.io.File;
-import java.net.URL;
-
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.Platform;
+import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.views.navigator.ResourceNavigator;
 
@@ -26,6 +25,17 @@ public class SchemaUtil
         "/Users/terraframe/Documents/runtime-Runway_runtime_configuration/my-runway-project/src/main/domain/application/testy.xml" };
 
     SchemaManager.main(args);
+  }
+  
+  public static boolean handleError(Shell shell, Exception e) {
+    e.printStackTrace();
+//    MessageDialog dialog = new MessageDialog(shell, "An exception has occurred.", null,
+//        e.getLocalizedMessage(), MessageDialog.ERROR, new String[] { "First",
+//      "Second", "Third" }, 0);
+    ErrorDialog.openError(shell, "An error has occurred", e.getLocalizedMessage(), null);
+//    int result = dialog.open();
+    
+    return false;
   }
 
   public static void flattenSchemaDirToSingleTempFile(String pathToDir, String dirName, String xsdAbsPath,

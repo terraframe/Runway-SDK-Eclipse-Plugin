@@ -41,6 +41,10 @@ abstract public class XMLMetadata
   {
     return xmlAttributes.get(key);
   }
+  
+  public boolean hasXMLAttributes() {
+    return !xmlAttributes.isEmpty();
+  }
 
   public MetaData readFromXML(NamedNodeMap nodeMap)
   {

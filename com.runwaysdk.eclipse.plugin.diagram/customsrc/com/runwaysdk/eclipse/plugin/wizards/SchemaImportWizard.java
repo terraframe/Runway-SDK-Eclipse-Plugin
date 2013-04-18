@@ -31,6 +31,7 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardPage
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorUtil;
 import com.runwaysdk.eclipse.plugin.runway.impl.DocumentRootImpl;
+import com.runwaysdk.eclipse.plugin.schema.SchemaUtil;
 import com.runwaysdk.eclipse.plugin.schema.importer.RunwayDOMParser;
 
 public class SchemaImportWizard extends Wizard implements IImportWizard
@@ -74,7 +75,7 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
       final URI diagramModel = URI.createURI(gmfModelPath.replace(".runway", ".runway_diagram"));
       
       if (diagramModel == null) {
-        throw new RuntimeException("URI creation failed.");
+        return SchemaUtil.handleError(this.getShell(), new RuntimeException("URI creation failed."));
       }
       
       System.out.println("Attempting to create diagramModel at path [" + diagramModel + "].");
@@ -87,14 +88,14 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
           diagram = RunwayDiagramEditorUtil.createDiagram(diagramModel, domainModel, monitor);
           
           if (diagram != null) {
-            try
-            {
-              RunwayDiagramEditorUtil.openDiagram(diagram);
-            }
-            catch (PartInitException e)
-            {
-              ErrorDialog.openError(getContainer().getShell(), Messages.RunwayCreationWizardOpenEditorError, null, e.getStatus());
-            }
+//            try
+//            {
+//              RunwayDiagramEditorUtil.openDiagram(diagram);
+//            }
+//            catch (PartInitException e)
+//            {
+//              ErrorDialog.openError(getContainer().getShell(), Messages.RunwayCreationWizardOpenEditorError, null, e.getStatus());
+//            }
           }
           else {
             ErrorDialog.openError(getContainer().getShell(), "Error creating Runway Diagram.", null, null);
@@ -156,9 +157,18 @@ public class SchemaImportWizard extends Wizard implements IImportWizard
       
       resource.unload();
     }
-    catch (IOException e)
+    catch (Exception e)
     {
-      e.printStackTrace();
+      return SchemaUtil.handleError(this.getShell(), e);
+    }
+    
+    try
+    {
+      RunwayDiagramEditorUtil.openDiagram(diagram);
+    }
+    catch (PartInitException e)
+    {
+      ErrorDialog.openError(getContainer().getShell(), Messages.RunwayCreationWizardOpenEditorError, null, e.getStatus());
     }
     
     return true;

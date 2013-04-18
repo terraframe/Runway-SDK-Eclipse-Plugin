@@ -1,12 +1,16 @@
 package com.runwaysdk.eclipse.plugin.schema.exporter;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.swt.widgets.Shell;
 
 import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
+import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
+import com.runwaysdk.eclipse.plugin.schema.SchemaUtil;
 import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMdBusiness;
-import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMetadata;
 
 
 public class XMLRecordFactory
@@ -36,6 +40,29 @@ public class XMLRecordFactory
     xmlBiz.setCrudFlag(XMLMdBusiness.UPDATE);
     recordStore.add(xmlBiz);
     return xmlBiz;
+  }
+  
+  public static boolean validateRecords() {
+    Shell shell = RunwayDiagramEditorPlugin.getInstance().getWorkbench()
+    .getActiveWorkbenchWindow().getActivePage().getActivePart().getSite().getShell();
+    
+    Iterator<XMLMdBusiness> iterator = recordStore.iterator();
+    while (iterator.hasNext())
+    {
+      XMLMdBusiness record = iterator.next();
+      
+      if (!record.hasXMLAttributes()) {
+        iterator.remove();
+        continue;
+      }
+      
+      if (record.getXMLAttribute("name") == null || record.getXMLAttribute("name") == "") {
+        ErrorDialog.openError(shell, "The document you are trying to save is invalid.", "You must specify a name for all Runway classes.", null);
+        return false;
+      }
+    }
+    
+    return true;
   }
   
   public static List<XMLMdBusiness> getRecords() {

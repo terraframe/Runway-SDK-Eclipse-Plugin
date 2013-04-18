@@ -39,6 +39,7 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardPage
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorUtil;
 import com.runwaysdk.eclipse.plugin.runway.impl.DocumentRootImpl;
+import com.runwaysdk.eclipse.plugin.schema.SchemaUtil;
 import com.runwaysdk.eclipse.plugin.schema.importer.RunwayDOMParser;
 
 public class NewRunwayProjectWizard extends Wizard implements INewWizard
@@ -65,6 +66,8 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
   private static final String           diagram_files_path          = "/src/main/domain/display/";
 
   static final String                   MAVEN_EMBEDDED              = "EMBEDDED";
+  
+  private Resource diagram;
 
   private static final String           ARCHETYPE_SERVER            = "http://rowlands.dyndns.info:8080/nexus/content/groups/allrepos";
   //private static final String           ARCHETYPE_SERVER            = "http://192.168.1.210:8080/nexus/content/groups/allrepos";
@@ -97,16 +100,6 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
         "-Dversion=0.0.1-SNAPSHOT", "-DinteractiveMode=false" },
 
     "/users/terraframe/documents/workspace/runway-sdk", System.out, System.out));
-  }
-  
-  private boolean handleError(Exception e) {
-    e.printStackTrace();
-    MessageDialog dialog = new MessageDialog(this.getShell(), "An exception has occurred.", null,
-        e.getLocalizedMessage(), MessageDialog.ERROR, new String[] { "First",
-      "Second", "Third" }, 0);
-    int result = dialog.open();
-    
-    return false;
   }
 
   @Override
@@ -152,7 +145,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
         }
       }
       catch (Exception e) {
-        return handleError(e);
+        return SchemaUtil.handleError(this.getShell(), e);
       }
     }
     else
@@ -178,7 +171,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
         throw new UnsupportedOperationException("");
       }
       catch (Exception e) {
-        return handleError(e);
+        return SchemaUtil.handleError(this.getShell(), e);
       }
     }
     
@@ -207,11 +200,11 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
     }
     catch (InvocationTargetException e)
     {
-      return handleError(e);
+      return SchemaUtil.handleError(this.getShell(), e);
     }
     catch (InterruptedException e)
     {
-      return handleError(e);
+      return SchemaUtil.handleError(this.getShell(), e);
     }
 
     // This code creates a .project file (and fails if one already exists)
@@ -280,23 +273,25 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
 
       protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException
       {
-        Resource diagram = RunwayDiagramEditorUtil.createDiagram(diagramModel, domainModel, monitor);
+        diagram = RunwayDiagramEditorUtil.createDiagram(diagramModel, domainModel, monitor);
 
         if (diagram != null)
         {
-          try
-          {
-            RunwayDiagramEditorUtil.openDiagram(diagram);
-          }
-          catch (PartInitException e)
-          {
-            ErrorDialog.openError(getContainer().getShell(),
-                Messages.RunwayCreationWizardOpenEditorError, null, e.getStatus());
-          }
+//          try
+//          {
+//            RunwayDiagramEditorUtil.openDiagram(diagram);
+//          }
+//          catch (PartInitException e)
+//          {
+//            ErrorDialog.openError(getContainer().getShell(),
+//                Messages.RunwayCreationWizardOpenEditorError, null, e.getStatus());
+//            return;
+//          }
         }
         else
         {
           ErrorDialog.openError(getContainer().getShell(), "Error creating Runway Diagram.", null, null);
+          return;
         }
       }
     };
@@ -306,7 +301,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
     }
     catch (InterruptedException e)
     {
-      return handleError(e);
+      return SchemaUtil.handleError(this.getShell(), e);
     }
     catch (InvocationTargetException e)
     {
@@ -314,6 +309,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
       {
         ErrorDialog.openError(getContainer().getShell(), Messages.RunwayCreationWizardCreationError,
             null, ( (CoreException) e.getTargetException() ).getStatus());
+        return false;
       }
       else
       {
@@ -323,7 +319,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
       return false;
     }
     catch (Exception e) {
-      return handleError(e);
+      return SchemaUtil.handleError(this.getShell(), e);
     }
 
     /*
@@ -333,7 +329,9 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
         .getItemProvidersAdapterFactory();
     AdapterFactoryEditingDomain editer = new AdapterFactoryEditingDomain(adapterFactory,
         new BasicCommandStack());
+    
     Resource resource = editer.createResource(domainModel.toPlatformString(true));
+    
     try
     {
       // Load the file
@@ -355,7 +353,16 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
     }
     catch (Exception e)
     {
-      return handleError(e);
+      return SchemaUtil.handleError(this.getShell(), e);
+    }
+    
+    try
+    {
+      RunwayDiagramEditorUtil.openDiagram(diagram);
+    }
+    catch (PartInitException e)
+    {
+      ErrorDialog.openError(getContainer().getShell(), Messages.RunwayCreationWizardOpenEditorError, null, e.getStatus());
     }
 
     return true;

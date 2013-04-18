@@ -1,29 +1,17 @@
 package com.runwaysdk.eclipse.plugin.schema.exporter;
 
-import java.io.File;
-import java.net.URL;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.swt.widgets.Shell;
 
 import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
-import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
-import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDocumentProvider;
 import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMdBusiness;
 import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMetadata;
 
@@ -63,6 +51,7 @@ public class ModelOperationListener extends ResourceSetListenerImpl implements R
       
       if (feature instanceof EReference) {
         if (newValue instanceof MDBusiness && note.getEventType() == 1) {
+          // New MdBusiness is created
           MDBusiness mdBiz = (MDBusiness) newValue;
           
           XMLRecordFactory.getXMLMdBusiness(mdBiz).setCrudFlag(XMLMetadata.CREATE);
@@ -72,6 +61,7 @@ public class ModelOperationListener extends ResourceSetListenerImpl implements R
         EAttribute attr = (EAttribute) feature;
         
         if (note.getNotifier() instanceof MDBusiness) {
+          // MdBusiness is updated
           XMLMdBusiness xmlBiz = XMLRecordFactory.getXMLMdBusiness((MDBusiness) note.getNotifier());
           xmlBiz.setXMLAttribute(attr.getName(), newValue.toString());
         }
@@ -109,7 +99,7 @@ public class ModelOperationListener extends ResourceSetListenerImpl implements R
   }
   
   // Requires custom hook in RunwayDocumentProvider
-  public static void onDocumentSave(IDocument document, Object element, RunwayDocumentProvider docProvider) {
+  public static void onDocumentSave() {
     DOMExporter.doExport();
   }
 

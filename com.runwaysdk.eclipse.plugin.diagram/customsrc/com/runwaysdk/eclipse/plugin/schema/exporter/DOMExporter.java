@@ -19,15 +19,14 @@ import javax.xml.transform.stream.StreamResult;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.runwaysdk.dataaccess.CoreException;
 import com.runwaysdk.dataaccess.cache.globalcache.ehcache.CacheShutdown;
 import com.runwaysdk.dataaccess.io.CreateDomainModel;
-import com.runwaysdk.dataaccess.io.TimeFormat;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
 import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMdBusiness;
 import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMetadata;
@@ -57,6 +56,12 @@ public class DOMExporter
   // This method is called when the user saves the document.
   public static void doExport()
   {
+    boolean valid = XMLRecordFactory.validateRecords();
+    if (!valid) { return; }
+    
+    List<XMLMdBusiness> records = XMLRecordFactory.getRecords();
+    if (records.size() <= 0) { return; }
+    
     String fileName = getExportPath();
     
     System.out.println("Writing file to '" + fileName + "'");
@@ -65,7 +70,6 @@ public class DOMExporter
     DOMExporter instance = new DOMExporter();
     instance.generateEmptySchema(fileName);
 
-    List<XMLMdBusiness> records = XMLRecordFactory.getRecords();
     for (int i = 0; i < records.size(); i++)
     {
       XMLMdBusiness record = records.get(i);
