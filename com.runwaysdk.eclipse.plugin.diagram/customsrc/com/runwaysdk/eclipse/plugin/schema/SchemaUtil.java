@@ -42,7 +42,20 @@ public class SchemaUtil
    */
   public static String getActiveProjectNameFromSelection(IStructuredSelection selection)
   {
-    return getActiveProjectNameFromWorkbench();
+//    return getActiveProjectNameFromWorkbench();
+    
+    Object el = selection.getFirstElement();
+    
+    if (el instanceof IResource) {
+      IResource res = (IResource) el;
+      IProject proj = res.getProject();
+      
+      if (proj != null) {
+        return proj.getName();
+      }
+    }
+    
+    return null;
   }
 
   /**
@@ -54,7 +67,7 @@ public class SchemaUtil
    * http://stackoverflow.com/questions/1206095/how-to-get-the-project-name-in-
    * eclipse
    */
-  private static String getActiveProjectNameFromWorkbench()
+  public static String getActiveProjectNameFromWorkbench()
   {
     IViewPart[] parts = RunwayDiagramEditorPlugin.getInstance().getWorkbench()
         .getActiveWorkbenchWindow().getActivePage().getViews();
@@ -66,14 +79,23 @@ public class SchemaUtil
       {
         ResourceNavigator navigator = (ResourceNavigator) parts[i];
         StructuredSelection sel = (StructuredSelection) navigator.getTreeViewer().getSelection();
+        
+        if (sel == null) { continue; }
+        
         IResource resource = (IResource) sel.getFirstElement();
+        
+        if (resource == null) { continue; }
+        
         activeProject = resource.getProject();
+        
+        if (activeProject == null) { continue; }
+        
         break;
       }
     }
     
     if (activeProject == null) {
-      return "";
+      return null;
     }
     
     return activeProject.getName();

@@ -4,6 +4,8 @@ import java.io.File;
 import java.net.URL;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.preference.StringButtonFieldEditor;
@@ -79,22 +81,23 @@ public class SchemaImportWizardPage1 extends WizardPage
 
     // Auto-fill this value if they've right-clicked on a schema file and then
     // did import
+    String schemaFileName = null;
     Object obj = selection.getFirstElement();
     if (obj != null && obj instanceof IFile)
     {
-      schemaPath = ( (IFile) obj ).getFullPath().toPortableString();
-
-      // The selection doesn't return the absolute path.
-      URL url = Platform.getInstanceLocation().getURL();
-      schemaPath = new File(url.getPath()).getAbsolutePath() + schemaPath;
-
-      schemaFileFieldEditor.setStringValue(schemaPath);
-
-      // setPageComplete(true);
-    }
-    else
-    {
-      // setPageComplete(false);
+      IFile file = (IFile) obj;
+      
+      if (file.getFileExtension().equals("xml")) {
+        schemaPath = file.getFullPath().toPortableString();
+        
+        // The selection doesn't return the absolute path.
+        URL url = Platform.getInstanceLocation().getURL();
+        schemaPath = new File(url.getPath()).getAbsolutePath() + schemaPath;
+  
+        schemaFileFieldEditor.setStringValue(schemaPath);
+        
+        schemaFileName = file.getName().replace(".xml", "");
+      }
     }
 
     schemaFileFieldEditor.setPropertyChangeListener(new IPropertyChangeListener()
@@ -105,7 +108,38 @@ public class SchemaImportWizardPage1 extends WizardPage
       {
         if (arg0.getNewValue() instanceof String)
         {
-          schemaPath = (String) arg0.getNewValue();
+          File file;
+          String schemaFileName;
+          
+          String unvalidatedSchemaPath = (String) arg0.getNewValue();
+          
+          file = new File(unvalidatedSchemaPath);
+          if (!file.exists()) {
+            return;
+          }
+          
+          String extension = "";
+          String fileName = file.getName();
+
+          int i = fileName.lastIndexOf('.');
+
+          if (i > 0) {
+            extension = fileName.substring(i+1);
+          }
+          else {
+            return;
+          }
+          
+          if (!extension.equals("xml")) {
+            return;
+          }
+          
+          schemaPath = unvalidatedSchemaPath;
+          schemaFileName = fileName.substring(0, i);
+          
+          clacModelPathFromSchema(schemaFileName);
+          
+          updateIsPageComplete();
         }
       }
 
@@ -127,6 +161,8 @@ public class SchemaImportWizardPage1 extends WizardPage
         container.layout();
 
         wantsGMFFilesCreated = !enableButton.getSelection();
+        
+        updateIsPageComplete();
       }
     });
 
@@ -144,6 +180,8 @@ public class SchemaImportWizardPage1 extends WizardPage
         {
           modelPath = (String) arg0.getNewValue();
         }
+        
+        updateIsPageComplete();
       }
 
     });
@@ -158,6 +196,7 @@ public class SchemaImportWizardPage1 extends WizardPage
         launchNewWizardDialog();
 
         modelFileFieldEditor.setStringValue(modelPath);
+        updateIsPageComplete();
       }
 
       @Override
@@ -166,21 +205,24 @@ public class SchemaImportWizardPage1 extends WizardPage
         launchNewWizardDialog();
 
         modelFileFieldEditor.setStringValue(modelPath);
+        updateIsPageComplete();
       }
     });
     
-    // Calculate a default model path.
+    clacModelPathFromSchema(schemaFileName);
+
+    setControl(container);
+
+    updateIsPageComplete();
+  }
+  
+  private void clacModelPathFromSchema(String schemaFileName) {
+    modelPath = "";
+    
     String activeProjectName = SchemaUtil.getActiveProjectNameFromSelection(selection);
-    if (activeProjectName != null)
+    if (activeProjectName != null && activeProjectName != "" && schemaFileName != null)
     {
-      URL url = Platform.getInstanceLocation().getURL();
-      String workspace = new File(url.getPath()).getAbsolutePath();
-      
-      if (schemaPath != null) {
-        String filename = schemaPath.replace(workspace, "").split(java.io.File.pathSeparator)[0];
-      }
-      
-      modelPath = "/" + activeProjectName + "/src/main/domain/display/" + NewRunwayProjectWizard.schemaFileName + ".runway";
+      modelPath = "/" + activeProjectName + "/src/main/domain/display/" + schemaFileName + ".runway";
       
       setEnableButtonSelection(true);
     }
@@ -188,11 +230,8 @@ public class SchemaImportWizardPage1 extends WizardPage
     {
       setEnableButtonSelection(false);
     }
+    
     modelFileFieldEditor.setStringValue(modelPath);
-
-    setControl(container);
-
-    setPageComplete(true);
   }
 
   private OnPerformFinishListenerIF listener = new OnPerformFinishListenerIF()
@@ -250,5 +289,19 @@ public class SchemaImportWizardPage1 extends WizardPage
   public void setSelection(IStructuredSelection selection)
   {
     this.selection = selection;
+  }
+  
+  public void updateIsPageComplete() {
+    boolean isComplete = true;
+    
+    if (modelPath == null || modelPath == "") {
+      isComplete = false;
+    }
+    
+    if (schemaPath == null || schemaPath == "") {
+      isComplete = false;
+    }
+    
+    setPageComplete(isComplete);
   }
 }
