@@ -58,9 +58,9 @@ public class SchemaExportWizard extends Wizard implements INewWizard
     
     String[] args = new String[] { "-dir",
         tempFolderStr,
-        "/Users/terraframe/Documents/workspace/Runway-SDK-Eclipse-Plugin/com.runwaysdk.eclipse.plugin.diagram/resources/version.xsd",
+        SchemaUtil.class.getClassLoader().getResource("com/runwaysdk/resources/version.xsd").toExternalForm(),
         workspace + "/" + projectName + "/src/main/domain/application/" + page1.getSchemaName() };
-        
+    
     SchemaManager.main(args);
     
     /*

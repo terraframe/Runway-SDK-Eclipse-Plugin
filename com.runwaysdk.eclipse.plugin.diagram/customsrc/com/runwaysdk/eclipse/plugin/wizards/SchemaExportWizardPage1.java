@@ -126,20 +126,7 @@ public class SchemaExportWizardPage1 extends WizardPage
         if (res instanceof IFile) {
           IFile file = (IFile) res;
           
-          String extension = "";
-          String fileName = file.getName();
-
-          int i = fileName.lastIndexOf('.');
-
-          if (i > 0) {
-            extension = fileName.substring(i+1);
-          }
-          else {
-            it.remove();
-            continue;
-          }
-          
-          if (!extension.equals("runway_diagram")) {
+          if (!file.getFileExtension().equals("runway_diagram")) {
             it.remove();
           }
         }

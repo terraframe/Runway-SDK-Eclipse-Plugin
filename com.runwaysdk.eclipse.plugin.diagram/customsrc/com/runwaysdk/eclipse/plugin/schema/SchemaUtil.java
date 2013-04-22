@@ -1,5 +1,7 @@
 package com.runwaysdk.eclipse.plugin.schema;
 
+import java.net.URISyntaxException;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IStatus;
@@ -17,14 +19,19 @@ import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugi
 
 public class SchemaUtil
 {
-  public static void main(String[] argz)
+  public static void main(String[] argz) throws URISyntaxException
   {
-    //System.out.println(SchemaUtil.class.getClassLoader().getResource("com/runwaysdk/resources/schema.xsd"));
+    String xsd = SchemaUtil.class.getClassLoader().getResource("com/runwaysdk/resources/version.xsd").toString();
+    
+    System.out.println("XSD = '" + xsd + "'");
+    
+    // "/Users/terraframe/Documents/runtime-Runway_runtime_configuration/.metadata/.plugins/com.runwaysdk.eclipse.plugin/my-runway-project/schema(0001352140861497)HelloWorld"
+    // "/Users/terraframe/Documents/workspace/Runway-SDK-Eclipse-Plugin/com.runwaysdk.eclipse.plugin.diagram/resources/version.xsd"
     
     String[] args = new String[] { "-dir",
-        "/Users/terraframe/Documents/runtime-Runway_runtime_configuration/.metadata/.plugins/com.runwaysdk.eclipse.plugin/my-runway-project/schema(0001352140861497)HelloWorld",
-        "/Users/terraframe/Documents/workspace/Runway-SDK-Eclipse-Plugin/com.runwaysdk.eclipse.plugin.diagram/resources/version.xsd",
-        "/Users/terraframe/Documents/runtime-Runway_runtime_configuration/my-runway-project/src/main/domain/application/testy.xml" };
+        "/Users/terraframe/Documents/workspace/Runway-SDK/RunwayMavenTemplate/src/main/domain/application",
+        xsd,
+        "/Users/terraframe/Documents/workspace/Runway-SDK/RunwayMavenTemplate/src/main/domain/temp/merged.xml" };
 
     SchemaManager.main(args);
   }
