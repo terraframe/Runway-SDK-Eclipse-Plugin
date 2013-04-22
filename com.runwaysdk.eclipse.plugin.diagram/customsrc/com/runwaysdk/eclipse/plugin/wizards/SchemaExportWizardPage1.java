@@ -40,37 +40,10 @@ public class SchemaExportWizardPage1 extends WizardPage
   @Override
   public void createControl(Composite parent) {
     container = new Composite(parent, SWT.NULL);
-    Object selecEl = selection.getFirstElement();
     
-    // Auto-fill this value if they've right-clicked on a diagram file and then did export
-    if (selecEl != null && selecEl instanceof IFile)
-    {
-      IFile file = (IFile) selecEl;
-      
-      if (file.getFileExtension().equals("runway_diagram")) {
-        diagramFile = file;
-      }
-    }
-    else {
-      diagramFile = promptDiagramFile(null);
-    }
-    /*
-    projectNameField = new StringFieldEditor("ProjectName", "Project Name", container); 
-    projectNameField.setEmptyStringAllowed(false);
-    projectNameField.setStringValue(diagramFile.getFullPath().toString());
-    projectNameField.setPropertyChangeListener(new IPropertyChangeListener() {
-      
-      @Override
-      public void propertyChange(PropertyChangeEvent arg0)
-      {
-        if (arg0.getNewValue() instanceof String) {
-//          diagramFile = (String) arg0.getNewValue();
-//          System.out.println("ProjectName = '" + diagramFile + "'");
-        }
-      }
-      
-    });
-     */
+    
+    diagramFile = promptDiagramFile(null);
+
     
     schemaName = diagramFile.getName().replace(".runway_diagram", "") + "_changedSomething" + ".xml";
     
@@ -99,11 +72,17 @@ public class SchemaExportWizardPage1 extends WizardPage
    * This complicated function opens a series of dialogs that eventually leads the user to select a runway_diagram file.
    */
   public IFile promptDiagramFile(IProject proj) {
-    if (proj == null) {
-      Object selecEl = selection.getFirstElement();
-      if (selecEl instanceof IResource) {
-        proj = ((IResource) selecEl).getProject();
+    Object selecEl = selection.getFirstElement();
+    if (selecEl != null && selecEl instanceof IFile)
+    {
+      IFile file = (IFile) selecEl;
+      
+      if (file.getFileExtension().equals("runway_diagram")) {
+        return file;
       }
+    }
+    if (proj == null && selecEl != null && selecEl instanceof IResource) {
+      proj = ((IResource) selecEl).getProject();
     }
     
     if (proj == null) {
