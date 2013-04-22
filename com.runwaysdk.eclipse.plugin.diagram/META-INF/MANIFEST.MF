@@ -55,7 +55,8 @@ Bundle-ClassPath: .,
  lib/UTF8Resource-1.0.jar,
  lib/xml-apis-1.3.04.jar,
  lib/xsom-20110809.jar,
- lib/commons-io-1.3.2.jar
+ lib/commons-io-1.3.2.jar,
+ lib/xercesImpl-2.9.1.jar
 Bundle-Activator: com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin

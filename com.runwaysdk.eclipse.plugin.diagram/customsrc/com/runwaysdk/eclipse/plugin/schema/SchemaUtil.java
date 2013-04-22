@@ -62,7 +62,7 @@ public class SchemaUtil
 
     SchemaManager.main(args);
   }
-
+  
   public static String getActiveProjectNameFromSelection(IStructuredSelection selection)
   {
 //    return getActiveProjectNameFromWorkbench();
