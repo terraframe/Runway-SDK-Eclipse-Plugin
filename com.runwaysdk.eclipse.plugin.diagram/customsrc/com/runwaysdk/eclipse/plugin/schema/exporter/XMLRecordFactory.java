@@ -58,9 +58,9 @@ public class XMLRecordFactory
 //        continue;
 //      }
       
-      if (record.getXMLAttribute("name") == null || record.getXMLAttribute("name") == "") {
-        throw new RuntimeException("The document you are trying to save is invalid. You must specify a name for all Runway classes.");
-      }
+//      if (record.getXMLAttribute("name") == null || record.getXMLAttribute("name") == "") {
+//        throw new RuntimeException("The document you are trying to save is invalid. You must specify a name for all Runway classes.");
+//      }
     }
     
     return true;
