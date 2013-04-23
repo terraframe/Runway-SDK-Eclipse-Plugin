@@ -200,7 +200,7 @@ public class DOMExporter
         
         if (afterFiles.size() == 0) {
           
-          if (timeCounter > 20) {
+          if (timeCounter > 15) {
             SchemaUtil.handleError(null, "Unable to find the new schema file (created by Runway). Attempting to save your schema file anyway.");
             
             Random rand = new Random();
@@ -216,7 +216,11 @@ public class DOMExporter
               SchemaUtil.handleError(null, e);
               return;
             }
+            
+            System.out.println("Saving schema file as [" + file.getAbsolutePath() + "]");
+            
             exportToFile(file.getAbsolutePath());
+            
             return;
           }
           timeCounter++;
@@ -225,7 +229,7 @@ public class DOMExporter
           return;
         }
         
-        System.out.println("Operating system created file after " + timeCounter + 1 + " seconds.");
+        System.out.println("Operating system created file after " + (timeCounter + 1) + " seconds.");
         
         exportToFile(afterFiles.iterator().next().getAbsolutePath());
       }
