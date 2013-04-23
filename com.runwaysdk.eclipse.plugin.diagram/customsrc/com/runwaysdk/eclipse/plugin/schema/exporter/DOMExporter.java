@@ -167,6 +167,11 @@ public class DOMExporter
     /*
      * Call Runway's new schema tool using Maven.
      */
+    File f = new File(saveDirectory);
+    if (f.exists() == false) {
+      f.mkdirs();
+    }
+    
     final List<File> beforeFiles = Arrays.asList(new File(saveDirectory).listFiles());
     
     String[] mavenArgs = new String[] {
