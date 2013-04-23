@@ -169,7 +169,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
        * ); } catch (MavenInvocationException e) { e.printStackTrace(); }
        */
       try {
-        throw new UnsupportedOperationException("");
+        throw new UnsupportedOperationException("External Maven API not yet supported.");
       }
       catch (Exception e) {
         return SchemaUtil.handleError(this.getShell(), e);

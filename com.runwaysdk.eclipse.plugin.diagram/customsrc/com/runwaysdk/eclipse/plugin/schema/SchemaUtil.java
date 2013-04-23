@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.views.navigator.ResourceNavigator;
 
+import com.runwaysdk.constants.ProfileManager;
 import com.runwaysdk.dataaccess.schemamanager.SchemaManager;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
 
@@ -25,15 +26,15 @@ public class SchemaUtil
     
     System.out.println("XSD = '" + xsd + "'");
     
-    // "/Users/terraframe/Documents/runtime-Runway_runtime_configuration/.metadata/.plugins/com.runwaysdk.eclipse.plugin/my-runway-project/schema(0001352140861497)HelloWorld"
-    // "/Users/terraframe/Documents/workspace/Runway-SDK-Eclipse-Plugin/com.runwaysdk.eclipse.plugin.diagram/resources/version.xsd"
-    
     String[] args = new String[] { "-dir",
         "/Users/terraframe/Documents/workspace/Runway-SDK/RunwayMavenTemplate/src/main/domain/application",
         xsd,
         "/Users/terraframe/Documents/workspace/Runway-SDK/RunwayMavenTemplate/src/main/domain/temp/merged.xml" };
 
-    SchemaManager.main(args);
+    System.out.println("args='" + args.toString() + "'");
+    //ProfileManager.setProfileHome("somethingWrong");
+    
+    //SchemaManager.main(args);
   }
   
   public static void handleError(Shell shell, String msg) {

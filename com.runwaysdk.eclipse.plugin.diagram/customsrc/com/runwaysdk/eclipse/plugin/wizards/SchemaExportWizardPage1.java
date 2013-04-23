@@ -83,6 +83,13 @@ public class SchemaExportWizardPage1 extends WizardPage
     }
     if (proj == null && selecEl != null && selecEl instanceof IResource) {
       proj = ((IResource) selecEl).getProject();
+      
+      // Don't use the project if it isn't a Runway project (This code prevents an infinite dialog spam loop)
+      IFolder folder = proj.getFolder("src/main/domain/display");
+      
+      if (folder == null || !folder.exists()) {
+        proj = null;
+      }
     }
     
     if (proj == null) {
