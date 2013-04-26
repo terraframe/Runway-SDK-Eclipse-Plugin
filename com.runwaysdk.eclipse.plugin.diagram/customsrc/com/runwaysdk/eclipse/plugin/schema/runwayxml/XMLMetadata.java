@@ -29,7 +29,6 @@ abstract public class XMLMetadata
 
   public XMLMetadata()
   {
-
   }
 
   public void setXMLAttribute(String key, String value)

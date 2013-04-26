@@ -3,6 +3,7 @@ package com.runwaysdk.eclipse.plugin.schema.exporter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -11,6 +12,8 @@ import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -29,6 +32,11 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.console.IConsoleConstants;
+import org.eclipse.ui.console.IConsoleView;
+import org.eclipse.ui.console.MessageConsole;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -131,13 +139,15 @@ public class DOMExporter
   }
   
   private static void getExportPath() {
-    String activeProjectName;
+    final String activeProjectName;
     String activeDiagramFilename;
+    IProject activeProject;
+    IWorkbenchPage page = RunwayDiagramEditorPlugin.getInstance().getWorkbench().getActiveWorkbenchWindow().getActivePage();
     try {
-      IEditorPart editorPart = RunwayDiagramEditorPlugin.getInstance().getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+      IEditorPart editorPart = page.getActiveEditor();
       IFileEditorInput input = (IFileEditorInput)editorPart.getEditorInput() ;
       IFile file = input.getFile();
-      IProject activeProject = file.getProject();
+      activeProject = file.getProject();
       
       activeProjectName = activeProject.getName();
       activeDiagramFilename = file.getName();
@@ -148,7 +158,7 @@ public class DOMExporter
     }
     
     URL platUrl = Platform.getInstanceLocation().getURL();
-    String workspace = new File(platUrl.getPath()).getAbsolutePath();
+    final String workspace = new File(platUrl.getPath()).getAbsolutePath();
     
     final String saveDirectory = workspace + "/.metadata/.plugins/com.runwaysdk.eclipse.plugin/" + activeProjectName + "/" + activeDiagramFilename;
     
@@ -174,19 +184,13 @@ public class DOMExporter
     
     final List<File> beforeFiles = Arrays.asList(new File(saveDirectory).listFiles());
     
-    String[] mavenArgs = new String[] {
+    final String[] mavenArgs = new String[] {
         "exec:java",
 //        "-X",
         "-Dexec.mainClass=com.runwaysdk.dataaccess.io.CreateDomainModel",
         "-Dexec.arguments=" + saveDirectory };
-    
-    int retVal = new MavenCli().doMain(mavenArgs, workspace + "/" + activeProjectName, System.out, System.out);
 
-    if (retVal != 0) {
-      MessageDialog dialog = new MessageDialog(null, "An error has occurred.", null,
-          "An exception has occurred while creating a new schema. (Maven exited with status code " + retVal + ")", MessageDialog.ERROR, new String[] { "Ok" }, 0);
-      int result = dialog.open();
-    }
+    SchemaUtil.runMavenCmd(mavenArgs, workspace + activeProject.getFullPath().toOSString(), "creating a new schema");
     
     /**
      * The operating system unfortunately doesn't report the new file yet. Spawn a thread to check every second.

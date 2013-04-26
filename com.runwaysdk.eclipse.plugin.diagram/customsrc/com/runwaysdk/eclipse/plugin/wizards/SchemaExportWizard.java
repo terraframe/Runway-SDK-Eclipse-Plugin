@@ -2,6 +2,7 @@ package com.runwaysdk.eclipse.plugin.wizards;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -21,10 +22,16 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.console.IConsoleConstants;
+import org.eclipse.ui.console.IConsoleView;
+import org.eclipse.ui.console.MessageConsole;
 
 import com.runwaysdk.constants.ProfileManager;
 import com.runwaysdk.dataaccess.schemamanager.SchemaManager;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayCreationWizardPage;
+import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
 import com.runwaysdk.eclipse.plugin.schema.SchemaUtil;
 import com.runwaysdk.eclipse.plugin.schema.exporter.DOMExporter;
 
@@ -55,6 +62,8 @@ public class SchemaExportWizard extends Wizard implements INewWizard
   @Override
   public boolean performFinish()
   {
+    final PrintStream out = SchemaUtil.openRunwayConsole();
+    
     /*
      * Call Runway's merge tool using Maven.
      */
@@ -68,7 +77,7 @@ public class SchemaExportWizard extends Wizard implements INewWizard
     String[] runwayArgs = new String[] { "-dir",
         tempFolderStr,
         "jar:file:" + workspace + "/" + projectName + "/lib/runwaysdk-server-0.0.2-SNAPSHOT.jar!/com/runwaysdk/resources/version.xsd",
-        workspace + "/" + projectName + "/src/main/domain/application/" + page1.getSchemaName() };
+        workspace + diagramFile.getProject().getFullPath().toOSString() + "/src/main/domain/application/" + page1.getSchemaName() };
     
     String[] mavenArgs = new String[] {
         "exec:java",
@@ -76,14 +85,13 @@ public class SchemaExportWizard extends Wizard implements INewWizard
         "-Dexec.mainClass=com.runwaysdk.dataaccess.schemamanager.SchemaManager",
         "-Dexec.arguments=" + runwayArgs[0] + "," + runwayArgs[1] + "," + runwayArgs[2] + "," + runwayArgs[3] };
         
-    System.out.println("args[2]='" + mavenArgs[2] + "'");
-    
-    int retVal = new MavenCli().doMain(mavenArgs, workspace + "/" + projectName, System.out, System.out);
+    int retVal = new MavenCli().doMain(mavenArgs, workspace + diagramFile.getProject().getFullPath().toOSString(), out, out);
 
     if (retVal != 0) {
       MessageDialog dialog = new MessageDialog(this.getShell(), "An error has occurred.", null,
           "An exception has occurred while creating a new schema. (Maven exited with status code " + retVal + ")", MessageDialog.ERROR, new String[] { "Ok" }, 0);
       int result = dialog.open();
+      return false;
     }
     
     final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
