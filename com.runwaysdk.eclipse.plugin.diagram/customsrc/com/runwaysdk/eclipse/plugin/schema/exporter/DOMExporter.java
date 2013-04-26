@@ -190,7 +190,12 @@ public class DOMExporter
         "-Dexec.mainClass=com.runwaysdk.dataaccess.io.CreateDomainModel",
         "-Dexec.arguments=" + saveDirectory };
 
-    SchemaUtil.runMavenCmd(mavenArgs, workspace + activeProject.getFullPath().toOSString(), "creating a new schema");
+    final PrintStream out = SchemaUtil.openRunwayConsole();
+    int retVal = new MavenCli().doMain(mavenArgs, workspace + activeProject.getFullPath().toOSString(), out, out);
+
+    if (retVal != 0) {
+      throw new RuntimeException("An exception has occurred while creating a new runway schema. (Maven exited with status code " + retVal + ")");
+    }
     
     /**
      * The operating system unfortunately doesn't report the new file yet. Spawn a thread to check every second.
