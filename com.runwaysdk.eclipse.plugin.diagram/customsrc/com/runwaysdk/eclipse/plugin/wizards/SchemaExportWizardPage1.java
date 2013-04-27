@@ -1,8 +1,11 @@
 package com.runwaysdk.eclipse.plugin.wizards;
 
+import java.io.File;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Random;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -10,6 +13,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
@@ -41,11 +45,12 @@ public class SchemaExportWizardPage1 extends WizardPage
   public void createControl(Composite parent) {
     container = new Composite(parent, SWT.NULL);
     
-    
     diagramFile = promptDiagramFile(null);
 
-    
-    schemaName = diagramFile.getName().replace(".runway_diagram", "") + "_changedSomething" + ".xml";
+    URL url = Platform.getInstanceLocation().getURL();
+    String workspace = new File(url.getPath()).getAbsolutePath();
+    final String tempFolderStr = workspace + "/.metadata/.plugins/com.runwaysdk.eclipse.plugin/" + diagramFile.getProject().getName() + "/" + diagramFile.getName().replace(".runway_diagram", "");
+    schemaName = calcSchemaName(diagramFile.getName(), tempFolderStr);
     
     schemaNameField = new StringFieldEditor("SchemaName", "Export Schema File Name", container); 
     schemaNameField.setEmptyStringAllowed(false);
@@ -66,6 +71,34 @@ public class SchemaExportWizardPage1 extends WizardPage
     setControl(container);
     
     setPageComplete(true);
+  }
+  
+  public static void main(String[] args)
+  {
+    String filename = "schema(000419239123)HelloWorld.runway_diagram";
+    String schemaTempLoc = "/Users/terraframe/Documents/runtime-Runway_runtime_configuration/.metadata/.plugins/com.runwaysdk.eclipse.plugin/make-whatever/schema(0001352140861497)HelloWorld";
+    
+    String schemaName = calcSchemaName(filename, schemaTempLoc);
+    
+    System.out.println(schemaName);
+  }
+  
+  public static String calcSchemaName(String diagramFilename, String schemaTempLoc) {
+    String diagramNameContent = diagramFilename.replace(".runway_diagram", "").replaceAll("schema\\([0-9]+\\)", "");
+    
+    String schemaNumber = String.format("%016d", new Random().nextInt(1000000000));
+    
+    File f = new File(schemaTempLoc);
+    if (f.exists()) {
+      File f2 = f.listFiles()[0];
+      
+      if (f2 != null) {
+        String tempSchemFname = f2.getName();
+        schemaNumber = tempSchemFname.replace("schema(", "").replace(").xml", "");
+      }
+    }
+    
+    return "schema(" + schemaNumber + ")" + diagramNameContent + "_changedSomething.xml";
   }
   
   /**
