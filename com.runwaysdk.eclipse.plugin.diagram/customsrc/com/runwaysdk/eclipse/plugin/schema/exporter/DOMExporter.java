@@ -172,6 +172,11 @@ public class DOMExporter
     /*
      * Call Runway's new schema tool using Maven.
      */
+    if (new File(workspace + activeProject.getFullPath().toOSString() + "/target/classes/master.properties").exists() == false) {
+      RuntimeException e = new RuntimeException("The project must be compiled first.");
+      throw e;
+    }
+    
     File f = new File(saveDirectory);
     if (f.exists() == false) {
       f.mkdirs();
