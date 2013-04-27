@@ -86,17 +86,8 @@ public class SchemaExportWizardPage1 extends WizardPage
   public static String calcSchemaName(String diagramFilename, String schemaTempLoc) {
     String diagramNameContent = diagramFilename.replace(".runway_diagram", "").replaceAll("schema\\([0-9]+\\)", "");
     
+    // TODO: Use Runway to generate this.
     String schemaNumber = String.format("%016d", new Random().nextInt(1000000000));
-    
-    File f = new File(schemaTempLoc);
-    if (f.exists()) {
-      File f2 = f.listFiles()[0];
-      
-      if (f2 != null) {
-        String tempSchemFname = f2.getName();
-        schemaNumber = tempSchemFname.replace("schema(", "").replace(").xml", "");
-      }
-    }
     
     return "schema(" + schemaNumber + ")" + diagramNameContent + "_changedSomething.xml";
   }
