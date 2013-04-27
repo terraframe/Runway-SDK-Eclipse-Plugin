@@ -151,6 +151,8 @@ public class DOMExporter
     catch (Exception e) {
       throw new RuntimeException("The file you wish to export must be open.", e);
     }
+
+    final String absProjPath = activeProject.getLocation().toOSString();
     
     URL platUrl = Platform.getInstanceLocation().getURL();
     final String workspace = new File(platUrl.getPath()).getAbsolutePath();
@@ -172,7 +174,7 @@ public class DOMExporter
     /*
      * Call Runway's new schema tool using Maven.
      */
-    if (new File(workspace + activeProject.getFullPath().toOSString() + "/target/classes/master.properties").exists() == false) {
+    if (new File(absProjPath + "/target/classes/master.properties").exists() == false) {
       RuntimeException e = new RuntimeException("The project must be compiled first.");
       throw e;
     }
@@ -197,12 +199,12 @@ public class DOMExporter
         "-Dexec.args=-classpath %classpath com.runwaysdk.dataaccess.io.CreateDomainModel " + saveDirectory };
 
     final PrintStream out = SchemaUtil.openRunwayConsole();
-    int retVal = new MavenCli().doMain(mavenArgs, workspace + activeProject.getFullPath().toOSString(), out, out);
+    int retVal = new MavenCli().doMain(mavenArgs, absProjPath, out, out);
 
     if (retVal != 0) {
       throw new RuntimeException("An exception has occurred while creating a new runway schema. (Maven exited with status code " + retVal + ")");
     }
-//    SchemaUtil.runMavenCmd(mavenArgs, workspace + activeProject.getFullPath().toOSString(), "creating a new runway schema.");
+//    SchemaUtil.runMavenCmd(mavenArgs, workspace + projPathFromWksp, "creating a new runway schema.");
     
     /**
      * The operating system unfortunately doesn't report the new file yet. Spawn a thread to check every second.
