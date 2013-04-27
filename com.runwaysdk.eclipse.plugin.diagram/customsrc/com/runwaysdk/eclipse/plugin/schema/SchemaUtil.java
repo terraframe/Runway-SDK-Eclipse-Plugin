@@ -31,16 +31,20 @@ public class SchemaUtil
     String xsd = SchemaUtil.class.getClassLoader().getResource("com/runwaysdk/resources/version.xsd").toString();
     
     System.out.println("XSD = '" + xsd + "'");
+    String projPath = "/Users/terraframe/Documents/workspace/RunwayMavenTemplate";
     
     String[] args = new String[] { "-dir",
-        "/Users/terraframe/Documents/workspace/Runway-SDK/RunwayMavenTemplate/src/main/domain/application",
+        projPath + "/src/main/domain/application",
         xsd,
-        "/Users/terraframe/Documents/workspace/Runway-SDK/RunwayMavenTemplate/src/main/domain/temp/merged.xml" };
+        projPath + "/src/main/domain/application/merged.xml" };
 
-    System.out.println("args='" + args.toString() + "'");
-    //ProfileManager.setProfileHome("somethingWrong");
-    
-    //SchemaManager.main(args);
+    final String[] mavenArgs = new String[] {
+        "exec:exec",
+        "-X",
+        "-Dexec.executable=java",
+        "-Dexec.args=-classpath %classpath com.runwaysdk.dataaccess.io.CreateDomainModel " + args[1] };
+
+    int retVal = new MavenCli().doMain(mavenArgs, projPath, System.out, System.out);
   }
   
   public static MessageConsole findConsole(String name) {
@@ -103,6 +107,10 @@ public class SchemaUtil
   
   public static void handleError(Shell shell, String title, String msg) {
     System.out.println("An error has occurred: " + msg);
+    
+    if (shell == null) {
+      shell = RunwayDiagramEditorPlugin.getInstance().getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getSite().getShell();
+    }
     
     MessageDialog dialog = new MessageDialog(shell, title, null,
         msg, MessageDialog.ERROR, new String[] { "Ok" }, 0);

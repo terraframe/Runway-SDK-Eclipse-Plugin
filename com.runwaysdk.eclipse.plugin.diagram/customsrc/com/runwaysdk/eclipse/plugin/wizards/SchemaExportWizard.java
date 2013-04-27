@@ -90,12 +90,15 @@ public class SchemaExportWizard extends Wizard implements INewWizard
         "jar:file:" + workspace + "/" + projectName + "/lib/runwaysdk-server-0.0.2-SNAPSHOT.jar!/com/runwaysdk/resources/version.xsd",
         workspace + diagramFile.getProject().getFullPath().toOSString() + "/src/main/domain/application/" + page1.getSchemaName() };
     
-    String[] mavenArgs = new String[] {
-        "exec:java",
-//        "-X",
-        "-Dexec.mainClass=com.runwaysdk.dataaccess.schemamanager.SchemaManager",
-        "-Dexec.arguments=" + runwayArgs[0] + "," + runwayArgs[1] + "," + runwayArgs[2] + "," + runwayArgs[3] };
-        
+//    String[] mavenArgs = new String[] {
+//        "exec:java",
+//        "-Dexec.mainClass=com.runwaysdk.dataaccess.schemamanager.SchemaManager",
+//        "-Dexec.arguments=" + runwayArgs[0] + "," + runwayArgs[1] + "," + runwayArgs[2] + "," + runwayArgs[3] };
+    final String[] mavenArgs = new String[] {
+        "exec:exec",
+        "-Dexec.executable=java",
+        "-Dexec.args=-classpath %classpath com.runwaysdk.dataaccess.schemamanager.SchemaManager " +  runwayArgs[0] + " " + runwayArgs[1] + " " + runwayArgs[2] + " " + runwayArgs[3]};
+    
     int retVal = new MavenCli().doMain(mavenArgs, workspace + diagramFile.getProject().getFullPath().toOSString(), out, out);
 
     if (retVal != 0) {
