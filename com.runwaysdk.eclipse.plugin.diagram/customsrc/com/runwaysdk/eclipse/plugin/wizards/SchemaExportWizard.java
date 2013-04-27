@@ -74,6 +74,17 @@ public class SchemaExportWizard extends Wizard implements INewWizard
     final String projectName = diagramFile.getProject().getName();
     final String tempFolderStr = workspace + "/.metadata/.plugins/com.runwaysdk.eclipse.plugin/" + projectName + "/" + diagramFile.getName().replace(".runway_diagram", "");
     
+    if (new File(workspace + diagramFile.getProject().getFullPath().toOSString() + "/target/classes/com/runwaysdk").exists() == false) {
+      RuntimeException e = new RuntimeException("An error has occurred, unable to proceed with export. The project must be compiled first.");
+      SchemaUtil.handleError(this.getShell(), e);
+      throw e;
+    }
+    if (new File(workspace + diagramFile.getProject().getFullPath().toOSString() + "/lib").exists() == false) {
+      RuntimeException e = new RuntimeException("An error has occurred, unable to proceed with export. This task requires a lib directory to exist first. Run the lib hack to fix this error.");
+      SchemaUtil.handleError(this.getShell(), e);
+      throw e;
+    }
+    
     String[] runwayArgs = new String[] { "-dir",
         tempFolderStr,
         "jar:file:" + workspace + "/" + projectName + "/lib/runwaysdk-server-0.0.2-SNAPSHOT.jar!/com/runwaysdk/resources/version.xsd",

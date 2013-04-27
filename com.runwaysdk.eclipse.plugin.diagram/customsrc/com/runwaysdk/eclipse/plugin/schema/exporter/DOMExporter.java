@@ -55,6 +55,7 @@ public class DOMExporter
 
   private Element  doItCreate;
 
+  
   private Element  doItUpdate;
 
   private Element  doItDelete;
@@ -67,8 +68,6 @@ public class DOMExporter
 
   private Element  undoItDelete;
   
-  private static int timeCounter;
-
   // This method is called when the user saves the document.
   public static void doExport()
   {
@@ -77,10 +76,11 @@ public class DOMExporter
     List<XMLMdBusiness> records = XMLRecordFactory.getRecords();
     if (records.size() <= 0) { return; }
     
-    getExportPath();
+    DOMExporter exporter = new DOMExporter();
+    exporter.getExportPath();
   }
   
-  private static void exportToFile(String fileName) {
+  private void exportToFile(String fileName) {
     List<XMLMdBusiness> records = XMLRecordFactory.getRecords();
     
     System.out.println("Writing file to '" + fileName + "'");
@@ -138,7 +138,7 @@ public class DOMExporter
     }
   }
   
-  private static void getExportPath() {
+  private void getExportPath() {
     final String activeProjectName;
     String activeDiagramFilename;
     IProject activeProject;
@@ -196,61 +196,68 @@ public class DOMExporter
     if (retVal != 0) {
       throw new RuntimeException("An exception has occurred while creating a new runway schema. (Maven exited with status code " + retVal + ")");
     }
+//    SchemaUtil.runMavenCmd(mavenArgs, workspace + activeProject.getFullPath().toOSString(), "creating a new runway schema.");
     
     /**
      * The operating system unfortunately doesn't report the new file yet. Spawn a thread to check every second.
      */
-    timeCounter = 0;
-    waitLoop(saveDirectory, beforeFiles);
+    final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
+    worker.schedule(new SchemaDetectThread(saveDirectory, beforeFiles), 1, TimeUnit.SECONDS);
   }
   
-  private static void waitLoop(final String saveDirectory, final List<File> beforeFiles) {
-    final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
-    final Runnable task = new Runnable() {
-      public void run() {
-        LinkedList<File> afterFiles = new LinkedList<File>(Arrays.asList(new File(saveDirectory).listFiles()));
+  private class SchemaDetectThread implements Runnable {
+    private int timeCounter = 0;
+    private final String saveDirectory;
+    private final List<File> beforeFiles;
+    
+    SchemaDetectThread(String saveDirectory, List<File> beforeFiles) {
+      this.saveDirectory = saveDirectory;
+      this.beforeFiles = beforeFiles;
+    }
+    
+    public void run() {
+      if (timeCounter > 15) {
+        SchemaUtil.handleError(null, "Unable to find the new schema file (created by Runway). Attempting to save your schema file anyway.");
         
-        afterFiles.removeAll(beforeFiles);
+        Random rand = new Random();
+        int n = rand.nextInt(500000) + 1;
         
-        if (afterFiles.size() == 0) {
-          
-          if (timeCounter > 15) {
-            SchemaUtil.handleError(null, "Unable to find the new schema file (created by Runway). Attempting to save your schema file anyway.");
-            
-            Random rand = new Random();
-            int n = rand.nextInt(500000) + 1;
-            
-            File file = new File(saveDirectory + "/schema" + Integer.toString(n) + ".xml");
-            try
-            {
-              file.createNewFile();
-            }
-            catch (IOException e)
-            {
-              SchemaUtil.handleError(null, e);
-              return;
-            }
-            
-            System.out.println("Saving schema file as [" + file.getAbsolutePath() + "]");
-            
-            exportToFile(file.getAbsolutePath());
-            
-            return;
-          }
-          timeCounter++;
-          
-          DOMExporter.waitLoop(saveDirectory, beforeFiles);
+        File file = new File(saveDirectory + "/schema" + Integer.toString(n) + ".xml");
+        try
+        {
+          file.createNewFile();
+        }
+        catch (IOException e)
+        {
+          SchemaUtil.handleError(null, e);
           return;
         }
         
-        System.out.println("Operating system created file after " + (timeCounter + 1) + " seconds.");
+        System.out.println("Saving schema file as [" + file.getAbsolutePath() + "]");
         
-        exportToFile(afterFiles.iterator().next().getAbsolutePath());
+        exportToFile(file.getAbsolutePath());
+        
+        return;
       }
-    };
-    worker.schedule(task, 1, TimeUnit.SECONDS);
+      
+      LinkedList<File> afterFiles = new LinkedList<File>(Arrays.asList(new File(saveDirectory).listFiles()));
+      afterFiles.removeAll(beforeFiles);
+      
+      if (afterFiles.size() > 0) {
+        System.out.println("Schema file created after " + (timeCounter + 1) + " seconds.");
+        exportToFile(afterFiles.iterator().next().getAbsolutePath());
+        return;
+      }
+      
+      System.out.println("timeCounter = " + timeCounter);
+      
+      timeCounter++;
+      
+      final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
+      worker.schedule(this, 1, TimeUnit.SECONDS);
+    }
   }
-
+  
   public void generateEmptySchema(String filename)
   {
     // instance of a DocumentBuilderFactory

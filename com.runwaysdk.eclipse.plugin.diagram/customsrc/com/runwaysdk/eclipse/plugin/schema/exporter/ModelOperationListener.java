@@ -19,10 +19,13 @@ import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMetadata;
 // This class requires custom changes to generated GMF source:
 // in RunwayDocumentProvider.java, insert:
 // //
-// ModelOperationListener myListen = new ModelOperationListener();
-// editingDomain.addResourceSetListener(myListen);
+// ModelOperationListener.registerListeners(editingDomain);
 // //
-// starting at line 199.
+// on line 201 (right before return in createEditingDomain), and:
+// //
+// ModelOperationListener.onDocumentSave();
+// //
+// on line 621 (first line of doSaveDocument)
 
 
 public class ModelOperationListener extends ResourceSetListenerImpl implements ResourceSetListener
