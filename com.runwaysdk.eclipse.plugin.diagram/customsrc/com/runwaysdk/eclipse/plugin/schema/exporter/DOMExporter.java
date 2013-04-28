@@ -86,21 +86,23 @@ public class DOMExporter
     {
       XMLMdBusiness record = records.get(i);
       
-      Element el = record.writeDoItXML(instance.dom);
-      Element ele = record.writeUndoItXML(instance.dom);
+      Element xml = record.writeXML(instance.dom);
+      Element deleteXml = record.writeDeleteXML(instance.dom);
       
       if (record.getCrudFlag() == XMLMetadata.CREATE)
       {
-        instance.doItCreate.appendChild(el);
-        instance.undoItDelete.appendChild(ele);
+        instance.doItCreate.appendChild(xml);
+        instance.undoItDelete.appendChild(deleteXml);
       }
       else if (record.getCrudFlag() == XMLMetadata.UPDATE)
       {
-        instance.doItUpdate.appendChild(el);
-        instance.undoItDelete.appendChild(el);
+        instance.doItUpdate.appendChild(xml);
+        instance.undoItDelete.appendChild(deleteXml);
       }
       else if (record.getCrudFlag() == XMLMetadata.DELETE)
       {
+        instance.doItDelete.appendChild(deleteXml);
+        instance.undoItCreate.appendChild(xml);
       }
       else {
         throw new RuntimeException("Unrecognized Crud Flag on XMLMdBusiness [" + record.getCrudFlag() + "]");

@@ -79,6 +79,8 @@ public class ModelOperationListener extends ResourceSetListenerImpl implements R
           // MdBusiness is updated
           XMLMdBusiness xmlBiz = XMLRecordFactory.getXMLMdBusiness((MDBusiness) note.getNotifier());
           xmlBiz.setXMLAttribute(attr.getName(), newValue.toString());
+          
+          // If they changed the name of the MdBusiness then we need to delete the old and create a new
         }
       }
     }
