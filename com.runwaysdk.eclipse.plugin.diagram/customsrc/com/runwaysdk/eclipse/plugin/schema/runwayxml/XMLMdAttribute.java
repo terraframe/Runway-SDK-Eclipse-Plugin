@@ -11,18 +11,18 @@ abstract public class XMLMdAttribute extends XMLMetadata
     // TODO Auto-generated constructor stub
   }
 
-  @Override
-  public Element writeXML(Document dom, Element xml)
-  {
-    // TODO Auto-generated method stub
-    return null;
-  }
+	@Override
+	public Element writeXML(Document dom) {
+	Element xml = dom.createElement("mdAttribute");
+	    return super.writeXML(dom, xml);
+	}
+		  
+	@Override
+	public Element writeDeleteXML(Document dom) {
+	    Element xml = dom.createElement("object");
+	    xml.setAttribute("type", "com.runwaysdk.system.metadata.MdAttribute");
+	    return super.writeDeleteXML(dom, xml);
+	}
 
-  @Override
-  public Element writeDeleteXML(Document dom, Element xml)
-  {
-    // TODO Auto-generated method stub
-    return null;
-  }
 
 }
