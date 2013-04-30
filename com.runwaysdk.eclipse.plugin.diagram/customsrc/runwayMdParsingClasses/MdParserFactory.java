@@ -88,8 +88,8 @@ public class MdParserFactory {
 			return contentParser.parse();
 		}
 		else{
-			System.out.println("No contentParser for: " + nodeName);
-			throw new NullPointerException("Find me in Parser Factory");
+			System.out.println("Tag: " + nodeName +" not recognized in MdParserFactory");
+			return null;		
 		}
 	}
 }
