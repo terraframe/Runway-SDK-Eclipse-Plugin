@@ -86,11 +86,20 @@ abstract public class XMLMetadata
   
   abstract public Element writeDeleteXML(Document dom);
 
+  /**
+   * This function returns XML that is valid for an undo update.
+   */
+  public Element writeUndoUpdateXML(Document dom, Element xml)
+  {
+    // TODO
+    return null;
+  }
+  
   public MetaData getMetadata()
   {
     return metadata;
   }
-
+  
   public void setMetadata(MetaData mdBiz)
   {
     this.metadata = mdBiz;

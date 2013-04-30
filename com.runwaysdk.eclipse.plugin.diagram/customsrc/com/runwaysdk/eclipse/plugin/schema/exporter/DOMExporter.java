@@ -52,7 +52,6 @@ public class DOMExporter
 
   private Element  doItCreate;
 
-  
   private Element  doItUpdate;
 
   private Element  doItDelete;

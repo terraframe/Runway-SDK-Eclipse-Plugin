@@ -14,7 +14,7 @@ public class XMLMdAttributeBlob extends XMLMdAttribute {
 	Element xml = dom.createElement("blob");
 	    return super.writeXML(dom, xml);
 	}
-		  
+	
 	@Override
 	public Element writeDeleteXML(Document dom) {
 	    Element xml = dom.createElement("object");
