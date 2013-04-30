@@ -29,17 +29,16 @@ public class XMLMdBusiness extends XMLMdElement
   }
   
   @Override
-  public Element writeDoItXML(Document dom) {
+  public Element writeXML(Document dom) {
     Element xml = dom.createElement("mdBusiness");
-    this.setDoItExport(xml);
-    return super.writeDoItXML(dom);
+    return super.writeXML(dom, xml);
   }
   
   @Override
-  public Element writeUndoItXML(Document dom) {
+  public Element writeDeleteXML(Document dom) {
     Element xml = dom.createElement("object");
-    this.setUndoItExport(xml);
-    return super.writeUndoItXML(dom);
+    xml.setAttribute("type", "com.runwaysdk.system.metadata.MdBusiness");
+    return super.writeDeleteXML(dom, xml);
   }
 
 }

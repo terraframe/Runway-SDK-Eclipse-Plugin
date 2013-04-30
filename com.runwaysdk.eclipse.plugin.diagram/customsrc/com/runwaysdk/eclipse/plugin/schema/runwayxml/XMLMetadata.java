@@ -7,6 +7,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 
+import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
+import com.runwaysdk.eclipse.plugin.runway.MDType;
 import com.runwaysdk.eclipse.plugin.runway.MetaData;
 
 abstract public class XMLMetadata
@@ -14,8 +16,6 @@ abstract public class XMLMetadata
   private Map<String, String> xmlAttributes = new HashMap<String, String>();
 
   private MetaData            metadata;
-
-  private Element             doItExport, undoItExport;
 
   public static final int     UNMODIFIED    = 0;
 
@@ -29,7 +29,6 @@ abstract public class XMLMetadata
 
   public XMLMetadata()
   {
-
   }
 
   public void setXMLAttribute(String key, String value)
@@ -55,43 +54,58 @@ abstract public class XMLMetadata
     return metadata;
   }
 
-  public Element writeDoItXML(Document dom)
+  /**
+   * This function returns XML that is valid under a create or an update tag.
+   */
+  public Element writeXML(Document dom, Element xml)
   {
-    Element xml = doItExport;
-
     Object[] keys = xmlAttributes.keySet().toArray();
     for (int i = 0; i < keys.length; ++i)
     {
       String key = (String) keys[i];
       xml.setAttribute(key, xmlAttributes.get(key));
     }
-
-    return xml;
-  }
-
-  public Element writeUndoItXML(Document dom)
-  {
-    Element xml = undoItExport;
-
-    Object[] keys = xmlAttributes.keySet().toArray();
-    for (int i = 0; i < keys.length; ++i)
-    {
-      String key = (String) keys[i];
-      if (key == "name") {
-    	xml.setAttribute("key", xmlAttributes.get(key));
-    	xml.setAttribute("type", "com.runwaysdk.system.metadata." + doItExport.getNodeName());
-    	break;
+    
+    if (!xmlAttributes.containsKey("name")) {
+      if (metadata instanceof MDType) {
+        xml.setAttribute("name", ((MDType) metadata).getName());
+      }
+      else if (metadata instanceof MDAttribute) {
+        xml.setAttribute("name", ((MDAttribute) metadata).getName());
       }
     }
 
     return xml;
   }
+  
+  abstract public Element writeXML(Document dom);
 
+  /**
+   * This function returns XML that is valid under a delete tag.
+   */
+  protected Element writeDeleteXML(Document dom, Element xml)
+  {
+    xml.setAttribute("key", ((MDType) metadata).getName());
+
+    return xml;
+  }
+  
+  abstract public Element writeDeleteXML(Document dom);
+
+  /**
+   * This function returns XML that is valid for an undo update.
+   */
+  public Element writeUndoUpdateXML(Document dom, Element xml)
+  {
+    // TODO
+    return null;
+  }
+  
   public MetaData getMetadata()
   {
     return metadata;
   }
-
+  
   public void setMetadata(MetaData mdBiz)
   {
     this.metadata = mdBiz;
@@ -105,26 +119,6 @@ abstract public class XMLMetadata
   public void setCrudFlag(int crudFlag)
   {
     this.crudFlag = crudFlag;
-  }
-
-  public Element getDoItExport()
-  {
-    return doItExport;
-  }
-
-  public void setDoItExport(Element doItExport)
-  {
-    this.doItExport = doItExport;
-  }
-
-  public Element getUndoItExport()
-  {
-    return undoItExport;
-  }
-
-  public void setUndoItExport(Element undoItExport)
-  {
-    this.undoItExport = undoItExport;
   }
 
 }

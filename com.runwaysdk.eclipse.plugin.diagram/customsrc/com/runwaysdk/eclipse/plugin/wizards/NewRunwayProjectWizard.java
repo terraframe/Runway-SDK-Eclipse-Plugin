@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.io.IOUtils;
@@ -28,8 +29,12 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.eclipse.ui.console.IConsoleConstants;
+import org.eclipse.ui.console.IConsoleView;
+import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.dialogs.IOverwriteQuery;
 import org.eclipse.ui.internal.ide.filesystem.FileSystemStructureProvider;
 import org.eclipse.ui.wizards.datatransfer.ImportOperation;
@@ -106,6 +111,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
   @Override
   public boolean performFinish()
   {
+    final PrintStream out = SchemaUtil.openRunwayConsole();
     final String projectDir = page1.getLocation() + "/" + page1.getArtifactId();
     
     /*
@@ -136,7 +142,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
                 "-DarchetypeVersion=" + runwayArchetypeVersion, "-DgroupId=" + page1.getGroupId(),
                 "-DartifactId=" + page1.getArtifactId(), "-Dpackage=" + page1.getPkge(),
                 "-Dversion=" + page1.getVersion(), "-DinteractiveMode=false",
-                "-DarchetypeRepository=" + ARCHETYPE_SERVER }, page1.getLocation(), System.out, System.out);
+                "-DarchetypeRepository=" + ARCHETYPE_SERVER }, page1.getLocation(), out, out);
         
         if (retVal != 0) {
           MessageDialog dialog = new MessageDialog(this.getShell(), "An error has occurred.", null,

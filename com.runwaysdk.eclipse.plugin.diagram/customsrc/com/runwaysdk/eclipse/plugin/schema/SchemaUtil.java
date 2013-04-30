@@ -1,20 +1,26 @@
 package com.runwaysdk.eclipse.plugin.schema;
 
+import java.io.PrintStream;
 import java.net.URISyntaxException;
 
+import org.apache.maven.cli.MavenCli;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.console.ConsolePlugin;
+import org.eclipse.ui.console.IConsole;
+import org.eclipse.ui.console.IConsoleConstants;
+import org.eclipse.ui.console.IConsoleManager;
+import org.eclipse.ui.console.IConsoleView;
+import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.views.navigator.ResourceNavigator;
 
-import com.runwaysdk.constants.ProfileManager;
 import com.runwaysdk.dataaccess.schemamanager.SchemaManager;
 import com.runwaysdk.eclipse.plugin.runway.diagram.part.RunwayDiagramEditorPlugin;
 
@@ -25,16 +31,74 @@ public class SchemaUtil
     String xsd = SchemaUtil.class.getClassLoader().getResource("com/runwaysdk/resources/version.xsd").toString();
     
     System.out.println("XSD = '" + xsd + "'");
+    String projPath = "/Users/terraframe/Documents/workspace/RunwayMavenTemplate";
     
     String[] args = new String[] { "-dir",
-        "/Users/terraframe/Documents/workspace/Runway-SDK/RunwayMavenTemplate/src/main/domain/application",
+        projPath + "/src/main/domain/application",
         xsd,
-        "/Users/terraframe/Documents/workspace/Runway-SDK/RunwayMavenTemplate/src/main/domain/temp/merged.xml" };
+        projPath + "/src/main/domain/application/merged.xml" };
 
-    System.out.println("args='" + args.toString() + "'");
-    //ProfileManager.setProfileHome("somethingWrong");
+    final String[] mavenArgs = new String[] {
+        "exec:exec",
+        "-X",
+        "-Dexec.executable=java",
+        "-Dexec.args=-classpath %classpath com.runwaysdk.dataaccess.io.CreateDomainModel " + args[1] };
+
+    int retVal = new MavenCli().doMain(mavenArgs, projPath, System.out, System.out);
+  }
+  
+  public static MessageConsole findConsole(String name) {
+    ConsolePlugin plugin = ConsolePlugin.getDefault();
+    IConsoleManager conMan = plugin.getConsoleManager();
+    IConsole[] existing = conMan.getConsoles();
+    for (int i = 0; i < existing.length; i++)
+       if (name.equals(existing[i].getName()))
+          return (MessageConsole) existing[i];
+    //no console found, so create a new one
+    MessageConsole myConsole = new MessageConsole(name, null);
+    conMan.addConsoles(new IConsole[]{myConsole});
+    return myConsole;
+ }
+  
+  public static PrintStream openRunwayConsole() {
+    // Create new console
+    MessageConsole myConsole = SchemaUtil.findConsole("Runway Console");
+    IWorkbenchPage page = RunwayDiagramEditorPlugin.getInstance().getWorkbench().getActiveWorkbenchWindow().getActivePage();
+    final PrintStream out = new PrintStream(myConsole.newMessageStream());
     
-    //SchemaManager.main(args);
+    // Open the console
+    IConsoleView view;
+    try
+    {
+      view = (IConsoleView) page.showView(IConsoleConstants.ID_CONSOLE_VIEW);
+    }
+    catch (PartInitException e)
+    {
+      e.printStackTrace(out);
+      return out;
+    }
+    view.display(myConsole);
+    
+    return out;
+  }
+  
+  public static void runMavenCmd(final String[] mavenArgs, final String projDir, final String errStr) {
+    final PrintStream out = openRunwayConsole();
+    
+    // Run maven in new thread
+    Runnable mavenExec = new Runnable() {
+      public void run() {
+        int retVal = new MavenCli().doMain(mavenArgs, projDir, out, out);
+
+        if (retVal != 0) {
+          MessageDialog dialog = new MessageDialog(null, "An error has occurred.", null,
+              "An exception has occurred while " + errStr + ". (Maven exited with status code " + retVal + ")", MessageDialog.ERROR, new String[] { "Ok" }, 0);
+          int result = dialog.open();
+        }
+      }
+    };
+    Thread myThread = new Thread(mavenExec);
+    myThread.start();
   }
   
   public static void handleError(Shell shell, String msg) {
@@ -43,6 +107,10 @@ public class SchemaUtil
   
   public static void handleError(Shell shell, String title, String msg) {
     System.out.println("An error has occurred: " + msg);
+    
+    if (shell == null) {
+      shell = RunwayDiagramEditorPlugin.getInstance().getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getSite().getShell();
+    }
     
     MessageDialog dialog = new MessageDialog(shell, title, null,
         msg, MessageDialog.ERROR, new String[] { "Ok" }, 0);

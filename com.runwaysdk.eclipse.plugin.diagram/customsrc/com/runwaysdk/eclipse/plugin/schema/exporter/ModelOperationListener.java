@@ -9,9 +9,10 @@ import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.swt.widgets.Shell;
 
+import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
 import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
+import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMdAttribute;
 import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMdBusiness;
 import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMetadata;
 
@@ -19,10 +20,13 @@ import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMetadata;
 // This class requires custom changes to generated GMF source:
 // in RunwayDocumentProvider.java, insert:
 // //
-// ModelOperationListener myListen = new ModelOperationListener();
-// editingDomain.addResourceSetListener(myListen);
+// ModelOperationListener.registerListeners(editingDomain);
 // //
-// starting at line 199.
+// on line 201 (right before return in createEditingDomain), and:
+// //
+// ModelOperationListener.onDocumentSave();
+// //
+// on line 621 (first line of doSaveDocument)
 
 
 public class ModelOperationListener extends ResourceSetListenerImpl implements ResourceSetListener
@@ -59,14 +63,27 @@ public class ModelOperationListener extends ResourceSetListenerImpl implements R
       Object feature = note.getFeature();
       Object newValue = note.getNewValue();
       
-      System.out.println("feature = " + feature + "; newValue = " + newValue);
-      
       if (feature instanceof EReference) {
-        if (newValue instanceof MDBusiness && note.getEventType() == 1) {
+        
+        // The GMF Notification system spits out two different notifications each with an MDBusiness/MDAttribute in it.
+        // The only difference I can find between the events is the event type: add vs set
+        
+        if (newValue instanceof MDBusiness && note.getEventType() == Notification.ADD) {
           // New MdBusiness is created
           MDBusiness mdBiz = (MDBusiness) newValue;
           
           XMLRecordFactory.getXMLMdBusiness(mdBiz).setCrudFlag(XMLMetadata.CREATE);
+        }
+        else if (newValue instanceof MDAttribute && note.getEventType() == Notification.ADD) {
+          // New MdAttribute is created
+          MDBusiness mdBiz = (MDBusiness) note.getNotifier();
+          XMLMdBusiness xmlMdBiz = XMLRecordFactory.getXMLMdBusiness(mdBiz);
+          
+          MDAttribute mdAttr = (MDAttribute) newValue;
+          XMLMdAttribute xmlMdAttr = null; // get from factory
+          
+          xmlMdAttr.setMetadata(mdAttr);
+          xmlMdBiz.addAttribute(xmlMdAttr);
         }
       }
       else if (feature instanceof EAttribute) {
@@ -76,10 +93,21 @@ public class ModelOperationListener extends ResourceSetListenerImpl implements R
           // MdBusiness is updated
           XMLMdBusiness xmlBiz = XMLRecordFactory.getXMLMdBusiness((MDBusiness) note.getNotifier());
           xmlBiz.setXMLAttribute(attr.getName(), newValue.toString());
+          
+          // TODO: If they changed the name of the MdBusiness then we need to delete the old and create a new
+        }
+        else if (note.getNotifier() instanceof MDAttribute) {
+          // MDAttribute is updated
+          MDAttribute mdAttr = (MDAttribute) note.getNotifier();
+          XMLMdBusiness xmlBiz = XMLRecordFactory.getXMLMdBusiness((MDBusiness) mdAttr.eContainer());
+          XMLMdAttribute xmlAttr = xmlBiz.getXMLMdAttribute(mdAttr.getName());
+          
+          xmlAttr.setXMLAttribute(attr.getName(), newValue.toString());
+          
+//          System.out.println("feature = " + feature + "; newValue = " + newValue);
         }
       }
     }
-    
     /*
     Transaction tran = event.getTransaction();
     if (tran != null) {
@@ -95,6 +123,9 @@ public class ModelOperationListener extends ResourceSetListenerImpl implements R
         if (modifiedObject instanceof DocumentRoot) {
           
         }
+        else if (modifiedObject instanceof MDClass) {
+          
+        }
         
         System.out.println(i + " : " + modifiedObject + " = {");
         
@@ -105,7 +136,7 @@ public class ModelOperationListener extends ResourceSetListenerImpl implements R
         System.out.println("}");
       }
     }
-     */
+    */
     
     super.resourceSetChanged(event);
   }
