@@ -12,7 +12,7 @@ public class XMLMdAttributeFactory {
 		
 	}
 
-	public XMLMdAttribute getContentFromGMF(MDAttribute attribute){
+	public static XMLMdAttribute getContentFromGMF(MDAttribute attribute){
 		
 		System.out.println("Inside XMLMdAttributeFactory");
 		
