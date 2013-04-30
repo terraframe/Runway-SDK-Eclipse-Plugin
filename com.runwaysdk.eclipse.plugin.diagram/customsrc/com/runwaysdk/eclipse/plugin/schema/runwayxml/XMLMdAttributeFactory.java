@@ -1,7 +1,8 @@
 package com.runwaysdk.eclipse.plugin.schema.runwayxml;
 
-import com.runwaysdk.eclipse.plugin.schema.importer.XMLTags;
-import com.runwaysdk.system.metadata.MdAttribute;
+import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
+import com.runwaysdk.system.metadata.*;
+
 
 public class XMLMdAttributeFactory {
 
@@ -11,92 +12,86 @@ public class XMLMdAttributeFactory {
 		
 	}
 
-	public XMLMdAttribute getContentFromGMF(MdAttribute attribute){
-		String attributeName = attribute.getAttributeName();
+	public XMLMdAttribute getContentFromGMF(MDAttribute attribute){
 		
 		System.out.println("Inside XMLMdAttributeFactory");
 		
 		XMLMdAttribute xmlAtt = null; 
 
 		//Try to keep these in Alphabetical Order
-		if (attributeName == XMLTags.BLOB_TAG) {
+		if (attribute instanceof MdAttributeBlob) {
 			xmlAtt = new XMLMdAttributeBlob(); 
 		}
 
-		else if (attributeName == XMLTags.BOOLEAN_TAG) {
+		else if (attribute instanceof MdAttributeBoolean) {
 			xmlAtt = new XMLMdAttributeBoolean(); 
 		}
 
-		else if (attributeName == XMLTags.CHARACTER_TAG) {
+		else if (attribute instanceof MdAttributeCharacter) {
 			xmlAtt = new XMLMdAttributeCharacter(); 
 		}
 
-		else if (attributeName == XMLTags.DATE_TAG) {
+		else if (attribute instanceof MdAttributeDate) {
 			xmlAtt = new XMLMdAttributeDate();
 		}
 
-		else if (attributeName == XMLTags.DATETIME_TAG) {
+		else if (attribute instanceof MdAttributeDateTime) {
 			xmlAtt = new XMLMdAttributeDateTime();
 		}
 		
-		else if (attributeName == XMLTags.DECIMAL_ATTRIBUTE) {
+		else if (attribute instanceof MdAttributeDecimal) {
 			xmlAtt = new XMLMdAttributeDecimal();
 		}
 		
-		else if (attributeName == XMLTags.DOUBLE_TAG) {
+		else if (attribute instanceof MdAttributeDouble) {
 			xmlAtt = new XMLMdAttributeDouble();
 		}
 		
-		else if (attributeName == XMLTags.ENUMERATION_TAG) {
+		else if (attribute instanceof MdAttributeEnumeration) {
 			xmlAtt = new XMLMdAttributeEnumeration();
 		}
 		
-		else if (attributeName == XMLTags.FLOAT_TAG) {
+		else if (attribute instanceof MdAttributeFloat) {
 			xmlAtt = new XMLMdAttributeFloat();
 		}
 		
-		//TODO is this the right "hash" tag? 
-		else if (attributeName == XMLTags.HASH_METHOD_ATTRIBUTE) {
+		else if (attribute instanceof MdAttributeHash) {
 			xmlAtt = new XMLMdAttributeHash();
 		}
 		
-		else if (attributeName == XMLTags.INTEGER_TAG) {
+		else if (attribute instanceof MdAttributeInteger) {
 			xmlAtt = new XMLMdAttributeInteger();
 		}
-		// Should these 3 local variants exist?
-		//TODO is this the right "local" tag? 
-//		else if (nodeName == XMLTags.LOCAL_TAG) {
-//			contentParser = new XMLMdAttributeLocal();
-//		}
 
-		else if (attributeName == XMLTags.LOCAL_CHARACTER_TAG) {
+		else if (attribute instanceof MdAttributeLocal) {
+			xmlAtt = new XMLMdAttributeLocal();
+		}
+
+		else if (attribute instanceof MdAttributeLocalCharacter) {
 			xmlAtt = new XMLMdAttributeLocalCharacter();
 		}
 
-		else if (attributeName == XMLTags.LOCAL_TEXT_TAG) {
+		else if (attribute instanceof MdAttributeLocalText) {
 			xmlAtt = new XMLMdAttributeLocalText();
 		}
 
-		else if (attributeName == XMLTags.LONG_TAG) {
+		else if (attribute instanceof MdAttributeLong) {
 			xmlAtt = new XMLMdAttributeLong();
 		}
 		
-		//TODO is this the right "local" tag? 
-//		else if (nodeName == XMLTags.NUMBER_TAG) {
-//			contentParser = new XMLMdAttributeNumber();
-//		}
+		else if (attribute instanceof MdAttributeNumber) {
+			xmlAtt = new XMLMdAttributeNumber();
+		}
 		
-		//TODO is this the right "local" tag? 
-		else if (attributeName == XMLTags.STRUCT_TAG) {
+		else if (attribute instanceof MdAttributeStruct) {
 			xmlAtt = new XMLMdAttributeStruct();
 		}
 
-		else if (attributeName == XMLTags.TEXT_TAG) {
+		else if (attribute instanceof MdAttributeText) {
 			xmlAtt = new XMLMdAttributeText();
 		}
 
-		//TODO is this the right "local" tag? 
-		else if (attributeName == XMLTags.TIME_TAG) {
+		else if (attribute instanceof MdAttributeTime) {
 			xmlAtt = new XMLMdAttributeTime();
 		}
 
