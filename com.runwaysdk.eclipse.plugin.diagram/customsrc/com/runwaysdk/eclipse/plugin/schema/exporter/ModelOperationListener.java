@@ -13,6 +13,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
 import com.runwaysdk.eclipse.plugin.runway.MDBusiness;
 import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMdAttribute;
+import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMdAttributeFactory;
 import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMdBusiness;
 import com.runwaysdk.eclipse.plugin.schema.runwayxml.XMLMetadata;
 
@@ -80,7 +81,7 @@ public class ModelOperationListener extends ResourceSetListenerImpl implements R
           XMLMdBusiness xmlMdBiz = XMLRecordFactory.getXMLMdBusiness(mdBiz);
           
           MDAttribute mdAttr = (MDAttribute) newValue;
-          XMLMdAttribute xmlMdAttr = null; // get from factory
+          XMLMdAttribute xmlMdAttr = XMLMdAttributeFactory.getContentFromGMF(mdAttr); // get from factory
           
           xmlMdAttr.setMetadata(mdAttr);
           xmlMdBiz.addAttribute(xmlMdAttr);
@@ -98,11 +99,11 @@ public class ModelOperationListener extends ResourceSetListenerImpl implements R
         }
         else if (note.getNotifier() instanceof MDAttribute) {
           // MDAttribute is updated
-          MDAttribute mdAttr = (MDAttribute) note.getNotifier();
-          XMLMdBusiness xmlBiz = XMLRecordFactory.getXMLMdBusiness((MDBusiness) mdAttr.eContainer());
-          XMLMdAttribute xmlAttr = xmlBiz.getXMLMdAttribute(mdAttr.getName());
-          
-          xmlAttr.setXMLAttribute(attr.getName(), newValue.toString());
+//          MDAttribute mdAttr = (MDAttribute) note.getNotifier();
+//          XMLMdBusiness xmlBiz = XMLRecordFactory.getXMLMdBusiness((MDBusiness) mdAttr.eContainer());
+//          XMLMdAttribute xmlAttr = xmlBiz.getXMLMdAttribute(mdAttr.getName());
+//          
+//          xmlAttr.setXMLAttribute(attr.getName(), newValue.toString());
           
 //          System.out.println("feature = " + feature + "; newValue = " + newValue);
         }
