@@ -7,8 +7,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 
-import com.runwaysdk.eclipse.plugin.runway.MetaData;
+import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
 import com.runwaysdk.eclipse.plugin.runway.MDType;
+import com.runwaysdk.eclipse.plugin.runway.MetaData;
 
 abstract public class XMLMetadata
 {
@@ -66,7 +67,12 @@ abstract public class XMLMetadata
     }
     
     if (!xmlAttributes.containsKey("name")) {
-      xml.setAttribute("name", ((MDType) metadata).getName());
+      if (metadata instanceof MDType) {
+        xml.setAttribute("name", ((MDType) metadata).getName());
+      }
+      else if (metadata instanceof MDAttribute) {
+        xml.setAttribute("name", ((MDAttribute) metadata).getName());
+      }
     }
 
     return xml;

@@ -1,6 +1,7 @@
 package com.runwaysdk.eclipse.plugin.schema.runwayxml;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.w3c.dom.Document;
@@ -18,17 +19,26 @@ abstract public class XMLMdClass extends XMLMdType
   }
 
   @Override
-  public Element writeXML(Document dom)
+  public Element writeXML(Document dom, Element xml)
   {
-    Element xml = dom.createElement("mdClass");
+    Iterator<XMLMdAttribute> attrs = attributes.values().iterator();
+    
+    Element attrsTag = dom.createElement("attributes");
+    xml.appendChild(attrsTag);
+    
+    while (attrs.hasNext()) {
+      XMLMdAttribute attr = attrs.next();
+      
+      Element xmlAttr = attr.writeXML(dom);
+      attrsTag.appendChild(xmlAttr);
+    }
+    
     return super.writeXML(dom, xml);
   }
 
   @Override
-  public Element writeDeleteXML(Document dom)
+  public Element writeDeleteXML(Document dom, Element xml)
   {
-    Element xml = dom.createElement("object");
-    xml.setAttribute("type", "com.runwaysdk.system.metadata.MdClass");
     return super.writeDeleteXML(dom, xml);
   }
   

@@ -137,6 +137,7 @@ public class RunwayDOMParser
 				//The factory abstracts all creation and parsing. Look there for more!
 				MetaData mdNodeObject = factory.getContentFromNode(mdNode);
 				System.out.println("DONE CREATING Medata");
+				if(mdNodeObject == null){ continue;}
 
 
 				//Because only MDClass and its subclasses can actually have MDAttributes, we do this type checking to make sure
@@ -196,7 +197,14 @@ public class RunwayDOMParser
 			if(attribute instanceof Element){
 
 				//Call our factory to create respective MDAttribute and add it to our list
-				mdAttributeList.add((MDAttribute) factory.getContentFromNode(attribute));
+				//Null check to make sure the item we receive is not null
+				MetaData nodeMetaData = factory.getContentFromNode(attribute);
+				if(nodeMetaData != null){
+					mdAttributeList.add((MDAttribute) nodeMetaData);
+				}
+				else{
+					continue;
+				}
 			}
 			else{
 				System.out.println("MDAttribute node is not an element");
