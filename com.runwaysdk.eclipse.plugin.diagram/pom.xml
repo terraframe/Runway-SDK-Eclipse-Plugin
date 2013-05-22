@@ -21,17 +21,8 @@
 	<url>www.terraframe.com</url>
 
 	<properties>
-		<mvn.server.url>http://rowlands.dyndns.info:8080/</mvn.server.url>
+		<mvn.server.url>http://terraframe.com:8081/</mvn.server.url>
 	</properties>
-
-	<profiles>
-		<profile>
-			<id>localnat</id>
-			<properties>
-				<mvn.server.url>http://192.168.1.210:8080/</mvn.server.url>
-			</properties>
-		</profile>
-	</profiles>
 
 	<repositories>
 		<repository>

@@ -75,8 +75,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
   
   private Resource diagram;
 
-  private static final String           ARCHETYPE_SERVER            = "http://rowlands.dyndns.info:8080/nexus/content/groups/allrepos";
-  //private static final String           ARCHETYPE_SERVER            = "http://192.168.1.210:8080/nexus/content/groups/allrepos";
+  private static final String           ARCHETYPE_SERVER            = "http://terraframe.com:8081/nexus/content/groups/allrepos";
   
   public NewRunwayProjectWizard()
   {
