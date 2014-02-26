@@ -28,23 +28,25 @@ public class SchemaUtil
 {
   public static void main(String[] argz) throws URISyntaxException
   {
-    String xsd = SchemaUtil.class.getClassLoader().getResource("com/runwaysdk/resources/version.xsd").toString();
+//    String xsd = SchemaUtil.class.getClassLoader().getResource("com/runwaysdk/resources/version.xsd").toString();
+    
+    String xsd = SchemaUtil.class.getClassLoader().getResource("runwaysdk-server-0.0.2-SNAPSHOT.jar").toString();
     
     System.out.println("XSD = '" + xsd + "'");
-    String projPath = "/Users/terraframe/Documents/workspace/RunwayMavenTemplate";
-    
-    String[] args = new String[] { "-dir",
-        projPath + "/src/main/domain/application",
-        xsd,
-        projPath + "/src/main/domain/application/merged.xml" };
-
-    final String[] mavenArgs = new String[] {
-        "exec:exec",
-        "-X",
-        "-Dexec.executable=java",
-        "-Dexec.args=-classpath %classpath com.runwaysdk.dataaccess.io.CreateDomainModel " + args[1] };
-
-    int retVal = new MavenCli().doMain(mavenArgs, projPath, System.out, System.out);
+//    String projPath = "/Users/terraframe/Documents/workspace/RunwayMavenTemplate";
+//    
+//    String[] args = new String[] { "-dir",
+//        projPath + "/src/main/domain/application",
+//        xsd,
+//        projPath + "/src/main/domain/application/merged.xml" };
+//
+//    final String[] mavenArgs = new String[] {
+//        "exec:exec",
+//        "-X",
+//        "-Dexec.executable=java",
+//        "-Dexec.args=-classpath %classpath com.runwaysdk.dataaccess.io.CreateDomainModel " + args[1] };
+//
+//    int retVal = new MavenCli().doMain(mavenArgs, projPath, System.out, System.out);
   }
   
   public static MessageConsole findConsole(String name) {
