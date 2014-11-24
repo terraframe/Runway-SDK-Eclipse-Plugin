@@ -2,13 +2,14 @@ package runwayMdParsingClasses;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import org.w3c.dom.DOMException;
 import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
 
 import com.runwaysdk.eclipse.plugin.runway.MDAttributeDateTime;
 import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
-import com.runwaysdk.eclipse.plugin.schema.importer.XMLTags;
 
 public class MDAttributeDateTimeParser extends MdAttributeParser {
 
@@ -22,16 +23,25 @@ public class MDAttributeDateTimeParser extends MdAttributeParser {
 	@Override
 	public MDAttributeDateTime parse(){
 		MDAttributeDateTime mdAttributeDateTime = getMetaData();
-		try {
-			mdAttributeDateTime.setDefaultValue(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").
-					parse(nodeMap.getNamedItem(XMLTags.DATETIME_TAG).getNodeValue()));
-		} catch (DOMException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		try
+	    {
+		  Node defaultValue = nodeMap.getNamedItem("defaultValue");
+	      
+	      if (defaultValue != null)
+	      {
+	        mdAttributeDateTime.setDefaultValue(new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH).parse(defaultValue.getNodeValue()));
+	      }
+	    }
+	    catch (DOMException e)
+	    {
+	      e.printStackTrace();
+	    }
+	    catch (ParseException e)
+	    {
+	      e.printStackTrace();
+	    }
+		
 		return (MDAttributeDateTime)super.parse();
 
 

@@ -90,9 +90,9 @@ public class SchemaImportWizardPage1 extends WizardPage
       if (file.getFileExtension().equals("xml")) {
         schemaPath = file.getFullPath().toPortableString();
         
-        // The selection doesn't return the absolute path.
-        URL url = Platform.getInstanceLocation().getURL();
-        schemaPath = new File(url.getPath()).getAbsolutePath() + schemaPath;
+        String projAbsPath = file.getProject().getLocation().toOSString();
+        projAbsPath = projAbsPath.replace(File.separator + file.getProject().getName(), "");
+        schemaPath = new File(projAbsPath).getAbsolutePath() + schemaPath;
   
         schemaFileFieldEditor.setStringValue(schemaPath);
         

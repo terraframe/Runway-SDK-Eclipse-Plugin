@@ -1,11 +1,10 @@
 package runwayMdParsingClasses;
 
 import org.w3c.dom.NamedNodeMap;
-
+import org.w3c.dom.Node;
 
 import com.runwaysdk.eclipse.plugin.runway.MDAttributeBoolean;
 import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
-import com.runwaysdk.eclipse.plugin.schema.importer.XMLTags;
 
 public class MdAttributeBooleanParser extends MdAttributeParser{
 
@@ -16,9 +15,15 @@ public class MdAttributeBooleanParser extends MdAttributeParser{
 	@Override
 	public MDAttributeBoolean parse(){
 		MDAttributeBoolean mdAttributeBoolean = getMetaData();
-		mdAttributeBoolean.setDefaultValue(Boolean.parseBoolean(nodeMap.getNamedItem(XMLTags.BOOLEAN_TAG).getNodeValue()));
+		
+		Node defaultValue = nodeMap.getNamedItem("defaultValue");
+        
+        if (defaultValue != null)
+        {
+          mdAttributeBoolean.setDefaultValue(Boolean.parseBoolean(defaultValue.getNodeValue()));
+        }
+		
 		return (MDAttributeBoolean)super.parse();
-	
 	}
 	
 	@Override

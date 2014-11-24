@@ -128,11 +128,6 @@ public class RunwayDOMParser
 			//A node must be an element in order for our logic to continue
 			//A node can either be an Element, Text, etc node, but we only care about "Element" Nodes 
 			if(mdNode instanceof Element){
-				System.out.println("mdNode#" + i);
-				System.out.println(mdNode.getNodeName());
-				System.out.println(mdNode.getAttributes().getNamedItem(XMLTags.NAME_ATTRIBUTE).getNodeValue());
-				System.out.println("LOOK HERE");
-
 				//This is where we actually instantiate and parse our EMF object.
 				//The factory abstracts all creation and parsing. Look there for more!
 				MetaData mdNodeObject = factory.getContentFromNode(mdNode);

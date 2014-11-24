@@ -148,6 +148,7 @@ public class DOMExporter
       activeProjectName = activeProject.getName();
       activeDiagramFilename = file.getName();
       activeDiagramFilename = activeDiagramFilename.substring(0, activeDiagramFilename.length() - file.getFileExtension().length() - 1);
+      activeDiagramFilename = activeDiagramFilename.replace(" ", "");  // spaces are going to make our life difficult, just remove them.
     }
     catch (Exception e) {
       throw new RuntimeException("The file you wish to export must be open.", e);
@@ -158,7 +159,9 @@ public class DOMExporter
     URL platUrl = Platform.getInstanceLocation().getURL();
     final String workspace = new File(platUrl.getPath()).getAbsolutePath();
     
+    
     final String saveDirectory = workspace + "/.metadata/.plugins/com.runwaysdk.eclipse.plugin/" + activeProjectName + "/" + activeDiagramFilename;
+    
     
     // Use Runway to create a new schema file.
 //    ProfileManager.setProfileHome(workspace + "/" + activeProjectName + "/src/main/resources");
@@ -308,7 +311,7 @@ public class DOMExporter
 
       // create data elements and place them in the structure
       version = dom.createElement("version");
-      version.setAttribute("xsi:noNamespaceSchemaLocation", "../../profiles/version_gis.xsd");
+      version.setAttribute("xsi:noNamespaceSchemaLocation", "classpath:com/runwaysdk/resources/xsd/version.xsd");
       version.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
 
       doIt = dom.createElement("doIt");

@@ -1,32 +1,37 @@
 package runwayMdParsingClasses;
 
 import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
 
-import com.runwaysdk.eclipse.plugin.runway.MDAttribute;
 import com.runwaysdk.eclipse.plugin.runway.MDAttributeFloat;
-import com.runwaysdk.eclipse.plugin.runway.MDAttributeInteger;
 import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
-import com.runwaysdk.eclipse.plugin.schema.importer.XMLTags;
 
-public class MdAttributeFloatParser extends MdAttributeParser {
+public class MdAttributeFloatParser extends MdAttributeParser
+{
 
-	public MdAttributeFloatParser(NamedNodeMap nodeMap) {
-		super(RunwayFactory.eINSTANCE.createMDAttributeFloat(), nodeMap);
-		// TODO Auto-generated constructor stub
-	}
+  public MdAttributeFloatParser(NamedNodeMap nodeMap)
+  {
+    super(RunwayFactory.eINSTANCE.createMDAttributeFloat(), nodeMap);
+  }
 
+  @Override
+  public MDAttributeFloat parse()
+  {
+    MDAttributeFloat mdAttributeFloat = getMetaData();
+    
+    Node defaultValue = nodeMap.getNamedItem("defaultValue");
+    if (defaultValue != null)
+    {
+      mdAttributeFloat.setDefaultValue(new Float(defaultValue.getNodeValue()));
+    }
+    
+    return (MDAttributeFloat) super.parse();
+  }
 
+  @Override
+  public MDAttributeFloat getMetaData()
+  {
+    return (MDAttributeFloat) super.getMetaData();
 
-	@Override
-	public MDAttributeFloat parse(){
-		MDAttributeFloat mdAttributeFloat = getMetaData();
-		mdAttributeFloat.setDefaultValue(new Float(nodeMap.getNamedItem(XMLTags.FLOAT_TAG).getNodeValue()));
-		return (MDAttributeFloat)super.parse();
-	}
-
-	@Override
-	public MDAttributeFloat getMetaData(){
-		return (MDAttributeFloat)super.getMetaData();
-
-	}
+  }
 }

@@ -60,7 +60,7 @@ public class NewRunwayProjectWizard extends Wizard implements INewWizard
 
   private static final String           schemaFileNameWithExtension = schemaFileName + ".xml";
 
-  private static final String           schemaPath                  = "/src/main/domain/application/"
+  private static final String           schemaPath                  = "/src/main/domain/"
                                                                         + schemaFileNameWithExtension;
 
   private static final String           runwayArchetypeVersion      = "0.0.2-SNAPSHOT";

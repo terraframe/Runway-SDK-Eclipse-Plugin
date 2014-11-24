@@ -72,7 +72,7 @@ public class SchemaExportWizard extends Wizard implements INewWizard
     
     final IFile diagramFile = page1.getDiagramFile();
     final String projectName = diagramFile.getProject().getName();
-    final String tempFolderStr = workspace + "/.metadata/.plugins/com.runwaysdk.eclipse.plugin/" + projectName + "/" + diagramFile.getName().replace(".runway_diagram", "");
+    final String tempFolderStr = workspace + "/.metadata/.plugins/com.runwaysdk.eclipse.plugin/" + projectName + "/" + diagramFile.getName().replace(".runway_diagram", "").replace(" ", "");
     final String projAbsPath = diagramFile.getProject().getLocation().toOSString();
     
     if (new File(projAbsPath + "/target/classes/com/runwaysdk").exists() == false) {
@@ -88,8 +88,8 @@ public class SchemaExportWizard extends Wizard implements INewWizard
     
     String[] runwayArgs = new String[] { "-dir",
         tempFolderStr,
-        "jar:file:" + workspace.replace("\\", "/") + "/" + projectName + "/lib/runwaysdk-server-0.0.2-SNAPSHOT.jar!/com/runwaysdk/resources/version.xsd",
-        projAbsPath + "/src/main/domain/application/" + page1.getSchemaName() };
+        "jar:file:" + projAbsPath + "/lib/runwaysdk-server.jar!/com/runwaysdk/resources/xsd/version.xsd",
+        projAbsPath + "/src/main/domain/" + page1.getSchemaName() };
     
 //    String[] mavenArgs = new String[] {
 //        "exec:java",
@@ -100,7 +100,7 @@ public class SchemaExportWizard extends Wizard implements INewWizard
         "-Dexec.executable=java",
         "-Dexec.args=-classpath %classpath com.runwaysdk.dataaccess.schemamanager.SchemaManager " +  runwayArgs[0] + " " + runwayArgs[1] + " " + runwayArgs[2] + " " + runwayArgs[3]};
     
-    int retVal = new MavenCli().doMain(mavenArgs, workspace + diagramFile.getProject().getFullPath().toOSString(), out, out);
+    int retVal = new MavenCli().doMain(mavenArgs, projAbsPath, out, out);
 
     if (retVal != 0) {
       MessageDialog dialog = new MessageDialog(this.getShell(), "An error has occurred.", null,

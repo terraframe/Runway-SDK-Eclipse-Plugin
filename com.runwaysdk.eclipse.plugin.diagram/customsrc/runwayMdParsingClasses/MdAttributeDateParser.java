@@ -6,42 +6,54 @@ import java.util.Locale;
 
 import org.w3c.dom.DOMException;
 import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
 
 import com.runwaysdk.eclipse.plugin.runway.MDAttributeDate;
 import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
-import com.runwaysdk.eclipse.plugin.schema.importer.XMLTags;
 
-public class MdAttributeDateParser extends MdAttributeParser {
+public class MdAttributeDateParser extends MdAttributeParser
+{
 
-	public MdAttributeDateParser(NamedNodeMap nodeMap){
-		super(RunwayFactory.eINSTANCE.createMDAttributeDate(), nodeMap);
-	}
-	
-	/**
-	 * TODO Make sure this is the correct way to set dates
-	 */
+  public MdAttributeDateParser(NamedNodeMap nodeMap)
+  {
+    super(RunwayFactory.eINSTANCE.createMDAttributeDate(), nodeMap);
+  }
 
-	@Override
-	public MDAttributeDate parse(){
-		MDAttributeDate mdAttributeDate = getMetaData();
-		try {
-			mdAttributeDate.setDefaultValue(new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH).parse(nodeMap.getNamedItem(XMLTags.DATE_TAG).getNodeValue()));
-		} catch (DOMException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return (MDAttributeDate)super.parse();
+  /**
+   * TODO Make sure this is the correct way to set dates
+   */
 
+  @Override
+  public MDAttributeDate parse()
+  {
+    MDAttributeDate mdAttributeDate = getMetaData();
 
-	}
+    try
+    {
+      Node defaultValue = nodeMap.getNamedItem("defaultValue");
+      
+      if (defaultValue != null)
+      {
+        mdAttributeDate.setDefaultValue(new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH).parse(defaultValue.getNodeValue()));
+      }
+    }
+    catch (DOMException e)
+    {
+      e.printStackTrace();
+    }
+    catch (ParseException e)
+    {
+      e.printStackTrace();
+    }
 
-	@Override
-	protected MDAttributeDate getMetaData(){
-		return (MDAttributeDate)super.getMetaData();
-	}
+    return (MDAttributeDate) super.parse();
 
+  }
+
+  @Override
+  protected MDAttributeDate getMetaData()
+  {
+    return (MDAttributeDate) super.getMetaData();
+  }
 
 }

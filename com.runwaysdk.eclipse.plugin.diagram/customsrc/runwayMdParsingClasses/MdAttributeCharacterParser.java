@@ -1,11 +1,10 @@
 package runwayMdParsingClasses;
 
 import org.w3c.dom.NamedNodeMap;
-
+import org.w3c.dom.Node;
 
 import com.runwaysdk.eclipse.plugin.runway.MDAttributeCharacter;
 import com.runwaysdk.eclipse.plugin.runway.RunwayFactory;
-import com.runwaysdk.eclipse.plugin.schema.importer.XMLTags;
 
 public class MdAttributeCharacterParser extends MdAttributeParser{
 
@@ -16,14 +15,14 @@ public class MdAttributeCharacterParser extends MdAttributeParser{
 	@Override
 	public MDAttributeCharacter parse(){
 		MDAttributeCharacter mdAttributeCharacter = getMetaData();
-		if(nodeMap.getNamedItem(XMLTags.CHARACTER_TAG) != null){
-			mdAttributeCharacter.setDefaultValue((nodeMap.getNamedItem(XMLTags.CHARACTER_TAG).getNodeValue()).charAt(0));
-		}
-
-
 		
-		System.out.println("Value not present in Attribute Character");
-
+		Node defaultValue = nodeMap.getNamedItem("defaultValue");
+        
+        if (defaultValue != null)
+        {
+          mdAttributeCharacter.setDefaultValue(defaultValue.getNodeValue().charAt(0));
+        }
+		
 		return (MDAttributeCharacter)super.parse();
 
 	}
